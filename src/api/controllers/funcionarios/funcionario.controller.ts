@@ -81,11 +81,14 @@ export const FuncionarioController = {
             const reqFile = req.file as any;
             if (reqFile) {
                 dadosNovos.caminhoImagemPerfil = `images/imagens_perfil/${reqFile.filename}`
+            } else {
+                dadosNovos.caminhoImagemPerfil = '';
             };
 
             const funcionarioEditado = Funcionario.edit(id, dadosNovos);
 
             const funcionarioAtual = await FuncionarioRepository.listarPorId(id);
+
             if (!funcionarioAtual) {
                 res.status(404).json({ message: "Funcionário não encontrado" });
                 return;
@@ -107,7 +110,7 @@ export const FuncionarioController = {
 
     delete: async (req: Request, res: Response): Promise<void> => {
         try {
-            const id = String(req.params);
+            const id = String(req.params.id);
             const funcionario = await FuncionarioRepository.buscarCompletoPorId(id);
 
             if (!funcionario) {

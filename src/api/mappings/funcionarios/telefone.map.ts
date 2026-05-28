@@ -6,10 +6,10 @@ import { ITelefone } from '../../models/funcionarios/Telefone';
 interface TelefoneCreationAttributes extends Optional<ITelefone, 'idTelefone' | 'dataCad' | 'dataMod'> {}
 
 class TelefoneMap extends Model<ITelefone, TelefoneCreationAttributes> implements ITelefone {
-    public idTelefone!: string | null;
-    public FK_idFuncionario!: string;
-    public numeroTelefone!: string;
-    public tipoTelefone!: enumTipoTelefone;
+    declare idTelefone: string | null;
+    declare FK_idFuncionario: string;
+    declare numeroTelefone: string;
+    declare tipoTelefone: enumTipoTelefone;
 
     // Timestamps
     public readonly dataCad!: string;

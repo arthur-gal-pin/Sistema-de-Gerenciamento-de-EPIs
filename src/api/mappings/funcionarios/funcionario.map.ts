@@ -6,15 +6,15 @@ import { IFuncionario } from '../../models/funcionarios/Funcionario';
 interface FuncionarioCreationAttributes extends Optional<IFuncionario, 'idFuncionario' | 'dataCad' | 'dataMod'> {}
 
 class FuncionarioMap extends Model<IFuncionario, FuncionarioCreationAttributes> implements IFuncionario {
-    public idFuncionario!: string | null;
-    public FK_idCargo!: string;
-    public nomeFuncionario!: string;
-    public sobrenomeFuncionario!: string;
-    public senhaHash!: string;
-    public cpf!: string;
-    public email!: string;
-    public caminhoImagemPerfil!: string; 
-    public situacaoEmpregaticia!: enumSituacaoEmpregaticia;
+    declare idFuncionario: string | null;
+    declare FK_idCargo: string;
+    declare nomeFuncionario: string;
+    declare sobrenomeFuncionario: string;
+    declare senhaHash: string;
+    declare cpf: string;
+    declare email: string;
+    declare caminhoImagemPerfil: string; 
+    declare situacaoEmpregaticia: enumSituacaoEmpregaticia;
     
     // Timestamps
     public readonly dataCad!: string;

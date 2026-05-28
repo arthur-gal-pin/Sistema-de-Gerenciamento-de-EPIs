@@ -32,7 +32,7 @@ export const TelefoneController = {
     
     update: async (req: Request, res: Response): Promise<void> => {
         try {
-            const id = String(req.params.id);
+            const id = String(req.params.fkId);
             const [rowsAffected] = await TelefoneRepository.atualizar(id, req.body);
 
             if (rowsAffected === 0) {
