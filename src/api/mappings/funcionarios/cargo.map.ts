@@ -2,24 +2,26 @@ import { DataTypes, Model, Optional } from 'sequelize';
 import { sequelize } from '../../configs/Database';
 import { enumNivelPermissao } from '../../enum/funcionarios/nivelPermissao.enum';
 import { ICargo } from '../../models/funcionarios/Cargo';
+import { UUIDV4 } from 'sequelize'; 
 
 interface CargoCreationAttributes extends Optional<ICargo, 'idCargo' | 'dataCad' | 'dataMod'> {}
 
 class CargoMap extends Model<ICargo, CargoCreationAttributes> implements ICargo {
-    public idCargo!: string | null; 
-    public nomeCargo!: string;
-    public nivelPermissao!: enumNivelPermissao;
-    public dataCad?: string;
-    public dataMod?: string;
+    declare idCargo: string | null; 
+    declare nomeCargo: string;
+    declare nivelPermissao: enumNivelPermissao;
+    
+    declare readonly dataCad?: string;
+    declare readonly dataMod?: string;
 }
 
 CargoMap.init(
     {
         idCargo: {
             type: DataTypes.UUID,
-            defaultValue: DataTypes.UUIDV4,
             primaryKey: true,
-            field: 'IdCargo'
+            field: 'IdCargo',
+            defaultValue: UUIDV4()
         },
         nomeCargo: {
             type: DataTypes.STRING(100),
@@ -27,7 +29,7 @@ CargoMap.init(
             field: 'NomeCargo'
         },
         nivelPermissao: {
-            type: DataTypes.ENUM(...Object.values(enumNivelPermissao)),
+            type: DataTypes.STRING(30),
             allowNull: false,
             field: 'NivelPermissao'
         }

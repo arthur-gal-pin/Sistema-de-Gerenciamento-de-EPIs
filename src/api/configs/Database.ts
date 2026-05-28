@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { Sequelize } from 'sequelize';
 import dotenv from 'dotenv';
 
@@ -10,14 +9,6 @@ const missingEnv = requiredEnv.filter(key => !process.env[key]);
 if (missingEnv.length > 0) {
     console.error("Variáveis de ambiente ausentes:", missingEnv);
     throw new Error("Faltando variáveis críticas no arquivo .env para o SQL Server.");
-=======
-import mssql from 'mssql'; // Adicionado 'mssql' aqui
-import 'dotenv/config';
-
-// Validação das variáveis de ambiente
-if (!process.env.DB_HOST || !process.env.DB_USER || !process.env.DB_PASSWORD || !process.env.DB_DATABASE) {
-    throw new Error('Faltando variáveis críticas para o banco de dados SQL Server.');
->>>>>>> 43d9ad0d5469146314952e60044d80f702a9a0d0
 }
 
 class Database {
@@ -30,29 +21,38 @@ class Database {
 
     private connect() {
         try {
+            // Separar o host puro do nome da instância
+            // Se DB_HOST for "ECFP512N1322610\INSTANCIAARTHUR", o hostPuro será "ECFP512N1322610"
+            const envHost = process.env.DB_HOST || 'localhost';
+            const [hostPuro, instanceName] = envHost.split('\\');
+            console.log('azul')
+
             this.sequelize = new Sequelize(
-                process.env.DB_DATABASE!,
-                process.env.DB_USER!,
-                process.env.DB_PASSWORD!,
+                process.env.DB_DATABASE! || 'Sistema-de-Gerenciamento-de-EPIs-FUNDACENTRO',
+                process.env.DB_USER! || "Testers",
+                process.env.DB_PASSWORD! || "1234567890",
                 {
-                    host: process.env.DB_HOST,
+                    host: hostPuro, // Ex: "ECFP512N1322610" ou "localhost"
                     port: Number(process.env.DB_PORT) || 1433,
-                    dialect: 'mssql', // Define o uso do SQL Server
-                    logging: false,    // Defina como console.log para ver as queries
+                    dialect: 'mssql',
+                    logging: true,
                     dialectOptions: {
                         options: {
-                            encrypt: true, // Necessário para Azure/ambientes seguros
-                            trustServerCertificate: true, // Comum em dev local
-                            enableArithAbort: true
+                            encrypt: true,
+                            trustServerCertificate: true,
+                            enableArithAbort: true,
+                            // SE houver uma instância nomeada (depois da \), o mssql precisa saber dela aqui:
+                            instanceName: instanceName || undefined,
+                            //serverName: 'localhost'
                         }
                     },
                     pool: {
-                        max: 50,      // connectionLimit: 50
+                        max: 50,
                         min: 0,
                         acquire: 30000,
                         idle: 10000
                     },
-                    timezone: '+00:00' // Equivalente ao 'Z' (UTC)
+                    timezone: '+00:00'
                 }
             );
 
@@ -76,9 +76,5 @@ class Database {
     }
 }
 
-<<<<<<< HEAD
 // Exporta a instância do Sequelize pronta para uso nos Mappings
 export const sequelize = Database.getInstance().getSequelize();
-=======
-export const connectionPromise = Database.getInstance().then(db => db.getPool());
->>>>>>> 43d9ad0d5469146314952e60044d80f702a9a0d0

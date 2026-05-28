@@ -1,3 +1,4 @@
+import { uuid } from "uuidv4";
 import { enumTipoTelefone } from "../../enum/funcionarios/tipoTelefone";
 
 export interface ITelefone {
@@ -67,7 +68,7 @@ export default class Telefone {
     // --- FACTORY METHODS ---
     public static create(dados: ITelefone): Telefone {
         return new Telefone(
-            dados.idTelefone,
+            dados.idTelefone ? dados.idTelefone : uuid(),
             dados.FK_idFuncionario,
             dados.numeroTelefone,
             dados.tipoTelefone as enumTipoTelefone,

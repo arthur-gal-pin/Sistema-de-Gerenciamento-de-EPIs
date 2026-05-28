@@ -3,11 +3,13 @@ import { FuncionarioMap } from "./funcionarios/funcionario.map";
 import { TelefoneMap } from "./funcionarios/telefone.map";
 
 // 1 Cargo tem N Funcionários
-CargoMap.hasMany(FuncionarioMap, { foreignKey: 'fk_id_cargo', as: 'funcionarios' });
-FuncionarioMap.belongsTo(CargoMap, { foreignKey: 'fk_id_cargo', as: 'cargo' });
+// Alterado para 'FK_IdCargo' (respeitando o que foi definido no model do funcionário)
+CargoMap.hasMany(FuncionarioMap, { foreignKey: 'FK_IdCargo', as: 'funcionarios' });
+FuncionarioMap.belongsTo(CargoMap, { foreignKey: 'FK_IdCargo', as: 'cargo' });
 
 // 1 Funcionário tem N Telefones
-FuncionarioMap.hasMany(TelefoneMap, { foreignKey: 'fk_id_funcionario', as: 'telefones' });
-TelefoneMap.belongsTo(FuncionarioMap, { foreignKey: 'fk_id_funcionario', as: 'funcionario' });
+// Verifique no seu telefone.map se você usou 'FK_IdFuncionario' ou 'fk_id_funcionario'
+FuncionarioMap.hasMany(TelefoneMap, { foreignKey: 'FK_IdFuncionario', as: 'telefones' });
+TelefoneMap.belongsTo(FuncionarioMap, { foreignKey: 'FK_IdFuncionario', as: 'funcionario' });
 
 export { CargoMap, FuncionarioMap, TelefoneMap };

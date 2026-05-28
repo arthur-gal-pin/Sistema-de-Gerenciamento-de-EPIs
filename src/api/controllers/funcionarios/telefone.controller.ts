@@ -2,9 +2,9 @@ import { Request, Response } from 'express';
 import { TelefoneRepository } from '../../repositories/funcionarios/telefone.repository';
 
 export const TelefoneController = {
-    getByFuncionario: async (req: Request, res: Response): Promise<void> => {
+    readFuncionario: async (req: Request, res: Response): Promise<void> => {
         try {
-            const fk_id = String(req.params);
+            const fk_id = String(req.params.fkId);
             const telefones = await TelefoneRepository.listarPorFuncionario(fk_id);
             res.status(200).json(telefones);
         } catch (error: any) {
@@ -32,7 +32,7 @@ export const TelefoneController = {
     
     update: async (req: Request, res: Response): Promise<void> => {
         try {
-            const id = String(req.params);
+            const id = String(req.params.id);
             const [rowsAffected] = await TelefoneRepository.atualizar(id, req.body);
 
             if (rowsAffected === 0) {

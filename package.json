@@ -2,9 +2,9 @@
   "name": "sistema-gerenciamento-epi-fundacentro",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.ts",
   "scripts": {
-    "dev": "nodemon index.ts",
+    "dev": "nodemon src/api/server.ts",
     "build": "tsc",
     "start": "node dist/index.js"
   },
@@ -29,9 +29,7 @@
     "reflect-metadata": "^0.2.2",
     "sequelize": "^6.37.8",
     "sequelize-typescript": "^2.1.6",
-    "tedious": "^19.2.1"
-  },
-  "allowScripts": {
-    "bcrypt@6.0.0": true
+    "tedious": "^19.2.1",
+    "uuidv4": "^6.2.13"
   }
 }

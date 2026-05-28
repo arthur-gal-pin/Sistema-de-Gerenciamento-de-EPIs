@@ -1,3 +1,4 @@
+import { uuid } from "uuidv4";
 import { enumNivelPermissao } from "../../enum/funcionarios/nivelPermissao.enum";
 
 export interface ICargo {
@@ -52,7 +53,7 @@ export default class Cargo {
     public static create(dados: ICargo): Cargo {
 
         return new Cargo(
-            dados.idCargo,
+            dados.idCargo ? dados.idCargo : String(uuid()),
             dados.nomeCargo,
             dados.nivelPermissao as enumNivelPermissao,
             dados.dataCad,
@@ -67,7 +68,7 @@ export default class Cargo {
             dados.nomeCargo,
             dados.nivelPermissao as enumNivelPermissao,
             dados.dataCad,
-            dados.dataMod
+            String(new Date().toISOString)
         )
     }
 
