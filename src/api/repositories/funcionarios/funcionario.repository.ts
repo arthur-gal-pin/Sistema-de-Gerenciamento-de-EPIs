@@ -17,6 +17,22 @@ export class FuncionarioRepository {
         });
     }
 
+    static async buscarPorCPF(cpf: string){
+        return await FuncionarioMap.findOne({
+            where: {
+                cpf: cpf
+            }
+        })
+    }
+
+    static async buscarPorEmail(email: string){
+        return await FuncionarioMap.findAll({
+            where: {
+                email: email
+            }
+        })
+    }
+
     static async listarTodos() {
         return await FuncionarioMap.findAll({
             include: [{ model: CargoMap, as: 'cargo' }]
