@@ -1,10 +1,12 @@
 import jwt from "jsonwebtoken";
 import 'dotenv/config';
+import { enumNivelPermissao } from "../enum/funcionarios/nivelPermissao.enum";
 
 export interface JwtDados {
     idFuncionario: string | null;
     email: string;
     nome: string;
+    nivelPermissao: enumNivelPermissao
 }
 
 export class JwtService {

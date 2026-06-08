@@ -1,13 +1,14 @@
 import { Request, Response, NextFunction } from "express";
 import { JwtService } from "../utils/JwtService";
+import { enumNivelPermissao } from "../enum/funcionarios/nivelPermissao.enum";
 
-// 1. CORRIGIDO: Atualizamos a tipagem do Express para aceitar o novo padrão de Funcionário
 declare global {
     namespace Express {
         interface Request {
-            user?: { 
-                idFuncionario: string; 
-                email: string; 
+            user?: {
+                idFuncionario: string;
+                email: string;
+                nivelPermissao: enumNivelPermissao
             }
         }
     }
@@ -33,16 +34,29 @@ export class AuthMiddleware {
         try {
             const decoded = this.jwtService.verificarTokenAcesso(token);
             console.log("TOKEN DECODED: ", decoded);
-            
-            // 2. CORRIGIDO: Chaves batendo perfeitamente com a interface declarada lá em cima
-            req.user = { 
-                idFuncionario: String(decoded.idFuncionario), 
-                email: decoded.email 
+
+            req.user = {
+                idFuncionario: String(decoded.idFuncionario),
+                email: decoded.email,
+                nivelPermissao: decoded.nivelPermissao
             };
 
             next();
         } catch (error) {
             res.status(401).json({ message: 'Token inválido ou expirado' });
         }
+    }
+    
+    autorizar = (...niveisPermitidos: enumNivelPermissao[]) => {
+        return (req: Request, res: Response, next: NextFunction): void => {
+            const nivelUsuario = req.user?.nivelPermissao;
+
+            if (!nivelUsuario || !niveisPermitidos.includes(nivelUsuario)) {
+                res.status(403).json({ message: 'Acesso negado: permissão insuficiente' });
+                return;
+            }
+
+            next();
+        };
     }
 }

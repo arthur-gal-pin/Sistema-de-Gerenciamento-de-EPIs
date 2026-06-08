@@ -4,6 +4,7 @@ import { JwtService } from "../utils/JwtService";
 import { FuncionarioRepository } from "../repositories/funcionarios/funcionario.repository";
 import { limparCpf } from "../utils/validarCpf";
 import Funcionario from "../models/funcionarios/Funcionario";
+import { enumNivelPermissao } from "../enum/funcionarios/nivelPermissao.enum";
 
 export class AuthController {
     private jwtService: JwtService;
@@ -37,12 +38,14 @@ export class AuthController {
                 return res.status(400).json({ message: 'Credenciais inválidas' });
             }
 
-            const payload = { 
-                idFuncionario: String(user.idFuncionario), 
+            const cargo = (dadosBanco as any).cargo;
+
+            const payload = {
+                idFuncionario: String(user.idFuncionario),
                 email: user.email,
-                nome: user.nomeFuncionario 
+                nome: user.nomeFuncionario,
+                nivelPermissao: cargo?.nivelPermissao as enumNivelPermissao  // ← correto agora
             };
-            
             const accessToken = this.jwtService.gerarTokenAcesso(payload);
 
             return res.status(200).json({
@@ -52,7 +55,7 @@ export class AuthController {
                     expira_em: process.env.JWT_EXPIRES_IN || '1m'
                 }
             });
-            
+
         } catch (error: unknown) {
             console.error(error);
             if (error instanceof Error) {

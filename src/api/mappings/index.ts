@@ -8,7 +8,6 @@ CargoMap.hasMany(FuncionarioMap, { foreignKey: 'FK_IdCargo', as: 'funcionarios' 
 FuncionarioMap.belongsTo(CargoMap, { foreignKey: 'FK_IdCargo', as: 'cargo' });
 
 // 1 Funcionário tem N Telefones
-// Verifique no seu telefone.map se você usou 'FK_IdFuncionario' ou 'fk_id_funcionario'
 FuncionarioMap.hasMany(TelefoneMap, { foreignKey: 'FK_IdFuncionario', as: 'telefones' });
 TelefoneMap.belongsTo(FuncionarioMap, { foreignKey: 'FK_IdFuncionario', as: 'funcionario' });
 

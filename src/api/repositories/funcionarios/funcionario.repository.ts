@@ -19,9 +19,8 @@ export class FuncionarioRepository {
 
     static async buscarPorCPF(cpf: string){
         return await FuncionarioMap.findOne({
-            where: {
-                cpf: cpf
-            }
+            where: {cpf: cpf},
+        include: [{ model: CargoMap, as: 'cargo' }]
         })
     }
 
