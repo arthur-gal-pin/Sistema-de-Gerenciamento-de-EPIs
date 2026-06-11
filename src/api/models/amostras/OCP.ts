@@ -1,3 +1,5 @@
+import { uuid } from "uuidv4";
+
 export interface IOcp{
     idOCP: string | null;
     nomeOCP: string;
@@ -31,13 +33,12 @@ export class OCP {
 
     set nomeOCP(value: string) {
         this._nomeOCP = value;
-        this.atualizarDataModificacao();
     }
 
     // --- MÉTODOS DE FÁBRICA ---
     public static create(dados: any) {
         return new OCP(
-            dados.id,
+            dados.idOCP ? dados.idOCP : String(uuid()),
             dados.nomeOCP,
             dados.dataCad,
             dados.dataMod
@@ -49,18 +50,11 @@ export class OCP {
             id,
             dados.nomeOCP,
             dados.dataCad,
-            dados.dataMod
+            String(new Date().toISOString)
         )
     }
 
     // --- MÉTODOS AUXILIARES ---
-
-    /**
-     * Atualiza o timestamp sempre que um dado sensível é alterado via setter.
-     */
-    private atualizarDataModificacao(): void {
-        this._dataMod = new Date().toISOString();
-    }
 
     /**
      * Converte a classe para um objeto plano, removendo os underlines 

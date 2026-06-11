@@ -1,14 +1,15 @@
 import { enumSituacaoAmostra } from "../../enum/amostras/tsituacaoAmostra.enum";
+import { uuid } from "uuidv4";
 
-export interface IAmostra{
+export interface IAmostra {
     idAmostra?: string | null;
-    FK_idOCP: string;        
-    FK_idEmpresa: string;    
-    nomeAmostra: string;     
+    FK_idOCP: string;
+    FK_idEmpresa: string;
+    nomeAmostra: string;
     tipoAmostra: string;
     situacaoAmostra: enumSituacaoAmostra;
     dataCad?: string;
-    dataMod?: string; 
+    dataMod?: string;
 }
 
 
@@ -16,7 +17,7 @@ export default class Amostra {
     private _idAmostra: string | null;
     private _idOCP: string;
     private _idEmpresa: string;
-    private _nomeEmpresa: string;
+    private _nomeAmostra: string;
     private _tipoAmostra: string;
     private _situacaoAmostra: enumSituacaoAmostra;
     private _dataCad: string;
@@ -35,7 +36,7 @@ export default class Amostra {
         this._idAmostra = idAmostra || null;
         this._idOCP = idOCP;
         this._idEmpresa = idEmpresa;
-        this._nomeEmpresa = nomeEmpresa;
+        this._nomeAmostra = nomeEmpresa;
         this._tipoAmostra = tipoAmostra;
         this._situacaoAmostra = situacaoAmostra;
         this._dataCad = dataCad || new Date().toISOString();
@@ -46,7 +47,7 @@ export default class Amostra {
     get idAmostra() { return this._idAmostra };
     get idOCP() { return this._idOCP };
     get idEmpresa() { return this._idEmpresa };
-    get nomeEmpresa() { return this._nomeEmpresa };
+    get nomeAmostra() { return this._nomeAmostra };
     get tipoAmostra() { return this._tipoAmostra };
     get situacaoAmostra() { return this._situacaoAmostra };
     get dataCad() { return this._dataCad };
@@ -57,29 +58,21 @@ export default class Amostra {
     set idOCP(value: string) { this._idOCP = value; }
     set idEmpresa(value: string) { this._idEmpresa = value; }
 
-    set nomeEmpresa(value: string) {
-        this._nomeEmpresa = value;
-        this.atualizarDataModificacao();
+    set nomeAmostra(value: string) {
+        this._nomeAmostra = value;
     }
 
     set tipoAmostra(value: string) {
         this._tipoAmostra = value;
-        this.atualizarDataModificacao();
     }
 
     set situacaoAmostra(value: enumSituacaoAmostra) {
         this._situacaoAmostra = value;
-        this.atualizarDataModificacao();
     }
 
     // --- MÉTODOS AUXILIARES ---
 
-    /**
-     * Atualiza automaticamente a data de modificação sempre que um campo relevante muda.
-     */
-    private atualizarDataModificacao() {
-        this._dataMod = new Date().toISOString();
-    }
+
 
     // --- FACTORY METHODS ---
 
@@ -89,7 +82,7 @@ export default class Amostra {
      */
     public static create(dados: any): Amostra {
         return new Amostra(
-            dados.idAmostra || null,
+            dados.idAmostra ? dados.idAmostra : String(uuid()),
             dados.idOCP,
             dados.idEmpresa,
             dados.nomeEmpresa,
@@ -109,7 +102,7 @@ export default class Amostra {
             dados.tipoAmostra,
             dados.situacaoAmostra,
             dados.dataCad,
-            dados.dataMod
+            String(new Date().toISOString)
         )
     }
 
@@ -122,9 +115,9 @@ export default class Amostra {
     public toJSON() {
         return {
             idAmostra: this._idAmostra,
-            idOCP: this._idOCP,
-            idEmpresa: this._idEmpresa,
-            nomeEmpresa: this._nomeEmpresa,
+            FK_idOCP: this._idOCP,
+            FK_idEmpresa: this._idEmpresa,
+            nomeAmostra: this._nomeAmostra,
             tipoAmostra: this._tipoAmostra,
             situacaoAmostra: this._situacaoAmostra,
             dataCad: this._dataCad,

@@ -1,3 +1,5 @@
+import { uuid } from "uuidv4";
+
 export interface IEmpresa {
     idEmpresa: string | null;
     nomeEmpresa: string;
@@ -32,15 +34,20 @@ export class Empresa {
     }
 
     set nomeEmpresa(value: string) {
-        this._nomeEmpresa = value;
-        this.atualizarDataModificacao();
+        const valido = this.validarNomeEmpresa(value); //True ou false se a validação fucnionar
+        if (!valido) {
+            throw new Error("O nome da empresa não é válido.")
+        } else {
+            this._nomeEmpresa = value;
+            this.atualizarDataModificacao();
+        }
     }
 
 
     // --- MÉTODOS DE FÁBRICA ---
     public static create(dados: any) {
         return new Empresa(
-            dados.id,
+            dados.idEmpresa ? dados.idEmpresa : String(uuid()),
             dados.nomeEmpresa,
             dados.dataCad,
             dados.dataMod
@@ -61,14 +68,21 @@ export class Empresa {
     private atualizarDataModificacao(): void {
         this._dataMod = new Date().toISOString();
     }
+
+    private validarNomeEmpresa(nome: string): boolean {
+        if (!nome || nome.length < 3 || nome.length > 50) {
+            return false;
+        }
+        return true;
+    }
     /**
      * Converte a classe para um objeto plano, removendo os underlines 
      * das propriedades privadas ao serializar.
      */
     public toJSON() {
         return {
-            idOCP: this._idEmpresa,
-            nomeOCP: this._nomeEmpresa,
+            idEmpresa: this._idEmpresa,
+            nomeEmpresa: this._nomeEmpresa,
             dataCad: this._dataCad,
             dataMod: this._dataMod
         };

@@ -1,6 +1,7 @@
 import { AmostraMap } from '../../mappings/amostras/amostra.map';
 import { IAmostra } from '../../models/amostras/Amostra'; // Ou de onde a interface oficial vier
 import { enumSituacaoAmostra } from '../../enum/amostras/tsituacaoAmostra.enum';
+import { Op } from 'sequelize';
 
 export class AmostraRepository {
     /**
@@ -31,6 +32,16 @@ export class AmostraRepository {
         return await AmostraMap.findAll({
             where: { FK_idEmpresa }
         });
+    }
+
+    static async findByNome(nome: string){
+        return await AmostraMap.findAll({
+            where: {
+                nomeAmostra: {
+                    [Op.like]: `${nome}`
+                }
+            }
+        })
     }
 
     /**

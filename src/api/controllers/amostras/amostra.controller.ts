@@ -27,7 +27,7 @@ export const AmostraController = {
             const result = await AmostraRepository.findById(id);
 
             if (result === null) {
-                res.status(404).json({ message: 'Não foi encontrada nenhuma amostra com esse id.' });
+                res.status(404).json({ message: 'Não foi encontrada nenhuão foi ema amostra com esse id.' });
                 return;
             }
 
@@ -36,10 +36,47 @@ export const AmostraController = {
             res.status(400).json({ message: error.message });
         }
     },
+    getNome: async (req: Request, res: Response): Promise<void> =>{
+        try {
+            const nome = String(req.query.nome);
+            const result = await AmostraRepository.findByNome(nome);
+
+            if(result === null){
+                res.status(404).json({message: 'Não foi possível encontrar uma empresa com esse nome.'});
+                return;
+            }
+
+            res.status(200).json({message:'Requisição bem-sucedida:', data: result});
+            
+        } catch (error: any) {
+            res.status(400).json({message: error.message})
+        }
+    },
 
     // Cria uma nova amostra instanciando o modelo de domínio primeiro
 
-    
+    post: async (req: Request, res: Response): Promise<void> => {
+        try {
+            const { FK_idOCP, FK_idEmpresa, nomeAmostra, tipoAmostra, situacaoAmostra } = req.body;
+
+            // Instancia o domínio usando a factory (onde rodam as validações de negócio)
+            const domainAmostra = Amostra.create({
+                idAmostra: null,
+                FK_idOCP,
+                FK_idEmpresa,
+                nomeAmostra,
+                tipoAmostra,
+                situacaoAmostra
+            });
+
+            // Passa os dados puros validados para a camada de infraestrutura
+            const resultado = await AmostraRepository.create(domainAmostra.toJSON());
+            
+            res.status(201).json(resultado);
+        } catch (error: any) {
+            res.status(400).json({ message: error.message });
+        }
+    },
 
     // Atualiza os dados de uma amostra existente
     put: async (req: Request, res: Response): Promise<void> => {
