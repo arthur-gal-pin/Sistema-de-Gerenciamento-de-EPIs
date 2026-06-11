@@ -1,10 +1,17 @@
+export interface IOcp{
+    idOCP: string | null;
+    nomeOCP: string;
+    dataCad?: string;
+    dataMod?: string;
+}
+
 export class OCP {
-    private _idOCP: number | null;
+    private _idOCP: string | null;
     private _nomeOCP: string;
     private _dataCad: string;
     private _dataMod: string;
 
-    constructor(idOCP: number | null, nomeOCP: string, dataCad?: string, dataMod?: string) {
+    constructor(idOCP: string | null, nomeOCP: string, dataCad?: string, dataMod?: string) {
         this._idOCP = idOCP;
         this._nomeOCP = nomeOCP;
         this._dataCad = dataCad || new Date().toISOString();
@@ -18,7 +25,7 @@ export class OCP {
     get dataMod() { return this._dataMod };
 
     // --- SETTERS ---
-    set idOCP(value: number | null) {
+    set idOCP(value: string | null) {
         this._idOCP = value;
     }
 
@@ -37,7 +44,7 @@ export class OCP {
         )
     }
 
-    public static edit(id: number, dados: any) {
+    public static edit(id: string, dados: any) {
         return new OCP(
             id,
             dados.nomeOCP,

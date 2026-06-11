@@ -1,9 +1,21 @@
 import { enumSituacaoAmostra } from "../../enum/amostras/tsituacaoAmostra.enum";
 
+export interface IAmostra{
+    idAmostra?: string | null;
+    FK_idOCP: string;        
+    FK_idEmpresa: string;    
+    nomeAmostra: string;     
+    tipoAmostra: string;
+    situacaoAmostra: enumSituacaoAmostra;
+    dataCad?: string;
+    dataMod?: string; 
+}
+
+
 export default class Amostra {
-    private _idAmostra: number | null;
-    private _idOCP: number;
-    private _idEmpresa: number;
+    private _idAmostra: string | null;
+    private _idOCP: string;
+    private _idEmpresa: string;
     private _nomeEmpresa: string;
     private _tipoAmostra: string;
     private _situacaoAmostra: enumSituacaoAmostra;
@@ -11,9 +23,9 @@ export default class Amostra {
     private _dataMod: string;
 
     constructor(
-        idAmostra: number | null,
-        idOCP: number,
-        idEmpresa: number,
+        idAmostra: string | null,
+        idOCP: string,
+        idEmpresa: string,
         nomeEmpresa: string,
         tipoAmostra: string,
         situacaoAmostra: enumSituacaoAmostra,
@@ -41,9 +53,9 @@ export default class Amostra {
     get dataMod() { return this._dataMod };
 
     // --- SETTERS ---
-    set idAmostra(value: number | null) { this._idAmostra = value; }
-    set idOCP(value: number) { this._idOCP = value; }
-    set idEmpresa(value: number) { this._idEmpresa = value; }
+    set idAmostra(value: string | null) { this._idAmostra = value; }
+    set idOCP(value: string) { this._idOCP = value; }
+    set idEmpresa(value: string) { this._idEmpresa = value; }
 
     set nomeEmpresa(value: string) {
         this._nomeEmpresa = value;
@@ -88,7 +100,7 @@ export default class Amostra {
         );
     }
 
-    public static edit(id: number, dados: any): Amostra {
+    public static edit(id: string, dados: any): Amostra {
         return new Amostra(
             id,
             dados.idOCP,

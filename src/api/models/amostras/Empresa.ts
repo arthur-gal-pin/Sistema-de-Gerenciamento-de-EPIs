@@ -1,10 +1,18 @@
+export interface IEmpresa {
+    idEmpresa: string | null;
+    nomeEmpresa: string;
+    dataCad?: string;
+    dataMod?: string;
+}
+
+
 export class Empresa {
-    private _idEmpresa: number | null;
+    private _idEmpresa: string | null;
     private _nomeEmpresa: string;
     private _dataCad: string;
     private _dataMod: string;
 
-    constructor(idEmpresa: number | null, nomeEmpresa: string, dataCad?: string, dataMod?: string) {
+    constructor(idEmpresa: string | null, nomeEmpresa: string, dataCad?: string, dataMod?: string) {
         this._idEmpresa = idEmpresa;
         this._nomeEmpresa = nomeEmpresa;
         this._dataCad = dataCad || new Date().toISOString();
@@ -18,7 +26,7 @@ export class Empresa {
     get dataMod() { return this._dataMod };
 
     // --- SETTERS ---
-    set idEmpresa(value: number | null) {
+    set idEmpresa(value: string | null) {
         this._idEmpresa = value;
         this.atualizarDataModificacao();
     }
@@ -39,7 +47,7 @@ export class Empresa {
         )
     }
 
-    public static edit(id: number, dados: any) {
+    public static edit(id: string, dados: any) {
         return new Empresa(
             id,
             dados.nomeEmpresa,
