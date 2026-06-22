@@ -5,7 +5,7 @@ const amostraRoutes = Router();
 
 amostraRoutes.get('/all', AmostraController.getAll);
 amostraRoutes.get('/:id', AmostraController.getId);
-amostraRoutes.get('/:', AmostraController.getNome);
+amostraRoutes.get('/:nome', AmostraController.getNome);
 amostraRoutes.post('/', AmostraController.post);
 amostraRoutes.put('/:id', AmostraController.put);
 amostraRoutes.delete('/:id', AmostraController.delete);

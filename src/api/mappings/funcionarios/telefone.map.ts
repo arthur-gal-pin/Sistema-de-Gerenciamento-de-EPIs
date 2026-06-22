@@ -1,54 +1,46 @@
-import { DataTypes, Model, Optional } from 'sequelize';
-import { sequelize } from '../../configs/Database';
+import { Table, Column, Model, DataType, ForeignKey, BelongsTo } from 'sequelize-typescript';
+import FuncionarioMap from './funcionario.map';
 import { enumTipoTelefone } from '../../enum/funcionarios/tipoTelefone';
-import { ITelefone } from '../../models/funcionarios/Telefone';
 
-interface TelefoneCreationAttributes extends Optional<ITelefone, 'idTelefone' | 'dataCad' | 'dataMod'> {}
+@Table({
+    tableName: 'TB_TELEFONES', // Geralmente usa-se no plural para tabelas
+    schema: 'dbo',
+    timestamps: true,
+    createdAt: 'DataCad',
+    updatedAt: 'DataMod'
+})
+export default class TelefoneMap extends Model {
+    @Column({
+        type: DataType.UUID,
+        defaultValue: DataType.UUIDV4,
+        primaryKey: true,
+        field: 'IdTelefone'
+    })
+    idTelefone!: string;
 
-class TelefoneMap extends Model<ITelefone, TelefoneCreationAttributes> implements ITelefone {
-    declare idTelefone: string | null;
-    declare FK_idFuncionario: string;
-    declare numeroTelefone: string;
-    declare tipoTelefone: enumTipoTelefone;
+    @ForeignKey(() => FuncionarioMap)
+    @Column({
+        type: DataType.UUID,
+        allowNull: false,
+        field: 'FK_IdFuncionario'
+    })
+    fkIdFuncionario!: string;
 
-    // Timestamps
-    public readonly dataCad!: string;
-    public readonly dataMod!: string;
+    @BelongsTo(() => FuncionarioMap)
+    funcionario!: FuncionarioMap;
+
+    @Column({
+        type: DataType.STRING(20),
+        allowNull: false,
+        field: 'NumeroTelefone'
+    })
+    numeroTelefone!: string;
+
+    @Column({
+        type: DataType.ENUM(...Object.keys(enumTipoTelefone)),
+        allowNull: false,
+        field: 'TipoTelefone'
+    })
+    tipoTelefone!: string;
+
 }
-
-TelefoneMap.init(
-    {
-        idTelefone: {
-            type: DataTypes.UUID,
-            defaultValue: DataTypes.UUIDV4,
-            primaryKey: true,
-            field: 'IdTelefone' 
-        },
-        FK_idFuncionario: {
-            type: DataTypes.UUID,
-            allowNull: false,
-            field: 'FK_IdFuncionario',
-            references: { model: 'TB_FUNCIONARIOS', key: 'IdFuncionario' }
-        },
-        numeroTelefone: {
-            type: DataTypes.STRING(15), 
-            allowNull: false, 
-            field: 'NumeroTelefone'
-        },
-        tipoTelefone: {
-            type: DataTypes.ENUM(...Object.values(enumTipoTelefone)),
-            allowNull: false,
-            field: 'TipoTelefone'
-        }
-    },
-    {
-        sequelize,
-        tableName: 'TB_TELEFONES',
-        schema: 'dbo',
-        timestamps: true,
-        createdAt: 'DataCad',
-        updatedAt: 'DataMod'
-    }
-);
-
-export { TelefoneMap };

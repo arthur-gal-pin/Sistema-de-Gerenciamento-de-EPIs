@@ -1,13 +1,14 @@
-import { AmostraMap } from '../../mappings/amostras/amostra.map';
+import  AmostraMap from '../../mappings/amostras/amostra.map';
 import { IAmostra } from '../../models/amostras/Amostra'; // Ou de onde a interface oficial vier
 import { enumSituacaoAmostra } from '../../enum/amostras/tsituacaoAmostra.enum';
 import { Op } from 'sequelize';
+import { Attributes } from 'sequelize';
 
 export class AmostraRepository {
     /**
      * Cria uma nova amostra
      */
-    static async create(data: IAmostra) {
+    static async create(data: Attributes<AmostraMap>) {
         return await AmostraMap.create(data);
     }
 

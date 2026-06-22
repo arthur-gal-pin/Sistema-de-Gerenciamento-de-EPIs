@@ -1,5 +1,6 @@
-import { Sequelize } from 'sequelize';
+import { Sequelize } from 'sequelize-typescript'; 
 import dotenv from 'dotenv';
+import path from 'path';
 
 dotenv.config();
 
@@ -22,41 +23,38 @@ class Database {
     private connect() {
         try {
             // Separar o host puro do nome da instância
-            // Se DB_HOST for "ECFP512N1322610\INSTANCIAARTHUR", o hostPuro será "ECFP512N1322610"
             const envHost = process.env.DB_HOST || 'localhost';
             const [hostPuro, instanceName] = envHost.split('\\');
-            console.log('azul')
 
-            this.sequelize = new Sequelize(
-                process.env.DB_DATABASE! || 'Sistema-de-Gerenciamento-de-EPIs-FUNDACENTRO',
-                process.env.DB_USER! || "Testers",
-                process.env.DB_PASSWORD! || "1234567890",
-                {
-                    host: hostPuro, // Ex: "ECFP512N1322610" ou "localhost"
-                    port: Number(process.env.DB_PORT) || 1433,
-                    dialect: 'mssql',
-                    logging: true,
-                    dialectOptions: {
-                        options: {
-                            encrypt: true,
-                            trustServerCertificate: true,
-                            enableArithAbort: true,
-                            // SE houver uma instância nomeada (depois da \), o mssql precisa saber dela aqui:
-                            instanceName: instanceName || undefined,
-                            //serverName: 'localhost'
-                        }
-                    },
-                    pool: {
-                        max: 50,
-                        min: 0,
-                        acquire: 30000,
-                        idle: 10000
-                    },
-                    timezone: '+00:00'
-                }
-            );
+            this.sequelize = new Sequelize({
+                database: process.env.DB_DATABASE! || 'Sistema-de-Gerenciamento-de-EPIs-FUNDACENTRO',
+                username: process.env.DB_USER! || "Testers",
+                password: process.env.DB_PASSWORD! || "1234567890",
+                host: hostPuro, 
+                port: Number(process.env.DB_PORT) || 1433,
+                dialect: 'mssql',
+                logging: false,
+                dialectOptions: {
+                    options: {
+                        encrypt: true,
+                        trustServerCertificate: true,
+                        enableArithAbort: true,
+                        instanceName: instanceName || undefined,
+                    }
+                },
+                pool: {
+                    max: 50,
+                    min: 0,
+                    acquire: 30000,
+                    idle: 10000
+                },
 
-            console.log("✅ Conexão Sequelize (SQL Server) configurada com sucesso.");
+                
+                models: [path.join(__dirname, '../mappings/**/*.map.ts'), path.join(__dirname, '../../models/**/*.map.js')],
+                
+            });
+
+            console.log("✅ Conexão Sequelize-Typescript (SQL Server) configurada com sucesso.");
         } catch (error) {
             console.error("❌ Erro ao configurar o Sequelize:", error);
             throw error;
@@ -76,5 +74,4 @@ class Database {
     }
 }
 
-// Exporta a instância do Sequelize pronta para uso nos Mappings
 export const sequelize = Database.getInstance().getSequelize();

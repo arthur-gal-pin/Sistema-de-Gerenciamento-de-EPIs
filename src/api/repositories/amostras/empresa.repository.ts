@@ -1,5 +1,6 @@
-import { EmpresaMap } from '../../mappings/amostras/empresa.map';
+import  EmpresaMap  from '../../mappings/amostras/empresa.map';
 import { IEmpresa } from '../../models/amostras/Empresa';
+import { Attributes } from 'sequelize';
 
 import { Op } from 'sequelize';
 
@@ -23,7 +24,7 @@ export class EmpresaRepository {
         return await EmpresaMap.findByPk(id);
     }
 
-    static async criarEmpresa(dados: IEmpresa) {
+    static async criarEmpresa(dados: Attributes<EmpresaMap>) {
         return await EmpresaMap.create(dados as any);
     }
 

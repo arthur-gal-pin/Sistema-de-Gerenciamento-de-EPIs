@@ -68,7 +68,7 @@ export default class Cargo {
             dados.nomeCargo,
             dados.nivelPermissao as enumNivelPermissao,
             dados.dataCad,
-            String(new Date().toISOString)
+            String(new Date().toISOString())
         )
     }
 

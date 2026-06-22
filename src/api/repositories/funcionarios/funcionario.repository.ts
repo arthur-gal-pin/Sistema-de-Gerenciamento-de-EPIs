@@ -1,8 +1,8 @@
-import { FuncionarioMap } from '../../mappings';
-import { CargoMap } from '../../mappings';
-import { TelefoneMap } from '../../mappings';
+import FuncionarioMap from '../../mappings/funcionarios/funcionario.map';
+import CargoMap from '../../mappings/funcionarios/cargo.map';
+import TelefoneMap from '../../mappings/funcionarios/telefone.map';
 import { IFuncionario } from '../../models/funcionarios/Funcionario';
-import { Op } from 'sequelize'; 
+import { Attributes, Op } from 'sequelize'; 
 
 
 export class FuncionarioRepository {
@@ -52,7 +52,7 @@ export class FuncionarioRepository {
         return await FuncionarioMap.findByPk(id);
     }
 
-    static async criarFuncionario(dados: IFuncionario) {
+    static async criarFuncionario(dados: Attributes<FuncionarioMap>) {
         return await FuncionarioMap.create(dados);
     }
 

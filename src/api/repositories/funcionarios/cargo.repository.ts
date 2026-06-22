@@ -1,5 +1,5 @@
-import { CargoMap } from "../../mappings";
-import { Op } from 'sequelize'; 
+import CargoMap from '../../mappings/funcionarios/cargo.map';
+import { Attributes, Op } from 'sequelize'; 
 import { ICargo } from "../../models/funcionarios/Cargo";
 
 export class CargoRepository {
@@ -11,7 +11,7 @@ export class CargoRepository {
         return await CargoMap.findByPk(id);
     };
 
-    static async criar(dados: ICargo) {
+    static async criar(dados: Attributes<CargoMap>) {
         return await CargoMap.create(dados);
     };
 

@@ -5,6 +5,8 @@ import { FuncionarioRepository } from "../repositories/funcionarios/funcionario.
 import { limparCpf } from "../utils/validarCpf";
 import Funcionario from "../models/funcionarios/Funcionario";
 import { enumNivelPermissao } from "../enum/funcionarios/nivelPermissao.enum";
+import { Attributes } from "sequelize";
+import FuncionarioMap from "../mappings/funcionarios/funcionario.map";
 
 export class AuthController {
     private jwtService: JwtService;
@@ -23,7 +25,7 @@ export class AuthController {
             }
 
             // 1. Busca os dados brutos no banco usando o repositório (com await)
-            const dadosBanco = await FuncionarioRepository.buscarPorCPF(limparCpf(cpf));
+            const dadosBanco: Attributes<FuncionarioMap> = await FuncionarioRepository.buscarPorCPF(limparCpf(cpf));
 
             if (!dadosBanco) {
                 return res.status(400).json({ message: 'Usuário não encontrado' });
@@ -44,7 +46,7 @@ export class AuthController {
                 idFuncionario: String(user.idFuncionario),
                 email: user.email,
                 nome: user.nomeFuncionario,
-                nivelPermissao: cargo?.nivelPermissao as enumNivelPermissao  // ← correto agora
+                nivelPermissao: cargo?.nivelPermissao as enumNivelPermissao
             };
             const accessToken = this.jwtService.gerarTokenAcesso(payload);
 

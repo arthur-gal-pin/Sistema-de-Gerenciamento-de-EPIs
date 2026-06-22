@@ -3,20 +3,18 @@ dotenv.config();
 
 import express from 'express';
 import { sequelize } from './configs/Database';
-import funcionarioRoutes from './routes/funcionarios/funcionario.routes';
-import cargoRoutes from './routes/funcionarios/cargo.routes';
-import telefoneRoutes from './routes/funcionarios/telefone.routes';
+import authRoutes from './routes/funcionarios/login.routes';
+import routes from './routes/routes';
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3300;
 
 // --- MIDDLEWARES ---
 app.use(express.json()); // Permite que a controller receba JSON no req.body
 
 // --- ROTAS ---
-app.use('/funcionarios', funcionarioRoutes);
-app.use('/cargos', cargoRoutes);
-app.use('/telefones', telefoneRoutes);
+app.use('/auth', authRoutes);
+app.use('/', routes);
 
 // --- INICIALIZAÇÃO DO BANCO E SERVIDOR ---
 async function startServer() {

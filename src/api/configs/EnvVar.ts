@@ -1,6 +1,5 @@
 import 'dotenv/config';
 import { EnvKey } from '../enum/auth/EnvKey';
-import { parse } from 'node:path';
 
 export class EnvVar {
     // Impede instanciação

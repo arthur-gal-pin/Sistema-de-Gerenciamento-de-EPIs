@@ -5,7 +5,7 @@ const ocpRoutes = Router();
 
 ocpRoutes.get('/all', OcpController.getAll);
 ocpRoutes.get('/:id', OcpController.getId);
-ocpRoutes.get('/:', OcpController.getNome);
+ocpRoutes.get('/:nome', OcpController.getNome);
 ocpRoutes.post('/', OcpController.post);
 ocpRoutes.put('/:id', OcpController.put);
 ocpRoutes.delete('/:id', OcpController.delete);

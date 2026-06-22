@@ -5,7 +5,7 @@ const empresaRoutes = Router();
 
 empresaRoutes.get('/all', EmpresaController.getAll);
 empresaRoutes.get('/:id', EmpresaController.getId);
-empresaRoutes.get('/:', EmpresaController.getNome);
+empresaRoutes.get('/:nome', EmpresaController.getNome);
 empresaRoutes.post('/', EmpresaController.post);
 empresaRoutes.put('/:id', EmpresaController.put);
 empresaRoutes.delete('/:id', EmpresaController.delete);

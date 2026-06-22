@@ -6,16 +6,16 @@ import path from 'path';
 import bcrypt from 'bcryptjs';
 
 export const FuncionarioController = {
-    readAll: async(req: Request, res: Response): Promise<void> => {
+    readAll: async (req: Request, res: Response): Promise<void> => {
         try {
             const result = await FuncionarioRepository.listarTodos();
 
             if (result === null) {
-                res.status(404).json({message: 'Não foi encontrado nenhum funcionário nesse banco de dados.'});
+                res.status(404).json({ message: 'Não foi encontrado nenhum funcionário nesse banco de dados.' });
                 return;
             }
 
-            res.status(200).json({data: result});
+            res.status(200).json({ data: result });
 
         } catch (error: any) {
             res.status(400).json({ message: error.message });
@@ -28,11 +28,11 @@ export const FuncionarioController = {
             const result = await FuncionarioRepository.listarPorId(id);
 
             if (result === null) {
-                res.status(404).json({ message: 'Não foi encontrado nenhum funcionário com esse id.'});
+                res.status(404).json({ message: 'Não foi encontrado nenhum funcionário com esse id.' });
                 return;
             }
 
-            res.status(200).json({data: result});
+            res.status(200).json({ data: result });
 
         } catch (error: any) {
             res.status(400).json({ message: error.message });
@@ -47,7 +47,7 @@ export const FuncionarioController = {
                 res.status(400).json({
                     message: 'Arquivo de imagem não enviado.'
                 });
-                return
+                return;
             };
 
             const caminhoImagem: string = `images/imagens_perfil/${reqFile.filename}`;

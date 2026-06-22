@@ -25,5 +25,59 @@
 			"}"
 		],
 		"description": "Cria um bloco try-catch com o erro tipado como any"
-	}
+	},
+  "Sequelize-TypeScript Telefone Model Mapping": {
+    "prefix": "seq-model",
+    "description": "Gera o mapeamento completo do modelo de banco de dados usando sequelize-typescript",
+    "body": [
+      "import { Table, Column, Model, DataType, ForeignKey, BelongsTo } from 'sequelize-typescript';",
+      "",
+      "@Table({",
+      "    tableName: 'TB_$1',",
+      "    schema: 'dbo',",
+      "    timestamps: true,",
+      "    createdAt: 'DataCad',",
+      "    updatedAt: 'DataMod'",
+      "})",
+      "export default class $2Map extends Model {",
+      "    @Column({",
+      "        type: DataType.UUID,",
+      "        defaultValue: DataType.UUIDV4,",
+      "        primaryKey: true,",
+      "        field: 'Id$3'",
+      "    })",
+      "    id$4!: string;",
+      "",
+      "    @ForeignKey(() => Map)",
+      "    @Column({ ",
+      "        type: DataType.UUID, ",
+      "        allowNull: false, ",
+      "        field: 'FK_' ",
+      "    })",
+      "    fkId!: string;",
+      "",
+      "    @BelongsTo(() => Map)",
+      "    !: Map;",
+      "",
+      "    @Column({",
+      "        type: DataType.,",
+      "        allowNull: false,",
+      "        field: ''",
+      "    })",
+      "    !: string;",
+      "}"
+    ]
+  },
+  "Sequelize-Coluna": {
+    "prefix": "seq-column",
+    "description": "Gera uma soluna dentro do mapeamento do banco de dados.",
+    "body": [
+      "@Column({",
+      "     type: DataType.$1,",
+      "     allowNull: false,",
+      "     field: '$2'",
+      " })",
+      " $3!: string;",
+      ]
+  }
 }

@@ -1,6 +1,5 @@
-import { IOcp } from '../../models/amostras/OCP';
-import { Op } from 'sequelize';
-import { OcpMap } from '../../mappings/amostras/ocp.map';
+import { Attributes, Op } from 'sequelize';
+import  OcpMap  from '../../mappings/amostras/ocp.map';
 
 export class OcpRepository {
 
@@ -22,7 +21,7 @@ export class OcpRepository {
         return await OcpMap.findByPk(id);
     }
 
-    static async criarOcp(dados: IOcp) {
+    static async criarOcp(dados: Attributes<OcpMap>) {
         return await OcpMap.create(dados);
     }
 

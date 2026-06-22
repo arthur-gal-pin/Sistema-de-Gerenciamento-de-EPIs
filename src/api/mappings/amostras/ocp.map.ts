@@ -1,43 +1,30 @@
-import { DataTypes, Model, Optional } from 'sequelize';
-import { sequelize } from '../../configs/Database';
+import { Table, Column, Model, DataType, HasMany } from 'sequelize-typescript';
+import AmostraMap from './amostra.map'; // Ajuste o caminho do import se necessário
 
-import { IOcp } from '../../models/amostras/OCP';
+@Table({
+    tableName: 'TB_OCP',
+    schema: 'dbo',
+    timestamps: true,
+    createdAt: 'DataCad',
+    updatedAt: 'DataMod'
+})
+export default class OcpMap extends Model {
+    @Column({
+        type: DataType.UUID,
+        defaultValue: DataType.UUIDV4,
+        primaryKey: true,
+        field: 'IdOCP'
+    })
+    idOCP!: string;
 
-interface OcpCreationAttributes extends Optional<IOcp, 'idOCP' | 'dataCad' | 'dataMod'> {}
+    @Column({
+        type: DataType.STRING(50),
+        allowNull: false,
+        field: 'NomeOCP'
+    })
+    nomeOCP!: string;
 
-class OcpMap extends Model<IOcp, OcpCreationAttributes> implements IOcp {
-
-    public idOCP!: string | null;
-    public nomeOCP!: string;
-
-    // Timestamps
-    public readonly dataCad!: string;
-    public readonly dataMod!: string;
+    // Relação: 1 OCP tem N Amostras
+    @HasMany(() => AmostraMap, 'FK_idOCP')
+    amostras!: AmostraMap[];
 }
-
-OcpMap.init(
-    {
-        idOCP: {
-            type: DataTypes.UUID,
-            defaultValue: DataTypes.UUIDV4,
-            primaryKey: true,
-            field: 'IdOCP'
-        },
-
-        nomeOCP: {
-            type: DataTypes.STRING(50),
-            allowNull: false,
-            field: 'NomeOCP'
-        }
-    },
-    {
-        sequelize,
-        tableName: 'TB_OCP',
-        schema: 'dbo',
-        timestamps: true,
-        createdAt: 'DataCad',
-        updatedAt: 'DataMod'
-    }
-);
-
-export { OcpMap };

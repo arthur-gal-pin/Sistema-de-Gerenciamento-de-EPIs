@@ -13,7 +13,7 @@ routes.use('/cargos', cargoRoutes);
 routes.use('/funcionarios', funcionarioRoutes);
 routes.use('/telefones', telefoneRoutes);
 routes.use('/amostras', amostraRoutes);
-routes.use('/ocp', ocpRoutes);
-routes.use('/empresa', empresaRoutes);
+routes.use('/ocps', ocpRoutes);
+routes.use('/empresas', empresaRoutes);
 
 export default routes;

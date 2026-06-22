@@ -1,98 +1,50 @@
-import { DataTypes, Model, Optional } from 'sequelize';
-import { sequelize } from '../../configs/Database';
-
-// import { IAmostra } from '../../models/amostras/Amostra';
-interface IAmostra {
-    idAmostra?: string | null;
-    FK_idOCP: string;
-    FK_idEmpresa: string;
-    nomeAmostra: string;
-    tipoAmostra: string;
-    situacaoAmostra: enumSituacaoAmostra;
-    dataCad?: string;
-    dataMod?: string;
-}
-
+import { Table, Column, Model, DataType, ForeignKey, BelongsTo } from 'sequelize-typescript';
 import { enumSituacaoAmostra } from '../../enum/amostras/tsituacaoAmostra.enum';
+import EmpresaMap from './empresa.map';
+import OcpMap from './ocp.map';
 
-interface AmostraCreationAttributes extends Optional<IAmostra, 'idAmostra' | 'dataCad' | 'dataMod'> {}
+@Table({
+  tableName: 'TB_AMOSTRAS',
+  schema: 'dbo',
+  timestamps: true,
+  createdAt: 'DataCad',
+  updatedAt: 'DataMod',
+})
+export default class AmostraMap extends Model {
+  @Column({
+    type: DataType.UUID,
+    defaultValue: DataType.UUIDV4,
+    primaryKey: true,
+    field: 'IdAmostra',
+  })
+  idAmostra!: string;
 
-class AmostraMap extends Model<IAmostra, AmostraCreationAttributes> implements IAmostra {
+  // RELAÇÃO COM EMPRESA
+  @ForeignKey(() => EmpresaMap)
+  @Column({ type: DataType.UUID, allowNull: false, field: 'FK_IdEmpresa' })
+  fkIdEmpresa!: string;
 
-    public idAmostra!: string | null;
+  @BelongsTo(() => EmpresaMap)
+  empresa!: EmpresaMap;
 
-    public FK_idOCP!: string;
-    public FK_idEmpresa!: string;
+  // RELAÇÃO COM OCP
+  @ForeignKey(() => OcpMap)
+  @Column({ type: DataType.UUID, allowNull: false, field: 'FK_IdOCP' })
+  fkIdOcp!: string;
 
-    public nomeAmostra!: string;
+  @BelongsTo(() => OcpMap)
+  ocp!: OcpMap;
 
-    public tipoAmostra!: string;
-    public situacaoAmostra!: enumSituacaoAmostra;
+  @Column({ type: DataType.STRING(255), allowNull: false, field: 'NomeAmostra' })
+  nomeAmostra!: string;
 
-    // Timestamps
-    public readonly dataCad!: string;
-    public readonly dataMod!: string;
+  @Column({ type: DataType.STRING(255), allowNull: false, field: 'TipoAmostra' })
+  tipoAmostra!: string;
+
+  @Column({
+    type: DataType.ENUM('prova', 'contraprova', 'testemunha'),
+    allowNull: false,
+    field: 'SituacaoAmostra',
+  })
+  situacaoAmostra!: enumSituacaoAmostra;
 }
-
-AmostraMap.init(
-    {
-        idAmostra: {
-            type: DataTypes.UUID,
-            defaultValue: DataTypes.UUIDV4,
-            primaryKey: true,
-            field: 'IdAmostra'
-        },
-
-        FK_idOCP: {
-            type: DataTypes.UUID,
-            allowNull: false,
-            field: 'FK_IdOCP',
-            references: {
-                model: 'TB_OCP',
-                key: 'IdOCP'
-            }
-        },
-
-        FK_idEmpresa: {
-            type: DataTypes.UUID,
-            allowNull: false,
-            field: 'FK_IdEmpresa',
-            references: {
-                model: 'TB_EMPRESAS',
-                key: 'IdEmpresa'
-            }
-        },
-
-        nomeAmostra: {
-            type: DataTypes.STRING(255),
-            allowNull: false,
-            field: 'NomeAmostra'
-        },
-
-        tipoAmostra: {
-            type:  DataTypes.STRING(255),
-            allowNull: false,
-            field: 'TipoAmostra'
-        },
-
-        situacaoAmostra: {
-            type: DataTypes.ENUM(
-                'prova',
-                'contraprova',
-                'testemunha'
-            ),
-            allowNull: false,
-            field: 'SituacaoAmostra'
-        }
-    },
-    {
-        sequelize,
-        tableName: 'TB_AMOSTRAS',
-        schema: 'dbo',
-        timestamps: true,
-        createdAt: 'DataCad',
-        updatedAt: 'DataMod'
-    }
-);
-
-export { AmostraMap };

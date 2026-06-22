@@ -7,8 +7,9 @@ declare global {
         interface Request {
             user?: {
                 idFuncionario: string;
+                nome: string
                 email: string;
-                nivelPermissao: enumNivelPermissao
+                nivelPermissao: enumNivelPermissao;
             }
         }
     }
@@ -37,6 +38,7 @@ export class AuthMiddleware {
 
             req.user = {
                 idFuncionario: String(decoded.idFuncionario),
+                nome: String(decoded.nome),
                 email: decoded.email,
                 nivelPermissao: decoded.nivelPermissao
             };
@@ -46,7 +48,7 @@ export class AuthMiddleware {
             res.status(401).json({ message: 'Token inválido ou expirado' });
         }
     }
-    
+
     autorizar = (...niveisPermitidos: enumNivelPermissao[]) => {
         return (req: Request, res: Response, next: NextFunction): void => {
             const nivelUsuario = req.user?.nivelPermissao;

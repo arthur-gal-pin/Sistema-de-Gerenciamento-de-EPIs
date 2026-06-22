@@ -1,4 +1,5 @@
-import { TelefoneMap } from "../../mappings";
+import { Attributes } from "sequelize";
+import TelefoneMap from "../../mappings/funcionarios/telefone.map";
 import { ITelefone } from "../../models/funcionarios/Telefone";
 
 export class TelefoneRepository {
@@ -8,7 +9,7 @@ export class TelefoneRepository {
         });
     }
 
-    static async adicionarTelefone(dados: ITelefone) {
+    static async adicionarTelefone(dados: Attributes<TelefoneMap>) {
         return await TelefoneMap.create(dados);
     }
 
