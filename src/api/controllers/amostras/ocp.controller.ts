@@ -66,7 +66,7 @@ export const OcpController = {
         try {
             const nomeOCP = String(req.body.nome);
             
-            const domainOcp = OCP.create(nomeOCP);
+            const domainOcp = OCP.create({ nomeOCP });
             
             const result = await OcpRepository.criarOcp(domainOcp.toJSON());
             
@@ -87,7 +87,7 @@ export const OcpController = {
                 return;
             }
 
-            const domainOcp = OCP.edit(id, nomeNovo);
+            const domainOcp = OCP.edit(id, { nomeOCP: nomeNovo });
 
             const result = await OcpRepository.atualizarOcp(id, domainOcp.toJSON());
 

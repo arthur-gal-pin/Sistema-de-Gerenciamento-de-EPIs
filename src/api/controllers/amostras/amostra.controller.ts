@@ -38,7 +38,7 @@ export const AmostraController = {
     },
     getNome: async (req: Request, res: Response): Promise<void> =>{
         try {
-            const nome = String(req.query.nome);
+            const nome = String(req.params.nome);
             const result = await AmostraRepository.findByNome(nome);
 
             if(result === null){

@@ -103,7 +103,7 @@ export default class Funcionario {
 
     // --- VALIDATION METHODS ---
     private validarTexto(valor: string, campo: string, min: number, max: number) {
-        if (valor.trim().length < min || valor.trim().length > max) {
+        if ((valor.trim()).length < min || (valor.trim()).length > max) {
             throw new Error(`O ${campo} está inválido. Deve ter entre ${min} e ${max} caracteres.`);
         }
     }

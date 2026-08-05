@@ -1,70 +1,92 @@
-import FuncionarioMap from '../../mappings/funcionarios/funcionario.map';
-import CargoMap from '../../mappings/funcionarios/cargo.map';
-import TelefoneMap from '../../mappings/funcionarios/telefone.map';
+import { prisma } from '../../configs/Database';
 import { IFuncionario } from '../../models/funcionarios/Funcionario';
-import { Attributes, Op } from 'sequelize'; 
-
 
 export class FuncionarioRepository {
-    
+
     // Busca funcionário trazendo os dados do Cargo e a lista de Telefones (Eager Loading)
     static async buscarCompletoPorId(id: string) {
-        return await FuncionarioMap.findByPk(id, {
-            include: [
-                { model: CargoMap, as: 'cargo' },
-                { model: TelefoneMap, as: 'telefones' }
-            ]
+        return await prisma.funcionario.findUnique({
+            where: { idFuncionario: id },
+            include: {
+                cargo: true,
+                telefones: true
+            }
         });
     }
 
-    static async buscarPorCPF(cpf: string){
-        return await FuncionarioMap.findOne({
-            where: {cpf: cpf},
-        include: [{ model: CargoMap, as: 'cargo' }]
-        })
+    static async buscarPorCPF(cpf: string) {
+        return await prisma.funcionario.findFirst({
+            where: { cpf },
+            include: { cargo: true }
+        });
     }
 
-    static async buscarPorEmail(email: string){
-        return await FuncionarioMap.findAll({
-            where: {
-                email: email
-            }
-        })
+    static async buscarPorEmail(email: string) {
+        return await prisma.funcionario.findMany({
+            where: { email }
+        });
     }
 
     static async listarTodos() {
-        return await FuncionarioMap.findAll({
-            include: [{ model: CargoMap, as: 'cargo' }]
+        return await prisma.funcionario.findMany({
+            include: { cargo: true }
         });
     }
 
     static async listarPorNome(nome: string) {
-        return await FuncionarioMap.findAll({
+        return await prisma.funcionario.findMany({
             where: {
-                nomeFuncionario: {
-                    [Op.like]: `%${nome}%`
-                }
+                nomeFuncionario: { contains: nome }
             }
         });
     }
 
     static async listarPorId(id: string) {
-        return await FuncionarioMap.findByPk(id);
+        return await prisma.funcionario.findUnique({ where: { idFuncionario: id } });
     }
 
-    static async criarFuncionario(dados: Attributes<FuncionarioMap>) {
-        return await FuncionarioMap.create(dados);
+    // Recebe o objeto no formato do domínio (IFuncionario, chave FK_idCargo) e
+    // traduz para o formato esperado pelo Prisma Client (fkIdCargo)
+    static async criarFuncionario(dados: IFuncionario) {
+        return await prisma.funcionario.create({
+            data: {
+                idFuncionario: dados.idFuncionario ?? undefined,
+                fkIdCargo: dados.FK_idCargo,
+                nomeFuncionario: dados.nomeFuncionario,
+                sobrenomeFuncionario: dados.sobrenomeFuncionario,
+                cpf: dados.cpf,
+                email: dados.email,
+                senhaHash: dados.senhaHash,
+                caminhoImagemPerfil: dados.caminhoImagemPerfil || null,
+                situacaoEmpregaticia: dados.situacaoEmpregaticia,
+                dataCad: dados.dataCad,
+                dataMod: dados.dataMod,
+            }
+        });
     }
 
     static async atualizarFuncionario(id: string, dados: any) {
-        return await FuncionarioMap.update(dados, {
-            where: { idFuncionario: id }
+        const result = await prisma.funcionario.updateMany({
+            where: { idFuncionario: id },
+            data: {
+                fkIdCargo: dados.FK_idCargo,
+                nomeFuncionario: dados.nomeFuncionario,
+                sobrenomeFuncionario: dados.sobrenomeFuncionario,
+                cpf: dados.cpf,
+                email: dados.email,
+                senhaHash: dados.senhaHash,
+                caminhoImagemPerfil: dados.caminhoImagemPerfil || null,
+                situacaoEmpregaticia: dados.situacaoEmpregaticia,
+                dataMod: new Date(),
+            }
         });
+        return [result.count];
     }
 
     static async apagarFuncionario(id: string) {
-        return await FuncionarioMap.destroy({
+        const result = await prisma.funcionario.deleteMany({
             where: { idFuncionario: id }
         });
+        return result.count;
     }
 }

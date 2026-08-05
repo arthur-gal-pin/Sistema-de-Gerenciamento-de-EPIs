@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 import express from 'express';
-import { sequelize } from './configs/Database';
+import { prisma } from './configs/Database';
 import authRoutes from './routes/funcionarios/login.routes';
 import routes from './routes/routes';
 
@@ -20,13 +20,15 @@ app.use('/', routes);
 async function startServer() {
     try {
         console.log('🔄 Conectando ao banco de dados...');
-        
+
         // Testa a conexão com o banco
-        await sequelize.authenticate();
+        await prisma.$connect();
         console.log('✅ Conexão com o banco de dados estabelecida com sucesso.');
 
-        await sequelize.sync({ force: false, alter: false });
-        console.log('🗄️ Modelos sincronizados com o banco de dados.');
+        // Obs: com Prisma, a sincronização de schema (equivalente ao antigo
+        // sequelize.sync()) é feita via CLI, fora do runtime:
+        //   npx prisma migrate dev   (gera/aplica migrations versionadas)
+        //   npx prisma db push       (sincroniza o schema sem migration)
 
         // Inicia o servidor Express apenas se o banco conectou com sucesso
         app.listen(PORT, () => {
@@ -38,6 +40,12 @@ async function startServer() {
         process.exit(1); // Fecha a aplicação caso não consiga conectar ao banco
     }
 }
+
+// Encerramento gracioso da conexão com o banco
+process.on('SIGINT', async () => {
+    await prisma.$disconnect();
+    process.exit(0);
+});
 
 // Executa a função de inicialização
 startServer();

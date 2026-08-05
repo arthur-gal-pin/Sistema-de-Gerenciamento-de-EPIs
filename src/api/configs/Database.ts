@@ -1,6 +1,6 @@
-import { Sequelize } from 'sequelize-typescript'; 
+import { PrismaClient, Prisma } from '../../../generated/prisma/client';
+import { PrismaMssql } from '@prisma/adapter-mssql';
 import dotenv from 'dotenv';
-import path from 'path';
 
 dotenv.config();
 
@@ -14,7 +14,7 @@ if (missingEnv.length > 0) {
 
 class Database {
     private static instance: Database | null = null;
-    private sequelize!: Sequelize;
+    private prisma!: PrismaClient;
 
     private constructor() {
         // Singleton
@@ -26,37 +26,25 @@ class Database {
             const envHost = process.env.DB_HOST || 'localhost';
             const [hostPuro, instanceName] = envHost.split('\\');
 
-            this.sequelize = new Sequelize({
-                database: process.env.DB_DATABASE! || 'Sistema-de-Gerenciamento-de-EPIs-FUNDACENTRO',
-                username: process.env.DB_USER! || "Testers",
-                password: process.env.DB_PASSWORD! || "1234567890",
-                host: hostPuro, 
+            const adapter = new PrismaMssql({
+                server: hostPuro,
                 port: Number(process.env.DB_PORT) || 1433,
-                dialect: 'mssql',
-                logging: false,
-                dialectOptions: {
-                    options: {
-                        encrypt: true,
-                        trustServerCertificate: true,
-                        enableArithAbort: true,
-                        instanceName: instanceName || undefined,
-                    }
-                },
-                pool: {
-                    max: 50,
-                    min: 0,
-                    acquire: 30000,
-                    idle: 10000
-                },
-
-                
-                models: [path.join(__dirname, '../mappings/**/*.map.ts'), path.join(__dirname, '../../models/**/*.map.js')],
-                
+                database: process.env.DB_DATABASE! || 'Sistema-de-Gerenciamento-de-EPIs-FUNDACENTRO',
+                user: process.env.DB_USER! || 'Testers',
+                password: process.env.DB_PASSWORD! || '1234567890',
+                options: {
+                    encrypt: true,
+                    trustServerCertificate: true,
+                    enableArithAbort: true,
+                    instanceName: instanceName || undefined,
+                }
             });
 
-            console.log("✅ Conexão Sequelize-Typescript (SQL Server) configurada com sucesso.");
+            this.prisma = new PrismaClient({ adapter });
+
+            console.log("✅ Conexão Prisma (SQL Server) configurada com sucesso.");
         } catch (error) {
-            console.error("❌ Erro ao configurar o Sequelize:", error);
+            console.error("❌ Erro ao configurar o Prisma:", error);
             throw error;
         }
     }
@@ -69,9 +57,10 @@ class Database {
         return Database.instance;
     }
 
-    public getSequelize(): Sequelize {
-        return this.sequelize;
+    public getPrisma(): PrismaClient {
+        return this.prisma;
     }
 }
 
-export const sequelize = Database.getInstance().getSequelize();
+export const prisma = Database.getInstance().getPrisma();
+export { Prisma };

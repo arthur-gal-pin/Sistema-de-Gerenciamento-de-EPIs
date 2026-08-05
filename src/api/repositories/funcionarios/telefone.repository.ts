@@ -1,31 +1,47 @@
-import { Attributes } from "sequelize";
-import TelefoneMap from "../../mappings/funcionarios/telefone.map";
+import { prisma } from "../../configs/Database";
 import { ITelefone } from "../../models/funcionarios/Telefone";
 
 export class TelefoneRepository {
     static async listarPorFuncionario(idFuncionario: string) {
-        return await TelefoneMap.findAll({
-            where: { FK_idFuncionario: idFuncionario }
+        return await prisma.telefone.findMany({
+            where: { fkIdFuncionario: idFuncionario }
         });
     }
 
-    static async adicionarTelefone(dados: Attributes<TelefoneMap>) {
-        return await TelefoneMap.create(dados);
+    static async adicionarTelefone(dados: any) {
+        return await prisma.telefone.create({
+            data: {
+                idTelefone: dados.idTelefone ?? undefined,
+                fkIdFuncionario: dados.FK_idFuncionario ?? dados.fkIdFuncionario,
+                numeroTelefone: dados.numeroTelefone,
+                tipoTelefone: dados.tipoTelefone,
+                dataCad: dados.dataCad,
+                dataMod: dados.dataMod,
+            }
+        });
     }
 
     static async removerTelefone(idTelefone: string) {
-        return await TelefoneMap.destroy({
+        const result = await prisma.telefone.deleteMany({
             where: { idTelefone: idTelefone }
         });
+        return result.count;
     }
 
     static async atualizar(id: string, dados: ITelefone) {
-        return await TelefoneMap.update(dados, {
-            where: { idTelefone: id }
+        const result = await prisma.telefone.updateMany({
+            where: { idTelefone: id },
+            data: {
+                fkIdFuncionario: dados.FK_idFuncionario,
+                numeroTelefone: dados.numeroTelefone,
+                tipoTelefone: dados.tipoTelefone,
+                dataMod: new Date(),
+            }
         });
+        return [result.count];
     }
 
     static async buscarPorId(id: string) {
-        return await TelefoneMap.findByPk(id);
+        return await prisma.telefone.findUnique({ where: { idTelefone: id } });
     }
 }

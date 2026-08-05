@@ -1,67 +1,81 @@
-import  AmostraMap from '../../mappings/amostras/amostra.map';
-import { IAmostra } from '../../models/amostras/Amostra'; // Ou de onde a interface oficial vier
-import { enumSituacaoAmostra } from '../../enum/amostras/tsituacaoAmostra.enum';
-import { Op } from 'sequelize';
-import { Attributes } from 'sequelize';
+import { prisma } from '../../configs/Database';
+import { IAmostra } from '../../models/amostras/Amostra';
 
 export class AmostraRepository {
     /**
      * Cria uma nova amostra
      */
-    static async create(data: Attributes<AmostraMap>) {
-        return await AmostraMap.create(data);
+    static async create(data: any) {
+        return await prisma.amostra.create({
+            data: {
+                idAmostra: data.idAmostra ?? undefined,
+                fkIdEmpresa: data.FK_idEmpresa,
+                fkIdOcp: data.FK_idOCP,
+                nomeAmostra: data.nomeAmostra,
+                tipoAmostra: data.tipoAmostra,
+                situacaoAmostra: data.situacaoAmostra,
+                dataCad: data.dataCad,
+                dataMod: data.dataMod,
+            }
+        });
     }
 
     /**
      * Busca todas as amostras
      */
     static async findAll() {
-        return await AmostraMap.findAll();
+        return await prisma.amostra.findMany();
     }
 
     /**
      * Busca uma amostra pelo ID (Chave Primária)
      */
     static async findById(idAmostra: string) {
-        return await AmostraMap.findByPk(idAmostra);
+        return await prisma.amostra.findUnique({ where: { idAmostra } });
     }
 
     /**
      * Busca amostras por uma empresa específica
      */
-    static async findByEmpresa(FK_idEmpresa: string) {
-        return await AmostraMap.findAll({
-            where: { FK_idEmpresa }
+    static async findByEmpresa(fkIdEmpresa: string) {
+        return await prisma.amostra.findMany({
+            where: { fkIdEmpresa }
         });
     }
 
-    static async findByNome(nome: string){
-        return await AmostraMap.findAll({
+    static async findByNome(nome: string) {
+        return await prisma.amostra.findMany({
             where: {
-                nomeAmostra: {
-                    [Op.like]: `${nome}`
-                }
+                nomeAmostra: { contains: nome }
             }
-        })
+        });
     }
 
     /**
      * Atualiza os dados de uma amostra
      */
     static async update(idAmostra: string, data: Partial<IAmostra>) {
-        const [affectedRows] = await AmostraMap.update(data, {
-            where: { idAmostra }
+        const result = await prisma.amostra.updateMany({
+            where: { idAmostra },
+            data: {
+                fkIdEmpresa: data.FK_idEmpresa,
+                fkIdOcp: data.FK_idOCP,
+                nomeAmostra: data.nomeAmostra,
+                tipoAmostra: data.tipoAmostra,
+                situacaoAmostra: data.situacaoAmostra,
+                dataMod: new Date(),
+            }
         });
-        return affectedRows > 0;
+        return result.count > 0;
     }
 
     /**
      * Exclui uma amostra pelo ID
      */
     static async delete(idAmostra: string) {
-        const deletedRows = await AmostraMap.destroy({
+        const result = await prisma.amostra.deleteMany({
             where: { idAmostra }
         });
-        return deletedRows > 0;
+        return result.count > 0;
     }
 }

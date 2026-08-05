@@ -66,7 +66,7 @@ export const EmpresaController = {
         try {
             const nomeEmpresa = String(req.body.nome);
             
-            const domainEmpresa = Empresa.create(nomeEmpresa);
+            const domainEmpresa = Empresa.create({ nomeEmpresa });
             
             const result = await EmpresaRepository.criarEmpresa(domainEmpresa.toJSON());
             
@@ -87,7 +87,7 @@ export const EmpresaController = {
                 return; 
             }
 
-            const domainEmpresa = Empresa.edit(id, nomeNovo);
+            const domainEmpresa = Empresa.edit(id, { nomeEmpresa: nomeNovo });
 
             const result = await EmpresaRepository.atualizarEmpresa(id, domainEmpresa.toJSON());
 

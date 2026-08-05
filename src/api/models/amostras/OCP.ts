@@ -50,7 +50,7 @@ export class OCP {
             id,
             dados.nomeOCP,
             dados.dataCad,
-            String(new Date().toISOString)
+            String(new Date().toISOString())
         )
     }
 

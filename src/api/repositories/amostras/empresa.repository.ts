@@ -1,46 +1,54 @@
-import  EmpresaMap  from '../../mappings/amostras/empresa.map';
+import { prisma } from '../../configs/Database';
 import { IEmpresa } from '../../models/amostras/Empresa';
-import { Attributes } from 'sequelize';
-
-import { Op } from 'sequelize';
 
 export class EmpresaRepository {
 
     static async listarTodos() {
-        return await EmpresaMap.findAll();
+        return await prisma.empresa.findMany();
     }
 
     static async listarPorNome(nome: string) {
-        return await EmpresaMap.findAll({
+        return await prisma.empresa.findMany({
             where: {
-                nomeEmpresa: {
-                    [Op.like]: `%${nome}%`
-                }
+                nomeEmpresa: { contains: nome }
             }
         });
     }
 
     static async listarPorId(id: string) {
-        return await EmpresaMap.findByPk(id);
+        return await prisma.empresa.findUnique({ where: { idEmpresa: id } });
     }
 
-    static async criarEmpresa(dados: Attributes<EmpresaMap>) {
-        return await EmpresaMap.create(dados as any);
+    static async criarEmpresa(dados: any) {
+        return await prisma.empresa.create({
+            data: {
+                idEmpresa: dados.idEmpresa ?? undefined,
+                nomeEmpresa: dados.nomeEmpresa,
+                dataCad: dados.dataCad,
+                dataMod: dados.dataMod,
+            }
+        });
     }
 
     static async atualizarEmpresa(id: string, dados: Partial<IEmpresa>) {
-        return await EmpresaMap.update(dados, {
+        const result = await prisma.empresa.updateMany({
             where: {
                 idEmpresa: id
+            },
+            data: {
+                nomeEmpresa: dados.nomeEmpresa,
+                dataMod: new Date(),
             }
         });
+        return [result.count];
     }
 
     static async apagarEmpresa(id: string) {
-        return await EmpresaMap.destroy({
+        const result = await prisma.empresa.deleteMany({
             where: {
                 idEmpresa: id
             }
         });
+        return result.count;
     }
 };

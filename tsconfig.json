@@ -12,8 +12,6 @@
     "rootDir": "./src",
     "sourceMap": true,
     "ignoreDeprecations": "6.0",
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
   },
   "include": ["src/api"]
 }

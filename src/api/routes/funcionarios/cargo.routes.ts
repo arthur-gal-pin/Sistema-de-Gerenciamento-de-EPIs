@@ -15,7 +15,7 @@ cargoRoutes.get('/id/:id', auth.authenticate, CargoController.readId);
 
 // Só admin ou coordenador pode criar/editar/deletar cargos
 cargoRoutes.post('/',       auth.authenticate, auth.autorizar(administrador), CargoController.create);
-cargoRoutes.put('/id/:id',  auth.authenticate, auth.autorizar(administrador, coordenador), CargoController.update);
+cargoRoutes.patch('/id/:id',  auth.authenticate, auth.autorizar(administrador, coordenador), CargoController.update);
 cargoRoutes.delete('/id/:id', auth.authenticate, auth.autorizar(administrador), CargoController.delete);
 
 export default cargoRoutes;

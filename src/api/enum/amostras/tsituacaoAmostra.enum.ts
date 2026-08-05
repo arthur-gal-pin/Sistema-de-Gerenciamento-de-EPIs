@@ -1,5 +1,5 @@
 export enum enumSituacaoAmostra {
     prova = 'prova',
-    contraprova = 'contra-prova',
+    contraprova = 'contraprova',
     testemunha = 'testemunha'
 }

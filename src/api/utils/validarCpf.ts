@@ -34,7 +34,15 @@ export function validarCpf(cpf: string) {
     return true;
 }
 
-export function limparCpf(cpf: string) {
-    const cpfLimpo = cpf.replace(/[^\d]+/g, '');
-    return cpfLimpo;
-}
+export function limparCpf(cpf: string | number | null | undefined): string {
+    // 1. Retorna vazio se for nulo ou indefinido
+    if (cpf === null || cpf === undefined) {
+        return '';
+    }
+
+    // 2. Garante que é uma string (resolve o erro se for número)
+    const cpfString = String(cpf);
+
+    // 3. Aplica a limpeza
+    return cpfString.replace(/[^\d]+/g, '');
+}   

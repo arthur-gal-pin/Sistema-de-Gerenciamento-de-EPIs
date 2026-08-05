@@ -27,16 +27,16 @@ export default class Amostra {
         idAmostra: string | null,
         idOCP: string,
         idEmpresa: string,
-        nomeEmpresa: string,
+        nomeAmostra: string,
         tipoAmostra: string,
         situacaoAmostra: enumSituacaoAmostra,
-        dataCad?: string, // Tornados opcionais para usar o valor default
+        dataCad?: string, 
         dataMod?: string
     ) {
         this._idAmostra = idAmostra || null;
         this._idOCP = idOCP;
         this._idEmpresa = idEmpresa;
-        this._nomeAmostra = nomeEmpresa;
+        this._nomeAmostra = nomeAmostra;
         this._tipoAmostra = tipoAmostra;
         this._situacaoAmostra = situacaoAmostra;
         this._dataCad = dataCad || new Date().toISOString();
@@ -83,9 +83,9 @@ export default class Amostra {
     public static create(dados: any): Amostra {
         return new Amostra(
             dados.idAmostra ? dados.idAmostra : String(uuid()),
-            dados.idOCP,
-            dados.idEmpresa,
-            dados.nomeEmpresa,
+            dados.FK_idOCP,
+            dados.FK_idEmpresa,
+            dados.nomeAmostra,
             dados.tipoAmostra,
             dados.situacaoAmostra,
             dados.dataCad,
@@ -96,13 +96,13 @@ export default class Amostra {
     public static edit(id: string, dados: any): Amostra {
         return new Amostra(
             id,
-            dados.idOCP,
-            dados.idEmpresa,
-            dados.nomeEmpresa,
+            dados.FK_idOCP,
+            dados.FK_idEmpresa,
+            dados.nomeAmostra,
             dados.tipoAmostra,
             dados.situacaoAmostra,
             dados.dataCad,
-            String(new Date().toISOString)
+            String(new Date().toISOString())
         )
     }
 

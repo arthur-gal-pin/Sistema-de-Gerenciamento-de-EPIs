@@ -31,7 +31,7 @@ export class EnvVar {
         return ['true', '1', 'yes', 'on'].includes(value);
     }
 
-    // ===== ACESSO DIRETO (opcional) =====
+    // ===== ACESSO DIRETO  =====
     public static get SERVER_PORT(): number {
         return this.getNumber(EnvKey.SERVER_PORT);
     }
