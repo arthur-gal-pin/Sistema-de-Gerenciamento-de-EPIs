@@ -12,7 +12,7 @@ export class TelefoneRepository {
         return await prisma.telefone.create({
             data: {
                 idTelefone: dados.idTelefone ?? undefined,
-                fkIdFuncionario: dados.FK_idFuncionario ?? dados.fkIdFuncionario,
+                fkIdFuncionario: dados.FK_idFuncionario ?? dados.fkIdFuncionario ?? dados.idFuncionario,
                 numeroTelefone: dados.numeroTelefone,
                 tipoTelefone: dados.tipoTelefone,
                 dataCad: dados.dataCad,
