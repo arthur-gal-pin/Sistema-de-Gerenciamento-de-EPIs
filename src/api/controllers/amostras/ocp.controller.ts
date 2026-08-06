@@ -62,9 +62,9 @@ export const OcpController = {
         }
     },
 
-    post: async (req: Request, res: Response): Promise<void> => {
+    create: async (req: Request, res: Response): Promise<void> => {
         try {
-            const nomeOCP = String(req.body.nome);
+            const nomeOCP = String(req.body.nomeOcp);
             
             const domainOcp = OCP.create({ nomeOCP });
             
@@ -76,10 +76,10 @@ export const OcpController = {
         }
     },
 
-    put: async (req: Request, res: Response): Promise<void> => {
+    update: async (req: Request, res: Response): Promise<void> => {
         try {
             const id = String(req.params.id);
-            const nomeNovo = String(req.body.nome);
+            const nomeNovo = String(req.body.nomeOcp);
 
             const ocpAtual = await OcpRepository.listarPorId(id);
             if (!ocpAtual) {

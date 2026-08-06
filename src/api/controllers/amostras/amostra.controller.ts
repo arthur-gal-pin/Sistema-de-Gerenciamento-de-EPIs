@@ -55,7 +55,7 @@ export const AmostraController = {
 
     // Cria uma nova amostra instanciando o modelo de domínio primeiro
 
-    post: async (req: Request, res: Response): Promise<void> => {
+    create: async (req: Request, res: Response): Promise<void> => {
         try {
             const { FK_idOCP, FK_idEmpresa, nomeAmostra, tipoAmostra, situacaoAmostra } = req.body;
 
@@ -79,7 +79,7 @@ export const AmostraController = {
     },
 
     // Atualiza os dados de uma amostra existente
-    put: async (req: Request, res: Response): Promise<void> => {
+    update: async (req: Request, res: Response): Promise<void> => {
         try {
             const id = String(req.params.id);
             const dadosNovos = req.body;

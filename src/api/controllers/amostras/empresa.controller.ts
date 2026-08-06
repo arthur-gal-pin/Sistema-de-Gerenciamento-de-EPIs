@@ -62,9 +62,10 @@ export const EmpresaController = {
         }
     },
 
-    post: async (req: Request, res: Response): Promise<void> => {
+    create: async (req: Request, res: Response): Promise<void> => {
         try {
-            const nomeEmpresa = String(req.body.nome);
+            const nomeEmpresa = String(req.body.nomeEmpresa);
+            if(nomeEmpresa == undefined ) res.status(400).json({message: "É necessário que você coloque um nome para o registro de empresa."});
             
             const domainEmpresa = Empresa.create({ nomeEmpresa });
             
@@ -76,7 +77,7 @@ export const EmpresaController = {
         }
     },
 
-    put: async (req: Request, res: Response): Promise<void> => {
+    update: async (req: Request, res: Response): Promise<void> => {
         try {
             const id = String(req.params.id);
             const nomeNovo = String(req.body.nome);
