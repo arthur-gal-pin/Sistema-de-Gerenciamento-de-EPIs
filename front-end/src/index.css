@@ -1,0 +1,193 @@
+/* =========================================================
+   Design Tokens - "Serene Nature"
+   Convertidos do DESIGN.md original (Tailwind) para CSS puro,
+   usados em conjunto com utilitários do Bootstrap.
+   ========================================================= */
+:root {
+  /* Cores */
+  --lab-surface: #f3fced;
+  --lab-surface-dim: #d4ddcf;
+  --lab-surface-bright: #f3fced;
+  --lab-surface-container-lowest: #ffffff;
+  --lab-surface-container-low: #edf6e8;
+  --lab-surface-container: #e7f1e2;
+  --lab-surface-container-high: #e2ebdd;
+  --lab-surface-container-highest: #dce5d7;
+  --lab-on-surface: #161e15;
+  --lab-on-surface-variant: #414753;
+  --lab-inverse-surface: #2a3329;
+  --lab-inverse-on-surface: #eaf4e5;
+  --lab-outline: #717785;
+  --lab-outline-variant: #c1c6d5;
+
+  --lab-primary: #5f5c4c;
+  --lab-on-primary: #ffffff;
+  --lab-primary-container: #787564;
+  --lab-on-primary-container: #fffbff;
+  --lab-inverse-primary: #ccc7b3;
+
+  --lab-secondary: #576336;
+  --lab-on-secondary: #ffffff;
+  --lab-secondary-container: #dbe9b0;
+  --lab-on-secondary-container: #5d693c;
+
+  --lab-tertiary: #3d6535;
+  --lab-on-tertiary: #ffffff;
+  --lab-tertiary-container: #557f4b;
+  --lab-on-tertiary-container: #f8fff0;
+
+  --lab-error: #ba1a1a;
+  --lab-on-error: #ffffff;
+  --lab-error-container: #ffdad6;
+  --lab-on-error-container: #93000a;
+
+  --lab-background: #f3fced;
+  --lab-on-background: #161e15;
+  --lab-surface-variant: #dce5d7;
+
+  /* Tipografia */
+  --lab-font-headline: 'Ubuntu', sans-serif;
+  --lab-font-body: 'Quicksand', sans-serif;
+
+  /* Espaçamento (base 8px) */
+  --lab-space-xs: 4px;
+  --lab-space-sm: 8px;
+  --lab-space-md: 16px;
+  --lab-space-lg: 24px;
+  --lab-space-xl: 32px;
+
+  /* Raios */
+  --lab-radius-sm: 0.25rem;
+  --lab-radius: 0.5rem;
+  --lab-radius-md: 0.75rem;
+  --lab-radius-lg: 1rem;
+  --lab-radius-xl: 1.5rem;
+  --lab-radius-full: 9999px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--lab-font-body);
+  background-color: var(--lab-background);
+  color: var(--lab-on-background);
+}
+
+/* Ícones Material Symbols */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  vertical-align: middle;
+}
+.icon-fill {
+  font-variation-settings: 'FILL' 1;
+}
+
+/* =========================================================
+   Utilitários de cor (equivalentes às cores do Tailwind config)
+   Prefixo "lab-" para não colidir com as classes do Bootstrap
+   ========================================================= */
+.bg-lab-surface { background-color: var(--lab-surface); }
+.bg-lab-surface-container { background-color: var(--lab-surface-container); }
+.bg-lab-surface-container-low { background-color: var(--lab-surface-container-low); }
+.bg-lab-surface-container-high { background-color: var(--lab-surface-container-high); }
+.bg-lab-surface-container-highest { background-color: var(--lab-surface-container-highest); }
+.bg-lab-surface-container-lowest { background-color: var(--lab-surface-container-lowest); }
+.bg-lab-secondary-container { background-color: var(--lab-secondary-container); }
+.bg-lab-primary-container { background-color: var(--lab-primary-container); }
+.bg-lab-tertiary { background-color: var(--lab-tertiary); }
+.bg-lab-error-container { background-color: var(--lab-error-container); }
+
+.text-lab-primary { color: var(--lab-primary); }
+.text-lab-secondary { color: var(--lab-secondary); }
+.text-lab-tertiary { color: var(--lab-tertiary); }
+.text-lab-on-surface { color: var(--lab-on-surface); }
+.text-lab-on-surface-variant { color: var(--lab-on-surface-variant); }
+.text-lab-on-secondary-container { color: var(--lab-on-secondary-container); }
+.text-lab-on-primary-container { color: var(--lab-on-primary-container); }
+.text-lab-on-error-container { color: var(--lab-on-error-container); }
+.text-lab-error { color: var(--lab-error); }
+.text-lab-on-primary { color: var(--lab-on-primary); }
+.text-lab-on-tertiary { color: var(--lab-on-tertiary); }
+
+.border-lab-outline-variant { border-color: var(--lab-outline-variant); }
+.border-lab-tertiary { border-color: var(--lab-tertiary); }
+.border-lab-secondary { border-color: var(--lab-secondary); }
+.border-lab-error { border-color: var(--lab-error); }
+
+.font-headline {
+  font-family: var(--lab-font-headline);
+  font-weight: 700;
+  color: var(--lab-on-surface);
+}
+.font-label {
+  font-family: var(--lab-font-body);
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.rounded-lab-lg { border-radius: var(--lab-radius-lg); }
+.rounded-lab-md { border-radius: var(--lab-radius-md); }
+.rounded-lab { border-radius: var(--lab-radius); }
+.rounded-lab-full { border-radius: var(--lab-radius-full); }
+
+/* Barra de rolagem customizada */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: var(--lab-outline-variant);
+  border-radius: var(--lab-radius-full);
+}
+
+/* Interações */
+.lab-nav-link {
+  color: var(--lab-on-surface-variant);
+  transition: background-color 0.2s ease-in-out;
+  text-decoration: none;
+}
+.lab-nav-link:hover {
+  background-color: var(--lab-surface-container-highest);
+}
+.lab-nav-link.active {
+  background-color: var(--lab-secondary-container);
+  color: var(--lab-on-secondary-container);
+  font-weight: 700;
+}
+
+.lab-card {
+  transition: box-shadow 0.2s ease-in-out, border-color 0.2s ease-in-out;
+  border: 1px solid transparent;
+}
+.lab-card:hover {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  border-color: rgba(193, 198, 213, 0.3);
+}
+
+.lab-cta-btn {
+  background-color: var(--lab-tertiary);
+  color: var(--lab-on-tertiary);
+  border: none;
+}
+.lab-cta-btn:hover {
+  opacity: 0.9;
+  color: var(--lab-on-tertiary);
+}
+
+@keyframes lab-ping {
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+.lab-ping {
+  animation: lab-ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
