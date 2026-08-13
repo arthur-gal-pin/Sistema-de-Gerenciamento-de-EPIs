@@ -1,6 +1,6 @@
 import './modalStyles.css';
 
-export function Modal({ isOpen, onClose, title, children }) {
+export default function Modal({ isOpen, onClose, title, children }) {
   if (!isOpen) return null;
 
   // Fecha o modal apenas se clicar no fundo escuro (overlay)

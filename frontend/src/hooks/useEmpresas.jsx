@@ -1,14 +1,14 @@
 import {useEffect, useState} from "react";
-import { getAllOcps } from "../services/amostras/ocpService";
+import { getAllEmpresas } from "../services/amostras/empresaService";
 
-export default function useOCPs (){
+export default function useEmpresas (){
     const [opcoes, setOpcoes] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(()=>{
-        async function loadOcps() {
+        async function loadEmpresas() {
             try {
-                const data = await getAllOcps();
+                const data = await getAllEmpresas();
 
                 setOpcoes(data);
 
@@ -21,7 +21,7 @@ export default function useOCPs (){
             }
         }
 
-        loadOcps();
+        loadEmpresas();
 
     }, []);
 

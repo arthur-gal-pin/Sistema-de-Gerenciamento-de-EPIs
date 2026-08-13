@@ -5,9 +5,12 @@ import express from 'express';
 import { prisma } from './configs/Database';
 import authRoutes from './routes/funcionarios/login.routes';
 import routes from './routes/routes';
+import cors from 'cors'
 
 const app = express();
 const PORT = process.env.PORT || 3300;
+
+app.use(cors());
 
 // --- MIDDLEWARES ---
 app.use(express.json()); // Permite que a controller receba JSON no req.body
