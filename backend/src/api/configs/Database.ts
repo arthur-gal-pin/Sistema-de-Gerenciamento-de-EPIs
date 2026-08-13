@@ -79,7 +79,6 @@ class Database {
             Database.instance = new Database();
             Database.instance.connect();
         }
-
         return Database.instance;
     }
 
