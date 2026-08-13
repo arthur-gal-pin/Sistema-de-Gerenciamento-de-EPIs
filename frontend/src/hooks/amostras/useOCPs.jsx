@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import { getAllOcps } from "../services/amostras/ocpService";
+import { getAllOcps } from "../../services/amostras/ocpService";
 
 export default function useOCPs (){
     const [opcoes, setOpcoes] = useState([]);

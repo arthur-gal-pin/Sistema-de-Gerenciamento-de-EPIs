@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getAmostras } from "../services/amostraService";
+import { getAmostras } from "../../services/amostraService";
 
 export function useAmostras() {
     const [amostras, setAmostras] = useState([]);

@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import { getAllEmpresas } from "../services/amostras/empresaService";
+import { getAllEmpresas } from "../../services/amostras/empresaService";
 
 export default function useEmpresas (){
     const [opcoes, setOpcoes] = useState([]);
