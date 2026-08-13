@@ -1,4 +1,4 @@
-import { recentActivities } from '../../../data/dashboardData'
+import { recentActivities } from '../../data/dashboardData'
 
 export default function RecentActivity() {
   return (

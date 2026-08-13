@@ -1,4 +1,4 @@
-import { notices } from '../../../data/dashboardData'
+import { notices } from '../../data/dashboardData'
 
 const variantStyles = {
   tertiary: {

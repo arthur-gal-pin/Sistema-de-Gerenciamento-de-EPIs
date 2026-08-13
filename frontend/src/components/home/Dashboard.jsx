@@ -1,4 +1,4 @@
-import { statCards } from '../../../data/dashboardData'
+import { statCards } from '../../data/dashboardData'
 import StatCard from './StatCard'
 import RecentActivity from './RecentActivity'
 import Notices from './Notices'

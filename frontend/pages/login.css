@@ -1,0 +1,126 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+html,
+body,
+#root{
+    width:100%;
+    height:100%;
+}
+
+body{
+    background:#f5f5f5;
+}
+
+/* Imagens laterais */
+.esquerda,
+.direita{
+    min-height:100vh;
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+}
+
+.esquerda{
+    background-image:url("/esquerda.jpg");
+}
+
+.direita{
+    background-image:url("/direita.jpg");
+}
+
+/* Fundo do centro */
+.fundo{
+    min-height:40vh;
+    background:#f3f3f3;
+}
+
+/* Card */
+.login-box{
+    width:520px;
+    background:#fff;
+    padding:45px;
+    border-radius:15px;
+    box-shadow:0 10px 30px rgba(0,0,0,.15);
+}
+
+/* Logo */
+.logo{
+    width:240px;
+    display:block;
+    margin:0 auto 20px;
+}
+
+/* Título */
+h1{
+    text-align:center;
+    color:#2E7D32;
+    margin-bottom:10px;
+}
+
+/* Texto */
+p{
+    text-align:center;
+    color:#666;
+    margin-bottom:30px;
+}
+
+/* Labels */
+label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:bold;
+    color:#2E7D32;
+}
+
+/* Inputs */
+input{
+    width:100%;
+    height:48px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    padding:0 15px;
+    margin-bottom:20px;
+    font-size:16px;
+}
+
+input:focus{
+    outline:none;
+    border-color:#2E7D32;
+    box-shadow:0 0 5px rgba(46,125,50,.3);
+}
+
+/* Botão */
+button{
+    width:100%;
+    height:48px;
+    background:#2E7D32;
+    color:#fff;
+    border:none;
+    border-radius:8px;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    background:#1B5E20;
+}
+
+/* Link */
+a{
+    display:block;
+    text-align:center;
+    margin-top:20px;
+    color:#2E7D32;
+    text-decoration:none;
+}
+
+a:hover{
+    text-decoration:underline;
+}
