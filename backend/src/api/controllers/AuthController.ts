@@ -9,7 +9,7 @@ import { enumSituacaoEmpregaticia } from "../enum/funcionarios/situacaoEmpregati
 
 export class AuthController {
     private jwtService: JwtService;
-
+    
     constructor() {
         this.jwtService = new JwtService();
     }
@@ -17,16 +17,15 @@ export class AuthController {
     // Autentica o usuário e retorna o token
     login = async (req: Request, res: Response): Promise<Response | void> => {
         try {
-            const { cpf, password } = req.body;
+            const { cpf, senha } = req.body;
 
-            if (!cpf || !password) {
+            if (!cpf || !senha) {
                 return res.status(400).json({ message: 'CPF e senha são obrigatórios' });
             }
-            console.log(cpf, password, typeof(String(cpf)));
 
             // 1. Busca os dados brutos no banco usando o repositório (com await)
-            if(!validarCpf(limparCpf(String(cpf)))){
-                return res.status(400).json({message: `Esse CPF não existe.`});
+            if (!validarCpf(limparCpf(String(cpf)))) {
+                return res.status(400).json({ message: `Esse CPF não existe.` });
             }
             const dadosBanco = await FuncionarioRepository.buscarPorCPF(limparCpf(cpf));
 
@@ -34,7 +33,6 @@ export class AuthController {
                 return res.status(400).json({ message: 'Usuário não encontrado' });
             }
 
-            console.log(dadosBanco)
             // 2. Instancia a classe de domínio para carregar as regras (e validações se houver)
             // Obs: o Prisma é estrito quanto a tipos/nomes de campos (diferente do Sequelize,
             // que deixava passar isso silenciosamente). Por isso mapeamos explicitamente:
@@ -54,7 +52,7 @@ export class AuthController {
             });
 
             // 3. Compara a senha usando a propriedade correta: senhaHash
-            const passwordMatch = await bcrypt.compare(String(password), user.senhaHash);
+            const passwordMatch = await bcrypt.compare(String(senha), user.senhaHash);
             if (!passwordMatch) {
                 return res.status(400).json({ message: 'Credenciais inválidas' });
             }
@@ -81,7 +79,7 @@ export class AuthController {
             console.error(error);
             if (error instanceof Error) {
                 return res.status(500).json({ message: 'Ocorreu um erro no servidor', errorMessage: error.message });
-            }
+            }   
             return res.status(500).json({ message: 'Ocorreu um erro no servidor', errorMessage: 'Erro desconhecido' });
         }
     }
