@@ -9,7 +9,7 @@ import { enumSituacaoEmpregaticia } from "../enum/funcionarios/situacaoEmpregati
 
 export class AuthController {
     private jwtService: JwtService;
-    
+
     constructor() {
         this.jwtService = new JwtService();
     }
@@ -57,6 +57,10 @@ export class AuthController {
                 return res.status(400).json({ message: 'Credenciais inválidas' });
             }
 
+            if (dadosBanco.situacaoEmpregaticia === enumSituacaoEmpregaticia.inativo || dadosBanco.situacaoEmpregaticia === enumSituacaoEmpregaticia.afastado) {
+                return res.status(403).json({ message: 'Você não tem mais acesso ao sistema.' })
+            }
+
             const cargo = (dadosBanco as any).cargo;
 
             const payload = {
@@ -79,7 +83,7 @@ export class AuthController {
             console.error(error);
             if (error instanceof Error) {
                 return res.status(500).json({ message: 'Ocorreu um erro no servidor', errorMessage: error.message });
-            }   
+            }
             return res.status(500).json({ message: 'Ocorreu um erro no servidor', errorMessage: 'Erro desconhecido' });
         }
     }
