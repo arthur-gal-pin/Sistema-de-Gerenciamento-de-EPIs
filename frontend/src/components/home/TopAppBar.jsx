@@ -1,4 +1,4 @@
-import { currentUser } from '../../../data/dashboardData'
+import { currentUser } from '../../data/dashboardData'
 
 export default function TopAppBar({ onToggleSidebar }) {
   return (

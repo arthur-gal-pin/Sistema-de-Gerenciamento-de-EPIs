@@ -1,10 +1,10 @@
-import { apiFundacentro} from "./api";
+import api from "./api";
 
 export async function getEnsaios() {
     try {
-        const response = await apiFundacentro.get("/ensaio");
+        const response = await api.get("/ensaio");
 
-        return response.data
+        return response.data;
 
     } catch (error) {
         console.error("Erro ao buscar dados dos ensaios: ", error);

@@ -1,5 +1,5 @@
 {
-  "name": "catalogo-pessoas",
+  "name": "fundacentro-frontend",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -14,7 +14,8 @@
     "bootstrap": "^5.3.8",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
-    "react-loading-skeleton": "^3.5.0"
+    "react-loading-skeleton": "^3.5.0",
+    "react-router-dom": "^7.1.1"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

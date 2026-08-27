@@ -1,10 +1,10 @@
-import { apiFundacentro} from "./api";
+import api from "./api";
 
 export async function getEquipes() {
     try {
-        const response = await apiFundacentro.get("/equipe");
+        const response = await api.get("/equipe");
 
-        return response.data
+        return response.data;
 
     } catch (error) {
         console.error("Erro ao buscar dados da equipe: ", error);

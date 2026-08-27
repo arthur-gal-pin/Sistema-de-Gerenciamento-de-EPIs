@@ -1,15 +1,18 @@
-import { api_proprietaria } from "./api";
+import api from "../api";
 
-export async function getAllEmpresas(){
-    try{
+export async function getAllEmpresas() {
+    try {
+        const response = await api.get("/empresas/all");
+        const empresas = response.data?.data ?? [];
 
-        const response = await api_proprietaria.get("/empresas/all")
+        return empresas.map((empresa) => ({
+            id: empresa.idEmpresa ?? empresa.id,
+            nome: empresa.nomeEmpresa ?? empresa.razaoSocial ?? empresa.nome,
+        }));
 
-        return response.data;
+    } catch (error) {
+        console.error("Erro ao buscar dados de Empresas: ", error);
 
-    }catch(error){
-        console.error("Erro ao buscar dados de OCPs: ", error);
-
-        return[];
+        return [];
     }
 }

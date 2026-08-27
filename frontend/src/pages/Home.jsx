@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import Sidebar from '../components/Sidebar'
-import TopAppBar from '../components/TopAppBar'
-import Dashboard from '../components/Dashboard'
+import Sidebar from '../components/home/Sidebar'
+import TopAppBar from '../components/home/TopAppBar'
+import Dashboard from '../components/home/Dashboard'
 
 
 export default function Home() {

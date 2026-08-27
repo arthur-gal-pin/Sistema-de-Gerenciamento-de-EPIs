@@ -1,399 +1,295 @@
-:root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
-
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
-
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
 
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
+body {
+  font: 16px/145% var(--lab-font-body);
+  color: var(--lab-on-surface);
+  background: var(--lab-background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
-  /* =========================================================
-   Design Tokens - "Serene Nature"
-   Convertidos do DESIGN.md original (Tailwind) para CSS puro,
-   usados em conjunto com utilitários do Bootstrap.
-   ========================================================= */
-  :root {
-    /* Cores */
-    --lab-surface: #f3fced;
-    --lab-surface-dim: #d4ddcf;
-    --lab-surface-bright: #f3fced;
-    --lab-surface-container-lowest: #ffffff;
-    --lab-surface-container-low: #edf6e8;
-    --lab-surface-container: #e7f1e2;
-    --lab-surface-container-high: #e2ebdd;
-    --lab-surface-container-highest: #dce5d7;
-    --lab-on-surface: #161e15;
-    --lab-on-surface-variant: #414753;
-    --lab-inverse-surface: #2a3329;
-    --lab-inverse-on-surface: #eaf4e5;
-    --lab-outline: #717785;
-    --lab-outline-variant: #c1c6d5;
+:root {
+  /* Cores - Design Tokens "Serene Nature" */
+  --lab-surface: #f3fced;
+  --lab-surface-dim: #d4ddcf;
+  --lab-surface-bright: #f3fced;
+  --lab-surface-container-lowest: #ffffff;
+  --lab-surface-container-low: #edf6e8;
+  --lab-surface-container: #e7f1e2;
+  --lab-surface-container-high: #e2ebdd;
+  --lab-surface-container-highest: #dce5d7;
+  --lab-on-surface: #161e15;
+  --lab-on-surface-variant: #414753;
+  --lab-inverse-surface: #2a3329;
+  --lab-inverse-on-surface: #eaf4e5;
+  --lab-outline: #717785;
+  --lab-outline-variant: #c1c6d5;
 
-    --lab-primary: #5f5c4c;
-    --lab-on-primary: #ffffff;
-    --lab-primary-container: #787564;
-    --lab-on-primary-container: #fffbff;
-    --lab-inverse-primary: #ccc7b3;
+  --lab-primary: #5f5c4c;
+  --lab-on-primary: #ffffff;
+  --lab-primary-container: #787564;
+  --lab-on-primary-container: #fffbff;
+  --lab-inverse-primary: #ccc7b3;
 
-    --lab-secondary: #576336;
-    --lab-on-secondary: #ffffff;
-    --lab-secondary-container: #dbe9b0;
-    --lab-on-secondary-container: #5d693c;
+  --lab-secondary: #576336;
+  --lab-on-secondary: #ffffff;
+  --lab-secondary-container: #dbe9b0;
+  --lab-on-secondary-container: #5d693c;
 
-    --lab-tertiary: #3d6535;
-    --lab-on-tertiary: #ffffff;
-    --lab-tertiary-container: #557f4b;
-    --lab-on-tertiary-container: #f8fff0;
+  --lab-tertiary: #3d6535;
+  --lab-on-tertiary: #ffffff;
+  --lab-tertiary-container: #557f4b;
+  --lab-on-tertiary-container: #f8fff0;
 
-    --lab-error: #ba1a1a;
-    --lab-on-error: #ffffff;
-    --lab-error-container: #ffdad6;
-    --lab-on-error-container: #93000a;
+  --lab-error: #ba1a1a;
+  --lab-on-error: #ffffff;
+  --lab-error-container: #ffdad6;
+  --lab-on-error-container: #93000a;
 
-    --lab-background: #f3fced;
-    --lab-on-background: #161e15;
-    --lab-surface-variant: #dce5d7;
+  --lab-background: #f3fced;
+  --lab-on-background: #161e15;
+  --lab-surface-variant: #dce5d7;
 
-    /* Tipografia */
-    --lab-font-headline: 'Ubuntu', sans-serif;
-    --lab-font-body: 'Quicksand', sans-serif;
+  /* Tipografia */
+  --lab-font-headline: 'Ubuntu', sans-serif;
+  --lab-font-body: 'Quicksand', sans-serif;
 
-    /* Espaçamento (base 8px) */
-    --lab-space-xs: 4px;
-    --lab-space-sm: 8px;
-    --lab-space-md: 16px;
-    --lab-space-lg: 24px;
-    --lab-space-xl: 32px;
+  /* Espaçamento (base 8px) */
+  --lab-space-xs: 4px;
+  --lab-space-sm: 8px;
+  --lab-space-md: 16px;
+  --lab-space-lg: 24px;
+  --lab-space-xl: 32px;
 
-    /* Raios */
-    --lab-radius-sm: 0.25rem;
-    --lab-radius: 0.5rem;
-    --lab-radius-md: 0.75rem;
-    --lab-radius-lg: 1rem;
-    --lab-radius-xl: 1.5rem;
-    --lab-radius-full: 9999px;
-  }
+  /* Raios */
+  --lab-radius-sm: 0.25rem;
+  --lab-radius: 0.5rem;
+  --lab-radius-md: 0.75rem;
+  --lab-radius-lg: 1rem;
+  --lab-radius-xl: 1.5rem;
+  --lab-radius-full: 9999px;
+}
 
-  * {
-    box-sizing: border-box;
-  }
+h1,
+h2,
+h3 {
+  font-family: var(--lab-font-headline);
+  font-weight: 500;
+  color: var(--lab-on-surface);
+  margin: 0;
+}
 
-  html,
-  body,
-  #root {
-    height: 100%;
-  }
+p {
+  margin: 0;
+}
 
-  body {
-    margin: 0;
-  }
+/* Ícones Material Symbols */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  vertical-align: middle;
+}
 
-  #root {
-    width: 1126px;
-    max-width: 100%;
-    margin: 0 auto;
-    text-align: center;
-    border-inline: 1px solid var(--border);
-    min-height: 100svh;
-    display: flex;
-    flex-direction: column;
-    box-sizing: border-box;
-  }
+.icon-fill {
+  font-variation-settings: 'FILL' 1;
+}
 
-  h1,
-  h2 {
-    font-family: var(--heading);
-    font-weight: 500;
-    color: var(--text-h);
-  }
-
-  h1 {
-    font-size: 56px;
-    letter-spacing: -1.68px;
-    margin: 32px 0;
-
-    @media (max-width: 1024px) {
-      font-size: 36px;
-      margin: 20px 0;
-    }
-  }
-
-  h2 {
-    font-size: 24px;
-    line-height: 118%;
-    letter-spacing: -0.24px;
-    margin: 0 0 8px;
-
-    @media (max-width: 1024px) {
-      font-size: 20px;
-    }
-  }
-
-  p {
-    margin: 0;
-  }
-
-  code,
-  .counter {
-    font-family: var(--mono);
-    display: inline-flex;
-    border-radius: 4px;
-    color: var(--text-h);
-  }
-
-  code {
-    font-size: 15px;
-    line-height: 135%;
-    padding: 4px 8px;
-    background: var(--code-bg);
-    font-family: var(--lab-font-body);
-    background-color: var(--lab-background);
-    color: var(--lab-on-background);
-  }
-
-  /* Ícones Material Symbols */
-  .material-symbols-outlined {
-    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-    vertical-align: middle;
-  }
-
-  .icon-fill {
-    font-variation-settings: 'FILL' 1;
-  }
-
-  /* =========================================================
+/* =========================================================
    Utilitários de cor (equivalentes às cores do Tailwind config)
    Prefixo "lab-" para não colidir com as classes do Bootstrap
    ========================================================= */
-  .bg-lab-surface {
-    background-color: var(--lab-surface);
+.bg-lab-surface {
+  background-color: var(--lab-surface);
+}
+
+.bg-lab-surface-container {
+  background-color: var(--lab-surface-container);
+}
+
+.bg-lab-surface-container-low {
+  background-color: var(--lab-surface-container-low);
+}
+
+.bg-lab-surface-container-high {
+  background-color: var(--lab-surface-container-high);
+}
+
+.bg-lab-surface-container-highest {
+  background-color: var(--lab-surface-container-highest);
+}
+
+.bg-lab-surface-container-lowest {
+  background-color: var(--lab-surface-container-lowest);
+}
+
+.bg-lab-secondary-container {
+  background-color: var(--lab-secondary-container);
+}
+
+.bg-lab-primary-container {
+  background-color: var(--lab-primary-container);
+}
+
+.bg-lab-tertiary {
+  background-color: var(--lab-tertiary);
+}
+
+.bg-lab-error-container {
+  background-color: var(--lab-error-container);
+}
+
+.text-lab-primary {
+  color: var(--lab-primary);
+}
+
+.text-lab-secondary {
+  color: var(--lab-secondary);
+}
+
+.text-lab-tertiary {
+  color: var(--lab-tertiary);
+}
+
+.text-lab-on-surface {
+  color: var(--lab-on-surface);
+}
+
+.text-lab-on-surface-variant {
+  color: var(--lab-on-surface-variant);
+}
+
+.text-lab-on-secondary-container {
+  color: var(--lab-on-secondary-container);
+}
+
+.text-lab-on-primary-container {
+  color: var(--lab-on-primary-container);
+}
+
+.text-lab-on-error-container {
+  color: var(--lab-on-error-container);
+}
+
+.text-lab-error {
+  color: var(--lab-error);
+}
+
+.text-lab-on-primary {
+  color: var(--lab-on-primary);
+}
+
+.text-lab-on-tertiary {
+  color: var(--lab-on-tertiary);
+}
+
+.border-lab-outline-variant {
+  border-color: var(--lab-outline-variant);
+}
+
+.border-lab-tertiary {
+  border-color: var(--lab-tertiary);
+}
+
+.border-lab-secondary {
+  border-color: var(--lab-secondary);
+}
+
+.border-lab-error {
+  border-color: var(--lab-error);
+}
+
+.font-headline {
+  font-family: var(--lab-font-headline);
+  font-weight: 700;
+  color: var(--lab-on-surface);
+}
+
+.font-label {
+  font-family: var(--lab-font-body);
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.rounded-lab-lg {
+  border-radius: var(--lab-radius-lg);
+}
+
+.rounded-lab-md {
+  border-radius: var(--lab-radius-md);
+}
+
+.rounded-lab {
+  border-radius: var(--lab-radius);
+}
+
+.rounded-lab-full {
+  border-radius: var(--lab-radius-full);
+}
+
+/* Barra de rolagem customizada */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: var(--lab-outline-variant);
+  border-radius: var(--lab-radius-full);
+}
+
+/* Interações */
+.lab-nav-link {
+  color: var(--lab-on-surface-variant);
+  transition: background-color 0.2s ease-in-out;
+  text-decoration: none;
+}
+
+.lab-nav-link:hover {
+  background-color: var(--lab-surface-container-highest);
+}
+
+.lab-nav-link.active {
+  background-color: var(--lab-secondary-container);
+  color: var(--lab-on-secondary-container);
+  font-weight: 700;
+}
+
+.lab-card {
+  transition: box-shadow 0.2s ease-in-out, border-color 0.2s ease-in-out;
+  border: 1px solid transparent;
+}
+
+.lab-card:hover {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  border-color: rgba(193, 198, 213, 0.3);
+}
+
+.lab-cta-btn {
+  background-color: var(--lab-tertiary);
+  color: var(--lab-on-tertiary);
+  border: none;
+}
+
+.lab-cta-btn:hover {
+  opacity: 0.9;
+  color: var(--lab-on-tertiary);
+}
+
+@keyframes lab-ping {
+  75%,
+  100% {
+    transform: scale(2);
+    opacity: 0;
   }
+}
 
-  .bg-lab-surface-container {
-    background-color: var(--lab-surface-container);
-  }
-
-  .bg-lab-surface-container-low {
-    background-color: var(--lab-surface-container-low);
-  }
-
-  .bg-lab-surface-container-high {
-    background-color: var(--lab-surface-container-high);
-  }
-
-  .bg-lab-surface-container-highest {
-    background-color: var(--lab-surface-container-highest);
-  }
-
-  .bg-lab-surface-container-lowest {
-    background-color: var(--lab-surface-container-lowest);
-  }
-
-  .bg-lab-secondary-container {
-    background-color: var(--lab-secondary-container);
-  }
-
-  .bg-lab-primary-container {
-    background-color: var(--lab-primary-container);
-  }
-
-  .bg-lab-tertiary {
-    background-color: var(--lab-tertiary);
-  }
-
-  .bg-lab-error-container {
-    background-color: var(--lab-error-container);
-  }
-
-  .text-lab-primary {
-    color: var(--lab-primary);
-  }
-
-  .text-lab-secondary {
-    color: var(--lab-secondary);
-  }
-
-  .text-lab-tertiary {
-    color: var(--lab-tertiary);
-  }
-
-  .text-lab-on-surface {
-    color: var(--lab-on-surface);
-  }
-
-  .text-lab-on-surface-variant {
-    color: var(--lab-on-surface-variant);
-  }
-
-  .text-lab-on-secondary-container {
-    color: var(--lab-on-secondary-container);
-  }
-
-  .text-lab-on-primary-container {
-    color: var(--lab-on-primary-container);
-  }
-
-  .text-lab-on-error-container {
-    color: var(--lab-on-error-container);
-  }
-
-  .text-lab-error {
-    color: var(--lab-error);
-  }
-
-  .text-lab-on-primary {
-    color: var(--lab-on-primary);
-  }
-
-  .text-lab-on-tertiary {
-    color: var(--lab-on-tertiary);
-  }
-
-  .border-lab-outline-variant {
-    border-color: var(--lab-outline-variant);
-  }
-
-  .border-lab-tertiary {
-    border-color: var(--lab-tertiary);
-  }
-
-  .border-lab-secondary {
-    border-color: var(--lab-secondary);
-  }
-
-  .border-lab-error {
-    border-color: var(--lab-error);
-  }
-
-  .font-headline {
-    font-family: var(--lab-font-headline);
-    font-weight: 700;
-    color: var(--lab-on-surface);
-  }
-
-  .font-label {
-    font-family: var(--lab-font-body);
-    font-weight: 500;
-    font-size: 14px;
-  }
-
-  .rounded-lab-lg {
-    border-radius: var(--lab-radius-lg);
-  }
-
-  .rounded-lab-md {
-    border-radius: var(--lab-radius-md);
-  }
-
-  .rounded-lab {
-    border-radius: var(--lab-radius);
-  }
-
-  .rounded-lab-full {
-    border-radius: var(--lab-radius-full);
-  }
-
-  /* Barra de rolagem customizada */
-  .custom-scrollbar::-webkit-scrollbar {
-    width: 8px;
-  }
-
-  .custom-scrollbar::-webkit-scrollbar-thumb {
-    background-color: var(--lab-outline-variant);
-    border-radius: var(--lab-radius-full);
-  }
-
-  /* Interações */
-  .lab-nav-link {
-    color: var(--lab-on-surface-variant);
-    transition: background-color 0.2s ease-in-out;
-    text-decoration: none;
-  }
-
-  .lab-nav-link:hover {
-    background-color: var(--lab-surface-container-highest);
-  }
-
-  .lab-nav-link.active {
-    background-color: var(--lab-secondary-container);
-    color: var(--lab-on-secondary-container);
-    font-weight: 700;
-  }
-
-  .lab-card {
-    transition: box-shadow 0.2s ease-in-out, border-color 0.2s ease-in-out;
-    border: 1px solid transparent;
-  }
-
-  .lab-card:hover {
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-    border-color: rgba(193, 198, 213, 0.3);
-  }
-
-  .lab-cta-btn {
-    background-color: var(--lab-tertiary);
-    color: var(--lab-on-tertiary);
-    border: none;
-  }
-
-  .lab-cta-btn:hover {
-    opacity: 0.9;
-    color: var(--lab-on-tertiary);
-  }
-
-  @keyframes lab-ping {
-
-    75%,
-    100% {
-      transform: scale(2);
-      opacity: 0;
-    }
-  }
-
-  .lab-ping {
-    animation: lab-ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
-
-  }
+.lab-ping {
+  animation: lab-ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
 }

@@ -1,15 +1,18 @@
-import { api_proprietaria } from "./api";
+import api from "../api";
 
-export async function getAllOcps(){
-    try{
+export async function getAllOcps() {
+    try {
+        const response = await api.get("/ocps/all");
+        const ocps = response.data?.data ?? [];
 
-        const response = await api_proprietaria.get("/ocps/all")
+        return ocps.map((ocp) => ({
+            id: ocp.idOcp ?? ocp.id,
+            nome: ocp.nomeOcp ?? ocp.razaoSocial ?? ocp.nome,
+        }));
 
-        return response.data;
-
-    }catch(error){
+    } catch (error) {
         console.error("Erro ao buscar dados de OCPs: ", error);
 
-        return[];
+        return [];
     }
 }

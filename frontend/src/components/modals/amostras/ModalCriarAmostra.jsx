@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Modal from '../ModalModel';
-import useOCPs from '../../../hooks/useOCPs';
-import useEmpresas from '../../../hooks/useEmpresas';
+import useOCPs from '../../../hooks/amostras/useOCPs';
+import useEmpresas from '../../../hooks/amostras/useEmpresas';
 import { postAmostras } from '../../../services/amostras/amostraService';
 import Select from '../Select';
 

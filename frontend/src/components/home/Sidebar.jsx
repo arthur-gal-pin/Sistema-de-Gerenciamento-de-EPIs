@@ -1,4 +1,4 @@
-import { navItems } from '../../../data/dashboardData'
+import { navItems } from '../../data/dashboardData'
 
 export default function Sidebar({ forceVisible = false }) {
   return (

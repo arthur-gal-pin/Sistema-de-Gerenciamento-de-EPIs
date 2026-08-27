@@ -1,33 +1,32 @@
 import { useEffect, useState } from "react";
-import { getAmostras } from "../services/amostraService";
+import { getEquipamentos } from "../services/equipamentoService";
 
-export function useAmostras() {
-    const [amostras, setAmostras] = useState([]);
-    const [loading, setLoading] = useState([]);
+export function useEquipamentos() {
+    const [equipamentos, setEquipamentos] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        
-        async function loadAmostras() {
+
+        async function loadEquipamentos() {
             try {
-                
-                const data = await getAmostras(); // Faz a consulta na api
-                setAmostras(data); // Retorna tudo o que vem da api
+
+                const data = await getEquipamentos(); // Faz a consulta na api
+                setEquipamentos(data); // Retorna tudo o que vem da api
 
             } catch (error) {
 
-                console.log("erro ao carregar amostras:", error);
+                console.log("erro ao carregar equipamentos:", error);
 
-            } finally{
+            } finally {
 
                 setLoading(false);
-                // O finally serve para, caso o try dê sucesso, ele será executado e finalizará a execução.
-                
+
             }
         }
 
-        loadAmostras(); // chamar a função após terminá-la
+        loadEquipamentos();
 
-    }, []); // o colchete vazio significa que quando o hook for chamado, ele carregará apenas uma única vez
+    }, []);
 
-    return {amostras, loading}
+    return { equipamentos, loading };
 }
