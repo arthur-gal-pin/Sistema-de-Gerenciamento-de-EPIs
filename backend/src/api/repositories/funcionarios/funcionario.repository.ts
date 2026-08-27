@@ -1,5 +1,7 @@
 import { prisma } from '../../configs/Database';
 import { IFuncionario } from '../../models/funcionarios/Funcionario';
+import { enumEquipes, CargosCoordenadores } from '../../enum/funcionarios/equipes.enum';
+import { CargoRepository } from './cargo.repository';
 
 export class FuncionarioRepository {
 
@@ -88,5 +90,22 @@ export class FuncionarioRepository {
             where: { idFuncionario: id }
         });
         return result.count;
+    }
+
+    static async buscarAdministrador(equipe: enumEquipes) {
+        const nomeCargo: string = CargosCoordenadores[equipe];
+        const cargo = (await prisma.cargo.findUnique({
+            where: { nomeCargo: nomeCargo },
+            select: { idCargo: true }
+        }));
+        if (!cargo?.idCargo) return null;
+
+        const administrador = await prisma.funcionario.findFirst({
+            where: {
+                fkIdCargo: cargo.idCargo,
+                select: {idFuncionario : true}
+            }
+        });
+        return administrador?.idFuncionario;
     }
 }

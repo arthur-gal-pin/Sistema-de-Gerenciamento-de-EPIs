@@ -15,7 +15,7 @@ datasource db {
 
 model Cargo {
   idCargo        String        @id @default(uuid()) @map("IdCargo") @db.UniqueIdentifier
-  nomeCargo      String        @map("NomeCargo") @db.NVarChar(50)
+  nomeCargo      String        @unique @map("NomeCargo") @db.NVarChar(50)
   nivelPermissao String        @map("NivelPermissao") @db.NVarChar(20)
   dataCad        DateTime      @default(now()) @map("DataCad")
   dataMod        DateTime      @updatedAt @map("DataMod")

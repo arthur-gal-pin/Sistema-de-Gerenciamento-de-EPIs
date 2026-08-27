@@ -1,9 +1,13 @@
-import { Request, Response } from "express";
 import bcrypt from 'bcryptjs';
-import { JwtService } from "../utils/JwtService";
-import { FuncionarioRepository } from "../repositories/funcionarios/funcionario.repository";
-import { limparCpf, validarCpf } from "../utils/validarCpf";
+import { Request, Response } from "express";
+
 import Funcionario from "../models/funcionarios/Funcionario";
+import { FuncionarioRepository } from "../repositories/funcionarios/funcionario.repository";
+
+import { JwtService } from "../utils/JwtService";
+import { limparCpf, validarCpf } from "../utils/validarCpf";
+
+import { enumEquipes } from '../enum/funcionarios/equipes.enum';
 import { enumNivelPermissao } from "../enum/funcionarios/nivelPermissao.enum";
 import { enumSituacaoEmpregaticia } from "../enum/funcionarios/situacaoEmpregaticia";
 
@@ -57,6 +61,7 @@ export class AuthController {
                 return res.status(400).json({ message: 'Credenciais inválidas' });
             }
 
+            //Caso o usuário esteja afastado ou inativo ele não poderá acessar o sistema, mesmo com as credenciais corretas
             if (dadosBanco.situacaoEmpregaticia === enumSituacaoEmpregaticia.inativo || dadosBanco.situacaoEmpregaticia === enumSituacaoEmpregaticia.afastado) {
                 return res.status(403).json({ message: 'Você não tem mais acesso ao sistema.' })
             }
@@ -85,6 +90,32 @@ export class AuthController {
                 return res.status(500).json({ message: 'Ocorreu um erro no servidor', errorMessage: error.message });
             }
             return res.status(500).json({ message: 'Ocorreu um erro no servidor', errorMessage: 'Erro desconhecido' });
+        }
+    }
+
+    esqueciASenha = async (req: Request, res: Response) => {
+        try {
+            const { cpf, nome, email, equipe, texto } = req.body;
+
+            if (!cpf || !nome || !email || !equipe) return res.status(400).json({message: 'Todas as informações de contato são necessárias para a criação de sua conta.'});
+
+            if (!validarCpf(limparCpf(String(cpf)))) {
+                return res.status(400).json({ message: `Esse CPF não existe.` });
+            }
+
+            if (!Object.values(enumEquipes).includes(equipe)){
+                return res.status(400).json({message: "Essa equipe não existe."})
+            }
+
+            
+
+        } catch (error) {
+            console.error(error);
+            if (error instanceof Error) {
+                res.status(500).json({ message: 'Ocorreu um erro no servidor', errorMessage: error.message });
+            } else {
+                res.status(500).json({ message: 'Ocorreu um erro no servidor', errorMessage: 'Erro desconhecido' });
+            }
         }
     }
 
