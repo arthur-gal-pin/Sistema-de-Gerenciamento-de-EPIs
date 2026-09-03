@@ -1,15 +1,21 @@
 import { Request, Response } from "express";
 import { TelefoneRepository } from "../../repositories/funcionarios/telefone.repository";
+import Telefone from "../../models/funcionarios/Telefone";
 
 export const TelefoneController = {
   readFuncionario: async (req: Request, res: Response): Promise<void> => {
     try {
-      const fk_id = String(req.params.fkId);
+      const fk_id = req.params.fkId;
+
+      if (!fk_id || typeof fk_id !== 'string') {
+        res.status(400).json({ message: 'O valor inserido para o id de funcionário é inválido' });
+        return;
+      }
       const telefones = await TelefoneRepository.listarPorFuncionario(fk_id);
-      if (!telefones || telefones.length == 0)
-        res
-          .status(404)
-          .json({ message: "Usuário não possue nenhum telefone cadastrado" });
+      if (!telefones || telefones.length == 0) {
+        res.status(404).json({ message: "Usuário não possue nenhum telefone cadastrado" });
+        return;
+      }
       res.status(200).json(telefones);
     } catch (error: any) {
       res.status(500).json({ message: "Erro ao buscar telefones" });
@@ -18,8 +24,10 @@ export const TelefoneController = {
 
   create: async (req: Request, res: Response): Promise<void> => {
     try {
-      console.log(req.body);
-      const novoTelefone = await TelefoneRepository.adicionarTelefone(req.body);
+      const payload = req.body;
+      const domainTelefone = Telefone.create(payload);
+
+      const novoTelefone = await TelefoneRepository.adicionarTelefone(domainTelefone);
 
       res.status(201).json(novoTelefone);
     } catch (error: any) {
@@ -38,8 +46,16 @@ export const TelefoneController = {
 
   update: async (req: Request, res: Response): Promise<void> => {
     try {
-      const id = String(req.params.id);
-      const [rowsAffected] = await TelefoneRepository.atualizar(id, req.body);
+      const id = req.params.id;
+      const { payload } = req.body;
+      if (!id || typeof id !== 'string') {
+        res.status(400).json({ message: 'O id inserido para a atualização é inválido.' });
+        return;
+      }
+
+      const domainTelefone = Telefone.edit(id, payload)
+
+      const [rowsAffected] = await TelefoneRepository.atualizar(id, domainTelefone);
 
       if (rowsAffected === 0) {
         res.status(404).json({ message: "Telefone não encontrado" });

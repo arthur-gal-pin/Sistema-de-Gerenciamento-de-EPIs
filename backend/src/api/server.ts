@@ -10,13 +10,12 @@ import cors from 'cors'
 const app = express();
 const PORT = process.env.PORT || 3300;
 
-app.use(cors());
+app.use(cors({ origin: process.env.CLIENT_URL  || ''})); //Tirar o operador || quando entrar em produção
 
 // --- MIDDLEWARES ---
 app.use(express.json()); // Permite que a controller receba JSON no req.body
 
 // --- ROTAS ---
-app.use('/auth', authRoutes);
 app.use('/', routes);
 
 // --- INICIALIZAÇÃO DO BANCO E SERVIDOR ---

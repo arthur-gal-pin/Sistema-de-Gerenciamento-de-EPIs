@@ -155,7 +155,6 @@ export const FuncionarioController = {
         const absolutePath = path.resolve(funcionario.caminhoImagemPerfil);
         await fs
           .unlink(absolutePath)
-          .catch(() => console.log("Aviso: Arquivo não existia."));
       }
 
       res.status(200).json({ message: "Removido com sucesso" });

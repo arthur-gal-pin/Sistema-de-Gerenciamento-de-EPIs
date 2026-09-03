@@ -2,6 +2,7 @@ import { prisma } from '../../configs/Database';
 import { IFuncionario } from '../../models/funcionarios/Funcionario';
 import { enumEquipes, CargosCoordenadores } from '../../enum/funcionarios/equipes.enum';
 import { CargoRepository } from './cargo.repository';
+import { validarCpf, limparCpf } from '../../utils/validarCpf';
 
 export class FuncionarioRepository {
 
@@ -17,6 +18,9 @@ export class FuncionarioRepository {
     }
 
     static async buscarPorCPF(cpf: string) {
+        if(!validarCpf(limparCpf(cpf))){
+            throw new Error('O CPF inserido para busca é inválido.');
+        }
         return await prisma.funcionario.findFirst({
             where: { cpf },
             include: { cargo: true }

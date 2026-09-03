@@ -1,5 +1,5 @@
 import { prisma } from "../../configs/Database";
-import { ITelefone } from "../../models/funcionarios/Telefone";
+import Telefone, { ITelefone } from "../../models/funcionarios/Telefone";
 
 export class TelefoneRepository {
     static async listarPorFuncionario(idFuncionario: string) {
@@ -8,15 +8,15 @@ export class TelefoneRepository {
         });
     }
 
-    static async adicionarTelefone(dados: any) {
+    static async adicionarTelefone(dados: Telefone) {
         return await prisma.telefone.create({
             data: {
                 idTelefone: dados.idTelefone ?? undefined,
-                fkIdFuncionario: dados.FK_idFuncionario ?? dados.fkIdFuncionario ?? dados.idFuncionario,
+                fkIdFuncionario: dados.idFuncionario,
                 numeroTelefone: dados.numeroTelefone,
                 tipoTelefone: dados.tipoTelefone,
-                dataCad: dados.dataCad,
-                dataMod: dados.dataMod,
+                dataCad: dados.dataCad ? new Date(dados.dataCad) : new Date(),
+                dataMod: dados.dataMod ? new Date(dados.dataMod) : new Date(),
             }
         });
     }
@@ -28,11 +28,11 @@ export class TelefoneRepository {
         return result.count;
     }
 
-    static async atualizar(id: string, dados: ITelefone) {
+    static async atualizar(id: string, dados: Telefone ) {
         const result = await prisma.telefone.updateMany({
             where: { idTelefone: id },
             data: {
-                fkIdFuncionario: dados.FK_idFuncionario,
+                fkIdFuncionario: dados.idFuncionario,
                 numeroTelefone: dados.numeroTelefone,
                 tipoTelefone: dados.tipoTelefone,
                 dataMod: new Date(),
