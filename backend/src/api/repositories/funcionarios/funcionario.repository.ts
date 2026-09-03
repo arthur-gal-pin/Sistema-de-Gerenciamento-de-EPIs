@@ -94,7 +94,7 @@ export class FuncionarioRepository {
 
     static async buscarAdministrador(equipe: enumEquipes) {
         const nomeCargo: string = CargosCoordenadores[equipe];
-        const cargo = (await prisma.cargo.findUnique({
+        const cargo = (await prisma.cargo.findFirst({
             where: { nomeCargo: nomeCargo },
             select: { idCargo: true }
         }));
