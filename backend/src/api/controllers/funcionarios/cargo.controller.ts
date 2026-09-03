@@ -6,7 +6,7 @@ export const CargoController = {
     readAll: async (req: Request, res: Response): Promise<void> => {
         try {
             const cargos = await CargoRepository.listarTodos();
-            if (cargos === null) {
+            if (cargos.length === 0 || !cargos) {
                 res.status(404).json({ message: 'Não foi encontrado nenhum funcionário nesse banco de dados.' });
                 return;
             }
@@ -38,14 +38,19 @@ export const CargoController = {
             const resultado = await CargoRepository.criar(domainCargo.toJSON());
             res.status(201).json(resultado);
         } catch (error: any) {
-            res.status(400).json({ message: error.message });
+            res.status(500).json({ message: error.message });
         }
     },
 
     delete: async (req: Request, res: Response): Promise<void> => {
         try {
-            await CargoRepository.removerCargo(String(req.params.id));
-            res.status(204).json({message: "Registro excluído com sucesso."});
+            const id = req.params.id;
+            if(!id || typeof id !== 'string'){
+                res.status(400).json({message: 'O id inserido para exclusão é inválido.'});
+                return;
+            }
+            await CargoRepository.removerCargo(id);
+            res.status(200).json({message: "Registro excluído com sucesso."});
         } catch (error: any) {
             res.status(500).json({ message: "Erro ao excluir cargo" });
         }
@@ -65,7 +70,7 @@ export const CargoController = {
 
             res.status(200).json({ message: "Cargo atualizado com sucesso" });
         } catch (error: any) {
-            res.status(400).json({ message: error.message });
+            res.status(500).json({ message: error.message });
         }
     }
     
