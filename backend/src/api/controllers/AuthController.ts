@@ -22,7 +22,6 @@ export class AuthController {
             if (!cpf || !password) {
                 return res.status(400).json({ message: 'CPF e senha são obrigatórios' });
             }
-            console.log(cpf, password, typeof(String(cpf)));
 
             // 1. Busca os dados brutos no banco usando o repositório (com await)
             if(!validarCpf(limparCpf(String(cpf)))){
@@ -34,7 +33,6 @@ export class AuthController {
                 return res.status(400).json({ message: 'Usuário não encontrado' });
             }
 
-            console.log(dadosBanco)
             // 2. Instancia a classe de domínio para carregar as regras (e validações se houver)
             // Obs: o Prisma é estrito quanto a tipos/nomes de campos (diferente do Sequelize,
             // que deixava passar isso silenciosamente). Por isso mapeamos explicitamente:
