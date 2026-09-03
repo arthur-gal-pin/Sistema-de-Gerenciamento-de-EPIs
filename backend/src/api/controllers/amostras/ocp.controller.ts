@@ -20,9 +20,9 @@ export const OcpController = {
 
     getId: async (req: Request, res: Response): Promise<void> => {
         try {
-            const id = String(req.params.id);
+            const id = req.params.id;
             
-            if (!id || id.length !== 36) { 
+            if (!id || id.length !== 36 || typeof id !== 'string') { 
                 res.status(400).json({ message: 'Não foi possível processar a requisição - ID inválido inserido.' });
                 return;
             }
@@ -42,9 +42,9 @@ export const OcpController = {
 
     getNome: async (req: Request, res: Response): Promise<void> => {
         try {
-            const nome = String(req.params.nome);
+            const nome = req.params.nome;
             
-            if (!nome || nome.length < 3) {
+            if (!nome || nome.length < 3 || typeof nome !== 'string') {
                 res.status(400).json({ message: 'Não foi possível processar a requisição - O nome deve ter ao menos 3 caracteres.' });
                 return;
             }
@@ -64,7 +64,10 @@ export const OcpController = {
 
     create: async (req: Request, res: Response): Promise<void> => {
         try {
-            const nomeOCP = String(req.body.nomeOcp);
+            const nomeOCP = req.body.nomeOcp;
+            if(!nomeOCP || typeof nomeOCP !== 'string'){
+                res.status(400).json({message: 'O nome inserido é inválido.'});
+            }
             
             const domainOcp = OCP.create({ nomeOCP });
             
@@ -78,8 +81,13 @@ export const OcpController = {
 
     update: async (req: Request, res: Response): Promise<void> => {
         try {
-            const id = String(req.params.id);
-            const nomeNovo = String(req.body.nomeOcp);
+            const id = req.params.id;
+            const nomeNovo = req.body.nomeOcp;
+
+            if(!id || !nomeNovo || typeof id !== 'string' || typeof nomeNovo !== 'string'){
+                res.status(400).json({message: 'Dados inválidos foram inseridos.'});
+                return;
+            }
 
             const ocpAtual = await OcpRepository.listarPorId(id);
             if (!ocpAtual) {
@@ -99,9 +107,9 @@ export const OcpController = {
 
     delete: async (req: Request, res: Response): Promise<void> => {
         try {
-            const id = String(req.params.id);
+            const id = req.params.id;
 
-            if (!id || id.length !== 36) {
+            if (!id || id.length !== 36 || typeof id !== 'string') {
                 res.status(400).json({ message: 'O id inserido é inválido.' });
                 return;
             }
