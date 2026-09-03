@@ -42,7 +42,7 @@ export const OcpController = {
 
     getNome: async (req: Request, res: Response): Promise<void> => {
         try {
-            const nome = req.params.nome;
+            const nome = req.params.nomeOCP;
             
             if (!nome || nome.length < 3 || typeof nome !== 'string') {
                 res.status(400).json({ message: 'Não foi possível processar a requisição - O nome deve ter ao menos 3 caracteres.' });
@@ -64,7 +64,7 @@ export const OcpController = {
 
     create: async (req: Request, res: Response): Promise<void> => {
         try {
-            const nomeOCP = req.body.nomeOcp;
+            const nomeOCP = req.body.nomeOCP;
             if(!nomeOCP || typeof nomeOCP !== 'string'){
                 res.status(400).json({message: 'O nome inserido é inválido.'});
             }
@@ -82,7 +82,7 @@ export const OcpController = {
     update: async (req: Request, res: Response): Promise<void> => {
         try {
             const id = req.params.id;
-            const nomeNovo = req.body.nomeOcp;
+            const nomeNovo = req.body.nomeOCP;
 
             if(!id || !nomeNovo || typeof id !== 'string' || typeof nomeNovo !== 'string'){
                 res.status(400).json({message: 'Dados inválidos foram inseridos.'});

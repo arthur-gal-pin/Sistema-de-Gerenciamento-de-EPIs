@@ -80,7 +80,7 @@ export const EmpresaController = {
     update: async (req: Request, res: Response): Promise<void> => {
         try {
             const id = req.params.id;
-            const nomeNovo = req.body.nome;
+            const nomeNovo = req.body.nomeEmpresa;
 
             if(!id || !nomeNovo || typeof id !== 'string' || typeof nomeNovo !== 'string'){
                 res.status(400).json({message: 'Dados inválidos foram inseridos.'});
