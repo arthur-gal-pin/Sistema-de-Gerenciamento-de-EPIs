@@ -21,7 +21,7 @@
     "@types/multer": "^2.1.0",
     "@types/node": "^25.6.0",
     "nodemon": "^3.1.14",
-    "prisma": "latest",
+    "prisma": "7.10",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
   },
