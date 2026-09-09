@@ -23,7 +23,7 @@
     "@types/nodemailer": "^8.0.1",
     "nodemailer": "^9.0.5",
     "nodemon": "^3.1.14",
-    "prisma": "latest",
+    "prisma": "7.10",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
   },
