@@ -12,8 +12,8 @@ export interface IFuncionario {
     senhaHash: string;
     situacaoEmpregaticia: enumSituacaoEmpregaticia;
     caminhoImagemPerfil?: string;
-    dataCad?: string;
-    dataMod?: string;
+    dataCad?: string ;
+    dataMod?: string ;
 }
 
 export default class Funcionario {

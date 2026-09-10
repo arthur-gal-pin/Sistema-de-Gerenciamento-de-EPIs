@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { FuncionarioRepository } from "../../repositories/funcionarios/funcionario.repository";
-import Funcionario from "../../models/funcionarios/Funcionario";
+import Funcionario, { IFuncionario } from "../../models/funcionarios/Funcionario";
 import fs from "fs/promises";
 import path from "path";
 import bcrypt from "bcryptjs";
@@ -28,6 +28,10 @@ export const FuncionarioController = {
     try {
       const id = String(req.params.id);
 
+      if (!id) {
+        res.status(400).json({ message: 'Não foi enviado nenhum id para a requisição.' });
+        return;
+      }
       const result = await FuncionarioRepository.listarPorId(id);
 
       if (result === null) {
@@ -39,7 +43,7 @@ export const FuncionarioController = {
 
       res.status(200).json({ data: result });
     } catch (error: any) {
-      res.status(400).json({ message: error.message });
+      res.status(500).json({ message: error.message });
     }
   },
   create: async (req: Request, res: Response): Promise<void> => {
@@ -78,7 +82,7 @@ export const FuncionarioController = {
       );
       res.status(201).json(resultado);
     } catch (error: any) {
-      res.status(400).json({ message: error.message });
+      res.status(500).json({ message: error.message });
     }
   },
 
@@ -112,12 +116,12 @@ export const FuncionarioController = {
         // Remove a imagem antiga do disco, se existir
         if (funcionarioAtual.caminhoImagemPerfil) {
           const oldPath = path.resolve(funcionarioAtual.caminhoImagemPerfil);
-          await fs.unlink(oldPath).catch(() => {});
+          await fs.unlink(oldPath).catch(() => { });
         }
       }
 
       // 4. Mescla os dados: Mantém o que já existe e sobrescreve apenas o que foi enviado
-      const dadosAtualizados = {
+      const dadosAtualizados: IFuncionario = {
         ...funcionarioAtual, // Mantém os valores antigos por padrão
         ...dadosNovos, // Sobrescreve com os campos enviados no req.body
         senhaHash, // Garante a senha tratada (nova ou mantida)
@@ -135,7 +139,7 @@ export const FuncionarioController = {
 
       res.status(200).json({ message: "Funcionário atualizado", data: result });
     } catch (error: any) {
-      res.status(400).json({ message: error.message });
+      res.status(500).json({ message: error.message });
     }
   },
 
