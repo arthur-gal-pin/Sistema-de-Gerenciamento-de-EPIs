@@ -1,4 +1,5 @@
 import dotenv from 'dotenv';
+import path from 'path';
 dotenv.config();
 
 import express from 'express';
@@ -17,6 +18,8 @@ app.use(express.json()); // Permite que a controller receba JSON no req.body
 
 // --- ROTAS ---
 app.use('/', routes);
+
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // --- INICIALIZAÇÃO DO BANCO E SERVIDOR ---
 async function startServer() {
