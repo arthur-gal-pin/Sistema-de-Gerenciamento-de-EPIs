@@ -18,7 +18,7 @@ export class FuncionarioRepository {
     }
 
     static async buscarPorCPF(cpf: string) {
-        if(!validarCpf(limparCpf(cpf))){
+        if (!validarCpf(limparCpf(cpf))) {
             throw new Error('O CPF inserido para busca é inválido.');
         }
         return await prisma.funcionario.findFirst({
@@ -91,7 +91,7 @@ export class FuncionarioRepository {
 
     static async atualizarSenha(id: string, senha: string) {
         const result = await prisma.funcionario.updateMany({
-            where: {idFuncionario: id},
+            where: { idFuncionario: id },
             data: {
                 senhaHash: senha,
                 dataMod: new Date()
@@ -102,7 +102,7 @@ export class FuncionarioRepository {
 
     static async atualizarPfp(id: string, caminhoImagem: string) { //Atualizar foto de perfil (Profile Picture)
         const result = await prisma.funcionario.updateMany({
-            where: {idFuncionario: id},
+            where: { idFuncionario: id },
             data: {
                 caminhoImagemPerfil: caminhoImagem,
                 dataMod: new Date()
@@ -110,7 +110,7 @@ export class FuncionarioRepository {
         });
         return [result.count];
     }
-    
+
     static async apagarFuncionario(id: string) {
         const result = await prisma.funcionario.deleteMany({
             where: { idFuncionario: id }
@@ -126,12 +126,11 @@ export class FuncionarioRepository {
         }));
         if (!cargo?.idCargo) return null;
 
-        const administrador = await prisma.funcionario.findFirst({
-            where: {
-                fkIdCargo: cargo.idCargo,
-                select: {idFuncionario : true}
-            }
-        });
+        const administrador = (await prisma.funcionario.findFirst({
+            where: { fkIdCargo: cargo.idCargo },
+            select: { idFuncionario: true }
+
+        }));
         return administrador?.idFuncionario;
     }
 }
