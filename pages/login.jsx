@@ -97,7 +97,7 @@ export default function Login() {
             </form>
 
             <div className="text-center mt-3">
-              <a href="#">Esqueci minha senha</a>
+              <a href="">Esqueci minha senha</a>
             </div>
 
           </div>

@@ -1,126 +1,284 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, Helvetica, sans-serif;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-html,
-body,
-#root{
-    width:100%;
-    height:100%;
+#root {
+    width: 100%;
+    min-height: 100%;
 }
 
-body{
-    background:#f5f5f5;
+body {
+    margin: 0;
 }
 
-/* Imagens laterais */
-.esquerda,
-.direita{
-    min-height:100vh;
-    background-size:cover;
-    background-position:center;
-    background-repeat:no-repeat;
+
+/* =========================================
+   PÁGINA DE LOGIN
+========================================= */
+
+.login-page {
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 30px;
+
+    /* Imagem de fundo */
+    background-image:
+        linear-gradient(
+            rgba(0, 0, 0, 0.35),
+            rgba(0, 0, 0, 0.35)
+        ),
+        url("/login/esquerda.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    background-attachment: fixed;
 }
 
-.esquerda{
-    background-image:url("/esquerda.jpg");
+
+/* =========================================
+   CARD
+========================================= */
+
+.login-box {
+    width: 100%;
+    max-width: 520px;
+
+    background: #ffffff;
+
+    padding: 45px;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.25);
+
+    position: relative;
 }
 
-.direita{
-    background-image:url("/direita.jpg");
+
+/* =========================================
+   LOGO
+========================================= */
+
+.logo {
+    width: 240px;
+    max-width: 100%;
+
+    display: block;
+
+    margin: 0 auto 20px;
 }
 
-/* Fundo do centro */
-.fundo{
-    min-height:40vh;
-    background:#f3f3f3;
+
+/* =========================================
+   TÍTULO
+========================================= */
+
+.login-box h1 {
+    text-align: center;
+
+    color: #2E7D32;
+
+    font-size: 32px;
+    font-weight: 700;
+
+    margin-bottom: 10px;
 }
 
-/* Card */
-.login-box{
-    width:520px;
-    background:#fff;
-    padding:45px;
-    border-radius:15px;
-    box-shadow:0 10px 30px rgba(0,0,0,.15);
+
+/* =========================================
+   TEXTO
+========================================= */
+
+.login-box p {
+    text-align: center;
+
+    color: #666;
+
+    font-size: 15px;
+    line-height: 1.5;
+
+    margin-bottom: 30px;
 }
 
-/* Logo */
-.logo{
-    width:240px;
-    display:block;
-    margin:0 auto 20px;
+
+/* =========================================
+   LABEL
+========================================= */
+
+.login-box label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-weight: bold;
+
+    color: #2E7D32;
 }
 
-/* Título */
-h1{
-    text-align:center;
-    color:#2E7D32;
-    margin-bottom:10px;
+
+/* =========================================
+   INPUT
+========================================= */
+
+.login-box input {
+    width: 100%;
+    height: 48px;
+
+    border: 1px solid #ccc;
+    border-radius: 8px;
+
+    padding: 0 15px;
+
+    font-size: 16px;
+
+    margin-bottom: 5px;
+
+    transition: 0.2s;
 }
 
-/* Texto */
-p{
-    text-align:center;
-    color:#666;
-    margin-bottom:30px;
+.login-box input:focus {
+    outline: none;
+
+    border-color: #2E7D32;
+
+    box-shadow:
+        0 0 0 3px rgba(46, 125, 50, 0.12);
 }
 
-/* Labels */
-label{
-    display:block;
-    margin-bottom:8px;
-    font-weight:bold;
-    color:#2E7D32;
+
+/* =========================================
+   BOTÃO ENTRAR
+========================================= */
+
+.login-box form > button {
+    width: 100%;
+    height: 48px;
+
+    background: #2E7D32;
+
+    color: #fff;
+
+    border: none;
+    border-radius: 8px;
+
+    font-size: 18px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+    margin-top: 10px;
 }
 
-/* Inputs */
-input{
-    width:100%;
-    height:48px;
-    border:1px solid #ccc;
-    border-radius:8px;
-    padding:0 15px;
-    margin-bottom:20px;
-    font-size:16px;
+.login-box form > button:hover {
+    background: #1B5E20;
 }
 
-input:focus{
-    outline:none;
-    border-color:#2E7D32;
-    box-shadow:0 0 5px rgba(46,125,50,.3);
+
+/* =========================================
+   AÇÕES
+========================================= */
+
+.acoes-login {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+    margin-top: 20px;
 }
 
-/* Botão */
-button{
-    width:100%;
-    height:48px;
-    background:#2E7D32;
-    color:#fff;
-    border:none;
-    border-radius:8px;
-    font-size:18px;
-    font-weight:bold;
-    cursor:pointer;
-    transition:.3s;
+
+/* Botão criar conta */
+
+.btn-cadastro {
+    width: 100%;
+    height: 48px;
+
+    background: #fff;
+
+    color: #1565C0;
+
+    border: 1px solid #1565C0;
+
+    border-radius: 8px;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
 }
 
-button:hover{
-    background:#1B5E20;
+.btn-cadastro:hover {
+    background: #1565C0;
+
+    color: #fff;
 }
 
-/* Link */
-a{
-    display:block;
-    text-align:center;
-    margin-top:20px;
-    color:#2E7D32;
-    text-decoration:none;
+
+/* Link esqueci senha */
+
+.acoes-login a {
+    display: block;
+
+    text-align: center;
+
+    margin-top: 5px;
+
+    color: #2E7D32;
+
+    text-decoration: none;
+
+    font-size: 14px;
 }
 
-a:hover{
-    text-decoration:underline;
+.acoes-login a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================================
+   RESPONSIVIDADE
+========================================= */
+
+@media (max-width: 576px) {
+
+    .login-page {
+        padding: 20px;
+
+        align-items: center;
+    }
+
+    .login-box {
+        padding: 30px 22px;
+
+        border-radius: 12px;
+    }
+
+    .logo {
+        width: 190px;
+    }
+
+    .login-box h1 {
+        font-size: 27px;
+    }
+
+    .login-box p {
+        font-size: 14px;
+    }
 }
