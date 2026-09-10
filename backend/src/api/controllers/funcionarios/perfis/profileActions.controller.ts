@@ -5,15 +5,15 @@ import fs from 'fs/promises';
 import path from 'path';
 
 import validarSenha from "../../../utils/validarSenha";
-import Funcionario, { IFuncionario } from "../../../models/funcionarios/Funcionario";
+import Funcionario from "../../../models/funcionarios/Funcionario";
 
 import { FuncionarioRepository } from "../../../repositories/funcionarios/funcionario.repository";
 import { enumSituacaoEmpregaticia } from "../../../enum/funcionarios/situacaoEmpregaticia";
 
 //Adicionar a opção para administradores ou coordenadores de apenas vizualizarem os usuários ativos do sistema 
 
-export const profileActions = {
-    atualizarSenha: async (req: Request, res: Response): Promise<void> => {
+export const ProfileActionsController = {
+    updatePassword: async (req: Request, res: Response): Promise<void> => {
         try {
             const usuarioLido = req.user;
             const { senhaInformada, senhaNova } = req.body;
@@ -60,7 +60,7 @@ export const profileActions = {
             return;
         }
     },
-    atualizarInfos: async (req: Request, res: Response): Promise<void> => {
+    updateInfo: async (req: Request, res: Response): Promise<void> => {
         try {
             const usuarioLido = req.user;
             const { novoEmail, novoNome, novoSobrenome } = req.body;
@@ -119,7 +119,7 @@ export const profileActions = {
             res.status(400).json({ message: error.message || 'Erro ao processar atualização das informações' });
         }
     },
-    atualizarPfp: async (req: Request, res: Response): Promise<void> => {
+    updatePfp: async (req: Request, res: Response): Promise<void> => {
         try {
             const usuarioLido = req.user;
             const arquivo = req.file;

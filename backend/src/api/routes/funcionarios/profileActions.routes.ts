@@ -1,17 +1,14 @@
 import { Router } from "express";
-import { FuncionarioController } from "../../controllers/funcionarios/funcionario.controller";
+import { ProfileActionsController } from "../../controllers/funcionarios/perfis/profileActions.controller";
 import { AuthMiddleware } from "../../middlewares/AuthMiddleware";
-import { profileActions } from "../../controllers/funcionarios/perfis/profileActions.controller";
-import { enumNivelPermissao } from "../../enum/funcionarios/nivelPermissao.enum";
 import uploadImage from "../../middlewares/uploadImage";
 
 const profileActionsRoutes = Router();
 const auth = new AuthMiddleware();
 
 
-profileActionsRoutes.patch('/meu-perfil/info',  auth.authenticate, FuncionarioController.update);
-profileActionsRoutes.patch('/meu-perfil/info',  auth.authenticate, FuncionarioController.update);
-profileActionsRoutes.patch('/meu-perfil/info',  auth.authenticate, FuncionarioController.update);
-profileActionsRoutes.delete('/id/:id', auth.authenticate, FuncionarioController.delete);
+profileActionsRoutes.patch('/meu-perfil/change-info',  auth.authenticate, ProfileActionsController.updateInfo);
+profileActionsRoutes.patch('/meu-perfil/change-password',  auth.authenticate, ProfileActionsController.updatePassword);
+profileActionsRoutes.patch('/meu-perfil/change-pfp',  auth.authenticate, ProfileActionsController.updatePfp);
 
 export default profileActionsRoutes;
