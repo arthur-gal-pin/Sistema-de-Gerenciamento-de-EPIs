@@ -1,4 +1,3 @@
-// funcionario.routes.ts
 import { Router } from "express";
 import { FuncionarioController } from "../../controllers/funcionarios/funcionario.controller";
 import { AuthMiddleware } from "../../middlewares/AuthMiddleware";

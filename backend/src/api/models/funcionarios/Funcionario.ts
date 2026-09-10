@@ -40,7 +40,7 @@ export default class Funcionario {
         situacaoEmpregaticia: enumSituacaoEmpregaticia,
         caminhoImagemPerfil?: string,
         dataCad?: string,
-        dataMod?: string
+        dataMod?: string,
     ) {
         this._idFuncionario = idFuncionario || null;
         this.idCargo = idCargo;
@@ -56,20 +56,44 @@ export default class Funcionario {
     }
 
     // --- GETTERS ---
-    get idFuncionario() { return this._idFuncionario; }
-    get idCargo() { return this._idCargo; }
-    get nomeFuncionario() { return this._nomeFuncionario; }
-    get sobrenomeFuncionario() { return this._sobrenomeFuncionario; }
-    get cpf() { return this._cpf; }
-    get email() { return this._email; }
-    get senhaHash() { return this._senhaHash; }
-    get situacaoEmpregaticia() { return this._situacaoEmpregaticia; }
-    get caminhoImagemPerfil() { return this._caminhoImagemPerfil ?? '' }
-    get dataCad() { return this._dataCad; }
-    get dataMod() { return this._dataMod; }
+    get idFuncionario() {
+        return this._idFuncionario;
+    }
+    get idCargo() {
+        return this._idCargo;
+    }
+    get nomeFuncionario() {
+        return this._nomeFuncionario;
+    }
+    get sobrenomeFuncionario() {
+        return this._sobrenomeFuncionario;
+    }
+    get cpf() {
+        return this._cpf;
+    }
+    get email() {
+        return this._email;
+    }
+    get senhaHash() {
+        return this._senhaHash;
+    }
+    get situacaoEmpregaticia() {
+        return this._situacaoEmpregaticia;
+    }
+    get caminhoImagemPerfil() {
+        return this._caminhoImagemPerfil ?? "";
+    }
+    get dataCad() {
+        return this._dataCad;
+    }
+    get dataMod() {
+        return this._dataMod;
+    }
 
     // --- SETTERS ---
-    set idCargo(id: string) { this._idCargo = id; }
+    set idCargo(id: string) {
+        this._idCargo = id;
+    }
 
     set nomeFuncionario(nome: string) {
         this.validarTexto(nome, "Nome", 2, 50);
@@ -83,7 +107,7 @@ export default class Funcionario {
 
     set cpf(valor: string) {
         const validacao: boolean = validarCpf(limparCpf(valor));
-        if(!validacao) {
+        if (!validacao) {
             throw new Error(`O CPF inserido é inválido.`);
         }
         this._cpf = valor;
@@ -94,9 +118,13 @@ export default class Funcionario {
         this._email = valor;
     }
 
-    set senhaHash(hash: string) { this._senhaHash = hash; }
+    set senhaHash(hash: string) {
+        this._senhaHash = hash;
+    }
 
-    set caminhoImagemPerfil(caminho: string) { this._caminhoImagemPerfil = caminho; }
+    set caminhoImagemPerfil(caminho: string) {
+        this._caminhoImagemPerfil = caminho;
+    }
 
     set situacaoEmpregaticia(situacao: enumSituacaoEmpregaticia) {
         this._situacaoEmpregaticia = situacao;
@@ -104,15 +132,17 @@ export default class Funcionario {
 
     // --- VALIDATION METHODS ---
     private validarTexto(valor: string, campo: string, min: number, max: number) {
-        if ((valor.trim()).length < min || (valor.trim()).length > max) {
-            throw new Error(`O ${campo} está inválido. Deve ter entre ${min} e ${max} caracteres.`);
+        if (valor.trim().length < min || valor.trim().length > max) {
+            throw new Error(
+                `O ${campo} está inválido. Deve ter entre ${min} e ${max} caracteres.`,
+            );
         }
     }
 
     private validarEmail(email: string) {
         const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!regexEmail.test(email)) {
-            throw new Error('O email inserido é inválido.');
+            throw new Error("O email inserido é inválido.");
         }
     }
 
@@ -129,7 +159,7 @@ export default class Funcionario {
             dados.situacaoEmpregaticia as enumSituacaoEmpregaticia,
             dados.caminhoImagemPerfil,
             dados.dataCad,
-            dados.dataMod
+            dados.dataMod,
         );
     }
 
@@ -145,7 +175,7 @@ export default class Funcionario {
             dados.situacaoEmpregaticia as enumSituacaoEmpregaticia,
             dados.caminhoImagemPerfil,
             dados.dataCad,
-            new Date().toISOString()
+            new Date().toISOString(),
         );
     }
 
@@ -161,7 +191,7 @@ export default class Funcionario {
             caminhoImagemPerfil: this._caminhoImagemPerfil,
             situacaoEmpregaticia: this._situacaoEmpregaticia,
             dataCad: this._dataCad,
-            dataMod: this._dataMod
+            dataMod: this._dataMod,
         };
     }
 }

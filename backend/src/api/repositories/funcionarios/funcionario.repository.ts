@@ -89,6 +89,28 @@ export class FuncionarioRepository {
         return [result.count];
     }
 
+    static async atualizarSenha(id: string, senha: string) {
+        const result = await prisma.funcionario.updateMany({
+            where: {idFuncionario: id},
+            data: {
+                senhaHash: senha,
+                dataMod: new Date()
+            }
+        });
+        return [result.count];
+    }
+
+    static async atualizarPfp(id: string, caminhoImagem: string) { //Atualizar foto de perfil (Profile Picture)
+        const result = await prisma.funcionario.updateMany({
+            where: {idFuncionario: id},
+            data: {
+                caminhoImagemPerfil: caminhoImagem,
+                dataMod: new Date()
+            }
+        });
+        return [result.count];
+    }
+    
     static async apagarFuncionario(id: string) {
         const result = await prisma.funcionario.deleteMany({
             where: { idFuncionario: id }

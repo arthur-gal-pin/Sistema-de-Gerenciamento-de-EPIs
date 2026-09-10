@@ -1,4 +1,3 @@
-// cargo.routes.ts
 import { Router } from "express";
 import { CargoController } from "../../controllers/funcionarios/cargo.controller";
 import { AuthMiddleware } from "../../middlewares/AuthMiddleware";
