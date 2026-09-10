@@ -19,7 +19,7 @@ export const ProfileActionsController = {
             const { senhaInformada, senhaNova } = req.body;
 
             if (!usuarioLido) {
-                res.status(400).json({ message: 'Não foi enviado nenhum usuário dentro da requisição' });
+                res.status(400).json({ message: 'Não foi enviado nenhum usuário dentro da requisição.' });
                 return;
             };
 
@@ -40,7 +40,13 @@ export const ProfileActionsController = {
                 return;
             };
 
-            validarSenha(senhaNova); //Validar senha retorna um throw new Error
+            try {
+                validarSenha(senhaNova); //Validar senha retorna um throw new Error
+            } catch (error: any) {
+                res.status(400).json({ message: error.message });
+                return;
+            }
+
             const senhaNovaHash = await bcrypt.hash(senhaNova, 12);
 
             const resultado = await FuncionarioRepository.atualizarSenha(usuarioLido.idFuncionario, senhaNovaHash);
@@ -141,20 +147,21 @@ export const ProfileActionsController = {
                 return;
             }
 
-            const novoCaminhoImagem = arquivo.filename; // ou arquivo.path dependendo de como salva no Multer
+            const novoCaminhoImagem = arquivo ? `uploads/images/imagens_perfil/${arquivo.filename}` : "";
 
-            const [registrosAfetados] = await FuncionarioRepository.atualizarPfp(
+            const registrosAfetados = await FuncionarioRepository.atualizarPfp(
                 usuarioLido.idFuncionario,
                 novoCaminhoImagem
             );
 
-            if (registrosAfetados === 0) {
+            if (!registrosAfetados) {
                 res.status(404).json({ message: 'Usuário não encontrado para atualizar a foto de perfil.' });
                 return;
             }
 
             if (usuario.caminhoImagemPerfil) {
-                const caminhoAntigo = path.resolve(__dirname, '..', '..', 'images', 'imagens_perfil', usuario.caminhoImagemPerfil);
+                const caminhoAntigo = path.resolve(__dirname, '..', '..', '..', '..', '..', usuario.caminhoImagemPerfil);
+
 
                 try {
                     await fs.unlink(caminhoAntigo);
@@ -172,6 +179,33 @@ export const ProfileActionsController = {
         } catch (error: any) {
             console.error('Erro em atualizarPfp:', error);
             res.status(500).json({ message: 'Erro interno no servidor ao tentar atualizar foto de perfil.' });
+        }
+    },
+    removePfp: async (req: Request, res: Response): Promise<void> => {
+        const usuarioLido = req.user;
+        if (!usuarioLido) {
+            res.status(401).json({ message: 'Usuário não autenticado.' });
+            return;
+        }
+
+        const usuario = await FuncionarioRepository.listarPorId(usuarioLido.idFuncionario);
+
+        if (!usuario) {
+            res.status(404).json({ message: 'Usuário não encontrado.' });
+            return;
+        }
+
+        if (usuario?.caminhoImagemPerfil) {
+            const caminhoAntigo = path.resolve(__dirname, '..', '..', '..', '..', '..', usuario.caminhoImagemPerfil);
+            try {
+                await fs.unlink(caminhoAntigo);
+            } catch (err: any) {
+                // Se o arquivo não existir fisicamente, apenas loga e não paralisa a resposta de sucesso
+                console.log(`Aviso: Não foi possível apagar a imagem antiga (${caminhoAntigo}):`, err.message);
+            }
+        } else {
+            res.status(200).json({message: 'Você já não possui foto de perfil.'});
+            return;
         }
     }
 }

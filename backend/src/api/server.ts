@@ -4,7 +4,6 @@ dotenv.config();
 
 import express from 'express';
 import { prisma } from './configs/Database';
-import authRoutes from './routes/funcionarios/login.routes';
 import routes from './routes/routes';
 import cors from 'cors'
 

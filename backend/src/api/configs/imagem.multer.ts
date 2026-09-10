@@ -10,7 +10,7 @@ interface MulterConfig {
     fileSize: number
 }
 
-const baseUploadDir = path.resolve(process.cwd(), 'uploads')
+const baseUploadDir = path.resolve(process.cwd(), 'uploads/images')
 
 const verificaDir = (dir: string): void => {
     if (!fs.existsSync(dir)) {

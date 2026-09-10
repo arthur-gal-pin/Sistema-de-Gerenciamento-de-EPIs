@@ -1,7 +1,6 @@
 import { prisma } from '../../configs/Database';
 import { IFuncionario } from '../../models/funcionarios/Funcionario';
 import { enumEquipes, CargosCoordenadores } from '../../enum/funcionarios/equipes.enum';
-import { CargoRepository } from './cargo.repository';
 import { validarCpf, limparCpf } from '../../utils/validarCpf';
 
 export class FuncionarioRepository {
@@ -101,14 +100,23 @@ export class FuncionarioRepository {
     }
 
     static async atualizarPfp(id: string, caminhoImagem: string) { //Atualizar foto de perfil (Profile Picture)
-        const result = await prisma.funcionario.updateMany({
+        const result = await prisma.funcionario.update({
             where: { idFuncionario: id },
             data: {
                 caminhoImagemPerfil: caminhoImagem,
                 dataMod: new Date()
             }
         });
-        return [result.count];
+        return result;
+    }
+
+    static async excluirPfp(id: string){
+        const result = await prisma.funcionario.update({
+            where: {idFuncionario: id},
+            data: {
+                caminhoImagemPerfil: ''
+            }
+        })
     }
 
     static async apagarFuncionario(id: string) {

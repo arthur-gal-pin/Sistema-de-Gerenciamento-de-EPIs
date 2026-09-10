@@ -1,8 +1,9 @@
 import { Request, Response } from "express";
 import { FuncionarioRepository } from "../../repositories/funcionarios/funcionario.repository";
 import Funcionario, { IFuncionario } from "../../models/funcionarios/Funcionario";
-import fs from "fs/promises";
-import path from "path";
+import fs from 'node:fs/promises';
+import { existsSync } from 'node:fs';
+import path, { join } from "path";
 import bcrypt from "bcryptjs";
 import { enumSituacaoEmpregaticia } from "../../enum/funcionarios/situacaoEmpregaticia";
 
@@ -60,7 +61,7 @@ export const FuncionarioController = {
 
       const reqFile = req.file as any;
 
-      const caminhoImagem: string = reqFile ? `images/imagens_perfil/${reqFile.filename}` : "";
+      const caminhoImagem: string = reqFile ? `uploads/images/imagens_perfil/${reqFile.filename}` : "";
 
       const password_hash = await bcrypt.hash(senha, 12);
 
@@ -156,9 +157,8 @@ export const FuncionarioController = {
       await FuncionarioRepository.apagarFuncionario(id);
 
       if (funcionario.caminhoImagemPerfil) {
-        const absolutePath = path.resolve(funcionario.caminhoImagemPerfil);
-        await fs
-          .unlink(absolutePath)
+        const absolutePath = path.resolve(process.cwd(), funcionario.caminhoImagemPerfil);
+        await fs.unlink(absolutePath).catch(() => { });
       }
 
       res.status(200).json({ message: "Removido com sucesso" });

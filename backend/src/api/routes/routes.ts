@@ -7,9 +7,10 @@ import telefoneRoutes from './funcionarios/telefone.routes';
 import amostraRoutes from './amostras/amostra.routes';
 import ocpRoutes from './amostras/ocp.routes';
 import empresaRoutes from './amostras/empresa.routes';
+import profileActionsRoutes from './funcionarios/profileActions.routes';
 import authRoutes from './funcionarios/login.routes';
 
-
+routes.use('/profile', profileActionsRoutes)
 routes.use('/cargos', cargoRoutes);
 routes.use('/funcionarios', funcionarioRoutes);
 routes.use('/telefones', telefoneRoutes);
