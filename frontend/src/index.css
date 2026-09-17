@@ -90,21 +90,6 @@ h3 {
 
 p {
   margin: 0;
-* {
-  box-sizing: border-box;
-}
-
-html,
-body,
-#root {
-  height: 100%;
-}
-
-body {
-  margin: 0;
-  font-family: var(--lab-font-body);
-  background-color: var(--lab-background);
-  color: var(--lab-on-background);
 }
 
 /* Ícones Material Symbols */
@@ -301,5 +286,4 @@ body {
 }
 .lab-ping {
   animation: lab-ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
-}
 }
