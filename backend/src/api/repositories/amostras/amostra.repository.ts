@@ -58,10 +58,7 @@ export class AmostraRepository {
         const result = await prisma.amostra.updateMany({
             where: { idAmostra },
             data: {
-                fkIdEmpresa: data.FK_idEmpresa,
-                fkIdOcp: data.FK_idOCP,
                 nomeAmostra: data.nomeAmostra,
-                tipoAmostra: data.tipoAmostra,
                 situacaoAmostra: data.situacaoAmostra,
                 dataMod: new Date(),
             }

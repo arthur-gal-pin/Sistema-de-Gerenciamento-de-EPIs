@@ -1,44 +1,53 @@
 import { v4 as uuidv4 } from "uuid";
-import { enumSituacaoAmostra } from "../../enum/amostras/tsituacaoAmostra.enum";
+import { enumSituacaoAmostra } from "../../enum/amostras/situacaoAmostra.enum";
+import { enumClassificacaoAmostra, enumSubclassificacaoAmostra } from "../../enum/amostras/classificacaoAmostra.enum";
 
 export interface IAmostra {
   idAmostra?: string | null;
-  FK_idOCP: string;
-  FK_idEmpresa: string;
+  FK_idProtocolo: string;
+  codigoAmostra: string;
   nomeAmostra: string;
-  tipoAmostra: string;
   situacaoAmostra: enumSituacaoAmostra;
+  classificacaoAmostra: enumClassificacaoAmostra;
+  subclassificacaoAmostra: enumSubclassificacaoAmostra;
+  descricao: string;
   dataCad?: string;
   dataMod?: string;
 }
 
 export default class Amostra {
   private _idAmostra: string | null = null;
-  private _idOCP!: string;
-  private _idEmpresa!: string;
+  private _idProtocolo!: string;
+  private _codigoAmostra!: string;
   private _nomeAmostra!: string;
-  private _tipoAmostra!: string;
   private _situacaoAmostra!: enumSituacaoAmostra;
+  private _classificacaoAmostra!: enumClassificacaoAmostra;
+  private _subclassificacaoAmostra!: enumSubclassificacaoAmostra;
+  private _descricao!: string;
   private _dataCad: string;
   private _dataMod: string;
 
   constructor(
     idAmostra: string | null,
-    idOCP: string,
-    idEmpresa: string,
+    idProtocolo: string,
+    codigoAmostra: string,
     nomeAmostra: string,
-    tipoAmostra: string,
     situacaoAmostra: enumSituacaoAmostra,
+    classificacaoAmostra: enumClassificacaoAmostra,
+    subclassificacaoAmostra: enumSubclassificacaoAmostra,
+    descricao: string,
     dataCad?: string,
     dataMod?: string
   ) {
     // Atribuições usando SETTERS para acionar as validações
     this.idAmostra = idAmostra;
-    this.idOCP = idOCP;
-    this.idEmpresa = idEmpresa;
+    this.idProtocolo = idProtocolo;
+    this.codigoAmostra = codigoAmostra;
     this.nomeAmostra = nomeAmostra;
-    this.tipoAmostra = tipoAmostra;
     this.situacaoAmostra = situacaoAmostra;
+    this.classificacaoAmostra = classificacaoAmostra;
+    this.subclassificacaoAmostra = subclassificacaoAmostra;
+    this.descricao = descricao;
 
     // Inicialização das datas
     this._dataCad = dataCad || new Date().toISOString();
@@ -47,11 +56,13 @@ export default class Amostra {
 
   // --- GETTERS ---
   get idAmostra(): string | null { return this._idAmostra; }
-  get idOCP(): string { return this._idOCP; }
-  get idEmpresa(): string { return this._idEmpresa; }
+  get idProtocolo(): string { return this._idProtocolo; }
+  get codigoAmostra(): string { return this._codigoAmostra; }
   get nomeAmostra(): string { return this._nomeAmostra; }
-  get tipoAmostra(): string { return this._tipoAmostra; }
   get situacaoAmostra(): enumSituacaoAmostra { return this._situacaoAmostra; }
+  get classificacaoAmostra(): enumClassificacaoAmostra { return this._classificacaoAmostra; }
+  get subclassificacaoAmostra(): enumSubclassificacaoAmostra { return this._subclassificacaoAmostra; }
+  get descricao(): string { return this._descricao; }
   get dataCad(): string { return this._dataCad; }
   get dataMod(): string { return this._dataMod; }
 
@@ -60,54 +71,72 @@ export default class Amostra {
     this._idAmostra = value || null;
   }
 
-  set idOCP(value: string) {
-    this.validarUUID(value, "idOCP");
-    this._idOCP = value;
+  set idProtocolo(value: string) {
+    this.validarUUID(value, "idProtocolo");
+    this._idProtocolo = value;
     this.atualizarDataModificacao();
   }
 
-  set idEmpresa(value: string) {
-    this.validarUUID(value, "idEmpresa");
-    this._idEmpresa = value;
+  set codigoAmostra(value: string) {
+    this.validarCodigoAmostra(value);
+    this._codigoAmostra = value;
     this.atualizarDataModificacao();
   }
 
   set nomeAmostra(value: string) {
-    this.validarNomeAmostra(value);
+    this.validarTextoObrigatorio(value, "Nome da amostra", 3, 100);
     this._nomeAmostra = value;
     this.atualizarDataModificacao();
   }
 
-  set tipoAmostra(value: string) {
-    this.validarTipoAmostra(value);
-    this._tipoAmostra = value;
-    this.atualizarDataModificacao();
-  }
-
   set situacaoAmostra(value: enumSituacaoAmostra) {
-    this.validarSituacao(value);
+    this.validarEnum(value, enumSituacaoAmostra, "Situação da amostra");
     this._situacaoAmostra = value;
     this.atualizarDataModificacao();
   }
 
+  set classificacaoAmostra(value: enumClassificacaoAmostra) {
+    this.validarEnum(value, enumClassificacaoAmostra, "Classificação da amostra");
+    this._classificacaoAmostra = value;
+    this.atualizarDataModificacao();
+  }
+
+  set subclassificacaoAmostra(value: enumSubclassificacaoAmostra) {
+    this.validarEnum(value, enumSubclassificacaoAmostra, "Subclassificação da amostra");
+    this._subclassificacaoAmostra = value;
+    this.atualizarDataModificacao();
+  }
+
+  set descricao(value: string) {
+    this.validarDescricao(value);
+    this._descricao = value;
+    this.atualizarDataModificacao();
+  }
+
   // --- MÉTODOS DE VALIDAÇÃO ---
-  private validarNomeAmostra(nome: string): void {
-    if (!nome || typeof nome !== "string" || nome.trim().length < 3 || nome.trim().length > 100) {
-      throw new Error("O nome da amostra é inválido. Deve conter entre 3 e 100 caracteres.");
+  private validarCodigoAmostra(codigo: string): void {
+    if (!codigo || typeof codigo !== "string" || codigo.trim().length < 2 || codigo.trim().length > 40) {
+      throw new Error("O código da amostra é inválido. Deve conter entre 2 e 40 caracteres.");
     }
   }
 
-  private validarTipoAmostra(tipo: string): void {
-    if (!tipo || typeof tipo !== "string" || tipo.trim().length < 2 || tipo.trim().length > 50) {
-      throw new Error("O tipo da amostra é inválido. Deve conter entre 2 e 50 caracteres.");
+  private validarTextoObrigatorio(texto: string, campo: string, min: number, max: number): void {
+    if (!texto || typeof texto !== "string" || texto.trim().length < min || texto.trim().length > max) {
+      throw new Error(`O campo ${campo} é inválido. Deve conter entre ${min} e ${max} caracteres.`);
     }
   }
 
-  private validarSituacao(valor: any): void {
-    const valoresPermitidos = Object.values(enumSituacaoAmostra);
+  private validarDescricao(descricao: string): void {
+    if (descricao && (typeof descricao !== "string" || descricao.trim().length > 500)) {
+      throw new Error("A descrição da amostra é muito longa. O limite máximo é de 500 caracteres.");
+    }
+  }
+
+  private validarEnum(valor: any, enumObjeto: any, nomeCampo: string): void {
+    const valoresPermitidos = Object.values(enumObjeto);
     if (!valoresPermitidos.includes(valor)) {
       throw new Error(
-        `Situação da amostra inválida: "${valor}". Valores permitidos: ${valoresPermitidos.join(", ")}`
+        `${nomeCampo} inválida: "${valor}". Valores permitidos: ${valoresPermitidos.join(", ")}`
       );
     }
   }
@@ -130,11 +159,13 @@ export default class Amostra {
   public static create(dados: Partial<IAmostra>): Amostra {
     return new Amostra(
       dados.idAmostra ? dados.idAmostra : uuidv4(),
-      dados.FK_idOCP!,
-      dados.FK_idEmpresa!,
+      dados.FK_idProtocolo!,
+      dados.codigoAmostra!,
       dados.nomeAmostra!,
-      dados.tipoAmostra!,
       dados.situacaoAmostra!,
+      dados.classificacaoAmostra!,
+      dados.subclassificacaoAmostra!,
+      dados.descricao!,
       dados.dataCad,
       dados.dataMod
     );
@@ -143,11 +174,13 @@ export default class Amostra {
   public static edit(id: string, dados: Partial<IAmostra>): Amostra {
     return new Amostra(
       id,
-      dados.FK_idOCP!,
-      dados.FK_idEmpresa!,
+      dados.FK_idProtocolo!,
+      dados.codigoAmostra!,
       dados.nomeAmostra!,
-      dados.tipoAmostra!,
       dados.situacaoAmostra!,
+      dados.classificacaoAmostra!,
+      dados.subclassificacaoAmostra!,
+      dados.descricao!,
       dados.dataCad,
       new Date().toISOString()
     );
@@ -156,11 +189,13 @@ export default class Amostra {
   public toJSON() {
     return {
       idAmostra: this._idAmostra,
-      FK_idOCP: this._idOCP,
-      FK_idEmpresa: this._idEmpresa,
+      FK_idProtocolo: this._idProtocolo,
+      codigoAmostra: this._codigoAmostra,
       nomeAmostra: this._nomeAmostra,
-      tipoAmostra: this._tipoAmostra,
       situacaoAmostra: this._situacaoAmostra,
+      classificacaoAmostra: this._classificacaoAmostra,
+      subclassificacaoAmostra: this._subclassificacaoAmostra,
+      descricao: this._descricao,
       dataCad: this._dataCad,
       dataMod: this._dataMod,
     };

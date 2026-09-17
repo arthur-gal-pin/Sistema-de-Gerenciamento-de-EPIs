@@ -8,36 +8,37 @@ datasource db {
   provider = "sqlserver"
 }
 
-// OBS: o provider "sqlserver" do Prisma não suporta o tipo nativo `enum`
-// (equivalente ao DataType.ENUM do Sequelize). Os valores continuam
-// validados pelos enums TypeScript na camada de aplicação
-// (src/api/enum/**), e a coluna é armazenada como NVARCHAR.
-
 model Cargo {
   idCargo        String        @id @default(uuid()) @map("IdCargo") @db.UniqueIdentifier
   nomeCargo      String        @unique @map("NomeCargo") @db.NVarChar(50)
   nivelPermissao String        @map("NivelPermissao") @db.NVarChar(20)
+  funcionarios   Funcionario[]
   dataCad        DateTime      @default(now()) @map("DataCad")
   dataMod        DateTime      @updatedAt @map("DataMod")
-  funcionarios   Funcionario[]
 
   @@map("TB_CARGOS")
 }
 
 model Funcionario {
-  idFuncionario        String     @id @default(uuid()) @map("IdFuncionario") @db.UniqueIdentifier
-  fkIdCargo            String     @map("FK_IdCargo") @db.UniqueIdentifier
-  cargo                Cargo      @relation(fields: [fkIdCargo], references: [idCargo])
-  nomeFuncionario      String     @map("NomeFuncionario") @db.NVarChar(30)
-  sobrenomeFuncionario String     @map("SobrenomeFuncionario") @db.NVarChar(200)
-  cpf                  String     @map("Cpf") @db.Char(11)
-  senhaHash            String     @map("SenhaHash") @db.NVarChar(255)
-  email                String     @map("Email") @db.NVarChar(255)
-  caminhoImagemPerfil  String?    @map("CaminhoImagemPerfil") @db.NVarChar(255)
-  situacaoEmpregaticia String     @map("SituacaoEmpregaticia") @db.NVarChar(20)
+  idFuncionario        String              @id @default(uuid()) @map("IdFuncionario") @db.UniqueIdentifier
+  fkIdCargo            String              @map("FK_IdCargo") @db.UniqueIdentifier
+  cargo                Cargo               @relation(fields: [fkIdCargo], references: [idCargo], onDelete: NoAction, onUpdate: NoAction)
+  nomeFuncionario      String              @map("NomeFuncionario") @db.NVarChar(30)
+  sobrenomeFuncionario String              @map("SobrenomeFuncionario") @db.NVarChar(200)
+  cpf                  String              @map("Cpf") @db.Char(11)
+  senhaHash            String              @map("SenhaHash") @db.NVarChar(255)
+  email                String              @map("Email") @db.NVarChar(255)
+  caminhoImagemPerfil  String?             @map("CaminhoImagemPerfil") @db.NVarChar(255)
+  situacaoEmpregaticia String              @map("SituacaoEmpregaticia") @db.NVarChar(20)
+  
   telefones            Telefone[]
-  dataCad              DateTime   @default(now()) @map("DataCad")
-  dataMod              DateTime   @updatedAt @map("DataMod")
+  registrosAcesso      RegistroAcesso[]
+  ensaios              Ensaio[]
+  amostrasEnsaios      AmostraEnsaio[]
+  funcionariosEnsaio   FuncionarioEnsaio[]
+  
+  dataCad              DateTime            @default(now()) @map("DataCad")
+  dataMod              DateTime            @updatedAt @map("DataMod")
 
   @@map("TB_FUNCIONARIOS")
 }
@@ -45,7 +46,7 @@ model Funcionario {
 model Telefone {
   idTelefone      String      @id @default(uuid()) @map("IdTelefone") @db.UniqueIdentifier
   fkIdFuncionario String      @map("FK_IdFuncionario") @db.UniqueIdentifier
-  funcionario     Funcionario @relation(fields: [fkIdFuncionario], references: [idFuncionario])
+  funcionario     Funcionario @relation(fields: [fkIdFuncionario], references: [idFuncionario], onDelete: Cascade, onUpdate: Cascade)
   numeroTelefone  String      @map("NumeroTelefone") @db.NVarChar(20)
   tipoTelefone    String      @map("TipoTelefone") @db.NVarChar(20)
   dataCad         DateTime    @default(now()) @map("DataCad")
@@ -54,37 +55,195 @@ model Telefone {
   @@map("TB_TELEFONES")
 }
 
-model Empresa {
-  idEmpresa   String    @id @default(uuid()) @map("IdEmpresa") @db.UniqueIdentifier
-  nomeEmpresa String    @map("NomeEmpresa") @db.NVarChar(50)
-  amostras    Amostra[]
-  dataCad     DateTime  @default(now()) @map("DataCad")
-  dataMod     DateTime  @updatedAt @map("DataMod")
+model RegistroAcesso {
+  idAcesso        String      @id @default(uuid()) @map("IdAcesso") @db.UniqueIdentifier
+  fkIdFuncionario String      @map("FK_IdFuncionario") @db.UniqueIdentifier
+  funcionario     Funcionario @relation(fields: [fkIdFuncionario], references: [idFuncionario], onDelete: Cascade, onUpdate: Cascade)
+  dataHoraAcesso  DateTime    @map("DataHoraAcesso")
+  paginaAcesso    String      @map("PaginaAcesso") @db.NVarChar(100)
+  dataCad         DateTime    @default(now()) @map("DataCad")
+  dataMod         DateTime    @updatedAt @map("DataMod")
 
-  @@map("TB_EMPRESAS")
+  @@map("TB_REGISTRO_ACESSO")
 }
 
 model Ocp {
-  idOCP    String    @id @default(uuid()) @map("IdOCP") @db.UniqueIdentifier
-  nomeOCP  String    @map("NomeOCP") @db.NVarChar(50)
-  amostras Amostra[]
-  dataCad  DateTime  @default(now()) @map("DataCad")
-  dataMod  DateTime  @updatedAt @map("DataMod")
+  idOCP      String      @id @default(uuid()) @map("IdOCP") @db.UniqueIdentifier
+  nomeOCP    String      @map("NomeOCP") @db.NVarChar(50)
+  protocolos Protocolo[]
+  dataCad    DateTime    @default(now()) @map("DataCad")
+  dataMod    DateTime    @updatedAt @map("DataMod")
 
   @@map("TB_OCP")
 }
 
+model Empresa {
+  idEmpresa   String      @id @default(uuid()) @map("IdEmpresa") @db.UniqueIdentifier
+  nomeEmpresa String      @map("NomeEmpresa") @db.NVarChar(50)
+  protocolos  Protocolo[]
+  dataCad     DateTime    @default(now()) @map("DataCad")
+  dataMod     DateTime    @updatedAt @map("DataMod")
+
+  @@map("TB_EMPRESAS")
+}
+
+model Protocolo {
+  idProtocolo     String    @id @default(uuid()) @map("IdProtocolo") @db.UniqueIdentifier
+  fkOcp           String    @map("FK_OCP") @db.UniqueIdentifier
+  ocp             Ocp       @relation(fields: [fkOcp], references: [idOCP], onDelete: NoAction, onUpdate: NoAction)
+  fkEmpresa       String    @map("FK_Empresa") @db.UniqueIdentifier
+  empresa         Empresa   @relation(fields: [fkEmpresa], references: [idEmpresa], onDelete: NoAction, onUpdate: NoAction)
+  
+  numeroProtocolo String    @map("NumeroProtocolo") @db.NVarChar(50)
+  numeroSEI       String    @map("NumeroSEI") @db.NVarChar(50)
+  tipoProtocolo   String    @map("TipoProtocolo") @db.NVarChar(50)
+  diaAbertura     DateTime  @map("DiaAbertura") @db.Date
+  diaEntrega      DateTime  @map("DiaEntrega") @db.Date
+  
+  amostras        Amostra[]
+  ensaios         Ensaio[]
+  
+  dataCad         DateTime  @default(now()) @map("DataCad")
+  dataMod         DateTime  @updatedAt @map("DataMod")
+
+  @@map("TB_PROTOCOLO")
+}
+
 model Amostra {
-  idAmostra       String   @id @default(uuid()) @map("IdAmostra") @db.UniqueIdentifier
-  fkIdEmpresa     String   @map("FK_IdEmpresa") @db.UniqueIdentifier
-  empresa         Empresa  @relation(fields: [fkIdEmpresa], references: [idEmpresa])
-  fkIdOcp         String   @map("FK_IdOCP") @db.UniqueIdentifier
-  ocp             Ocp      @relation(fields: [fkIdOcp], references: [idOCP])
-  nomeAmostra     String   @map("NomeAmostra") @db.NVarChar(255)
-  tipoAmostra     String   @map("TipoAmostra") @db.NVarChar(255)
-  situacaoAmostra String   @map("SituacaoAmostra") @db.NVarChar(20)
-  dataCad         DateTime @default(now()) @map("DataCad")
-  dataMod         DateTime @updatedAt @map("DataMod")
+  idAmostra               String          @id @default(uuid()) @map("IdAmostra") @db.UniqueIdentifier
+  fkIdProtocolo           String          @map("FK_IdProtocolo") @db.UniqueIdentifier
+  protocolo               Protocolo       @relation(fields: [fkIdProtocolo], references: [idProtocolo], onDelete: Cascade, onUpdate: Cascade)
+  
+  codigoAmostra           String          @map("CodigoAmostra") @db.NVarChar(40)
+  nomeAmostra             String          @map("NomeAmostra")@db.NVarChar(255)
+  situacaoAmostra         String          @map("SituacaoAmostra") @db.NVarChar(50)
+  classificacaoAmostra    String          @map("ClassificacaoAmostra") @db.NVarChar(50)
+  subclassificacaoAmostra String          @map("SubclassificacaoAmostra") @db.NVarChar(50)
+  descricao               String?          @map("Descricao") @db.NVarChar(Max)
+  
+  amostrasEnsaios         AmostraEnsaio[]
+  
+  dataCad                 DateTime        @default(now()) @map("DataCad")
+  dataMod                 DateTime        @updatedAt @map("DataMod")
 
   @@map("TB_AMOSTRAS")
+}
+
+model Ensaio {
+  idEnsaio           String              @id @default(uuid()) @map("IdEnsaio") @db.UniqueIdentifier
+  fkIdProtocolo      String              @map("FK_IdProtocolo") @db.UniqueIdentifier
+  protocolo          Protocolo           @relation(fields: [fkIdProtocolo], references: [idProtocolo], onDelete: Cascade, onUpdate: Cascade)
+  fkIdTipoEnsaio     String              @map("FK_IdTipoEnsaio") @db.UniqueIdentifier
+  tipoEnsaio         TipoEnsaio          @relation(fields: [fkIdTipoEnsaio], references: [idTipoEnsaio], onDelete: NoAction, onUpdate: NoAction)
+  
+  fkIdFuncionario    String              @map("FK_IdFuncionario") @db.UniqueIdentifier
+  funcionario        Funcionario         @relation(fields: [fkIdFuncionario], references: [idFuncionario], onDelete: NoAction, onUpdate: NoAction)
+  
+  papelEnsaio        String              @map("PapelEnsaio") @db.NVarChar(50)
+  
+  amostrasEnsaios    AmostraEnsaio[]
+  funcionariosEnsaio FuncionarioEnsaio[]
+  
+  dataCad            DateTime            @default(now()) @map("DataCad")
+  dataMod            DateTime            @updatedAt @map("DataMod")
+
+  @@map("TB_ENSAIOS")
+}
+
+model AmostraEnsaio {
+  idAmostraEnsaio    String        @id @default(uuid()) @map("IdAmostraEnsaio") @db.UniqueIdentifier
+  fkIdAmostra        String        @map("FK_IdAmostra") @db.UniqueIdentifier
+  amostra            Amostra       @relation(fields: [fkIdAmostra], references: [idAmostra], onDelete: Cascade, onUpdate: Cascade)
+  fkIdEnsaio         String        @map("FK_IdEnsaio") @db.UniqueIdentifier
+  ensaio             Ensaio        @relation(fields: [fkIdEnsaio], references: [idEnsaio], onDelete: NoAction, onUpdate: NoAction)
+  fkIdInstrumento    String        @map("FK_IdInstrumento") @db.UniqueIdentifier
+  instrumento        Instrumento   @relation(fields: [fkIdInstrumento], references: [idInstrumento], onDelete: NoAction, onUpdate: NoAction)
+  
+  fkIdFuncionario    String        @map("FK_IdFuncionario") @db.UniqueIdentifier
+  funcionario        Funcionario   @relation(fields: [fkIdFuncionario], references: [idFuncionario], onDelete: NoAction, onUpdate: NoAction)
+  
+  dataHoraRealizacao DateTime      @map("DataHoraRealizacao")
+  temperatura        Decimal       @map("Temperatura") @db.Decimal(10,2)
+  umidade            Decimal       @map("Umidade") @db.Decimal(10,2)
+  pressao            Decimal       @map("Pressao") @db.Decimal(10,2)
+  
+  dadosEnsaio        DadosEnsaio[]
+  
+  dataCad            DateTime      @default(now()) @map("DataCad")
+  dataMod            DateTime      @updatedAt @map("DataMod")
+
+  @@map("TB_AMOSTRA_ENSAIO")
+}
+
+model DadosEnsaio {
+  idDadosEnsaio     String        @id @default(uuid()) @map("IdDadosEnsaio") @db.UniqueIdentifier
+  fkIdAmostraEnsaio String        @map("FK_IdAmostraEnsaio") @db.UniqueIdentifier
+  amostraEnsaio     AmostraEnsaio @relation(fields: [fkIdAmostraEnsaio], references: [idAmostraEnsaio], onDelete: Cascade, onUpdate: Cascade)
+  fkIdCampoEnsaio   String        @map("FK_IdCampoEnsaio") @db.UniqueIdentifier
+  campoEnsaio       CampoEnsaio   @relation(fields: [fkIdCampoEnsaio], references: [idCampoEnsaio], onDelete: NoAction, onUpdate: NoAction)
+  
+  dado              String        @map("Dado") @db.NVarChar(Max)
+  
+  dataCad           DateTime      @default(now()) @map("DataCad")
+  dataMod           DateTime      @updatedAt @map("DataMod")
+
+  @@map("TB_DADOS_ENSAIO")
+}
+
+model TipoEnsaio {
+  idTipoEnsaio       String        @id @default(uuid()) @map("IdTipoEnsaio") @db.UniqueIdentifier
+  nomeEnsaio         String        @map("NomeEnsaio") @db.NVarChar(100)
+  categoriaAplicavel String        @map("CategoriaAplicavel") @db.NVarChar(50)
+  
+  ensaios            Ensaio[]
+  camposEnsaio       CampoEnsaio[]
+  
+  dataCad            DateTime      @default(now()) @map("DataCad")
+  dataMod            DateTime      @updatedAt @map("DataMod")
+
+  @@map("TB_TIPO_ENSAIO")
+}
+
+model CampoEnsaio {
+  idCampoEnsaio   String        @id @default(uuid()) @map("IdCampoEnsaio") @db.UniqueIdentifier
+  fkIdTipoEnsaio  String        @map("FK_IdTipoEnsaio") @db.UniqueIdentifier
+  tipoEnsaio      TipoEnsaio    @relation(fields: [fkIdTipoEnsaio], references: [idTipoEnsaio], onDelete: Cascade, onUpdate: Cascade)
+  
+  nomeCampo       String        @map("NomeCampo") @db.NVarChar(100)
+  obrigatoriedade Boolean       @map("Obrigatoriedade") @db.Bit
+  unidadeMedida   String        @map("UnidadeMedida") @db.NVarChar(20)
+  tipoDado        String        @map("TipoDado") @db.NVarChar(50)
+  
+  dadosEnsaio     DadosEnsaio[]
+  
+  dataCad         DateTime      @default(now()) @map("DataCad")
+  dataMod         DateTime      @updatedAt @map("DataMod")
+
+  @@map("TB_CAMPO_ENSAIO")
+}
+
+model FuncionarioEnsaio {
+  idFuncionarioEnsaio String      @id @default(uuid()) @map("IdFuncionarioEnsaio") @db.UniqueIdentifier
+  fkIdFuncionario     String      @map("FK_IdFuncionario") @db.UniqueIdentifier
+  funcionario         Funcionario @relation(fields: [fkIdFuncionario], references: [idFuncionario], onDelete: Cascade, onUpdate: Cascade)
+  fkIdEnsaio          String      @map("FK_IdEnsaio") @db.UniqueIdentifier
+  ensaio              Ensaio      @relation(fields: [fkIdEnsaio], references: [idEnsaio], onDelete: Cascade, onUpdate: Cascade)
+  
+  dataCad             DateTime    @default(now()) @map("DataCad")
+  dataMod             DateTime    @updatedAt @map("DataMod")
+
+  @@map("TB_FUNCIONARIOS_ENSAIO")
+}
+
+model Instrumento {
+  idInstrumento    String          @id @default(uuid()) @map("IdInstrumento") @db.UniqueIdentifier
+  nomeInstrumento  String          @map("NomeInstrumento") @db.NVarChar(100)
+  ultimaCalibracao DateTime        @map("UltimaCalibracao") @db.Date
+  
+  amostrasEnsaios  AmostraEnsaio[]
+  
+  dataCad          DateTime        @default(now()) @map("DataCad")
+  dataMod          DateTime        @updatedAt @map("DataMod")
+
+  @@map("TB_INSTRUMENTO")
 }
