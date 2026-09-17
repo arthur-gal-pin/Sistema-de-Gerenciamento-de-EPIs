@@ -23,7 +23,11 @@ export const AmostraController = {
     // Busca uma amostra específica por ID
     getId: async (req: Request, res: Response): Promise<void> => {
         try {
-            const id = String(req.params.id);
+            const id = req.params.id;
+            if (!id ||typeof id !== 'string' || id.length !== 36) { 
+                res.status(400).json({ message: 'Não foi possível processar a requisição - ID inválido inserido.' });
+                return; 
+            }
             const result = await AmostraRepository.findById(id);
 
             if (!result) {
@@ -40,7 +44,11 @@ export const AmostraController = {
     // Busca amostras por Nome
     getNome: async (req: Request, res: Response): Promise<void> => {
         try {
-            const nome = String(req.params.nome);
+            const nome = req.params.nome;
+            if (!nome ||typeof nome !== 'string' || nome.length < 3) { 
+                res.status(400).json({ message: 'Não foi possível processar a requisição - nome inválido inserido.' });
+                return; 
+            }
             const result = await AmostraRepository.findByNome(nome);
 
             if (!result || result.length === 0) {
@@ -57,7 +65,11 @@ export const AmostraController = {
     // Busca amostras por Código
     getCodigo: async (req: Request, res: Response): Promise<void> => {
         try {
-            const codigo = String(req.params.codigo);
+            const {codigo} = req.body;
+            if (!codigo ||typeof codigo !== 'string' || codigo.length <3 || codigo.length > 40) { 
+                res.status(400).json({ message: 'Não foi possível processar a requisição - código inválido inserido.' });
+                return; 
+            }
             const result = await AmostraRepository.findByCodigo(codigo);
 
             if (!result || result.length === 0) {
@@ -74,7 +86,11 @@ export const AmostraController = {
     // Busca amostras por ID de Protocolo
     getProtocolo: async (req: Request, res: Response): Promise<void> => {
         try {
-            const idProtocolo = String(req.params.idProtocolo);
+            const idProtocolo = req.params.idProtocolo;
+            if (!idProtocolo ||typeof idProtocolo !== 'string' || idProtocolo.length !== 36) { 
+                res.status(400).json({ message: 'Não foi possível processar a requisição - ID inválido inserido.' });
+                return; 
+            }
             const result = await AmostraRepository.findByProtocolo(idProtocolo);
 
             if (!result || result.length === 0) {
