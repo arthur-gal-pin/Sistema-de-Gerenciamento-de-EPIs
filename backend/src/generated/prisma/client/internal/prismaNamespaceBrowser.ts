@@ -54,9 +54,18 @@ export const ModelName = {
   Cargo: 'Cargo',
   Funcionario: 'Funcionario',
   Telefone: 'Telefone',
-  Empresa: 'Empresa',
+  RegistroAcesso: 'RegistroAcesso',
   Ocp: 'Ocp',
-  Amostra: 'Amostra'
+  Empresa: 'Empresa',
+  Protocolo: 'Protocolo',
+  Amostra: 'Amostra',
+  Ensaio: 'Ensaio',
+  AmostraEnsaio: 'AmostraEnsaio',
+  DadosEnsaio: 'DadosEnsaio',
+  TipoEnsaio: 'TipoEnsaio',
+  CampoEnsaio: 'CampoEnsaio',
+  FuncionarioEnsaio: 'FuncionarioEnsaio',
+  Instrumento: 'Instrumento'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -116,14 +125,16 @@ export const TelefoneScalarFieldEnum = {
 export type TelefoneScalarFieldEnum = (typeof TelefoneScalarFieldEnum)[keyof typeof TelefoneScalarFieldEnum]
 
 
-export const EmpresaScalarFieldEnum = {
-  idEmpresa: 'idEmpresa',
-  nomeEmpresa: 'nomeEmpresa',
+export const RegistroAcessoScalarFieldEnum = {
+  idAcesso: 'idAcesso',
+  fkIdFuncionario: 'fkIdFuncionario',
+  dataHoraAcesso: 'dataHoraAcesso',
+  paginaAcesso: 'paginaAcesso',
   dataCad: 'dataCad',
   dataMod: 'dataMod'
 } as const
 
-export type EmpresaScalarFieldEnum = (typeof EmpresaScalarFieldEnum)[keyof typeof EmpresaScalarFieldEnum]
+export type RegistroAcessoScalarFieldEnum = (typeof RegistroAcessoScalarFieldEnum)[keyof typeof RegistroAcessoScalarFieldEnum]
 
 
 export const OcpScalarFieldEnum = {
@@ -136,18 +147,136 @@ export const OcpScalarFieldEnum = {
 export type OcpScalarFieldEnum = (typeof OcpScalarFieldEnum)[keyof typeof OcpScalarFieldEnum]
 
 
+export const EmpresaScalarFieldEnum = {
+  idEmpresa: 'idEmpresa',
+  nomeEmpresa: 'nomeEmpresa',
+  dataCad: 'dataCad',
+  dataMod: 'dataMod'
+} as const
+
+export type EmpresaScalarFieldEnum = (typeof EmpresaScalarFieldEnum)[keyof typeof EmpresaScalarFieldEnum]
+
+
+export const ProtocoloScalarFieldEnum = {
+  idProtocolo: 'idProtocolo',
+  fkIdOcp: 'fkIdOcp',
+  fkIdEmpresa: 'fkIdEmpresa',
+  nomeProtocolo: 'nomeProtocolo',
+  numeroProtocolo: 'numeroProtocolo',
+  numeroSEI: 'numeroSEI',
+  tipoProtocolo: 'tipoProtocolo',
+  diaAbertura: 'diaAbertura',
+  diaEntrega: 'diaEntrega',
+  dataCad: 'dataCad',
+  dataMod: 'dataMod'
+} as const
+
+export type ProtocoloScalarFieldEnum = (typeof ProtocoloScalarFieldEnum)[keyof typeof ProtocoloScalarFieldEnum]
+
+
 export const AmostraScalarFieldEnum = {
   idAmostra: 'idAmostra',
-  fkIdEmpresa: 'fkIdEmpresa',
-  fkIdOcp: 'fkIdOcp',
+  fkIdProtocolo: 'fkIdProtocolo',
+  codigoAmostra: 'codigoAmostra',
   nomeAmostra: 'nomeAmostra',
-  tipoAmostra: 'tipoAmostra',
   situacaoAmostra: 'situacaoAmostra',
+  classificacaoAmostra: 'classificacaoAmostra',
+  subclassificacaoAmostra: 'subclassificacaoAmostra',
+  descricao: 'descricao',
   dataCad: 'dataCad',
   dataMod: 'dataMod'
 } as const
 
 export type AmostraScalarFieldEnum = (typeof AmostraScalarFieldEnum)[keyof typeof AmostraScalarFieldEnum]
+
+
+export const EnsaioScalarFieldEnum = {
+  idEnsaio: 'idEnsaio',
+  fkIdProtocolo: 'fkIdProtocolo',
+  fkIdTipoEnsaio: 'fkIdTipoEnsaio',
+  fkIdFuncionario: 'fkIdFuncionario',
+  papelEnsaio: 'papelEnsaio',
+  dataCad: 'dataCad',
+  dataMod: 'dataMod'
+} as const
+
+export type EnsaioScalarFieldEnum = (typeof EnsaioScalarFieldEnum)[keyof typeof EnsaioScalarFieldEnum]
+
+
+export const AmostraEnsaioScalarFieldEnum = {
+  idAmostraEnsaio: 'idAmostraEnsaio',
+  fkIdAmostra: 'fkIdAmostra',
+  fkIdEnsaio: 'fkIdEnsaio',
+  fkIdInstrumento: 'fkIdInstrumento',
+  fkIdFuncionario: 'fkIdFuncionario',
+  dataHoraRealizacao: 'dataHoraRealizacao',
+  temperatura: 'temperatura',
+  umidade: 'umidade',
+  pressao: 'pressao',
+  dataCad: 'dataCad',
+  dataMod: 'dataMod'
+} as const
+
+export type AmostraEnsaioScalarFieldEnum = (typeof AmostraEnsaioScalarFieldEnum)[keyof typeof AmostraEnsaioScalarFieldEnum]
+
+
+export const DadosEnsaioScalarFieldEnum = {
+  idDadosEnsaio: 'idDadosEnsaio',
+  fkIdAmostraEnsaio: 'fkIdAmostraEnsaio',
+  fkIdCampoEnsaio: 'fkIdCampoEnsaio',
+  dado: 'dado',
+  dataCad: 'dataCad',
+  dataMod: 'dataMod'
+} as const
+
+export type DadosEnsaioScalarFieldEnum = (typeof DadosEnsaioScalarFieldEnum)[keyof typeof DadosEnsaioScalarFieldEnum]
+
+
+export const TipoEnsaioScalarFieldEnum = {
+  idTipoEnsaio: 'idTipoEnsaio',
+  nomeEnsaio: 'nomeEnsaio',
+  categoriaAplicavel: 'categoriaAplicavel',
+  dataCad: 'dataCad',
+  dataMod: 'dataMod'
+} as const
+
+export type TipoEnsaioScalarFieldEnum = (typeof TipoEnsaioScalarFieldEnum)[keyof typeof TipoEnsaioScalarFieldEnum]
+
+
+export const CampoEnsaioScalarFieldEnum = {
+  idCampoEnsaio: 'idCampoEnsaio',
+  fkIdTipoEnsaio: 'fkIdTipoEnsaio',
+  nomeCampo: 'nomeCampo',
+  obrigatoriedade: 'obrigatoriedade',
+  unidadeMedida: 'unidadeMedida',
+  tipoDado: 'tipoDado',
+  dataCad: 'dataCad',
+  dataMod: 'dataMod'
+} as const
+
+export type CampoEnsaioScalarFieldEnum = (typeof CampoEnsaioScalarFieldEnum)[keyof typeof CampoEnsaioScalarFieldEnum]
+
+
+export const FuncionarioEnsaioScalarFieldEnum = {
+  idFuncionarioEnsaio: 'idFuncionarioEnsaio',
+  fkIdFuncionario: 'fkIdFuncionario',
+  fkIdEnsaio: 'fkIdEnsaio',
+  dataCad: 'dataCad',
+  dataMod: 'dataMod'
+} as const
+
+export type FuncionarioEnsaioScalarFieldEnum = (typeof FuncionarioEnsaioScalarFieldEnum)[keyof typeof FuncionarioEnsaioScalarFieldEnum]
+
+
+export const InstrumentoScalarFieldEnum = {
+  idInstrumento: 'idInstrumento',
+  nomeInstrumento: 'nomeInstrumento',
+  ultimaCalibracao: 'ultimaCalibracao',
+  dataCad: 'dataCad',
+  dataMod: 'dataMod'
+} as const
+
+export type InstrumentoScalarFieldEnum = (typeof InstrumentoScalarFieldEnum)[keyof typeof InstrumentoScalarFieldEnum]
 
 
 export const SortOrder = {

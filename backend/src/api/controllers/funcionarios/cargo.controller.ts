@@ -3,7 +3,7 @@ import { CargoRepository } from "../../repositories/funcionarios/cargo.repositor
 import { Request, Response } from 'express'
 
 export const CargoController = {
-    readAll: async (req: Request, res: Response): Promise<void> => {
+    getAll: async (req: Request, res: Response): Promise<void> => {
         try {
             const cargos = await CargoRepository.listarTodos();
             if (cargos.length === 0 || !cargos) {
@@ -16,7 +16,7 @@ export const CargoController = {
         }
     },
 
-    readId: async (req: Request, res: Response): Promise<void> => {
+    getId: async (req: Request, res: Response): Promise<void> => {
         try {
             const id = String(req.params.id);
             const result = await CargoRepository.listarPorId(id);

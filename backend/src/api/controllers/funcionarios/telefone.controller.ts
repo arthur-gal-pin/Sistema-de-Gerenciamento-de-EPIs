@@ -3,7 +3,7 @@ import { TelefoneRepository } from "../../repositories/funcionarios/telefone.rep
 import Telefone from "../../models/funcionarios/Telefone";
 
 export const TelefoneController = {
-  readFuncionario: async (req: Request, res: Response): Promise<void> => {
+  getFuncionario: async (req: Request, res: Response): Promise<void> => {
     try {
       const fk_id = req.params.fkId;
 

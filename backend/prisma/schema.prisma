@@ -1,6 +1,6 @@
 generator client {
   provider     = "prisma-client"
-  output       = "../generated/prisma"
+  output       = "../src/generated/prisma/client"
   moduleFormat = "cjs"
 }
 
@@ -25,7 +25,7 @@ model Funcionario {
   cargo                Cargo               @relation(fields: [fkIdCargo], references: [idCargo], onDelete: NoAction, onUpdate: NoAction)
   nomeFuncionario      String              @map("NomeFuncionario") @db.NVarChar(30)
   sobrenomeFuncionario String              @map("SobrenomeFuncionario") @db.NVarChar(200)
-  cpf                  String              @map("Cpf") @db.Char(11)
+  cpf                  String              @map("Cpf") @db.Char(11) @unique
   senhaHash            String              @map("SenhaHash") @db.NVarChar(255)
   email                String              @map("Email") @db.NVarChar(255)
   caminhoImagemPerfil  String?             @map("CaminhoImagemPerfil") @db.NVarChar(255)
@@ -89,16 +89,17 @@ model Empresa {
 
 model Protocolo {
   idProtocolo     String    @id @default(uuid()) @map("IdProtocolo") @db.UniqueIdentifier
-  fkOcp           String    @map("FK_OCP") @db.UniqueIdentifier
-  ocp             Ocp       @relation(fields: [fkOcp], references: [idOCP], onDelete: NoAction, onUpdate: NoAction)
-  fkEmpresa       String    @map("FK_Empresa") @db.UniqueIdentifier
-  empresa         Empresa   @relation(fields: [fkEmpresa], references: [idEmpresa], onDelete: NoAction, onUpdate: NoAction)
+  fkIdOcp           String    @map("FK_OCP") @db.UniqueIdentifier
+  ocp             Ocp       @relation(fields: [fkIdOcp], references: [idOCP], onDelete: NoAction, onUpdate: NoAction)
+  fkIdEmpresa       String    @map("FK_Empresa") @db.UniqueIdentifier
+  empresa         Empresa   @relation(fields: [fkIdEmpresa], references: [idEmpresa], onDelete: NoAction, onUpdate: NoAction)
   
-  numeroProtocolo String    @map("NumeroProtocolo") @db.NVarChar(50)
-  numeroSEI       String    @map("NumeroSEI") @db.NVarChar(50)
+  nomeProtocolo    String    @map("NomeProtocolo") @db.NVarChar(100)
+  numeroProtocolo String    @map("NumeroProtocolo") @db.NVarChar(50) @unique
+  numeroSEI       String    @map("NumeroSEI") @db.NVarChar(50) @unique
   tipoProtocolo   String    @map("TipoProtocolo") @db.NVarChar(50)
   diaAbertura     DateTime  @map("DiaAbertura") @db.Date
-  diaEntrega      DateTime  @map("DiaEntrega") @db.Date
+  diaEntrega      DateTime?  @map("DiaEntrega") @db.Date 
   
   amostras        Amostra[]
   ensaios         Ensaio[]

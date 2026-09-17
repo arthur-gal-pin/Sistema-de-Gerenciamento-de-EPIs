@@ -26,8 +26,9 @@ export type AggregateProtocolo = {
 
 export type ProtocoloMinAggregateOutputType = {
   idProtocolo: string | null
-  fkOcp: string | null
-  fkEmpresa: string | null
+  fkIdOcp: string | null
+  fkIdEmpresa: string | null
+  nomeProtocolo: string | null
   numeroProtocolo: string | null
   numeroSEI: string | null
   tipoProtocolo: string | null
@@ -39,8 +40,9 @@ export type ProtocoloMinAggregateOutputType = {
 
 export type ProtocoloMaxAggregateOutputType = {
   idProtocolo: string | null
-  fkOcp: string | null
-  fkEmpresa: string | null
+  fkIdOcp: string | null
+  fkIdEmpresa: string | null
+  nomeProtocolo: string | null
   numeroProtocolo: string | null
   numeroSEI: string | null
   tipoProtocolo: string | null
@@ -52,8 +54,9 @@ export type ProtocoloMaxAggregateOutputType = {
 
 export type ProtocoloCountAggregateOutputType = {
   idProtocolo: number
-  fkOcp: number
-  fkEmpresa: number
+  fkIdOcp: number
+  fkIdEmpresa: number
+  nomeProtocolo: number
   numeroProtocolo: number
   numeroSEI: number
   tipoProtocolo: number
@@ -67,8 +70,9 @@ export type ProtocoloCountAggregateOutputType = {
 
 export type ProtocoloMinAggregateInputType = {
   idProtocolo?: true
-  fkOcp?: true
-  fkEmpresa?: true
+  fkIdOcp?: true
+  fkIdEmpresa?: true
+  nomeProtocolo?: true
   numeroProtocolo?: true
   numeroSEI?: true
   tipoProtocolo?: true
@@ -80,8 +84,9 @@ export type ProtocoloMinAggregateInputType = {
 
 export type ProtocoloMaxAggregateInputType = {
   idProtocolo?: true
-  fkOcp?: true
-  fkEmpresa?: true
+  fkIdOcp?: true
+  fkIdEmpresa?: true
+  nomeProtocolo?: true
   numeroProtocolo?: true
   numeroSEI?: true
   tipoProtocolo?: true
@@ -93,8 +98,9 @@ export type ProtocoloMaxAggregateInputType = {
 
 export type ProtocoloCountAggregateInputType = {
   idProtocolo?: true
-  fkOcp?: true
-  fkEmpresa?: true
+  fkIdOcp?: true
+  fkIdEmpresa?: true
+  nomeProtocolo?: true
   numeroProtocolo?: true
   numeroSEI?: true
   tipoProtocolo?: true
@@ -179,13 +185,14 @@ export type ProtocoloGroupByArgs<ExtArgs extends runtime.Types.Extensions.Intern
 
 export type ProtocoloGroupByOutputType = {
   idProtocolo: string
-  fkOcp: string
-  fkEmpresa: string
+  fkIdOcp: string
+  fkIdEmpresa: string
+  nomeProtocolo: string
   numeroProtocolo: string
   numeroSEI: string
   tipoProtocolo: string
   diaAbertura: Date
-  diaEntrega: Date
+  diaEntrega: Date | null
   dataCad: Date
   dataMod: Date
   _count: ProtocoloCountAggregateOutputType | null
@@ -213,13 +220,14 @@ export type ProtocoloWhereInput = {
   OR?: Prisma.ProtocoloWhereInput[]
   NOT?: Prisma.ProtocoloWhereInput | Prisma.ProtocoloWhereInput[]
   idProtocolo?: Prisma.StringFilter<"Protocolo"> | string
-  fkOcp?: Prisma.StringFilter<"Protocolo"> | string
-  fkEmpresa?: Prisma.StringFilter<"Protocolo"> | string
+  fkIdOcp?: Prisma.StringFilter<"Protocolo"> | string
+  fkIdEmpresa?: Prisma.StringFilter<"Protocolo"> | string
+  nomeProtocolo?: Prisma.StringFilter<"Protocolo"> | string
   numeroProtocolo?: Prisma.StringFilter<"Protocolo"> | string
   numeroSEI?: Prisma.StringFilter<"Protocolo"> | string
   tipoProtocolo?: Prisma.StringFilter<"Protocolo"> | string
   diaAbertura?: Prisma.DateTimeFilter<"Protocolo"> | Date | string
-  diaEntrega?: Prisma.DateTimeFilter<"Protocolo"> | Date | string
+  diaEntrega?: Prisma.DateTimeNullableFilter<"Protocolo"> | Date | string | null
   dataCad?: Prisma.DateTimeFilter<"Protocolo"> | Date | string
   dataMod?: Prisma.DateTimeFilter<"Protocolo"> | Date | string
   ocp?: Prisma.XOR<Prisma.OcpScalarRelationFilter, Prisma.OcpWhereInput>
@@ -230,13 +238,14 @@ export type ProtocoloWhereInput = {
 
 export type ProtocoloOrderByWithRelationInput = {
   idProtocolo?: Prisma.SortOrder
-  fkOcp?: Prisma.SortOrder
-  fkEmpresa?: Prisma.SortOrder
+  fkIdOcp?: Prisma.SortOrder
+  fkIdEmpresa?: Prisma.SortOrder
+  nomeProtocolo?: Prisma.SortOrder
   numeroProtocolo?: Prisma.SortOrder
   numeroSEI?: Prisma.SortOrder
   tipoProtocolo?: Prisma.SortOrder
   diaAbertura?: Prisma.SortOrder
-  diaEntrega?: Prisma.SortOrder
+  diaEntrega?: Prisma.SortOrderInput | Prisma.SortOrder
   dataCad?: Prisma.SortOrder
   dataMod?: Prisma.SortOrder
   ocp?: Prisma.OcpOrderByWithRelationInput
@@ -247,33 +256,35 @@ export type ProtocoloOrderByWithRelationInput = {
 
 export type ProtocoloWhereUniqueInput = Prisma.AtLeast<{
   idProtocolo?: string
+  numeroProtocolo?: string
+  numeroSEI?: string
   AND?: Prisma.ProtocoloWhereInput | Prisma.ProtocoloWhereInput[]
   OR?: Prisma.ProtocoloWhereInput[]
   NOT?: Prisma.ProtocoloWhereInput | Prisma.ProtocoloWhereInput[]
-  fkOcp?: Prisma.StringFilter<"Protocolo"> | string
-  fkEmpresa?: Prisma.StringFilter<"Protocolo"> | string
-  numeroProtocolo?: Prisma.StringFilter<"Protocolo"> | string
-  numeroSEI?: Prisma.StringFilter<"Protocolo"> | string
+  fkIdOcp?: Prisma.StringFilter<"Protocolo"> | string
+  fkIdEmpresa?: Prisma.StringFilter<"Protocolo"> | string
+  nomeProtocolo?: Prisma.StringFilter<"Protocolo"> | string
   tipoProtocolo?: Prisma.StringFilter<"Protocolo"> | string
   diaAbertura?: Prisma.DateTimeFilter<"Protocolo"> | Date | string
-  diaEntrega?: Prisma.DateTimeFilter<"Protocolo"> | Date | string
+  diaEntrega?: Prisma.DateTimeNullableFilter<"Protocolo"> | Date | string | null
   dataCad?: Prisma.DateTimeFilter<"Protocolo"> | Date | string
   dataMod?: Prisma.DateTimeFilter<"Protocolo"> | Date | string
   ocp?: Prisma.XOR<Prisma.OcpScalarRelationFilter, Prisma.OcpWhereInput>
   empresa?: Prisma.XOR<Prisma.EmpresaScalarRelationFilter, Prisma.EmpresaWhereInput>
   amostras?: Prisma.AmostraListRelationFilter
   ensaios?: Prisma.EnsaioListRelationFilter
-}, "idProtocolo">
+}, "idProtocolo" | "numeroProtocolo" | "numeroSEI">
 
 export type ProtocoloOrderByWithAggregationInput = {
   idProtocolo?: Prisma.SortOrder
-  fkOcp?: Prisma.SortOrder
-  fkEmpresa?: Prisma.SortOrder
+  fkIdOcp?: Prisma.SortOrder
+  fkIdEmpresa?: Prisma.SortOrder
+  nomeProtocolo?: Prisma.SortOrder
   numeroProtocolo?: Prisma.SortOrder
   numeroSEI?: Prisma.SortOrder
   tipoProtocolo?: Prisma.SortOrder
   diaAbertura?: Prisma.SortOrder
-  diaEntrega?: Prisma.SortOrder
+  diaEntrega?: Prisma.SortOrderInput | Prisma.SortOrder
   dataCad?: Prisma.SortOrder
   dataMod?: Prisma.SortOrder
   _count?: Prisma.ProtocoloCountOrderByAggregateInput
@@ -286,24 +297,26 @@ export type ProtocoloScalarWhereWithAggregatesInput = {
   OR?: Prisma.ProtocoloScalarWhereWithAggregatesInput[]
   NOT?: Prisma.ProtocoloScalarWhereWithAggregatesInput | Prisma.ProtocoloScalarWhereWithAggregatesInput[]
   idProtocolo?: Prisma.StringWithAggregatesFilter<"Protocolo"> | string
-  fkOcp?: Prisma.StringWithAggregatesFilter<"Protocolo"> | string
-  fkEmpresa?: Prisma.StringWithAggregatesFilter<"Protocolo"> | string
+  fkIdOcp?: Prisma.StringWithAggregatesFilter<"Protocolo"> | string
+  fkIdEmpresa?: Prisma.StringWithAggregatesFilter<"Protocolo"> | string
+  nomeProtocolo?: Prisma.StringWithAggregatesFilter<"Protocolo"> | string
   numeroProtocolo?: Prisma.StringWithAggregatesFilter<"Protocolo"> | string
   numeroSEI?: Prisma.StringWithAggregatesFilter<"Protocolo"> | string
   tipoProtocolo?: Prisma.StringWithAggregatesFilter<"Protocolo"> | string
   diaAbertura?: Prisma.DateTimeWithAggregatesFilter<"Protocolo"> | Date | string
-  diaEntrega?: Prisma.DateTimeWithAggregatesFilter<"Protocolo"> | Date | string
+  diaEntrega?: Prisma.DateTimeNullableWithAggregatesFilter<"Protocolo"> | Date | string | null
   dataCad?: Prisma.DateTimeWithAggregatesFilter<"Protocolo"> | Date | string
   dataMod?: Prisma.DateTimeWithAggregatesFilter<"Protocolo"> | Date | string
 }
 
 export type ProtocoloCreateInput = {
   idProtocolo?: string
+  nomeProtocolo: string
   numeroProtocolo: string
   numeroSEI: string
   tipoProtocolo: string
   diaAbertura: Date | string
-  diaEntrega: Date | string
+  diaEntrega?: Date | string | null
   dataCad?: Date | string
   dataMod?: Date | string
   ocp: Prisma.OcpCreateNestedOneWithoutProtocolosInput
@@ -314,13 +327,14 @@ export type ProtocoloCreateInput = {
 
 export type ProtocoloUncheckedCreateInput = {
   idProtocolo?: string
-  fkOcp: string
-  fkEmpresa: string
+  fkIdOcp: string
+  fkIdEmpresa: string
+  nomeProtocolo: string
   numeroProtocolo: string
   numeroSEI: string
   tipoProtocolo: string
   diaAbertura: Date | string
-  diaEntrega: Date | string
+  diaEntrega?: Date | string | null
   dataCad?: Date | string
   dataMod?: Date | string
   amostras?: Prisma.AmostraUncheckedCreateNestedManyWithoutProtocoloInput
@@ -329,11 +343,12 @@ export type ProtocoloUncheckedCreateInput = {
 
 export type ProtocoloUpdateInput = {
   idProtocolo?: Prisma.StringFieldUpdateOperationsInput | string
+  nomeProtocolo?: Prisma.StringFieldUpdateOperationsInput | string
   numeroProtocolo?: Prisma.StringFieldUpdateOperationsInput | string
   numeroSEI?: Prisma.StringFieldUpdateOperationsInput | string
   tipoProtocolo?: Prisma.StringFieldUpdateOperationsInput | string
   diaAbertura?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  diaEntrega?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  diaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ocp?: Prisma.OcpUpdateOneRequiredWithoutProtocolosNestedInput
@@ -344,13 +359,14 @@ export type ProtocoloUpdateInput = {
 
 export type ProtocoloUncheckedUpdateInput = {
   idProtocolo?: Prisma.StringFieldUpdateOperationsInput | string
-  fkOcp?: Prisma.StringFieldUpdateOperationsInput | string
-  fkEmpresa?: Prisma.StringFieldUpdateOperationsInput | string
+  fkIdOcp?: Prisma.StringFieldUpdateOperationsInput | string
+  fkIdEmpresa?: Prisma.StringFieldUpdateOperationsInput | string
+  nomeProtocolo?: Prisma.StringFieldUpdateOperationsInput | string
   numeroProtocolo?: Prisma.StringFieldUpdateOperationsInput | string
   numeroSEI?: Prisma.StringFieldUpdateOperationsInput | string
   tipoProtocolo?: Prisma.StringFieldUpdateOperationsInput | string
   diaAbertura?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  diaEntrega?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  diaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   amostras?: Prisma.AmostraUncheckedUpdateManyWithoutProtocoloNestedInput
@@ -359,37 +375,40 @@ export type ProtocoloUncheckedUpdateInput = {
 
 export type ProtocoloCreateManyInput = {
   idProtocolo?: string
-  fkOcp: string
-  fkEmpresa: string
+  fkIdOcp: string
+  fkIdEmpresa: string
+  nomeProtocolo: string
   numeroProtocolo: string
   numeroSEI: string
   tipoProtocolo: string
   diaAbertura: Date | string
-  diaEntrega: Date | string
+  diaEntrega?: Date | string | null
   dataCad?: Date | string
   dataMod?: Date | string
 }
 
 export type ProtocoloUpdateManyMutationInput = {
   idProtocolo?: Prisma.StringFieldUpdateOperationsInput | string
+  nomeProtocolo?: Prisma.StringFieldUpdateOperationsInput | string
   numeroProtocolo?: Prisma.StringFieldUpdateOperationsInput | string
   numeroSEI?: Prisma.StringFieldUpdateOperationsInput | string
   tipoProtocolo?: Prisma.StringFieldUpdateOperationsInput | string
   diaAbertura?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  diaEntrega?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  diaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type ProtocoloUncheckedUpdateManyInput = {
   idProtocolo?: Prisma.StringFieldUpdateOperationsInput | string
-  fkOcp?: Prisma.StringFieldUpdateOperationsInput | string
-  fkEmpresa?: Prisma.StringFieldUpdateOperationsInput | string
+  fkIdOcp?: Prisma.StringFieldUpdateOperationsInput | string
+  fkIdEmpresa?: Prisma.StringFieldUpdateOperationsInput | string
+  nomeProtocolo?: Prisma.StringFieldUpdateOperationsInput | string
   numeroProtocolo?: Prisma.StringFieldUpdateOperationsInput | string
   numeroSEI?: Prisma.StringFieldUpdateOperationsInput | string
   tipoProtocolo?: Prisma.StringFieldUpdateOperationsInput | string
   diaAbertura?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  diaEntrega?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  diaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -406,8 +425,9 @@ export type ProtocoloOrderByRelationAggregateInput = {
 
 export type ProtocoloCountOrderByAggregateInput = {
   idProtocolo?: Prisma.SortOrder
-  fkOcp?: Prisma.SortOrder
-  fkEmpresa?: Prisma.SortOrder
+  fkIdOcp?: Prisma.SortOrder
+  fkIdEmpresa?: Prisma.SortOrder
+  nomeProtocolo?: Prisma.SortOrder
   numeroProtocolo?: Prisma.SortOrder
   numeroSEI?: Prisma.SortOrder
   tipoProtocolo?: Prisma.SortOrder
@@ -419,8 +439,9 @@ export type ProtocoloCountOrderByAggregateInput = {
 
 export type ProtocoloMaxOrderByAggregateInput = {
   idProtocolo?: Prisma.SortOrder
-  fkOcp?: Prisma.SortOrder
-  fkEmpresa?: Prisma.SortOrder
+  fkIdOcp?: Prisma.SortOrder
+  fkIdEmpresa?: Prisma.SortOrder
+  nomeProtocolo?: Prisma.SortOrder
   numeroProtocolo?: Prisma.SortOrder
   numeroSEI?: Prisma.SortOrder
   tipoProtocolo?: Prisma.SortOrder
@@ -432,8 +453,9 @@ export type ProtocoloMaxOrderByAggregateInput = {
 
 export type ProtocoloMinOrderByAggregateInput = {
   idProtocolo?: Prisma.SortOrder
-  fkOcp?: Prisma.SortOrder
-  fkEmpresa?: Prisma.SortOrder
+  fkIdOcp?: Prisma.SortOrder
+  fkIdEmpresa?: Prisma.SortOrder
+  nomeProtocolo?: Prisma.SortOrder
   numeroProtocolo?: Prisma.SortOrder
   numeroSEI?: Prisma.SortOrder
   tipoProtocolo?: Prisma.SortOrder
@@ -532,6 +554,10 @@ export type ProtocoloUncheckedUpdateManyWithoutEmpresaNestedInput = {
   deleteMany?: Prisma.ProtocoloScalarWhereInput | Prisma.ProtocoloScalarWhereInput[]
 }
 
+export type NullableDateTimeFieldUpdateOperationsInput = {
+  set?: Date | string | null
+}
+
 export type ProtocoloCreateNestedOneWithoutAmostrasInput = {
   create?: Prisma.XOR<Prisma.ProtocoloCreateWithoutAmostrasInput, Prisma.ProtocoloUncheckedCreateWithoutAmostrasInput>
   connectOrCreate?: Prisma.ProtocoloCreateOrConnectWithoutAmostrasInput
@@ -562,11 +588,12 @@ export type ProtocoloUpdateOneRequiredWithoutEnsaiosNestedInput = {
 
 export type ProtocoloCreateWithoutOcpInput = {
   idProtocolo?: string
+  nomeProtocolo: string
   numeroProtocolo: string
   numeroSEI: string
   tipoProtocolo: string
   diaAbertura: Date | string
-  diaEntrega: Date | string
+  diaEntrega?: Date | string | null
   dataCad?: Date | string
   dataMod?: Date | string
   empresa: Prisma.EmpresaCreateNestedOneWithoutProtocolosInput
@@ -576,12 +603,13 @@ export type ProtocoloCreateWithoutOcpInput = {
 
 export type ProtocoloUncheckedCreateWithoutOcpInput = {
   idProtocolo?: string
-  fkEmpresa: string
+  fkIdEmpresa: string
+  nomeProtocolo: string
   numeroProtocolo: string
   numeroSEI: string
   tipoProtocolo: string
   diaAbertura: Date | string
-  diaEntrega: Date | string
+  diaEntrega?: Date | string | null
   dataCad?: Date | string
   dataMod?: Date | string
   amostras?: Prisma.AmostraUncheckedCreateNestedManyWithoutProtocoloInput
@@ -618,24 +646,26 @@ export type ProtocoloScalarWhereInput = {
   OR?: Prisma.ProtocoloScalarWhereInput[]
   NOT?: Prisma.ProtocoloScalarWhereInput | Prisma.ProtocoloScalarWhereInput[]
   idProtocolo?: Prisma.StringFilter<"Protocolo"> | string
-  fkOcp?: Prisma.StringFilter<"Protocolo"> | string
-  fkEmpresa?: Prisma.StringFilter<"Protocolo"> | string
+  fkIdOcp?: Prisma.StringFilter<"Protocolo"> | string
+  fkIdEmpresa?: Prisma.StringFilter<"Protocolo"> | string
+  nomeProtocolo?: Prisma.StringFilter<"Protocolo"> | string
   numeroProtocolo?: Prisma.StringFilter<"Protocolo"> | string
   numeroSEI?: Prisma.StringFilter<"Protocolo"> | string
   tipoProtocolo?: Prisma.StringFilter<"Protocolo"> | string
   diaAbertura?: Prisma.DateTimeFilter<"Protocolo"> | Date | string
-  diaEntrega?: Prisma.DateTimeFilter<"Protocolo"> | Date | string
+  diaEntrega?: Prisma.DateTimeNullableFilter<"Protocolo"> | Date | string | null
   dataCad?: Prisma.DateTimeFilter<"Protocolo"> | Date | string
   dataMod?: Prisma.DateTimeFilter<"Protocolo"> | Date | string
 }
 
 export type ProtocoloCreateWithoutEmpresaInput = {
   idProtocolo?: string
+  nomeProtocolo: string
   numeroProtocolo: string
   numeroSEI: string
   tipoProtocolo: string
   diaAbertura: Date | string
-  diaEntrega: Date | string
+  diaEntrega?: Date | string | null
   dataCad?: Date | string
   dataMod?: Date | string
   ocp: Prisma.OcpCreateNestedOneWithoutProtocolosInput
@@ -645,12 +675,13 @@ export type ProtocoloCreateWithoutEmpresaInput = {
 
 export type ProtocoloUncheckedCreateWithoutEmpresaInput = {
   idProtocolo?: string
-  fkOcp: string
+  fkIdOcp: string
+  nomeProtocolo: string
   numeroProtocolo: string
   numeroSEI: string
   tipoProtocolo: string
   diaAbertura: Date | string
-  diaEntrega: Date | string
+  diaEntrega?: Date | string | null
   dataCad?: Date | string
   dataMod?: Date | string
   amostras?: Prisma.AmostraUncheckedCreateNestedManyWithoutProtocoloInput
@@ -684,11 +715,12 @@ export type ProtocoloUpdateManyWithWhereWithoutEmpresaInput = {
 
 export type ProtocoloCreateWithoutAmostrasInput = {
   idProtocolo?: string
+  nomeProtocolo: string
   numeroProtocolo: string
   numeroSEI: string
   tipoProtocolo: string
   diaAbertura: Date | string
-  diaEntrega: Date | string
+  diaEntrega?: Date | string | null
   dataCad?: Date | string
   dataMod?: Date | string
   ocp: Prisma.OcpCreateNestedOneWithoutProtocolosInput
@@ -698,13 +730,14 @@ export type ProtocoloCreateWithoutAmostrasInput = {
 
 export type ProtocoloUncheckedCreateWithoutAmostrasInput = {
   idProtocolo?: string
-  fkOcp: string
-  fkEmpresa: string
+  fkIdOcp: string
+  fkIdEmpresa: string
+  nomeProtocolo: string
   numeroProtocolo: string
   numeroSEI: string
   tipoProtocolo: string
   diaAbertura: Date | string
-  diaEntrega: Date | string
+  diaEntrega?: Date | string | null
   dataCad?: Date | string
   dataMod?: Date | string
   ensaios?: Prisma.EnsaioUncheckedCreateNestedManyWithoutProtocoloInput
@@ -728,11 +761,12 @@ export type ProtocoloUpdateToOneWithWhereWithoutAmostrasInput = {
 
 export type ProtocoloUpdateWithoutAmostrasInput = {
   idProtocolo?: Prisma.StringFieldUpdateOperationsInput | string
+  nomeProtocolo?: Prisma.StringFieldUpdateOperationsInput | string
   numeroProtocolo?: Prisma.StringFieldUpdateOperationsInput | string
   numeroSEI?: Prisma.StringFieldUpdateOperationsInput | string
   tipoProtocolo?: Prisma.StringFieldUpdateOperationsInput | string
   diaAbertura?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  diaEntrega?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  diaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ocp?: Prisma.OcpUpdateOneRequiredWithoutProtocolosNestedInput
@@ -742,13 +776,14 @@ export type ProtocoloUpdateWithoutAmostrasInput = {
 
 export type ProtocoloUncheckedUpdateWithoutAmostrasInput = {
   idProtocolo?: Prisma.StringFieldUpdateOperationsInput | string
-  fkOcp?: Prisma.StringFieldUpdateOperationsInput | string
-  fkEmpresa?: Prisma.StringFieldUpdateOperationsInput | string
+  fkIdOcp?: Prisma.StringFieldUpdateOperationsInput | string
+  fkIdEmpresa?: Prisma.StringFieldUpdateOperationsInput | string
+  nomeProtocolo?: Prisma.StringFieldUpdateOperationsInput | string
   numeroProtocolo?: Prisma.StringFieldUpdateOperationsInput | string
   numeroSEI?: Prisma.StringFieldUpdateOperationsInput | string
   tipoProtocolo?: Prisma.StringFieldUpdateOperationsInput | string
   diaAbertura?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  diaEntrega?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  diaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ensaios?: Prisma.EnsaioUncheckedUpdateManyWithoutProtocoloNestedInput
@@ -756,11 +791,12 @@ export type ProtocoloUncheckedUpdateWithoutAmostrasInput = {
 
 export type ProtocoloCreateWithoutEnsaiosInput = {
   idProtocolo?: string
+  nomeProtocolo: string
   numeroProtocolo: string
   numeroSEI: string
   tipoProtocolo: string
   diaAbertura: Date | string
-  diaEntrega: Date | string
+  diaEntrega?: Date | string | null
   dataCad?: Date | string
   dataMod?: Date | string
   ocp: Prisma.OcpCreateNestedOneWithoutProtocolosInput
@@ -770,13 +806,14 @@ export type ProtocoloCreateWithoutEnsaiosInput = {
 
 export type ProtocoloUncheckedCreateWithoutEnsaiosInput = {
   idProtocolo?: string
-  fkOcp: string
-  fkEmpresa: string
+  fkIdOcp: string
+  fkIdEmpresa: string
+  nomeProtocolo: string
   numeroProtocolo: string
   numeroSEI: string
   tipoProtocolo: string
   diaAbertura: Date | string
-  diaEntrega: Date | string
+  diaEntrega?: Date | string | null
   dataCad?: Date | string
   dataMod?: Date | string
   amostras?: Prisma.AmostraUncheckedCreateNestedManyWithoutProtocoloInput
@@ -800,11 +837,12 @@ export type ProtocoloUpdateToOneWithWhereWithoutEnsaiosInput = {
 
 export type ProtocoloUpdateWithoutEnsaiosInput = {
   idProtocolo?: Prisma.StringFieldUpdateOperationsInput | string
+  nomeProtocolo?: Prisma.StringFieldUpdateOperationsInput | string
   numeroProtocolo?: Prisma.StringFieldUpdateOperationsInput | string
   numeroSEI?: Prisma.StringFieldUpdateOperationsInput | string
   tipoProtocolo?: Prisma.StringFieldUpdateOperationsInput | string
   diaAbertura?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  diaEntrega?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  diaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ocp?: Prisma.OcpUpdateOneRequiredWithoutProtocolosNestedInput
@@ -814,13 +852,14 @@ export type ProtocoloUpdateWithoutEnsaiosInput = {
 
 export type ProtocoloUncheckedUpdateWithoutEnsaiosInput = {
   idProtocolo?: Prisma.StringFieldUpdateOperationsInput | string
-  fkOcp?: Prisma.StringFieldUpdateOperationsInput | string
-  fkEmpresa?: Prisma.StringFieldUpdateOperationsInput | string
+  fkIdOcp?: Prisma.StringFieldUpdateOperationsInput | string
+  fkIdEmpresa?: Prisma.StringFieldUpdateOperationsInput | string
+  nomeProtocolo?: Prisma.StringFieldUpdateOperationsInput | string
   numeroProtocolo?: Prisma.StringFieldUpdateOperationsInput | string
   numeroSEI?: Prisma.StringFieldUpdateOperationsInput | string
   tipoProtocolo?: Prisma.StringFieldUpdateOperationsInput | string
   diaAbertura?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  diaEntrega?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  diaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   amostras?: Prisma.AmostraUncheckedUpdateManyWithoutProtocoloNestedInput
@@ -828,23 +867,25 @@ export type ProtocoloUncheckedUpdateWithoutEnsaiosInput = {
 
 export type ProtocoloCreateManyOcpInput = {
   idProtocolo?: string
-  fkEmpresa: string
+  fkIdEmpresa: string
+  nomeProtocolo: string
   numeroProtocolo: string
   numeroSEI: string
   tipoProtocolo: string
   diaAbertura: Date | string
-  diaEntrega: Date | string
+  diaEntrega?: Date | string | null
   dataCad?: Date | string
   dataMod?: Date | string
 }
 
 export type ProtocoloUpdateWithoutOcpInput = {
   idProtocolo?: Prisma.StringFieldUpdateOperationsInput | string
+  nomeProtocolo?: Prisma.StringFieldUpdateOperationsInput | string
   numeroProtocolo?: Prisma.StringFieldUpdateOperationsInput | string
   numeroSEI?: Prisma.StringFieldUpdateOperationsInput | string
   tipoProtocolo?: Prisma.StringFieldUpdateOperationsInput | string
   diaAbertura?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  diaEntrega?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  diaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   empresa?: Prisma.EmpresaUpdateOneRequiredWithoutProtocolosNestedInput
@@ -854,12 +895,13 @@ export type ProtocoloUpdateWithoutOcpInput = {
 
 export type ProtocoloUncheckedUpdateWithoutOcpInput = {
   idProtocolo?: Prisma.StringFieldUpdateOperationsInput | string
-  fkEmpresa?: Prisma.StringFieldUpdateOperationsInput | string
+  fkIdEmpresa?: Prisma.StringFieldUpdateOperationsInput | string
+  nomeProtocolo?: Prisma.StringFieldUpdateOperationsInput | string
   numeroProtocolo?: Prisma.StringFieldUpdateOperationsInput | string
   numeroSEI?: Prisma.StringFieldUpdateOperationsInput | string
   tipoProtocolo?: Prisma.StringFieldUpdateOperationsInput | string
   diaAbertura?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  diaEntrega?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  diaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   amostras?: Prisma.AmostraUncheckedUpdateManyWithoutProtocoloNestedInput
@@ -868,35 +910,38 @@ export type ProtocoloUncheckedUpdateWithoutOcpInput = {
 
 export type ProtocoloUncheckedUpdateManyWithoutOcpInput = {
   idProtocolo?: Prisma.StringFieldUpdateOperationsInput | string
-  fkEmpresa?: Prisma.StringFieldUpdateOperationsInput | string
+  fkIdEmpresa?: Prisma.StringFieldUpdateOperationsInput | string
+  nomeProtocolo?: Prisma.StringFieldUpdateOperationsInput | string
   numeroProtocolo?: Prisma.StringFieldUpdateOperationsInput | string
   numeroSEI?: Prisma.StringFieldUpdateOperationsInput | string
   tipoProtocolo?: Prisma.StringFieldUpdateOperationsInput | string
   diaAbertura?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  diaEntrega?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  diaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type ProtocoloCreateManyEmpresaInput = {
   idProtocolo?: string
-  fkOcp: string
+  fkIdOcp: string
+  nomeProtocolo: string
   numeroProtocolo: string
   numeroSEI: string
   tipoProtocolo: string
   diaAbertura: Date | string
-  diaEntrega: Date | string
+  diaEntrega?: Date | string | null
   dataCad?: Date | string
   dataMod?: Date | string
 }
 
 export type ProtocoloUpdateWithoutEmpresaInput = {
   idProtocolo?: Prisma.StringFieldUpdateOperationsInput | string
+  nomeProtocolo?: Prisma.StringFieldUpdateOperationsInput | string
   numeroProtocolo?: Prisma.StringFieldUpdateOperationsInput | string
   numeroSEI?: Prisma.StringFieldUpdateOperationsInput | string
   tipoProtocolo?: Prisma.StringFieldUpdateOperationsInput | string
   diaAbertura?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  diaEntrega?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  diaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ocp?: Prisma.OcpUpdateOneRequiredWithoutProtocolosNestedInput
@@ -906,12 +951,13 @@ export type ProtocoloUpdateWithoutEmpresaInput = {
 
 export type ProtocoloUncheckedUpdateWithoutEmpresaInput = {
   idProtocolo?: Prisma.StringFieldUpdateOperationsInput | string
-  fkOcp?: Prisma.StringFieldUpdateOperationsInput | string
+  fkIdOcp?: Prisma.StringFieldUpdateOperationsInput | string
+  nomeProtocolo?: Prisma.StringFieldUpdateOperationsInput | string
   numeroProtocolo?: Prisma.StringFieldUpdateOperationsInput | string
   numeroSEI?: Prisma.StringFieldUpdateOperationsInput | string
   tipoProtocolo?: Prisma.StringFieldUpdateOperationsInput | string
   diaAbertura?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  diaEntrega?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  diaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   amostras?: Prisma.AmostraUncheckedUpdateManyWithoutProtocoloNestedInput
@@ -920,12 +966,13 @@ export type ProtocoloUncheckedUpdateWithoutEmpresaInput = {
 
 export type ProtocoloUncheckedUpdateManyWithoutEmpresaInput = {
   idProtocolo?: Prisma.StringFieldUpdateOperationsInput | string
-  fkOcp?: Prisma.StringFieldUpdateOperationsInput | string
+  fkIdOcp?: Prisma.StringFieldUpdateOperationsInput | string
+  nomeProtocolo?: Prisma.StringFieldUpdateOperationsInput | string
   numeroProtocolo?: Prisma.StringFieldUpdateOperationsInput | string
   numeroSEI?: Prisma.StringFieldUpdateOperationsInput | string
   tipoProtocolo?: Prisma.StringFieldUpdateOperationsInput | string
   diaAbertura?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  diaEntrega?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  diaEntrega?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -972,8 +1019,9 @@ export type ProtocoloCountOutputTypeCountEnsaiosArgs<ExtArgs extends runtime.Typ
 
 export type ProtocoloSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   idProtocolo?: boolean
-  fkOcp?: boolean
-  fkEmpresa?: boolean
+  fkIdOcp?: boolean
+  fkIdEmpresa?: boolean
+  nomeProtocolo?: boolean
   numeroProtocolo?: boolean
   numeroSEI?: boolean
   tipoProtocolo?: boolean
@@ -992,8 +1040,9 @@ export type ProtocoloSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
 
 export type ProtocoloSelectScalar = {
   idProtocolo?: boolean
-  fkOcp?: boolean
-  fkEmpresa?: boolean
+  fkIdOcp?: boolean
+  fkIdEmpresa?: boolean
+  nomeProtocolo?: boolean
   numeroProtocolo?: boolean
   numeroSEI?: boolean
   tipoProtocolo?: boolean
@@ -1003,7 +1052,7 @@ export type ProtocoloSelectScalar = {
   dataMod?: boolean
 }
 
-export type ProtocoloOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"idProtocolo" | "fkOcp" | "fkEmpresa" | "numeroProtocolo" | "numeroSEI" | "tipoProtocolo" | "diaAbertura" | "diaEntrega" | "dataCad" | "dataMod", ExtArgs["result"]["protocolo"]>
+export type ProtocoloOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"idProtocolo" | "fkIdOcp" | "fkIdEmpresa" | "nomeProtocolo" | "numeroProtocolo" | "numeroSEI" | "tipoProtocolo" | "diaAbertura" | "diaEntrega" | "dataCad" | "dataMod", ExtArgs["result"]["protocolo"]>
 export type ProtocoloInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   ocp?: boolean | Prisma.OcpDefaultArgs<ExtArgs>
   empresa?: boolean | Prisma.EmpresaDefaultArgs<ExtArgs>
@@ -1022,13 +1071,14 @@ export type $ProtocoloPayload<ExtArgs extends runtime.Types.Extensions.InternalA
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     idProtocolo: string
-    fkOcp: string
-    fkEmpresa: string
+    fkIdOcp: string
+    fkIdEmpresa: string
+    nomeProtocolo: string
     numeroProtocolo: string
     numeroSEI: string
     tipoProtocolo: string
     diaAbertura: Date
-    diaEntrega: Date
+    diaEntrega: Date | null
     dataCad: Date
     dataMod: Date
   }, ExtArgs["result"]["protocolo"]>
@@ -1405,8 +1455,9 @@ export interface Prisma__ProtocoloClient<T, Null = never, ExtArgs extends runtim
  */
 export interface ProtocoloFieldRefs {
   readonly idProtocolo: Prisma.FieldRef<"Protocolo", 'String'>
-  readonly fkOcp: Prisma.FieldRef<"Protocolo", 'String'>
-  readonly fkEmpresa: Prisma.FieldRef<"Protocolo", 'String'>
+  readonly fkIdOcp: Prisma.FieldRef<"Protocolo", 'String'>
+  readonly fkIdEmpresa: Prisma.FieldRef<"Protocolo", 'String'>
+  readonly nomeProtocolo: Prisma.FieldRef<"Protocolo", 'String'>
   readonly numeroProtocolo: Prisma.FieldRef<"Protocolo", 'String'>
   readonly numeroSEI: Prisma.FieldRef<"Protocolo", 'String'>
   readonly tipoProtocolo: Prisma.FieldRef<"Protocolo", 'String'>

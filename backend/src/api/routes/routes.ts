@@ -7,6 +7,7 @@ import telefoneRoutes from './funcionarios/telefone.routes';
 import amostraRoutes from './amostras/amostra.routes';
 import ocpRoutes from './amostras/ocp.routes';
 import empresaRoutes from './amostras/empresa.routes';
+import protocoloRoutes from './ensaios/protocolo.routes';
 import profileActionsRoutes from './funcionarios/profileActions.routes';
 import authRoutes from './funcionarios/login.routes';
 
@@ -17,6 +18,7 @@ routes.use('/telefones', telefoneRoutes);
 routes.use('/amostras', amostraRoutes);
 routes.use('/ocps', ocpRoutes);
 routes.use('/empresas', empresaRoutes);
+routes.use('/protocolos', protocoloRoutes);
 routes.use('', authRoutes);
 
 export default routes;

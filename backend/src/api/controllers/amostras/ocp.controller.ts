@@ -5,7 +5,7 @@ import { OcpRepository } from "../../repositories/amostras/ocp.respository";
 export const OcpController = {
     getAll: async (req: Request, res: Response): Promise<void> => {
         try {
-            const result = await OcpRepository.listarTodos();
+            const result = await OcpRepository.findAll();
 
             if (!result || result.length === 0) {
                 res.status(404).json({ message: 'Não foi encontrado nenhuma OCP no banco de dados.' });
@@ -27,7 +27,7 @@ export const OcpController = {
                 return;
             }
 
-            const result = await OcpRepository.listarPorId(id);
+            const result = await OcpRepository.findById(id);
 
             if (!result) {
                 res.status(404).json({ message: 'Não foi encontrada nenhuma OCP com esse ID.' });
@@ -49,7 +49,7 @@ export const OcpController = {
                 return;
             }
 
-            const result = await OcpRepository.listarPorNome(nome);
+            const result = await OcpRepository.findByName(nome);
 
             if (!result || result.length === 0) {
                 res.status(404).json({ message: 'Não foi encontrada nenhuma OCP com esse nome.' });
@@ -71,7 +71,7 @@ export const OcpController = {
             
             const domainOcp = OCP.create({ nomeOCP });
             
-            const result = await OcpRepository.criarOcp(domainOcp.toJSON());
+            const result = await OcpRepository.create(domainOcp.toJSON());
             
             res.status(201).json({ message: 'Requisição bem sucedida:', data: result });
         } catch (error: any) {
@@ -89,7 +89,7 @@ export const OcpController = {
                 return;
             }
 
-            const ocpAtual = await OcpRepository.listarPorId(id);
+            const ocpAtual = await OcpRepository.findById(id);
             if (!ocpAtual) {
                 res.status(404).json({ message: 'Não foi encontrada nenhuma OCP com esse ID.' });
                 return;
@@ -97,7 +97,7 @@ export const OcpController = {
 
             const domainOcp = OCP.edit(id, { nomeOCP: nomeNovo });
 
-            const result = await OcpRepository.atualizarOcp(id, domainOcp.toJSON());
+            const result = await OcpRepository.update(id, domainOcp.toJSON());
 
             res.status(200).json({ message: 'OCP atualizada com sucesso.', data: result });
         } catch (error: any) {
@@ -114,7 +114,7 @@ export const OcpController = {
                 return;
             }
 
-            const result = await OcpRepository.apagarOcp(id);
+            const result = await OcpRepository.delete(id);
 
             if (!result) {
                 res.status(400).json({ message: 'Não foi possível apagar. Nenhuma OCP encontrada com esse ID.' });
