@@ -94,12 +94,12 @@ model Protocolo {
   fkIdEmpresa       String    @map("FK_Empresa") @db.UniqueIdentifier
   empresa         Empresa   @relation(fields: [fkIdEmpresa], references: [idEmpresa], onDelete: NoAction, onUpdate: NoAction)
   
-  nomeProtocolo    String    @map("NomeProtocolo") @db.NVarChar(100)
+  nomeProtocolo   String    @map("NomeProtocolo") @db.NVarChar(100)
   numeroProtocolo String    @map("NumeroProtocolo") @db.NVarChar(50) @unique
   numeroSEI       String    @map("NumeroSEI") @db.NVarChar(50) @unique
   tipoProtocolo   String    @map("TipoProtocolo") @db.NVarChar(50)
   diaAbertura     DateTime  @map("DiaAbertura") @db.Date
-  diaEntrega      DateTime?  @map("DiaEntrega") @db.Date 
+  diaEntrega      DateTime? @map("DiaEntrega") @db.Date 
   
   amostras        Amostra[]
   ensaios         Ensaio[]

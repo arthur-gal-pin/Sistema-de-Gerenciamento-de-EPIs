@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { Protocolo } from "../../models/ensaios/Protocolo";
-import  ProtocoloRepository  from "../../repositories/ensaios/protocolo.repository";
+import ProtocoloRepository from "../../repositories/ensaios/protocolo.repository";
 import { enumTipoProtocolo } from "../../enum/ensaios/tipoProtocolo.enum";
 
 export const ProtocoloController = {
@@ -128,13 +128,16 @@ export const ProtocoloController = {
                 return;
             }
 
+
             const protocoloAtual = await ProtocoloRepository.findById(id);
+
             if (!protocoloAtual) {
                 res.status(404).json({ message: 'Não foi encontrado nenhum protocolo com esse ID.' });
                 return;
             }
 
-            const domainProtocolo = Protocolo.edit(id, req.body);
+            // Passa o estado atual junto com as alterações do body
+            const domainProtocolo = Protocolo.edit(protocoloAtual, req.body);
 
             const result = await ProtocoloRepository.update(id, domainProtocolo.toJSON());
 

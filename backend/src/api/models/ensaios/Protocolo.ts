@@ -1,17 +1,16 @@
 import { uuid } from "uuidv4";
 import { enumTipoProtocolo } from "../../enum/ensaios/tipoProtocolo.enum";
 
-
 export interface IProtocolo {
-    idProtocolo: string | null;
+    idProtocolo?: string | null;
     FK_idOCP: string;
     FK_idEmpresa: string;
-    nomeProtocolo : string,
+    nomeProtocolo: string;
     numeroProtocolo: string;
     numeroSEI: string;
     tipoProtocolo: enumTipoProtocolo;
     diaAbertura: string;
-    diaEntrega?: string | undefined;
+    diaEntrega?: string;
     testemunha?: string;
     descricao?: string;
     dataCad?: string;
@@ -56,11 +55,6 @@ export class Protocolo {
         this.numeroSEI = numeroSEI;
         this.tipoProtocolo = tipoProtocolo;
         this.diaAbertura = diaAbertura;
-        // diaEntrega* — no diagrama, o asterisco indica que este valor é
-        // calculado a partir de diaAbertura + prazo (a regra de quantos
-        // dias não está definida na modelagem). Por ora, o construtor só
-        // valida/armazena o que for informado; o cálculo do prazo deve
-        // acontecer na camada de serviço/controller antes de chegar aqui.
         this.diaEntrega = diaEntrega;
         this._testemunha = testemunha;
         this._descricao = descricao;
@@ -69,23 +63,23 @@ export class Protocolo {
     }
 
     // --- GETTERS ---
-    get idProtocolo() { return this._idProtocolo };
-    get FK_idOCP() { return this._FK_idOCP };
-    get FK_idEmpresa() { return this._FK_idEmpresa };
-    get nomeProtocolo() {return this._nomeProtocolo};
-    get numeroProtocolo() { return this._numeroProtocolo };
-    get numeroSEI() { return this._numeroSEI };
-    get tipoProtocolo() { return this._tipoProtocolo };
-    get diaAbertura() { return this._diaAbertura };
-    get diaEntrega() { return this._diaEntrega };
-    get testemunha() { return this._testemunha };
-    get descricao() { return this._descricao };
-    get dataCad() { return this._dataCad };
-    get dataMod() { return this._dataMod };
+    get idProtocolo() { return this._idProtocolo; }
+    get FK_idOCP() { return this._FK_idOCP; }
+    get FK_idEmpresa() { return this._FK_idEmpresa; }
+    get nomeProtocolo() { return this._nomeProtocolo; }
+    get numeroProtocolo() { return this._numeroProtocolo; }
+    get numeroSEI() { return this._numeroSEI; }
+    get tipoProtocolo() { return this._tipoProtocolo; }
+    get diaAbertura() { return this._diaAbertura; }
+    get diaEntrega() { return this._diaEntrega; }
+    get testemunha() { return this._testemunha; }
+    get descricao() { return this._descricao; }
+    get dataCad() { return this._dataCad; }
+    get dataMod() { return this._dataMod; }
 
     // --- SETTERS ---
     set idProtocolo(value: string | null) {
-        if (!value || value !== null && value?.length !== 36) {
+        if (!value || (value !== null && value.length !== 36)) {
             throw new Error('O idProtocolo está errado.');
         }
         this._idProtocolo = value;
@@ -164,8 +158,8 @@ export class Protocolo {
         this.atualizarDataModificacao();
     }
 
-    set nomeProtocolo(value: string){
-        if(!value || value.length <  3 || value.length > 40){
+    set nomeProtocolo(value: string) {
+        if (!value || value.length < 3 || value.length > 40) {
             throw new Error('O nome do protocolo deve ter no mínimo 3 caracteres, e no máximo 40');
         }
         this._nomeProtocolo = value;
@@ -181,7 +175,7 @@ export class Protocolo {
             dados.nomeProtocolo,
             dados.numeroProtocolo,
             dados.numeroSEI,
-            dados.tipoProtocolo,
+            dados.tipoProtocolo as enumTipoProtocolo,
             dados.diaAbertura,
             dados.diaEntrega,
             dados.testemunha,
@@ -191,20 +185,21 @@ export class Protocolo {
         );
     }
 
-    public static edit(id: string, dados: any) {
+    public static edit(atual: Partial<IProtocolo>, dados: Partial<IProtocolo>) {
         return new Protocolo(
-            id,
-            dados.FK_idOCP,
-            dados.FK_idEmpresa,
-            dados.numeroProtocolo,
-            dados.numeroSEI,
-            dados.tipoProtocolo,
-            dados.diaAbertura,
-            dados.diaEntrega,
-            dados.testemunha,
-            dados.descricao,
-            dados.dataCad,
-            String(new Date().toISOString())
+            atual.idProtocolo ?? null,
+            (dados.FK_idOCP ?? atual.FK_idOCP)!,
+            (dados.FK_idEmpresa ?? atual.FK_idEmpresa)!,
+            (dados.nomeProtocolo ?? atual.nomeProtocolo)!,
+            (dados.numeroProtocolo ?? atual.numeroProtocolo)!,
+            (dados.numeroSEI ?? atual.numeroSEI)!,
+            (dados.tipoProtocolo ?? atual.tipoProtocolo)! as enumTipoProtocolo,
+            (dados.diaAbertura ?? atual.diaAbertura)!,
+            dados.diaEntrega ?? atual.diaEntrega,
+            dados.testemunha ?? atual.testemunha,
+            dados.descricao ?? atual.descricao,
+            atual.dataCad,
+            new Date().toISOString()
         );
     }
 
@@ -215,15 +210,12 @@ export class Protocolo {
         }
     }
 
-    /**
-     * Converte a classe para um objeto plano, removendo os underlines
-     * das propriedades privadas ao serializar.
-     */
     public toJSON() {
         return {
             idProtocolo: this._idProtocolo,
             FK_idOCP: this._FK_idOCP,
             FK_idEmpresa: this._FK_idEmpresa,
+            nomeProtocolo: this._nomeProtocolo,
             numeroProtocolo: this._numeroProtocolo,
             numeroSEI: this._numeroSEI,
             tipoProtocolo: this._tipoProtocolo,
