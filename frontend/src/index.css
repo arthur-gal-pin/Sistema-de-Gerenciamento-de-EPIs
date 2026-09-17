@@ -90,6 +90,21 @@ h3 {
 
 p {
   margin: 0;
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--lab-font-body);
+  background-color: var(--lab-background);
+  color: var(--lab-on-background);
 }
 
 /* Ícones Material Symbols */
@@ -97,7 +112,6 @@ p {
   font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
   vertical-align: middle;
 }
-
 .icon-fill {
   font-variation-settings: 'FILL' 1;
 }
@@ -211,7 +225,6 @@ p {
   font-weight: 700;
   color: var(--lab-on-surface);
 }
-
 .font-label {
   font-family: var(--lab-font-body);
   font-weight: 500;
@@ -238,7 +251,6 @@ p {
 .custom-scrollbar::-webkit-scrollbar {
   width: 8px;
 }
-
 .custom-scrollbar::-webkit-scrollbar-thumb {
   background-color: var(--lab-outline-variant);
   border-radius: var(--lab-radius-full);
@@ -265,7 +277,6 @@ p {
   transition: box-shadow 0.2s ease-in-out, border-color 0.2s ease-in-out;
   border: 1px solid transparent;
 }
-
 .lab-card:hover {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
   border-color: rgba(193, 198, 213, 0.3);
@@ -276,7 +287,6 @@ p {
   color: var(--lab-on-tertiary);
   border: none;
 }
-
 .lab-cta-btn:hover {
   opacity: 0.9;
   color: var(--lab-on-tertiary);
@@ -289,7 +299,7 @@ p {
     opacity: 0;
   }
 }
-
 .lab-ping {
   animation: lab-ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
 }
