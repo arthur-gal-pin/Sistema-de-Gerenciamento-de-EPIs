@@ -196,15 +196,15 @@ export type CargoOrderByWithRelationInput = {
 
 export type CargoWhereUniqueInput = Prisma.AtLeast<{
   idCargo?: string
+  nomeCargo?: string
   AND?: Prisma.CargoWhereInput | Prisma.CargoWhereInput[]
   OR?: Prisma.CargoWhereInput[]
   NOT?: Prisma.CargoWhereInput | Prisma.CargoWhereInput[]
-  nomeCargo?: Prisma.StringFilter<"Cargo"> | string
   nivelPermissao?: Prisma.StringFilter<"Cargo"> | string
   dataCad?: Prisma.DateTimeFilter<"Cargo"> | Date | string
   dataMod?: Prisma.DateTimeFilter<"Cargo"> | Date | string
   funcionarios?: Prisma.FuncionarioListRelationFilter
-}, "idCargo">
+}, "idCargo" | "nomeCargo">
 
 export type CargoOrderByWithAggregationInput = {
   idCargo?: Prisma.SortOrder

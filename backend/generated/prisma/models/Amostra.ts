@@ -26,33 +26,39 @@ export type AggregateAmostra = {
 
 export type AmostraMinAggregateOutputType = {
   idAmostra: string | null
-  fkIdEmpresa: string | null
-  fkIdOcp: string | null
+  fkIdProtocolo: string | null
+  codigoAmostra: string | null
   nomeAmostra: string | null
-  tipoAmostra: string | null
   situacaoAmostra: string | null
+  classificacaoAmostra: string | null
+  subclassificacaoAmostra: string | null
+  descricao: string | null
   dataCad: Date | null
   dataMod: Date | null
 }
 
 export type AmostraMaxAggregateOutputType = {
   idAmostra: string | null
-  fkIdEmpresa: string | null
-  fkIdOcp: string | null
+  fkIdProtocolo: string | null
+  codigoAmostra: string | null
   nomeAmostra: string | null
-  tipoAmostra: string | null
   situacaoAmostra: string | null
+  classificacaoAmostra: string | null
+  subclassificacaoAmostra: string | null
+  descricao: string | null
   dataCad: Date | null
   dataMod: Date | null
 }
 
 export type AmostraCountAggregateOutputType = {
   idAmostra: number
-  fkIdEmpresa: number
-  fkIdOcp: number
+  fkIdProtocolo: number
+  codigoAmostra: number
   nomeAmostra: number
-  tipoAmostra: number
   situacaoAmostra: number
+  classificacaoAmostra: number
+  subclassificacaoAmostra: number
+  descricao: number
   dataCad: number
   dataMod: number
   _all: number
@@ -61,33 +67,39 @@ export type AmostraCountAggregateOutputType = {
 
 export type AmostraMinAggregateInputType = {
   idAmostra?: true
-  fkIdEmpresa?: true
-  fkIdOcp?: true
+  fkIdProtocolo?: true
+  codigoAmostra?: true
   nomeAmostra?: true
-  tipoAmostra?: true
   situacaoAmostra?: true
+  classificacaoAmostra?: true
+  subclassificacaoAmostra?: true
+  descricao?: true
   dataCad?: true
   dataMod?: true
 }
 
 export type AmostraMaxAggregateInputType = {
   idAmostra?: true
-  fkIdEmpresa?: true
-  fkIdOcp?: true
+  fkIdProtocolo?: true
+  codigoAmostra?: true
   nomeAmostra?: true
-  tipoAmostra?: true
   situacaoAmostra?: true
+  classificacaoAmostra?: true
+  subclassificacaoAmostra?: true
+  descricao?: true
   dataCad?: true
   dataMod?: true
 }
 
 export type AmostraCountAggregateInputType = {
   idAmostra?: true
-  fkIdEmpresa?: true
-  fkIdOcp?: true
+  fkIdProtocolo?: true
+  codigoAmostra?: true
   nomeAmostra?: true
-  tipoAmostra?: true
   situacaoAmostra?: true
+  classificacaoAmostra?: true
+  subclassificacaoAmostra?: true
+  descricao?: true
   dataCad?: true
   dataMod?: true
   _all?: true
@@ -167,11 +179,13 @@ export type AmostraGroupByArgs<ExtArgs extends runtime.Types.Extensions.Internal
 
 export type AmostraGroupByOutputType = {
   idAmostra: string
-  fkIdEmpresa: string
-  fkIdOcp: string
+  fkIdProtocolo: string
+  codigoAmostra: string
   nomeAmostra: string
-  tipoAmostra: string
   situacaoAmostra: string
+  classificacaoAmostra: string
+  subclassificacaoAmostra: string
+  descricao: string | null
   dataCad: Date
   dataMod: Date
   _count: AmostraCountAggregateOutputType | null
@@ -199,28 +213,32 @@ export type AmostraWhereInput = {
   OR?: Prisma.AmostraWhereInput[]
   NOT?: Prisma.AmostraWhereInput | Prisma.AmostraWhereInput[]
   idAmostra?: Prisma.StringFilter<"Amostra"> | string
-  fkIdEmpresa?: Prisma.StringFilter<"Amostra"> | string
-  fkIdOcp?: Prisma.StringFilter<"Amostra"> | string
+  fkIdProtocolo?: Prisma.StringFilter<"Amostra"> | string
+  codigoAmostra?: Prisma.StringFilter<"Amostra"> | string
   nomeAmostra?: Prisma.StringFilter<"Amostra"> | string
-  tipoAmostra?: Prisma.StringFilter<"Amostra"> | string
   situacaoAmostra?: Prisma.StringFilter<"Amostra"> | string
+  classificacaoAmostra?: Prisma.StringFilter<"Amostra"> | string
+  subclassificacaoAmostra?: Prisma.StringFilter<"Amostra"> | string
+  descricao?: Prisma.StringNullableFilter<"Amostra"> | string | null
   dataCad?: Prisma.DateTimeFilter<"Amostra"> | Date | string
   dataMod?: Prisma.DateTimeFilter<"Amostra"> | Date | string
-  empresa?: Prisma.XOR<Prisma.EmpresaScalarRelationFilter, Prisma.EmpresaWhereInput>
-  ocp?: Prisma.XOR<Prisma.OcpScalarRelationFilter, Prisma.OcpWhereInput>
+  protocolo?: Prisma.XOR<Prisma.ProtocoloScalarRelationFilter, Prisma.ProtocoloWhereInput>
+  amostrasEnsaios?: Prisma.AmostraEnsaioListRelationFilter
 }
 
 export type AmostraOrderByWithRelationInput = {
   idAmostra?: Prisma.SortOrder
-  fkIdEmpresa?: Prisma.SortOrder
-  fkIdOcp?: Prisma.SortOrder
+  fkIdProtocolo?: Prisma.SortOrder
+  codigoAmostra?: Prisma.SortOrder
   nomeAmostra?: Prisma.SortOrder
-  tipoAmostra?: Prisma.SortOrder
   situacaoAmostra?: Prisma.SortOrder
+  classificacaoAmostra?: Prisma.SortOrder
+  subclassificacaoAmostra?: Prisma.SortOrder
+  descricao?: Prisma.SortOrderInput | Prisma.SortOrder
   dataCad?: Prisma.SortOrder
   dataMod?: Prisma.SortOrder
-  empresa?: Prisma.EmpresaOrderByWithRelationInput
-  ocp?: Prisma.OcpOrderByWithRelationInput
+  protocolo?: Prisma.ProtocoloOrderByWithRelationInput
+  amostrasEnsaios?: Prisma.AmostraEnsaioOrderByRelationAggregateInput
 }
 
 export type AmostraWhereUniqueInput = Prisma.AtLeast<{
@@ -228,24 +246,28 @@ export type AmostraWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.AmostraWhereInput | Prisma.AmostraWhereInput[]
   OR?: Prisma.AmostraWhereInput[]
   NOT?: Prisma.AmostraWhereInput | Prisma.AmostraWhereInput[]
-  fkIdEmpresa?: Prisma.StringFilter<"Amostra"> | string
-  fkIdOcp?: Prisma.StringFilter<"Amostra"> | string
+  fkIdProtocolo?: Prisma.StringFilter<"Amostra"> | string
+  codigoAmostra?: Prisma.StringFilter<"Amostra"> | string
   nomeAmostra?: Prisma.StringFilter<"Amostra"> | string
-  tipoAmostra?: Prisma.StringFilter<"Amostra"> | string
   situacaoAmostra?: Prisma.StringFilter<"Amostra"> | string
+  classificacaoAmostra?: Prisma.StringFilter<"Amostra"> | string
+  subclassificacaoAmostra?: Prisma.StringFilter<"Amostra"> | string
+  descricao?: Prisma.StringNullableFilter<"Amostra"> | string | null
   dataCad?: Prisma.DateTimeFilter<"Amostra"> | Date | string
   dataMod?: Prisma.DateTimeFilter<"Amostra"> | Date | string
-  empresa?: Prisma.XOR<Prisma.EmpresaScalarRelationFilter, Prisma.EmpresaWhereInput>
-  ocp?: Prisma.XOR<Prisma.OcpScalarRelationFilter, Prisma.OcpWhereInput>
+  protocolo?: Prisma.XOR<Prisma.ProtocoloScalarRelationFilter, Prisma.ProtocoloWhereInput>
+  amostrasEnsaios?: Prisma.AmostraEnsaioListRelationFilter
 }, "idAmostra">
 
 export type AmostraOrderByWithAggregationInput = {
   idAmostra?: Prisma.SortOrder
-  fkIdEmpresa?: Prisma.SortOrder
-  fkIdOcp?: Prisma.SortOrder
+  fkIdProtocolo?: Prisma.SortOrder
+  codigoAmostra?: Prisma.SortOrder
   nomeAmostra?: Prisma.SortOrder
-  tipoAmostra?: Prisma.SortOrder
   situacaoAmostra?: Prisma.SortOrder
+  classificacaoAmostra?: Prisma.SortOrder
+  subclassificacaoAmostra?: Prisma.SortOrder
+  descricao?: Prisma.SortOrderInput | Prisma.SortOrder
   dataCad?: Prisma.SortOrder
   dataMod?: Prisma.SortOrder
   _count?: Prisma.AmostraCountOrderByAggregateInput
@@ -258,86 +280,107 @@ export type AmostraScalarWhereWithAggregatesInput = {
   OR?: Prisma.AmostraScalarWhereWithAggregatesInput[]
   NOT?: Prisma.AmostraScalarWhereWithAggregatesInput | Prisma.AmostraScalarWhereWithAggregatesInput[]
   idAmostra?: Prisma.StringWithAggregatesFilter<"Amostra"> | string
-  fkIdEmpresa?: Prisma.StringWithAggregatesFilter<"Amostra"> | string
-  fkIdOcp?: Prisma.StringWithAggregatesFilter<"Amostra"> | string
+  fkIdProtocolo?: Prisma.StringWithAggregatesFilter<"Amostra"> | string
+  codigoAmostra?: Prisma.StringWithAggregatesFilter<"Amostra"> | string
   nomeAmostra?: Prisma.StringWithAggregatesFilter<"Amostra"> | string
-  tipoAmostra?: Prisma.StringWithAggregatesFilter<"Amostra"> | string
   situacaoAmostra?: Prisma.StringWithAggregatesFilter<"Amostra"> | string
+  classificacaoAmostra?: Prisma.StringWithAggregatesFilter<"Amostra"> | string
+  subclassificacaoAmostra?: Prisma.StringWithAggregatesFilter<"Amostra"> | string
+  descricao?: Prisma.StringNullableWithAggregatesFilter<"Amostra"> | string | null
   dataCad?: Prisma.DateTimeWithAggregatesFilter<"Amostra"> | Date | string
   dataMod?: Prisma.DateTimeWithAggregatesFilter<"Amostra"> | Date | string
 }
 
 export type AmostraCreateInput = {
   idAmostra?: string
+  codigoAmostra: string
   nomeAmostra: string
-  tipoAmostra: string
   situacaoAmostra: string
+  classificacaoAmostra: string
+  subclassificacaoAmostra: string
+  descricao?: string | null
   dataCad?: Date | string
   dataMod?: Date | string
-  empresa: Prisma.EmpresaCreateNestedOneWithoutAmostrasInput
-  ocp: Prisma.OcpCreateNestedOneWithoutAmostrasInput
+  protocolo: Prisma.ProtocoloCreateNestedOneWithoutAmostrasInput
+  amostrasEnsaios?: Prisma.AmostraEnsaioCreateNestedManyWithoutAmostraInput
 }
 
 export type AmostraUncheckedCreateInput = {
   idAmostra?: string
-  fkIdEmpresa: string
-  fkIdOcp: string
+  fkIdProtocolo: string
+  codigoAmostra: string
   nomeAmostra: string
-  tipoAmostra: string
   situacaoAmostra: string
+  classificacaoAmostra: string
+  subclassificacaoAmostra: string
+  descricao?: string | null
   dataCad?: Date | string
   dataMod?: Date | string
+  amostrasEnsaios?: Prisma.AmostraEnsaioUncheckedCreateNestedManyWithoutAmostraInput
 }
 
 export type AmostraUpdateInput = {
   idAmostra?: Prisma.StringFieldUpdateOperationsInput | string
+  codigoAmostra?: Prisma.StringFieldUpdateOperationsInput | string
   nomeAmostra?: Prisma.StringFieldUpdateOperationsInput | string
-  tipoAmostra?: Prisma.StringFieldUpdateOperationsInput | string
   situacaoAmostra?: Prisma.StringFieldUpdateOperationsInput | string
+  classificacaoAmostra?: Prisma.StringFieldUpdateOperationsInput | string
+  subclassificacaoAmostra?: Prisma.StringFieldUpdateOperationsInput | string
+  descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  empresa?: Prisma.EmpresaUpdateOneRequiredWithoutAmostrasNestedInput
-  ocp?: Prisma.OcpUpdateOneRequiredWithoutAmostrasNestedInput
+  protocolo?: Prisma.ProtocoloUpdateOneRequiredWithoutAmostrasNestedInput
+  amostrasEnsaios?: Prisma.AmostraEnsaioUpdateManyWithoutAmostraNestedInput
 }
 
 export type AmostraUncheckedUpdateInput = {
   idAmostra?: Prisma.StringFieldUpdateOperationsInput | string
-  fkIdEmpresa?: Prisma.StringFieldUpdateOperationsInput | string
-  fkIdOcp?: Prisma.StringFieldUpdateOperationsInput | string
+  fkIdProtocolo?: Prisma.StringFieldUpdateOperationsInput | string
+  codigoAmostra?: Prisma.StringFieldUpdateOperationsInput | string
   nomeAmostra?: Prisma.StringFieldUpdateOperationsInput | string
-  tipoAmostra?: Prisma.StringFieldUpdateOperationsInput | string
   situacaoAmostra?: Prisma.StringFieldUpdateOperationsInput | string
+  classificacaoAmostra?: Prisma.StringFieldUpdateOperationsInput | string
+  subclassificacaoAmostra?: Prisma.StringFieldUpdateOperationsInput | string
+  descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  amostrasEnsaios?: Prisma.AmostraEnsaioUncheckedUpdateManyWithoutAmostraNestedInput
 }
 
 export type AmostraCreateManyInput = {
   idAmostra?: string
-  fkIdEmpresa: string
-  fkIdOcp: string
+  fkIdProtocolo: string
+  codigoAmostra: string
   nomeAmostra: string
-  tipoAmostra: string
   situacaoAmostra: string
+  classificacaoAmostra: string
+  subclassificacaoAmostra: string
+  descricao?: string | null
   dataCad?: Date | string
   dataMod?: Date | string
 }
 
 export type AmostraUpdateManyMutationInput = {
   idAmostra?: Prisma.StringFieldUpdateOperationsInput | string
+  codigoAmostra?: Prisma.StringFieldUpdateOperationsInput | string
   nomeAmostra?: Prisma.StringFieldUpdateOperationsInput | string
-  tipoAmostra?: Prisma.StringFieldUpdateOperationsInput | string
   situacaoAmostra?: Prisma.StringFieldUpdateOperationsInput | string
+  classificacaoAmostra?: Prisma.StringFieldUpdateOperationsInput | string
+  subclassificacaoAmostra?: Prisma.StringFieldUpdateOperationsInput | string
+  descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type AmostraUncheckedUpdateManyInput = {
   idAmostra?: Prisma.StringFieldUpdateOperationsInput | string
-  fkIdEmpresa?: Prisma.StringFieldUpdateOperationsInput | string
-  fkIdOcp?: Prisma.StringFieldUpdateOperationsInput | string
+  fkIdProtocolo?: Prisma.StringFieldUpdateOperationsInput | string
+  codigoAmostra?: Prisma.StringFieldUpdateOperationsInput | string
   nomeAmostra?: Prisma.StringFieldUpdateOperationsInput | string
-  tipoAmostra?: Prisma.StringFieldUpdateOperationsInput | string
   situacaoAmostra?: Prisma.StringFieldUpdateOperationsInput | string
+  classificacaoAmostra?: Prisma.StringFieldUpdateOperationsInput | string
+  subclassificacaoAmostra?: Prisma.StringFieldUpdateOperationsInput | string
+  descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -354,164 +397,153 @@ export type AmostraOrderByRelationAggregateInput = {
 
 export type AmostraCountOrderByAggregateInput = {
   idAmostra?: Prisma.SortOrder
-  fkIdEmpresa?: Prisma.SortOrder
-  fkIdOcp?: Prisma.SortOrder
+  fkIdProtocolo?: Prisma.SortOrder
+  codigoAmostra?: Prisma.SortOrder
   nomeAmostra?: Prisma.SortOrder
-  tipoAmostra?: Prisma.SortOrder
   situacaoAmostra?: Prisma.SortOrder
+  classificacaoAmostra?: Prisma.SortOrder
+  subclassificacaoAmostra?: Prisma.SortOrder
+  descricao?: Prisma.SortOrder
   dataCad?: Prisma.SortOrder
   dataMod?: Prisma.SortOrder
 }
 
 export type AmostraMaxOrderByAggregateInput = {
   idAmostra?: Prisma.SortOrder
-  fkIdEmpresa?: Prisma.SortOrder
-  fkIdOcp?: Prisma.SortOrder
+  fkIdProtocolo?: Prisma.SortOrder
+  codigoAmostra?: Prisma.SortOrder
   nomeAmostra?: Prisma.SortOrder
-  tipoAmostra?: Prisma.SortOrder
   situacaoAmostra?: Prisma.SortOrder
+  classificacaoAmostra?: Prisma.SortOrder
+  subclassificacaoAmostra?: Prisma.SortOrder
+  descricao?: Prisma.SortOrder
   dataCad?: Prisma.SortOrder
   dataMod?: Prisma.SortOrder
 }
 
 export type AmostraMinOrderByAggregateInput = {
   idAmostra?: Prisma.SortOrder
-  fkIdEmpresa?: Prisma.SortOrder
-  fkIdOcp?: Prisma.SortOrder
+  fkIdProtocolo?: Prisma.SortOrder
+  codigoAmostra?: Prisma.SortOrder
   nomeAmostra?: Prisma.SortOrder
-  tipoAmostra?: Prisma.SortOrder
   situacaoAmostra?: Prisma.SortOrder
+  classificacaoAmostra?: Prisma.SortOrder
+  subclassificacaoAmostra?: Prisma.SortOrder
+  descricao?: Prisma.SortOrder
   dataCad?: Prisma.SortOrder
   dataMod?: Prisma.SortOrder
 }
 
-export type AmostraCreateNestedManyWithoutEmpresaInput = {
-  create?: Prisma.XOR<Prisma.AmostraCreateWithoutEmpresaInput, Prisma.AmostraUncheckedCreateWithoutEmpresaInput> | Prisma.AmostraCreateWithoutEmpresaInput[] | Prisma.AmostraUncheckedCreateWithoutEmpresaInput[]
-  connectOrCreate?: Prisma.AmostraCreateOrConnectWithoutEmpresaInput | Prisma.AmostraCreateOrConnectWithoutEmpresaInput[]
-  createMany?: Prisma.AmostraCreateManyEmpresaInputEnvelope
+export type AmostraScalarRelationFilter = {
+  is?: Prisma.AmostraWhereInput
+  isNot?: Prisma.AmostraWhereInput
+}
+
+export type AmostraCreateNestedManyWithoutProtocoloInput = {
+  create?: Prisma.XOR<Prisma.AmostraCreateWithoutProtocoloInput, Prisma.AmostraUncheckedCreateWithoutProtocoloInput> | Prisma.AmostraCreateWithoutProtocoloInput[] | Prisma.AmostraUncheckedCreateWithoutProtocoloInput[]
+  connectOrCreate?: Prisma.AmostraCreateOrConnectWithoutProtocoloInput | Prisma.AmostraCreateOrConnectWithoutProtocoloInput[]
+  createMany?: Prisma.AmostraCreateManyProtocoloInputEnvelope
   connect?: Prisma.AmostraWhereUniqueInput | Prisma.AmostraWhereUniqueInput[]
 }
 
-export type AmostraUncheckedCreateNestedManyWithoutEmpresaInput = {
-  create?: Prisma.XOR<Prisma.AmostraCreateWithoutEmpresaInput, Prisma.AmostraUncheckedCreateWithoutEmpresaInput> | Prisma.AmostraCreateWithoutEmpresaInput[] | Prisma.AmostraUncheckedCreateWithoutEmpresaInput[]
-  connectOrCreate?: Prisma.AmostraCreateOrConnectWithoutEmpresaInput | Prisma.AmostraCreateOrConnectWithoutEmpresaInput[]
-  createMany?: Prisma.AmostraCreateManyEmpresaInputEnvelope
+export type AmostraUncheckedCreateNestedManyWithoutProtocoloInput = {
+  create?: Prisma.XOR<Prisma.AmostraCreateWithoutProtocoloInput, Prisma.AmostraUncheckedCreateWithoutProtocoloInput> | Prisma.AmostraCreateWithoutProtocoloInput[] | Prisma.AmostraUncheckedCreateWithoutProtocoloInput[]
+  connectOrCreate?: Prisma.AmostraCreateOrConnectWithoutProtocoloInput | Prisma.AmostraCreateOrConnectWithoutProtocoloInput[]
+  createMany?: Prisma.AmostraCreateManyProtocoloInputEnvelope
   connect?: Prisma.AmostraWhereUniqueInput | Prisma.AmostraWhereUniqueInput[]
 }
 
-export type AmostraUpdateManyWithoutEmpresaNestedInput = {
-  create?: Prisma.XOR<Prisma.AmostraCreateWithoutEmpresaInput, Prisma.AmostraUncheckedCreateWithoutEmpresaInput> | Prisma.AmostraCreateWithoutEmpresaInput[] | Prisma.AmostraUncheckedCreateWithoutEmpresaInput[]
-  connectOrCreate?: Prisma.AmostraCreateOrConnectWithoutEmpresaInput | Prisma.AmostraCreateOrConnectWithoutEmpresaInput[]
-  upsert?: Prisma.AmostraUpsertWithWhereUniqueWithoutEmpresaInput | Prisma.AmostraUpsertWithWhereUniqueWithoutEmpresaInput[]
-  createMany?: Prisma.AmostraCreateManyEmpresaInputEnvelope
+export type AmostraUpdateManyWithoutProtocoloNestedInput = {
+  create?: Prisma.XOR<Prisma.AmostraCreateWithoutProtocoloInput, Prisma.AmostraUncheckedCreateWithoutProtocoloInput> | Prisma.AmostraCreateWithoutProtocoloInput[] | Prisma.AmostraUncheckedCreateWithoutProtocoloInput[]
+  connectOrCreate?: Prisma.AmostraCreateOrConnectWithoutProtocoloInput | Prisma.AmostraCreateOrConnectWithoutProtocoloInput[]
+  upsert?: Prisma.AmostraUpsertWithWhereUniqueWithoutProtocoloInput | Prisma.AmostraUpsertWithWhereUniqueWithoutProtocoloInput[]
+  createMany?: Prisma.AmostraCreateManyProtocoloInputEnvelope
   set?: Prisma.AmostraWhereUniqueInput | Prisma.AmostraWhereUniqueInput[]
   disconnect?: Prisma.AmostraWhereUniqueInput | Prisma.AmostraWhereUniqueInput[]
   delete?: Prisma.AmostraWhereUniqueInput | Prisma.AmostraWhereUniqueInput[]
   connect?: Prisma.AmostraWhereUniqueInput | Prisma.AmostraWhereUniqueInput[]
-  update?: Prisma.AmostraUpdateWithWhereUniqueWithoutEmpresaInput | Prisma.AmostraUpdateWithWhereUniqueWithoutEmpresaInput[]
-  updateMany?: Prisma.AmostraUpdateManyWithWhereWithoutEmpresaInput | Prisma.AmostraUpdateManyWithWhereWithoutEmpresaInput[]
+  update?: Prisma.AmostraUpdateWithWhereUniqueWithoutProtocoloInput | Prisma.AmostraUpdateWithWhereUniqueWithoutProtocoloInput[]
+  updateMany?: Prisma.AmostraUpdateManyWithWhereWithoutProtocoloInput | Prisma.AmostraUpdateManyWithWhereWithoutProtocoloInput[]
   deleteMany?: Prisma.AmostraScalarWhereInput | Prisma.AmostraScalarWhereInput[]
 }
 
-export type AmostraUncheckedUpdateManyWithoutEmpresaNestedInput = {
-  create?: Prisma.XOR<Prisma.AmostraCreateWithoutEmpresaInput, Prisma.AmostraUncheckedCreateWithoutEmpresaInput> | Prisma.AmostraCreateWithoutEmpresaInput[] | Prisma.AmostraUncheckedCreateWithoutEmpresaInput[]
-  connectOrCreate?: Prisma.AmostraCreateOrConnectWithoutEmpresaInput | Prisma.AmostraCreateOrConnectWithoutEmpresaInput[]
-  upsert?: Prisma.AmostraUpsertWithWhereUniqueWithoutEmpresaInput | Prisma.AmostraUpsertWithWhereUniqueWithoutEmpresaInput[]
-  createMany?: Prisma.AmostraCreateManyEmpresaInputEnvelope
+export type AmostraUncheckedUpdateManyWithoutProtocoloNestedInput = {
+  create?: Prisma.XOR<Prisma.AmostraCreateWithoutProtocoloInput, Prisma.AmostraUncheckedCreateWithoutProtocoloInput> | Prisma.AmostraCreateWithoutProtocoloInput[] | Prisma.AmostraUncheckedCreateWithoutProtocoloInput[]
+  connectOrCreate?: Prisma.AmostraCreateOrConnectWithoutProtocoloInput | Prisma.AmostraCreateOrConnectWithoutProtocoloInput[]
+  upsert?: Prisma.AmostraUpsertWithWhereUniqueWithoutProtocoloInput | Prisma.AmostraUpsertWithWhereUniqueWithoutProtocoloInput[]
+  createMany?: Prisma.AmostraCreateManyProtocoloInputEnvelope
   set?: Prisma.AmostraWhereUniqueInput | Prisma.AmostraWhereUniqueInput[]
   disconnect?: Prisma.AmostraWhereUniqueInput | Prisma.AmostraWhereUniqueInput[]
   delete?: Prisma.AmostraWhereUniqueInput | Prisma.AmostraWhereUniqueInput[]
   connect?: Prisma.AmostraWhereUniqueInput | Prisma.AmostraWhereUniqueInput[]
-  update?: Prisma.AmostraUpdateWithWhereUniqueWithoutEmpresaInput | Prisma.AmostraUpdateWithWhereUniqueWithoutEmpresaInput[]
-  updateMany?: Prisma.AmostraUpdateManyWithWhereWithoutEmpresaInput | Prisma.AmostraUpdateManyWithWhereWithoutEmpresaInput[]
+  update?: Prisma.AmostraUpdateWithWhereUniqueWithoutProtocoloInput | Prisma.AmostraUpdateWithWhereUniqueWithoutProtocoloInput[]
+  updateMany?: Prisma.AmostraUpdateManyWithWhereWithoutProtocoloInput | Prisma.AmostraUpdateManyWithWhereWithoutProtocoloInput[]
   deleteMany?: Prisma.AmostraScalarWhereInput | Prisma.AmostraScalarWhereInput[]
 }
 
-export type AmostraCreateNestedManyWithoutOcpInput = {
-  create?: Prisma.XOR<Prisma.AmostraCreateWithoutOcpInput, Prisma.AmostraUncheckedCreateWithoutOcpInput> | Prisma.AmostraCreateWithoutOcpInput[] | Prisma.AmostraUncheckedCreateWithoutOcpInput[]
-  connectOrCreate?: Prisma.AmostraCreateOrConnectWithoutOcpInput | Prisma.AmostraCreateOrConnectWithoutOcpInput[]
-  createMany?: Prisma.AmostraCreateManyOcpInputEnvelope
-  connect?: Prisma.AmostraWhereUniqueInput | Prisma.AmostraWhereUniqueInput[]
+export type AmostraCreateNestedOneWithoutAmostrasEnsaiosInput = {
+  create?: Prisma.XOR<Prisma.AmostraCreateWithoutAmostrasEnsaiosInput, Prisma.AmostraUncheckedCreateWithoutAmostrasEnsaiosInput>
+  connectOrCreate?: Prisma.AmostraCreateOrConnectWithoutAmostrasEnsaiosInput
+  connect?: Prisma.AmostraWhereUniqueInput
 }
 
-export type AmostraUncheckedCreateNestedManyWithoutOcpInput = {
-  create?: Prisma.XOR<Prisma.AmostraCreateWithoutOcpInput, Prisma.AmostraUncheckedCreateWithoutOcpInput> | Prisma.AmostraCreateWithoutOcpInput[] | Prisma.AmostraUncheckedCreateWithoutOcpInput[]
-  connectOrCreate?: Prisma.AmostraCreateOrConnectWithoutOcpInput | Prisma.AmostraCreateOrConnectWithoutOcpInput[]
-  createMany?: Prisma.AmostraCreateManyOcpInputEnvelope
-  connect?: Prisma.AmostraWhereUniqueInput | Prisma.AmostraWhereUniqueInput[]
+export type AmostraUpdateOneRequiredWithoutAmostrasEnsaiosNestedInput = {
+  create?: Prisma.XOR<Prisma.AmostraCreateWithoutAmostrasEnsaiosInput, Prisma.AmostraUncheckedCreateWithoutAmostrasEnsaiosInput>
+  connectOrCreate?: Prisma.AmostraCreateOrConnectWithoutAmostrasEnsaiosInput
+  upsert?: Prisma.AmostraUpsertWithoutAmostrasEnsaiosInput
+  connect?: Prisma.AmostraWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.AmostraUpdateToOneWithWhereWithoutAmostrasEnsaiosInput, Prisma.AmostraUpdateWithoutAmostrasEnsaiosInput>, Prisma.AmostraUncheckedUpdateWithoutAmostrasEnsaiosInput>
 }
 
-export type AmostraUpdateManyWithoutOcpNestedInput = {
-  create?: Prisma.XOR<Prisma.AmostraCreateWithoutOcpInput, Prisma.AmostraUncheckedCreateWithoutOcpInput> | Prisma.AmostraCreateWithoutOcpInput[] | Prisma.AmostraUncheckedCreateWithoutOcpInput[]
-  connectOrCreate?: Prisma.AmostraCreateOrConnectWithoutOcpInput | Prisma.AmostraCreateOrConnectWithoutOcpInput[]
-  upsert?: Prisma.AmostraUpsertWithWhereUniqueWithoutOcpInput | Prisma.AmostraUpsertWithWhereUniqueWithoutOcpInput[]
-  createMany?: Prisma.AmostraCreateManyOcpInputEnvelope
-  set?: Prisma.AmostraWhereUniqueInput | Prisma.AmostraWhereUniqueInput[]
-  disconnect?: Prisma.AmostraWhereUniqueInput | Prisma.AmostraWhereUniqueInput[]
-  delete?: Prisma.AmostraWhereUniqueInput | Prisma.AmostraWhereUniqueInput[]
-  connect?: Prisma.AmostraWhereUniqueInput | Prisma.AmostraWhereUniqueInput[]
-  update?: Prisma.AmostraUpdateWithWhereUniqueWithoutOcpInput | Prisma.AmostraUpdateWithWhereUniqueWithoutOcpInput[]
-  updateMany?: Prisma.AmostraUpdateManyWithWhereWithoutOcpInput | Prisma.AmostraUpdateManyWithWhereWithoutOcpInput[]
-  deleteMany?: Prisma.AmostraScalarWhereInput | Prisma.AmostraScalarWhereInput[]
-}
-
-export type AmostraUncheckedUpdateManyWithoutOcpNestedInput = {
-  create?: Prisma.XOR<Prisma.AmostraCreateWithoutOcpInput, Prisma.AmostraUncheckedCreateWithoutOcpInput> | Prisma.AmostraCreateWithoutOcpInput[] | Prisma.AmostraUncheckedCreateWithoutOcpInput[]
-  connectOrCreate?: Prisma.AmostraCreateOrConnectWithoutOcpInput | Prisma.AmostraCreateOrConnectWithoutOcpInput[]
-  upsert?: Prisma.AmostraUpsertWithWhereUniqueWithoutOcpInput | Prisma.AmostraUpsertWithWhereUniqueWithoutOcpInput[]
-  createMany?: Prisma.AmostraCreateManyOcpInputEnvelope
-  set?: Prisma.AmostraWhereUniqueInput | Prisma.AmostraWhereUniqueInput[]
-  disconnect?: Prisma.AmostraWhereUniqueInput | Prisma.AmostraWhereUniqueInput[]
-  delete?: Prisma.AmostraWhereUniqueInput | Prisma.AmostraWhereUniqueInput[]
-  connect?: Prisma.AmostraWhereUniqueInput | Prisma.AmostraWhereUniqueInput[]
-  update?: Prisma.AmostraUpdateWithWhereUniqueWithoutOcpInput | Prisma.AmostraUpdateWithWhereUniqueWithoutOcpInput[]
-  updateMany?: Prisma.AmostraUpdateManyWithWhereWithoutOcpInput | Prisma.AmostraUpdateManyWithWhereWithoutOcpInput[]
-  deleteMany?: Prisma.AmostraScalarWhereInput | Prisma.AmostraScalarWhereInput[]
-}
-
-export type AmostraCreateWithoutEmpresaInput = {
+export type AmostraCreateWithoutProtocoloInput = {
   idAmostra?: string
+  codigoAmostra: string
   nomeAmostra: string
-  tipoAmostra: string
   situacaoAmostra: string
+  classificacaoAmostra: string
+  subclassificacaoAmostra: string
+  descricao?: string | null
   dataCad?: Date | string
   dataMod?: Date | string
-  ocp: Prisma.OcpCreateNestedOneWithoutAmostrasInput
+  amostrasEnsaios?: Prisma.AmostraEnsaioCreateNestedManyWithoutAmostraInput
 }
 
-export type AmostraUncheckedCreateWithoutEmpresaInput = {
+export type AmostraUncheckedCreateWithoutProtocoloInput = {
   idAmostra?: string
-  fkIdOcp: string
+  codigoAmostra: string
   nomeAmostra: string
-  tipoAmostra: string
   situacaoAmostra: string
+  classificacaoAmostra: string
+  subclassificacaoAmostra: string
+  descricao?: string | null
   dataCad?: Date | string
   dataMod?: Date | string
+  amostrasEnsaios?: Prisma.AmostraEnsaioUncheckedCreateNestedManyWithoutAmostraInput
 }
 
-export type AmostraCreateOrConnectWithoutEmpresaInput = {
+export type AmostraCreateOrConnectWithoutProtocoloInput = {
   where: Prisma.AmostraWhereUniqueInput
-  create: Prisma.XOR<Prisma.AmostraCreateWithoutEmpresaInput, Prisma.AmostraUncheckedCreateWithoutEmpresaInput>
+  create: Prisma.XOR<Prisma.AmostraCreateWithoutProtocoloInput, Prisma.AmostraUncheckedCreateWithoutProtocoloInput>
 }
 
-export type AmostraCreateManyEmpresaInputEnvelope = {
-  data: Prisma.AmostraCreateManyEmpresaInput | Prisma.AmostraCreateManyEmpresaInput[]
+export type AmostraCreateManyProtocoloInputEnvelope = {
+  data: Prisma.AmostraCreateManyProtocoloInput | Prisma.AmostraCreateManyProtocoloInput[]
 }
 
-export type AmostraUpsertWithWhereUniqueWithoutEmpresaInput = {
+export type AmostraUpsertWithWhereUniqueWithoutProtocoloInput = {
   where: Prisma.AmostraWhereUniqueInput
-  update: Prisma.XOR<Prisma.AmostraUpdateWithoutEmpresaInput, Prisma.AmostraUncheckedUpdateWithoutEmpresaInput>
-  create: Prisma.XOR<Prisma.AmostraCreateWithoutEmpresaInput, Prisma.AmostraUncheckedCreateWithoutEmpresaInput>
+  update: Prisma.XOR<Prisma.AmostraUpdateWithoutProtocoloInput, Prisma.AmostraUncheckedUpdateWithoutProtocoloInput>
+  create: Prisma.XOR<Prisma.AmostraCreateWithoutProtocoloInput, Prisma.AmostraUncheckedCreateWithoutProtocoloInput>
 }
 
-export type AmostraUpdateWithWhereUniqueWithoutEmpresaInput = {
+export type AmostraUpdateWithWhereUniqueWithoutProtocoloInput = {
   where: Prisma.AmostraWhereUniqueInput
-  data: Prisma.XOR<Prisma.AmostraUpdateWithoutEmpresaInput, Prisma.AmostraUncheckedUpdateWithoutEmpresaInput>
+  data: Prisma.XOR<Prisma.AmostraUpdateWithoutProtocoloInput, Prisma.AmostraUncheckedUpdateWithoutProtocoloInput>
 }
 
-export type AmostraUpdateManyWithWhereWithoutEmpresaInput = {
+export type AmostraUpdateManyWithWhereWithoutProtocoloInput = {
   where: Prisma.AmostraScalarWhereInput
-  data: Prisma.XOR<Prisma.AmostraUpdateManyMutationInput, Prisma.AmostraUncheckedUpdateManyWithoutEmpresaInput>
+  data: Prisma.XOR<Prisma.AmostraUpdateManyMutationInput, Prisma.AmostraUncheckedUpdateManyWithoutProtocoloInput>
 }
 
 export type AmostraScalarWhereInput = {
@@ -519,187 +551,219 @@ export type AmostraScalarWhereInput = {
   OR?: Prisma.AmostraScalarWhereInput[]
   NOT?: Prisma.AmostraScalarWhereInput | Prisma.AmostraScalarWhereInput[]
   idAmostra?: Prisma.StringFilter<"Amostra"> | string
-  fkIdEmpresa?: Prisma.StringFilter<"Amostra"> | string
-  fkIdOcp?: Prisma.StringFilter<"Amostra"> | string
+  fkIdProtocolo?: Prisma.StringFilter<"Amostra"> | string
+  codigoAmostra?: Prisma.StringFilter<"Amostra"> | string
   nomeAmostra?: Prisma.StringFilter<"Amostra"> | string
-  tipoAmostra?: Prisma.StringFilter<"Amostra"> | string
   situacaoAmostra?: Prisma.StringFilter<"Amostra"> | string
+  classificacaoAmostra?: Prisma.StringFilter<"Amostra"> | string
+  subclassificacaoAmostra?: Prisma.StringFilter<"Amostra"> | string
+  descricao?: Prisma.StringNullableFilter<"Amostra"> | string | null
   dataCad?: Prisma.DateTimeFilter<"Amostra"> | Date | string
   dataMod?: Prisma.DateTimeFilter<"Amostra"> | Date | string
 }
 
-export type AmostraCreateWithoutOcpInput = {
+export type AmostraCreateWithoutAmostrasEnsaiosInput = {
   idAmostra?: string
+  codigoAmostra: string
   nomeAmostra: string
-  tipoAmostra: string
   situacaoAmostra: string
+  classificacaoAmostra: string
+  subclassificacaoAmostra: string
+  descricao?: string | null
   dataCad?: Date | string
   dataMod?: Date | string
-  empresa: Prisma.EmpresaCreateNestedOneWithoutAmostrasInput
+  protocolo: Prisma.ProtocoloCreateNestedOneWithoutAmostrasInput
 }
 
-export type AmostraUncheckedCreateWithoutOcpInput = {
+export type AmostraUncheckedCreateWithoutAmostrasEnsaiosInput = {
   idAmostra?: string
-  fkIdEmpresa: string
+  fkIdProtocolo: string
+  codigoAmostra: string
   nomeAmostra: string
-  tipoAmostra: string
   situacaoAmostra: string
+  classificacaoAmostra: string
+  subclassificacaoAmostra: string
+  descricao?: string | null
   dataCad?: Date | string
   dataMod?: Date | string
 }
 
-export type AmostraCreateOrConnectWithoutOcpInput = {
+export type AmostraCreateOrConnectWithoutAmostrasEnsaiosInput = {
   where: Prisma.AmostraWhereUniqueInput
-  create: Prisma.XOR<Prisma.AmostraCreateWithoutOcpInput, Prisma.AmostraUncheckedCreateWithoutOcpInput>
+  create: Prisma.XOR<Prisma.AmostraCreateWithoutAmostrasEnsaiosInput, Prisma.AmostraUncheckedCreateWithoutAmostrasEnsaiosInput>
 }
 
-export type AmostraCreateManyOcpInputEnvelope = {
-  data: Prisma.AmostraCreateManyOcpInput | Prisma.AmostraCreateManyOcpInput[]
+export type AmostraUpsertWithoutAmostrasEnsaiosInput = {
+  update: Prisma.XOR<Prisma.AmostraUpdateWithoutAmostrasEnsaiosInput, Prisma.AmostraUncheckedUpdateWithoutAmostrasEnsaiosInput>
+  create: Prisma.XOR<Prisma.AmostraCreateWithoutAmostrasEnsaiosInput, Prisma.AmostraUncheckedCreateWithoutAmostrasEnsaiosInput>
+  where?: Prisma.AmostraWhereInput
 }
 
-export type AmostraUpsertWithWhereUniqueWithoutOcpInput = {
-  where: Prisma.AmostraWhereUniqueInput
-  update: Prisma.XOR<Prisma.AmostraUpdateWithoutOcpInput, Prisma.AmostraUncheckedUpdateWithoutOcpInput>
-  create: Prisma.XOR<Prisma.AmostraCreateWithoutOcpInput, Prisma.AmostraUncheckedCreateWithoutOcpInput>
+export type AmostraUpdateToOneWithWhereWithoutAmostrasEnsaiosInput = {
+  where?: Prisma.AmostraWhereInput
+  data: Prisma.XOR<Prisma.AmostraUpdateWithoutAmostrasEnsaiosInput, Prisma.AmostraUncheckedUpdateWithoutAmostrasEnsaiosInput>
 }
 
-export type AmostraUpdateWithWhereUniqueWithoutOcpInput = {
-  where: Prisma.AmostraWhereUniqueInput
-  data: Prisma.XOR<Prisma.AmostraUpdateWithoutOcpInput, Prisma.AmostraUncheckedUpdateWithoutOcpInput>
+export type AmostraUpdateWithoutAmostrasEnsaiosInput = {
+  idAmostra?: Prisma.StringFieldUpdateOperationsInput | string
+  codigoAmostra?: Prisma.StringFieldUpdateOperationsInput | string
+  nomeAmostra?: Prisma.StringFieldUpdateOperationsInput | string
+  situacaoAmostra?: Prisma.StringFieldUpdateOperationsInput | string
+  classificacaoAmostra?: Prisma.StringFieldUpdateOperationsInput | string
+  subclassificacaoAmostra?: Prisma.StringFieldUpdateOperationsInput | string
+  descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  protocolo?: Prisma.ProtocoloUpdateOneRequiredWithoutAmostrasNestedInput
 }
 
-export type AmostraUpdateManyWithWhereWithoutOcpInput = {
-  where: Prisma.AmostraScalarWhereInput
-  data: Prisma.XOR<Prisma.AmostraUpdateManyMutationInput, Prisma.AmostraUncheckedUpdateManyWithoutOcpInput>
+export type AmostraUncheckedUpdateWithoutAmostrasEnsaiosInput = {
+  idAmostra?: Prisma.StringFieldUpdateOperationsInput | string
+  fkIdProtocolo?: Prisma.StringFieldUpdateOperationsInput | string
+  codigoAmostra?: Prisma.StringFieldUpdateOperationsInput | string
+  nomeAmostra?: Prisma.StringFieldUpdateOperationsInput | string
+  situacaoAmostra?: Prisma.StringFieldUpdateOperationsInput | string
+  classificacaoAmostra?: Prisma.StringFieldUpdateOperationsInput | string
+  subclassificacaoAmostra?: Prisma.StringFieldUpdateOperationsInput | string
+  descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type AmostraCreateManyEmpresaInput = {
+export type AmostraCreateManyProtocoloInput = {
   idAmostra?: string
-  fkIdOcp: string
+  codigoAmostra: string
   nomeAmostra: string
-  tipoAmostra: string
   situacaoAmostra: string
+  classificacaoAmostra: string
+  subclassificacaoAmostra: string
+  descricao?: string | null
   dataCad?: Date | string
   dataMod?: Date | string
 }
 
-export type AmostraUpdateWithoutEmpresaInput = {
+export type AmostraUpdateWithoutProtocoloInput = {
   idAmostra?: Prisma.StringFieldUpdateOperationsInput | string
+  codigoAmostra?: Prisma.StringFieldUpdateOperationsInput | string
   nomeAmostra?: Prisma.StringFieldUpdateOperationsInput | string
-  tipoAmostra?: Prisma.StringFieldUpdateOperationsInput | string
   situacaoAmostra?: Prisma.StringFieldUpdateOperationsInput | string
+  classificacaoAmostra?: Prisma.StringFieldUpdateOperationsInput | string
+  subclassificacaoAmostra?: Prisma.StringFieldUpdateOperationsInput | string
+  descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  ocp?: Prisma.OcpUpdateOneRequiredWithoutAmostrasNestedInput
+  amostrasEnsaios?: Prisma.AmostraEnsaioUpdateManyWithoutAmostraNestedInput
 }
 
-export type AmostraUncheckedUpdateWithoutEmpresaInput = {
+export type AmostraUncheckedUpdateWithoutProtocoloInput = {
   idAmostra?: Prisma.StringFieldUpdateOperationsInput | string
-  fkIdOcp?: Prisma.StringFieldUpdateOperationsInput | string
+  codigoAmostra?: Prisma.StringFieldUpdateOperationsInput | string
   nomeAmostra?: Prisma.StringFieldUpdateOperationsInput | string
-  tipoAmostra?: Prisma.StringFieldUpdateOperationsInput | string
   situacaoAmostra?: Prisma.StringFieldUpdateOperationsInput | string
+  classificacaoAmostra?: Prisma.StringFieldUpdateOperationsInput | string
+  subclassificacaoAmostra?: Prisma.StringFieldUpdateOperationsInput | string
+  descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  amostrasEnsaios?: Prisma.AmostraEnsaioUncheckedUpdateManyWithoutAmostraNestedInput
 }
 
-export type AmostraUncheckedUpdateManyWithoutEmpresaInput = {
+export type AmostraUncheckedUpdateManyWithoutProtocoloInput = {
   idAmostra?: Prisma.StringFieldUpdateOperationsInput | string
-  fkIdOcp?: Prisma.StringFieldUpdateOperationsInput | string
+  codigoAmostra?: Prisma.StringFieldUpdateOperationsInput | string
   nomeAmostra?: Prisma.StringFieldUpdateOperationsInput | string
-  tipoAmostra?: Prisma.StringFieldUpdateOperationsInput | string
   situacaoAmostra?: Prisma.StringFieldUpdateOperationsInput | string
-  dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
-
-export type AmostraCreateManyOcpInput = {
-  idAmostra?: string
-  fkIdEmpresa: string
-  nomeAmostra: string
-  tipoAmostra: string
-  situacaoAmostra: string
-  dataCad?: Date | string
-  dataMod?: Date | string
-}
-
-export type AmostraUpdateWithoutOcpInput = {
-  idAmostra?: Prisma.StringFieldUpdateOperationsInput | string
-  nomeAmostra?: Prisma.StringFieldUpdateOperationsInput | string
-  tipoAmostra?: Prisma.StringFieldUpdateOperationsInput | string
-  situacaoAmostra?: Prisma.StringFieldUpdateOperationsInput | string
-  dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  empresa?: Prisma.EmpresaUpdateOneRequiredWithoutAmostrasNestedInput
-}
-
-export type AmostraUncheckedUpdateWithoutOcpInput = {
-  idAmostra?: Prisma.StringFieldUpdateOperationsInput | string
-  fkIdEmpresa?: Prisma.StringFieldUpdateOperationsInput | string
-  nomeAmostra?: Prisma.StringFieldUpdateOperationsInput | string
-  tipoAmostra?: Prisma.StringFieldUpdateOperationsInput | string
-  situacaoAmostra?: Prisma.StringFieldUpdateOperationsInput | string
+  classificacaoAmostra?: Prisma.StringFieldUpdateOperationsInput | string
+  subclassificacaoAmostra?: Prisma.StringFieldUpdateOperationsInput | string
+  descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type AmostraUncheckedUpdateManyWithoutOcpInput = {
-  idAmostra?: Prisma.StringFieldUpdateOperationsInput | string
-  fkIdEmpresa?: Prisma.StringFieldUpdateOperationsInput | string
-  nomeAmostra?: Prisma.StringFieldUpdateOperationsInput | string
-  tipoAmostra?: Prisma.StringFieldUpdateOperationsInput | string
-  situacaoAmostra?: Prisma.StringFieldUpdateOperationsInput | string
-  dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+
+/**
+ * Count Type AmostraCountOutputType
+ */
+
+export type AmostraCountOutputType = {
+  amostrasEnsaios: number
 }
 
+export type AmostraCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  amostrasEnsaios?: boolean | AmostraCountOutputTypeCountAmostrasEnsaiosArgs
+}
+
+/**
+ * AmostraCountOutputType without action
+ */
+export type AmostraCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AmostraCountOutputType
+   */
+  select?: Prisma.AmostraCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * AmostraCountOutputType without action
+ */
+export type AmostraCountOutputTypeCountAmostrasEnsaiosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AmostraEnsaioWhereInput
+}
 
 
 export type AmostraSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   idAmostra?: boolean
-  fkIdEmpresa?: boolean
-  fkIdOcp?: boolean
+  fkIdProtocolo?: boolean
+  codigoAmostra?: boolean
   nomeAmostra?: boolean
-  tipoAmostra?: boolean
   situacaoAmostra?: boolean
+  classificacaoAmostra?: boolean
+  subclassificacaoAmostra?: boolean
+  descricao?: boolean
   dataCad?: boolean
   dataMod?: boolean
-  empresa?: boolean | Prisma.EmpresaDefaultArgs<ExtArgs>
-  ocp?: boolean | Prisma.OcpDefaultArgs<ExtArgs>
+  protocolo?: boolean | Prisma.ProtocoloDefaultArgs<ExtArgs>
+  amostrasEnsaios?: boolean | Prisma.Amostra$amostrasEnsaiosArgs<ExtArgs>
+  _count?: boolean | Prisma.AmostraCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["amostra"]>
 
 
 
 export type AmostraSelectScalar = {
   idAmostra?: boolean
-  fkIdEmpresa?: boolean
-  fkIdOcp?: boolean
+  fkIdProtocolo?: boolean
+  codigoAmostra?: boolean
   nomeAmostra?: boolean
-  tipoAmostra?: boolean
   situacaoAmostra?: boolean
+  classificacaoAmostra?: boolean
+  subclassificacaoAmostra?: boolean
+  descricao?: boolean
   dataCad?: boolean
   dataMod?: boolean
 }
 
-export type AmostraOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"idAmostra" | "fkIdEmpresa" | "fkIdOcp" | "nomeAmostra" | "tipoAmostra" | "situacaoAmostra" | "dataCad" | "dataMod", ExtArgs["result"]["amostra"]>
+export type AmostraOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"idAmostra" | "fkIdProtocolo" | "codigoAmostra" | "nomeAmostra" | "situacaoAmostra" | "classificacaoAmostra" | "subclassificacaoAmostra" | "descricao" | "dataCad" | "dataMod", ExtArgs["result"]["amostra"]>
 export type AmostraInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  empresa?: boolean | Prisma.EmpresaDefaultArgs<ExtArgs>
-  ocp?: boolean | Prisma.OcpDefaultArgs<ExtArgs>
+  protocolo?: boolean | Prisma.ProtocoloDefaultArgs<ExtArgs>
+  amostrasEnsaios?: boolean | Prisma.Amostra$amostrasEnsaiosArgs<ExtArgs>
+  _count?: boolean | Prisma.AmostraCountOutputTypeDefaultArgs<ExtArgs>
 }
 
 export type $AmostraPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Amostra"
   objects: {
-    empresa: Prisma.$EmpresaPayload<ExtArgs>
-    ocp: Prisma.$OcpPayload<ExtArgs>
+    protocolo: Prisma.$ProtocoloPayload<ExtArgs>
+    amostrasEnsaios: Prisma.$AmostraEnsaioPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     idAmostra: string
-    fkIdEmpresa: string
-    fkIdOcp: string
+    fkIdProtocolo: string
+    codigoAmostra: string
     nomeAmostra: string
-    tipoAmostra: string
     situacaoAmostra: string
+    classificacaoAmostra: string
+    subclassificacaoAmostra: string
+    descricao: string | null
     dataCad: Date
     dataMod: Date
   }, ExtArgs["result"]["amostra"]>
@@ -1042,8 +1106,8 @@ readonly fields: AmostraFieldRefs;
  */
 export interface Prisma__AmostraClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  empresa<T extends Prisma.EmpresaDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EmpresaDefaultArgs<ExtArgs>>): Prisma.Prisma__EmpresaClient<runtime.Types.Result.GetResult<Prisma.$EmpresaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  ocp<T extends Prisma.OcpDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OcpDefaultArgs<ExtArgs>>): Prisma.Prisma__OcpClient<runtime.Types.Result.GetResult<Prisma.$OcpPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  protocolo<T extends Prisma.ProtocoloDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProtocoloDefaultArgs<ExtArgs>>): Prisma.Prisma__ProtocoloClient<runtime.Types.Result.GetResult<Prisma.$ProtocoloPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  amostrasEnsaios<T extends Prisma.Amostra$amostrasEnsaiosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Amostra$amostrasEnsaiosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AmostraEnsaioPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1074,11 +1138,13 @@ export interface Prisma__AmostraClient<T, Null = never, ExtArgs extends runtime.
  */
 export interface AmostraFieldRefs {
   readonly idAmostra: Prisma.FieldRef<"Amostra", 'String'>
-  readonly fkIdEmpresa: Prisma.FieldRef<"Amostra", 'String'>
-  readonly fkIdOcp: Prisma.FieldRef<"Amostra", 'String'>
+  readonly fkIdProtocolo: Prisma.FieldRef<"Amostra", 'String'>
+  readonly codigoAmostra: Prisma.FieldRef<"Amostra", 'String'>
   readonly nomeAmostra: Prisma.FieldRef<"Amostra", 'String'>
-  readonly tipoAmostra: Prisma.FieldRef<"Amostra", 'String'>
   readonly situacaoAmostra: Prisma.FieldRef<"Amostra", 'String'>
+  readonly classificacaoAmostra: Prisma.FieldRef<"Amostra", 'String'>
+  readonly subclassificacaoAmostra: Prisma.FieldRef<"Amostra", 'String'>
+  readonly descricao: Prisma.FieldRef<"Amostra", 'String'>
   readonly dataCad: Prisma.FieldRef<"Amostra", 'DateTime'>
   readonly dataMod: Prisma.FieldRef<"Amostra", 'DateTime'>
 }
@@ -1425,6 +1491,30 @@ export type AmostraDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
    * Limit how many Amostras to delete.
    */
   limit?: number
+}
+
+/**
+ * Amostra.amostrasEnsaios
+ */
+export type Amostra$amostrasEnsaiosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AmostraEnsaio
+   */
+  select?: Prisma.AmostraEnsaioSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AmostraEnsaio
+   */
+  omit?: Prisma.AmostraEnsaioOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AmostraEnsaioInclude<ExtArgs> | null
+  where?: Prisma.AmostraEnsaioWhereInput
+  orderBy?: Prisma.AmostraEnsaioOrderByWithRelationInput | Prisma.AmostraEnsaioOrderByWithRelationInput[]
+  cursor?: Prisma.AmostraEnsaioWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AmostraEnsaioScalarFieldEnum | Prisma.AmostraEnsaioScalarFieldEnum[]
 }
 
 /**

@@ -127,8 +127,8 @@ export default class Amostra {
   }
 
   private validarDescricao(descricao: string): void {
-    if (descricao && (typeof descricao !== "string" || descricao.trim().length > 500)) {
-      throw new Error("A descrição da amostra é muito longa. O limite máximo é de 500 caracteres.");
+    if (descricao && (typeof descricao !== "string" || descricao.trim().length > 1000)) {
+      throw new Error("A descrição da amostra é muito longa. O limite máximo é de 1000 caracteres.");
     }
   }
 

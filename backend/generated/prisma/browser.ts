@@ -33,17 +33,62 @@ export type Funcionario = Prisma.FuncionarioModel
  */
 export type Telefone = Prisma.TelefoneModel
 /**
- * Model Empresa
+ * Model RegistroAcesso
  * 
  */
-export type Empresa = Prisma.EmpresaModel
+export type RegistroAcesso = Prisma.RegistroAcessoModel
 /**
  * Model Ocp
  * 
  */
 export type Ocp = Prisma.OcpModel
 /**
+ * Model Empresa
+ * 
+ */
+export type Empresa = Prisma.EmpresaModel
+/**
+ * Model Protocolo
+ * 
+ */
+export type Protocolo = Prisma.ProtocoloModel
+/**
  * Model Amostra
  * 
  */
 export type Amostra = Prisma.AmostraModel
+/**
+ * Model Ensaio
+ * 
+ */
+export type Ensaio = Prisma.EnsaioModel
+/**
+ * Model AmostraEnsaio
+ * 
+ */
+export type AmostraEnsaio = Prisma.AmostraEnsaioModel
+/**
+ * Model DadosEnsaio
+ * 
+ */
+export type DadosEnsaio = Prisma.DadosEnsaioModel
+/**
+ * Model TipoEnsaio
+ * 
+ */
+export type TipoEnsaio = Prisma.TipoEnsaioModel
+/**
+ * Model CampoEnsaio
+ * 
+ */
+export type CampoEnsaio = Prisma.CampoEnsaioModel
+/**
+ * Model FuncionarioEnsaio
+ * 
+ */
+export type FuncionarioEnsaio = Prisma.FuncionarioEnsaioModel
+/**
+ * Model Instrumento
+ * 
+ */
+export type Instrumento = Prisma.InstrumentoModel

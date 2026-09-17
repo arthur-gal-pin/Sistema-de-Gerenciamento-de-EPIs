@@ -232,6 +232,10 @@ export type FuncionarioWhereInput = {
   dataMod?: Prisma.DateTimeFilter<"Funcionario"> | Date | string
   cargo?: Prisma.XOR<Prisma.CargoScalarRelationFilter, Prisma.CargoWhereInput>
   telefones?: Prisma.TelefoneListRelationFilter
+  registrosAcesso?: Prisma.RegistroAcessoListRelationFilter
+  ensaios?: Prisma.EnsaioListRelationFilter
+  amostrasEnsaios?: Prisma.AmostraEnsaioListRelationFilter
+  funcionariosEnsaio?: Prisma.FuncionarioEnsaioListRelationFilter
 }
 
 export type FuncionarioOrderByWithRelationInput = {
@@ -248,6 +252,10 @@ export type FuncionarioOrderByWithRelationInput = {
   dataMod?: Prisma.SortOrder
   cargo?: Prisma.CargoOrderByWithRelationInput
   telefones?: Prisma.TelefoneOrderByRelationAggregateInput
+  registrosAcesso?: Prisma.RegistroAcessoOrderByRelationAggregateInput
+  ensaios?: Prisma.EnsaioOrderByRelationAggregateInput
+  amostrasEnsaios?: Prisma.AmostraEnsaioOrderByRelationAggregateInput
+  funcionariosEnsaio?: Prisma.FuncionarioEnsaioOrderByRelationAggregateInput
 }
 
 export type FuncionarioWhereUniqueInput = Prisma.AtLeast<{
@@ -267,6 +275,10 @@ export type FuncionarioWhereUniqueInput = Prisma.AtLeast<{
   dataMod?: Prisma.DateTimeFilter<"Funcionario"> | Date | string
   cargo?: Prisma.XOR<Prisma.CargoScalarRelationFilter, Prisma.CargoWhereInput>
   telefones?: Prisma.TelefoneListRelationFilter
+  registrosAcesso?: Prisma.RegistroAcessoListRelationFilter
+  ensaios?: Prisma.EnsaioListRelationFilter
+  amostrasEnsaios?: Prisma.AmostraEnsaioListRelationFilter
+  funcionariosEnsaio?: Prisma.FuncionarioEnsaioListRelationFilter
 }, "idFuncionario">
 
 export type FuncionarioOrderByWithAggregationInput = {
@@ -316,6 +328,10 @@ export type FuncionarioCreateInput = {
   dataMod?: Date | string
   cargo: Prisma.CargoCreateNestedOneWithoutFuncionariosInput
   telefones?: Prisma.TelefoneCreateNestedManyWithoutFuncionarioInput
+  registrosAcesso?: Prisma.RegistroAcessoCreateNestedManyWithoutFuncionarioInput
+  ensaios?: Prisma.EnsaioCreateNestedManyWithoutFuncionarioInput
+  amostrasEnsaios?: Prisma.AmostraEnsaioCreateNestedManyWithoutFuncionarioInput
+  funcionariosEnsaio?: Prisma.FuncionarioEnsaioCreateNestedManyWithoutFuncionarioInput
 }
 
 export type FuncionarioUncheckedCreateInput = {
@@ -331,6 +347,10 @@ export type FuncionarioUncheckedCreateInput = {
   dataCad?: Date | string
   dataMod?: Date | string
   telefones?: Prisma.TelefoneUncheckedCreateNestedManyWithoutFuncionarioInput
+  registrosAcesso?: Prisma.RegistroAcessoUncheckedCreateNestedManyWithoutFuncionarioInput
+  ensaios?: Prisma.EnsaioUncheckedCreateNestedManyWithoutFuncionarioInput
+  amostrasEnsaios?: Prisma.AmostraEnsaioUncheckedCreateNestedManyWithoutFuncionarioInput
+  funcionariosEnsaio?: Prisma.FuncionarioEnsaioUncheckedCreateNestedManyWithoutFuncionarioInput
 }
 
 export type FuncionarioUpdateInput = {
@@ -346,6 +366,10 @@ export type FuncionarioUpdateInput = {
   dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cargo?: Prisma.CargoUpdateOneRequiredWithoutFuncionariosNestedInput
   telefones?: Prisma.TelefoneUpdateManyWithoutFuncionarioNestedInput
+  registrosAcesso?: Prisma.RegistroAcessoUpdateManyWithoutFuncionarioNestedInput
+  ensaios?: Prisma.EnsaioUpdateManyWithoutFuncionarioNestedInput
+  amostrasEnsaios?: Prisma.AmostraEnsaioUpdateManyWithoutFuncionarioNestedInput
+  funcionariosEnsaio?: Prisma.FuncionarioEnsaioUpdateManyWithoutFuncionarioNestedInput
 }
 
 export type FuncionarioUncheckedUpdateInput = {
@@ -361,6 +385,10 @@ export type FuncionarioUncheckedUpdateInput = {
   dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   telefones?: Prisma.TelefoneUncheckedUpdateManyWithoutFuncionarioNestedInput
+  registrosAcesso?: Prisma.RegistroAcessoUncheckedUpdateManyWithoutFuncionarioNestedInput
+  ensaios?: Prisma.EnsaioUncheckedUpdateManyWithoutFuncionarioNestedInput
+  amostrasEnsaios?: Prisma.AmostraEnsaioUncheckedUpdateManyWithoutFuncionarioNestedInput
+  funcionariosEnsaio?: Prisma.FuncionarioEnsaioUncheckedUpdateManyWithoutFuncionarioNestedInput
 }
 
 export type FuncionarioCreateManyInput = {
@@ -521,6 +549,62 @@ export type FuncionarioUpdateOneRequiredWithoutTelefonesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.FuncionarioUpdateToOneWithWhereWithoutTelefonesInput, Prisma.FuncionarioUpdateWithoutTelefonesInput>, Prisma.FuncionarioUncheckedUpdateWithoutTelefonesInput>
 }
 
+export type FuncionarioCreateNestedOneWithoutRegistrosAcessoInput = {
+  create?: Prisma.XOR<Prisma.FuncionarioCreateWithoutRegistrosAcessoInput, Prisma.FuncionarioUncheckedCreateWithoutRegistrosAcessoInput>
+  connectOrCreate?: Prisma.FuncionarioCreateOrConnectWithoutRegistrosAcessoInput
+  connect?: Prisma.FuncionarioWhereUniqueInput
+}
+
+export type FuncionarioUpdateOneRequiredWithoutRegistrosAcessoNestedInput = {
+  create?: Prisma.XOR<Prisma.FuncionarioCreateWithoutRegistrosAcessoInput, Prisma.FuncionarioUncheckedCreateWithoutRegistrosAcessoInput>
+  connectOrCreate?: Prisma.FuncionarioCreateOrConnectWithoutRegistrosAcessoInput
+  upsert?: Prisma.FuncionarioUpsertWithoutRegistrosAcessoInput
+  connect?: Prisma.FuncionarioWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.FuncionarioUpdateToOneWithWhereWithoutRegistrosAcessoInput, Prisma.FuncionarioUpdateWithoutRegistrosAcessoInput>, Prisma.FuncionarioUncheckedUpdateWithoutRegistrosAcessoInput>
+}
+
+export type FuncionarioCreateNestedOneWithoutEnsaiosInput = {
+  create?: Prisma.XOR<Prisma.FuncionarioCreateWithoutEnsaiosInput, Prisma.FuncionarioUncheckedCreateWithoutEnsaiosInput>
+  connectOrCreate?: Prisma.FuncionarioCreateOrConnectWithoutEnsaiosInput
+  connect?: Prisma.FuncionarioWhereUniqueInput
+}
+
+export type FuncionarioUpdateOneRequiredWithoutEnsaiosNestedInput = {
+  create?: Prisma.XOR<Prisma.FuncionarioCreateWithoutEnsaiosInput, Prisma.FuncionarioUncheckedCreateWithoutEnsaiosInput>
+  connectOrCreate?: Prisma.FuncionarioCreateOrConnectWithoutEnsaiosInput
+  upsert?: Prisma.FuncionarioUpsertWithoutEnsaiosInput
+  connect?: Prisma.FuncionarioWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.FuncionarioUpdateToOneWithWhereWithoutEnsaiosInput, Prisma.FuncionarioUpdateWithoutEnsaiosInput>, Prisma.FuncionarioUncheckedUpdateWithoutEnsaiosInput>
+}
+
+export type FuncionarioCreateNestedOneWithoutAmostrasEnsaiosInput = {
+  create?: Prisma.XOR<Prisma.FuncionarioCreateWithoutAmostrasEnsaiosInput, Prisma.FuncionarioUncheckedCreateWithoutAmostrasEnsaiosInput>
+  connectOrCreate?: Prisma.FuncionarioCreateOrConnectWithoutAmostrasEnsaiosInput
+  connect?: Prisma.FuncionarioWhereUniqueInput
+}
+
+export type FuncionarioUpdateOneRequiredWithoutAmostrasEnsaiosNestedInput = {
+  create?: Prisma.XOR<Prisma.FuncionarioCreateWithoutAmostrasEnsaiosInput, Prisma.FuncionarioUncheckedCreateWithoutAmostrasEnsaiosInput>
+  connectOrCreate?: Prisma.FuncionarioCreateOrConnectWithoutAmostrasEnsaiosInput
+  upsert?: Prisma.FuncionarioUpsertWithoutAmostrasEnsaiosInput
+  connect?: Prisma.FuncionarioWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.FuncionarioUpdateToOneWithWhereWithoutAmostrasEnsaiosInput, Prisma.FuncionarioUpdateWithoutAmostrasEnsaiosInput>, Prisma.FuncionarioUncheckedUpdateWithoutAmostrasEnsaiosInput>
+}
+
+export type FuncionarioCreateNestedOneWithoutFuncionariosEnsaioInput = {
+  create?: Prisma.XOR<Prisma.FuncionarioCreateWithoutFuncionariosEnsaioInput, Prisma.FuncionarioUncheckedCreateWithoutFuncionariosEnsaioInput>
+  connectOrCreate?: Prisma.FuncionarioCreateOrConnectWithoutFuncionariosEnsaioInput
+  connect?: Prisma.FuncionarioWhereUniqueInput
+}
+
+export type FuncionarioUpdateOneRequiredWithoutFuncionariosEnsaioNestedInput = {
+  create?: Prisma.XOR<Prisma.FuncionarioCreateWithoutFuncionariosEnsaioInput, Prisma.FuncionarioUncheckedCreateWithoutFuncionariosEnsaioInput>
+  connectOrCreate?: Prisma.FuncionarioCreateOrConnectWithoutFuncionariosEnsaioInput
+  upsert?: Prisma.FuncionarioUpsertWithoutFuncionariosEnsaioInput
+  connect?: Prisma.FuncionarioWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.FuncionarioUpdateToOneWithWhereWithoutFuncionariosEnsaioInput, Prisma.FuncionarioUpdateWithoutFuncionariosEnsaioInput>, Prisma.FuncionarioUncheckedUpdateWithoutFuncionariosEnsaioInput>
+}
+
 export type FuncionarioCreateWithoutCargoInput = {
   idFuncionario?: string
   nomeFuncionario: string
@@ -533,6 +617,10 @@ export type FuncionarioCreateWithoutCargoInput = {
   dataCad?: Date | string
   dataMod?: Date | string
   telefones?: Prisma.TelefoneCreateNestedManyWithoutFuncionarioInput
+  registrosAcesso?: Prisma.RegistroAcessoCreateNestedManyWithoutFuncionarioInput
+  ensaios?: Prisma.EnsaioCreateNestedManyWithoutFuncionarioInput
+  amostrasEnsaios?: Prisma.AmostraEnsaioCreateNestedManyWithoutFuncionarioInput
+  funcionariosEnsaio?: Prisma.FuncionarioEnsaioCreateNestedManyWithoutFuncionarioInput
 }
 
 export type FuncionarioUncheckedCreateWithoutCargoInput = {
@@ -547,6 +635,10 @@ export type FuncionarioUncheckedCreateWithoutCargoInput = {
   dataCad?: Date | string
   dataMod?: Date | string
   telefones?: Prisma.TelefoneUncheckedCreateNestedManyWithoutFuncionarioInput
+  registrosAcesso?: Prisma.RegistroAcessoUncheckedCreateNestedManyWithoutFuncionarioInput
+  ensaios?: Prisma.EnsaioUncheckedCreateNestedManyWithoutFuncionarioInput
+  amostrasEnsaios?: Prisma.AmostraEnsaioUncheckedCreateNestedManyWithoutFuncionarioInput
+  funcionariosEnsaio?: Prisma.FuncionarioEnsaioUncheckedCreateNestedManyWithoutFuncionarioInput
 }
 
 export type FuncionarioCreateOrConnectWithoutCargoInput = {
@@ -603,6 +695,10 @@ export type FuncionarioCreateWithoutTelefonesInput = {
   dataCad?: Date | string
   dataMod?: Date | string
   cargo: Prisma.CargoCreateNestedOneWithoutFuncionariosInput
+  registrosAcesso?: Prisma.RegistroAcessoCreateNestedManyWithoutFuncionarioInput
+  ensaios?: Prisma.EnsaioCreateNestedManyWithoutFuncionarioInput
+  amostrasEnsaios?: Prisma.AmostraEnsaioCreateNestedManyWithoutFuncionarioInput
+  funcionariosEnsaio?: Prisma.FuncionarioEnsaioCreateNestedManyWithoutFuncionarioInput
 }
 
 export type FuncionarioUncheckedCreateWithoutTelefonesInput = {
@@ -617,6 +713,10 @@ export type FuncionarioUncheckedCreateWithoutTelefonesInput = {
   situacaoEmpregaticia: string
   dataCad?: Date | string
   dataMod?: Date | string
+  registrosAcesso?: Prisma.RegistroAcessoUncheckedCreateNestedManyWithoutFuncionarioInput
+  ensaios?: Prisma.EnsaioUncheckedCreateNestedManyWithoutFuncionarioInput
+  amostrasEnsaios?: Prisma.AmostraEnsaioUncheckedCreateNestedManyWithoutFuncionarioInput
+  funcionariosEnsaio?: Prisma.FuncionarioEnsaioUncheckedCreateNestedManyWithoutFuncionarioInput
 }
 
 export type FuncionarioCreateOrConnectWithoutTelefonesInput = {
@@ -647,6 +747,10 @@ export type FuncionarioUpdateWithoutTelefonesInput = {
   dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cargo?: Prisma.CargoUpdateOneRequiredWithoutFuncionariosNestedInput
+  registrosAcesso?: Prisma.RegistroAcessoUpdateManyWithoutFuncionarioNestedInput
+  ensaios?: Prisma.EnsaioUpdateManyWithoutFuncionarioNestedInput
+  amostrasEnsaios?: Prisma.AmostraEnsaioUpdateManyWithoutFuncionarioNestedInput
+  funcionariosEnsaio?: Prisma.FuncionarioEnsaioUpdateManyWithoutFuncionarioNestedInput
 }
 
 export type FuncionarioUncheckedUpdateWithoutTelefonesInput = {
@@ -661,6 +765,362 @@ export type FuncionarioUncheckedUpdateWithoutTelefonesInput = {
   situacaoEmpregaticia?: Prisma.StringFieldUpdateOperationsInput | string
   dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  registrosAcesso?: Prisma.RegistroAcessoUncheckedUpdateManyWithoutFuncionarioNestedInput
+  ensaios?: Prisma.EnsaioUncheckedUpdateManyWithoutFuncionarioNestedInput
+  amostrasEnsaios?: Prisma.AmostraEnsaioUncheckedUpdateManyWithoutFuncionarioNestedInput
+  funcionariosEnsaio?: Prisma.FuncionarioEnsaioUncheckedUpdateManyWithoutFuncionarioNestedInput
+}
+
+export type FuncionarioCreateWithoutRegistrosAcessoInput = {
+  idFuncionario?: string
+  nomeFuncionario: string
+  sobrenomeFuncionario: string
+  cpf: string
+  senhaHash: string
+  email: string
+  caminhoImagemPerfil?: string | null
+  situacaoEmpregaticia: string
+  dataCad?: Date | string
+  dataMod?: Date | string
+  cargo: Prisma.CargoCreateNestedOneWithoutFuncionariosInput
+  telefones?: Prisma.TelefoneCreateNestedManyWithoutFuncionarioInput
+  ensaios?: Prisma.EnsaioCreateNestedManyWithoutFuncionarioInput
+  amostrasEnsaios?: Prisma.AmostraEnsaioCreateNestedManyWithoutFuncionarioInput
+  funcionariosEnsaio?: Prisma.FuncionarioEnsaioCreateNestedManyWithoutFuncionarioInput
+}
+
+export type FuncionarioUncheckedCreateWithoutRegistrosAcessoInput = {
+  idFuncionario?: string
+  fkIdCargo: string
+  nomeFuncionario: string
+  sobrenomeFuncionario: string
+  cpf: string
+  senhaHash: string
+  email: string
+  caminhoImagemPerfil?: string | null
+  situacaoEmpregaticia: string
+  dataCad?: Date | string
+  dataMod?: Date | string
+  telefones?: Prisma.TelefoneUncheckedCreateNestedManyWithoutFuncionarioInput
+  ensaios?: Prisma.EnsaioUncheckedCreateNestedManyWithoutFuncionarioInput
+  amostrasEnsaios?: Prisma.AmostraEnsaioUncheckedCreateNestedManyWithoutFuncionarioInput
+  funcionariosEnsaio?: Prisma.FuncionarioEnsaioUncheckedCreateNestedManyWithoutFuncionarioInput
+}
+
+export type FuncionarioCreateOrConnectWithoutRegistrosAcessoInput = {
+  where: Prisma.FuncionarioWhereUniqueInput
+  create: Prisma.XOR<Prisma.FuncionarioCreateWithoutRegistrosAcessoInput, Prisma.FuncionarioUncheckedCreateWithoutRegistrosAcessoInput>
+}
+
+export type FuncionarioUpsertWithoutRegistrosAcessoInput = {
+  update: Prisma.XOR<Prisma.FuncionarioUpdateWithoutRegistrosAcessoInput, Prisma.FuncionarioUncheckedUpdateWithoutRegistrosAcessoInput>
+  create: Prisma.XOR<Prisma.FuncionarioCreateWithoutRegistrosAcessoInput, Prisma.FuncionarioUncheckedCreateWithoutRegistrosAcessoInput>
+  where?: Prisma.FuncionarioWhereInput
+}
+
+export type FuncionarioUpdateToOneWithWhereWithoutRegistrosAcessoInput = {
+  where?: Prisma.FuncionarioWhereInput
+  data: Prisma.XOR<Prisma.FuncionarioUpdateWithoutRegistrosAcessoInput, Prisma.FuncionarioUncheckedUpdateWithoutRegistrosAcessoInput>
+}
+
+export type FuncionarioUpdateWithoutRegistrosAcessoInput = {
+  idFuncionario?: Prisma.StringFieldUpdateOperationsInput | string
+  nomeFuncionario?: Prisma.StringFieldUpdateOperationsInput | string
+  sobrenomeFuncionario?: Prisma.StringFieldUpdateOperationsInput | string
+  cpf?: Prisma.StringFieldUpdateOperationsInput | string
+  senhaHash?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  caminhoImagemPerfil?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  situacaoEmpregaticia?: Prisma.StringFieldUpdateOperationsInput | string
+  dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  cargo?: Prisma.CargoUpdateOneRequiredWithoutFuncionariosNestedInput
+  telefones?: Prisma.TelefoneUpdateManyWithoutFuncionarioNestedInput
+  ensaios?: Prisma.EnsaioUpdateManyWithoutFuncionarioNestedInput
+  amostrasEnsaios?: Prisma.AmostraEnsaioUpdateManyWithoutFuncionarioNestedInput
+  funcionariosEnsaio?: Prisma.FuncionarioEnsaioUpdateManyWithoutFuncionarioNestedInput
+}
+
+export type FuncionarioUncheckedUpdateWithoutRegistrosAcessoInput = {
+  idFuncionario?: Prisma.StringFieldUpdateOperationsInput | string
+  fkIdCargo?: Prisma.StringFieldUpdateOperationsInput | string
+  nomeFuncionario?: Prisma.StringFieldUpdateOperationsInput | string
+  sobrenomeFuncionario?: Prisma.StringFieldUpdateOperationsInput | string
+  cpf?: Prisma.StringFieldUpdateOperationsInput | string
+  senhaHash?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  caminhoImagemPerfil?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  situacaoEmpregaticia?: Prisma.StringFieldUpdateOperationsInput | string
+  dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  telefones?: Prisma.TelefoneUncheckedUpdateManyWithoutFuncionarioNestedInput
+  ensaios?: Prisma.EnsaioUncheckedUpdateManyWithoutFuncionarioNestedInput
+  amostrasEnsaios?: Prisma.AmostraEnsaioUncheckedUpdateManyWithoutFuncionarioNestedInput
+  funcionariosEnsaio?: Prisma.FuncionarioEnsaioUncheckedUpdateManyWithoutFuncionarioNestedInput
+}
+
+export type FuncionarioCreateWithoutEnsaiosInput = {
+  idFuncionario?: string
+  nomeFuncionario: string
+  sobrenomeFuncionario: string
+  cpf: string
+  senhaHash: string
+  email: string
+  caminhoImagemPerfil?: string | null
+  situacaoEmpregaticia: string
+  dataCad?: Date | string
+  dataMod?: Date | string
+  cargo: Prisma.CargoCreateNestedOneWithoutFuncionariosInput
+  telefones?: Prisma.TelefoneCreateNestedManyWithoutFuncionarioInput
+  registrosAcesso?: Prisma.RegistroAcessoCreateNestedManyWithoutFuncionarioInput
+  amostrasEnsaios?: Prisma.AmostraEnsaioCreateNestedManyWithoutFuncionarioInput
+  funcionariosEnsaio?: Prisma.FuncionarioEnsaioCreateNestedManyWithoutFuncionarioInput
+}
+
+export type FuncionarioUncheckedCreateWithoutEnsaiosInput = {
+  idFuncionario?: string
+  fkIdCargo: string
+  nomeFuncionario: string
+  sobrenomeFuncionario: string
+  cpf: string
+  senhaHash: string
+  email: string
+  caminhoImagemPerfil?: string | null
+  situacaoEmpregaticia: string
+  dataCad?: Date | string
+  dataMod?: Date | string
+  telefones?: Prisma.TelefoneUncheckedCreateNestedManyWithoutFuncionarioInput
+  registrosAcesso?: Prisma.RegistroAcessoUncheckedCreateNestedManyWithoutFuncionarioInput
+  amostrasEnsaios?: Prisma.AmostraEnsaioUncheckedCreateNestedManyWithoutFuncionarioInput
+  funcionariosEnsaio?: Prisma.FuncionarioEnsaioUncheckedCreateNestedManyWithoutFuncionarioInput
+}
+
+export type FuncionarioCreateOrConnectWithoutEnsaiosInput = {
+  where: Prisma.FuncionarioWhereUniqueInput
+  create: Prisma.XOR<Prisma.FuncionarioCreateWithoutEnsaiosInput, Prisma.FuncionarioUncheckedCreateWithoutEnsaiosInput>
+}
+
+export type FuncionarioUpsertWithoutEnsaiosInput = {
+  update: Prisma.XOR<Prisma.FuncionarioUpdateWithoutEnsaiosInput, Prisma.FuncionarioUncheckedUpdateWithoutEnsaiosInput>
+  create: Prisma.XOR<Prisma.FuncionarioCreateWithoutEnsaiosInput, Prisma.FuncionarioUncheckedCreateWithoutEnsaiosInput>
+  where?: Prisma.FuncionarioWhereInput
+}
+
+export type FuncionarioUpdateToOneWithWhereWithoutEnsaiosInput = {
+  where?: Prisma.FuncionarioWhereInput
+  data: Prisma.XOR<Prisma.FuncionarioUpdateWithoutEnsaiosInput, Prisma.FuncionarioUncheckedUpdateWithoutEnsaiosInput>
+}
+
+export type FuncionarioUpdateWithoutEnsaiosInput = {
+  idFuncionario?: Prisma.StringFieldUpdateOperationsInput | string
+  nomeFuncionario?: Prisma.StringFieldUpdateOperationsInput | string
+  sobrenomeFuncionario?: Prisma.StringFieldUpdateOperationsInput | string
+  cpf?: Prisma.StringFieldUpdateOperationsInput | string
+  senhaHash?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  caminhoImagemPerfil?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  situacaoEmpregaticia?: Prisma.StringFieldUpdateOperationsInput | string
+  dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  cargo?: Prisma.CargoUpdateOneRequiredWithoutFuncionariosNestedInput
+  telefones?: Prisma.TelefoneUpdateManyWithoutFuncionarioNestedInput
+  registrosAcesso?: Prisma.RegistroAcessoUpdateManyWithoutFuncionarioNestedInput
+  amostrasEnsaios?: Prisma.AmostraEnsaioUpdateManyWithoutFuncionarioNestedInput
+  funcionariosEnsaio?: Prisma.FuncionarioEnsaioUpdateManyWithoutFuncionarioNestedInput
+}
+
+export type FuncionarioUncheckedUpdateWithoutEnsaiosInput = {
+  idFuncionario?: Prisma.StringFieldUpdateOperationsInput | string
+  fkIdCargo?: Prisma.StringFieldUpdateOperationsInput | string
+  nomeFuncionario?: Prisma.StringFieldUpdateOperationsInput | string
+  sobrenomeFuncionario?: Prisma.StringFieldUpdateOperationsInput | string
+  cpf?: Prisma.StringFieldUpdateOperationsInput | string
+  senhaHash?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  caminhoImagemPerfil?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  situacaoEmpregaticia?: Prisma.StringFieldUpdateOperationsInput | string
+  dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  telefones?: Prisma.TelefoneUncheckedUpdateManyWithoutFuncionarioNestedInput
+  registrosAcesso?: Prisma.RegistroAcessoUncheckedUpdateManyWithoutFuncionarioNestedInput
+  amostrasEnsaios?: Prisma.AmostraEnsaioUncheckedUpdateManyWithoutFuncionarioNestedInput
+  funcionariosEnsaio?: Prisma.FuncionarioEnsaioUncheckedUpdateManyWithoutFuncionarioNestedInput
+}
+
+export type FuncionarioCreateWithoutAmostrasEnsaiosInput = {
+  idFuncionario?: string
+  nomeFuncionario: string
+  sobrenomeFuncionario: string
+  cpf: string
+  senhaHash: string
+  email: string
+  caminhoImagemPerfil?: string | null
+  situacaoEmpregaticia: string
+  dataCad?: Date | string
+  dataMod?: Date | string
+  cargo: Prisma.CargoCreateNestedOneWithoutFuncionariosInput
+  telefones?: Prisma.TelefoneCreateNestedManyWithoutFuncionarioInput
+  registrosAcesso?: Prisma.RegistroAcessoCreateNestedManyWithoutFuncionarioInput
+  ensaios?: Prisma.EnsaioCreateNestedManyWithoutFuncionarioInput
+  funcionariosEnsaio?: Prisma.FuncionarioEnsaioCreateNestedManyWithoutFuncionarioInput
+}
+
+export type FuncionarioUncheckedCreateWithoutAmostrasEnsaiosInput = {
+  idFuncionario?: string
+  fkIdCargo: string
+  nomeFuncionario: string
+  sobrenomeFuncionario: string
+  cpf: string
+  senhaHash: string
+  email: string
+  caminhoImagemPerfil?: string | null
+  situacaoEmpregaticia: string
+  dataCad?: Date | string
+  dataMod?: Date | string
+  telefones?: Prisma.TelefoneUncheckedCreateNestedManyWithoutFuncionarioInput
+  registrosAcesso?: Prisma.RegistroAcessoUncheckedCreateNestedManyWithoutFuncionarioInput
+  ensaios?: Prisma.EnsaioUncheckedCreateNestedManyWithoutFuncionarioInput
+  funcionariosEnsaio?: Prisma.FuncionarioEnsaioUncheckedCreateNestedManyWithoutFuncionarioInput
+}
+
+export type FuncionarioCreateOrConnectWithoutAmostrasEnsaiosInput = {
+  where: Prisma.FuncionarioWhereUniqueInput
+  create: Prisma.XOR<Prisma.FuncionarioCreateWithoutAmostrasEnsaiosInput, Prisma.FuncionarioUncheckedCreateWithoutAmostrasEnsaiosInput>
+}
+
+export type FuncionarioUpsertWithoutAmostrasEnsaiosInput = {
+  update: Prisma.XOR<Prisma.FuncionarioUpdateWithoutAmostrasEnsaiosInput, Prisma.FuncionarioUncheckedUpdateWithoutAmostrasEnsaiosInput>
+  create: Prisma.XOR<Prisma.FuncionarioCreateWithoutAmostrasEnsaiosInput, Prisma.FuncionarioUncheckedCreateWithoutAmostrasEnsaiosInput>
+  where?: Prisma.FuncionarioWhereInput
+}
+
+export type FuncionarioUpdateToOneWithWhereWithoutAmostrasEnsaiosInput = {
+  where?: Prisma.FuncionarioWhereInput
+  data: Prisma.XOR<Prisma.FuncionarioUpdateWithoutAmostrasEnsaiosInput, Prisma.FuncionarioUncheckedUpdateWithoutAmostrasEnsaiosInput>
+}
+
+export type FuncionarioUpdateWithoutAmostrasEnsaiosInput = {
+  idFuncionario?: Prisma.StringFieldUpdateOperationsInput | string
+  nomeFuncionario?: Prisma.StringFieldUpdateOperationsInput | string
+  sobrenomeFuncionario?: Prisma.StringFieldUpdateOperationsInput | string
+  cpf?: Prisma.StringFieldUpdateOperationsInput | string
+  senhaHash?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  caminhoImagemPerfil?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  situacaoEmpregaticia?: Prisma.StringFieldUpdateOperationsInput | string
+  dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  cargo?: Prisma.CargoUpdateOneRequiredWithoutFuncionariosNestedInput
+  telefones?: Prisma.TelefoneUpdateManyWithoutFuncionarioNestedInput
+  registrosAcesso?: Prisma.RegistroAcessoUpdateManyWithoutFuncionarioNestedInput
+  ensaios?: Prisma.EnsaioUpdateManyWithoutFuncionarioNestedInput
+  funcionariosEnsaio?: Prisma.FuncionarioEnsaioUpdateManyWithoutFuncionarioNestedInput
+}
+
+export type FuncionarioUncheckedUpdateWithoutAmostrasEnsaiosInput = {
+  idFuncionario?: Prisma.StringFieldUpdateOperationsInput | string
+  fkIdCargo?: Prisma.StringFieldUpdateOperationsInput | string
+  nomeFuncionario?: Prisma.StringFieldUpdateOperationsInput | string
+  sobrenomeFuncionario?: Prisma.StringFieldUpdateOperationsInput | string
+  cpf?: Prisma.StringFieldUpdateOperationsInput | string
+  senhaHash?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  caminhoImagemPerfil?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  situacaoEmpregaticia?: Prisma.StringFieldUpdateOperationsInput | string
+  dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  telefones?: Prisma.TelefoneUncheckedUpdateManyWithoutFuncionarioNestedInput
+  registrosAcesso?: Prisma.RegistroAcessoUncheckedUpdateManyWithoutFuncionarioNestedInput
+  ensaios?: Prisma.EnsaioUncheckedUpdateManyWithoutFuncionarioNestedInput
+  funcionariosEnsaio?: Prisma.FuncionarioEnsaioUncheckedUpdateManyWithoutFuncionarioNestedInput
+}
+
+export type FuncionarioCreateWithoutFuncionariosEnsaioInput = {
+  idFuncionario?: string
+  nomeFuncionario: string
+  sobrenomeFuncionario: string
+  cpf: string
+  senhaHash: string
+  email: string
+  caminhoImagemPerfil?: string | null
+  situacaoEmpregaticia: string
+  dataCad?: Date | string
+  dataMod?: Date | string
+  cargo: Prisma.CargoCreateNestedOneWithoutFuncionariosInput
+  telefones?: Prisma.TelefoneCreateNestedManyWithoutFuncionarioInput
+  registrosAcesso?: Prisma.RegistroAcessoCreateNestedManyWithoutFuncionarioInput
+  ensaios?: Prisma.EnsaioCreateNestedManyWithoutFuncionarioInput
+  amostrasEnsaios?: Prisma.AmostraEnsaioCreateNestedManyWithoutFuncionarioInput
+}
+
+export type FuncionarioUncheckedCreateWithoutFuncionariosEnsaioInput = {
+  idFuncionario?: string
+  fkIdCargo: string
+  nomeFuncionario: string
+  sobrenomeFuncionario: string
+  cpf: string
+  senhaHash: string
+  email: string
+  caminhoImagemPerfil?: string | null
+  situacaoEmpregaticia: string
+  dataCad?: Date | string
+  dataMod?: Date | string
+  telefones?: Prisma.TelefoneUncheckedCreateNestedManyWithoutFuncionarioInput
+  registrosAcesso?: Prisma.RegistroAcessoUncheckedCreateNestedManyWithoutFuncionarioInput
+  ensaios?: Prisma.EnsaioUncheckedCreateNestedManyWithoutFuncionarioInput
+  amostrasEnsaios?: Prisma.AmostraEnsaioUncheckedCreateNestedManyWithoutFuncionarioInput
+}
+
+export type FuncionarioCreateOrConnectWithoutFuncionariosEnsaioInput = {
+  where: Prisma.FuncionarioWhereUniqueInput
+  create: Prisma.XOR<Prisma.FuncionarioCreateWithoutFuncionariosEnsaioInput, Prisma.FuncionarioUncheckedCreateWithoutFuncionariosEnsaioInput>
+}
+
+export type FuncionarioUpsertWithoutFuncionariosEnsaioInput = {
+  update: Prisma.XOR<Prisma.FuncionarioUpdateWithoutFuncionariosEnsaioInput, Prisma.FuncionarioUncheckedUpdateWithoutFuncionariosEnsaioInput>
+  create: Prisma.XOR<Prisma.FuncionarioCreateWithoutFuncionariosEnsaioInput, Prisma.FuncionarioUncheckedCreateWithoutFuncionariosEnsaioInput>
+  where?: Prisma.FuncionarioWhereInput
+}
+
+export type FuncionarioUpdateToOneWithWhereWithoutFuncionariosEnsaioInput = {
+  where?: Prisma.FuncionarioWhereInput
+  data: Prisma.XOR<Prisma.FuncionarioUpdateWithoutFuncionariosEnsaioInput, Prisma.FuncionarioUncheckedUpdateWithoutFuncionariosEnsaioInput>
+}
+
+export type FuncionarioUpdateWithoutFuncionariosEnsaioInput = {
+  idFuncionario?: Prisma.StringFieldUpdateOperationsInput | string
+  nomeFuncionario?: Prisma.StringFieldUpdateOperationsInput | string
+  sobrenomeFuncionario?: Prisma.StringFieldUpdateOperationsInput | string
+  cpf?: Prisma.StringFieldUpdateOperationsInput | string
+  senhaHash?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  caminhoImagemPerfil?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  situacaoEmpregaticia?: Prisma.StringFieldUpdateOperationsInput | string
+  dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  cargo?: Prisma.CargoUpdateOneRequiredWithoutFuncionariosNestedInput
+  telefones?: Prisma.TelefoneUpdateManyWithoutFuncionarioNestedInput
+  registrosAcesso?: Prisma.RegistroAcessoUpdateManyWithoutFuncionarioNestedInput
+  ensaios?: Prisma.EnsaioUpdateManyWithoutFuncionarioNestedInput
+  amostrasEnsaios?: Prisma.AmostraEnsaioUpdateManyWithoutFuncionarioNestedInput
+}
+
+export type FuncionarioUncheckedUpdateWithoutFuncionariosEnsaioInput = {
+  idFuncionario?: Prisma.StringFieldUpdateOperationsInput | string
+  fkIdCargo?: Prisma.StringFieldUpdateOperationsInput | string
+  nomeFuncionario?: Prisma.StringFieldUpdateOperationsInput | string
+  sobrenomeFuncionario?: Prisma.StringFieldUpdateOperationsInput | string
+  cpf?: Prisma.StringFieldUpdateOperationsInput | string
+  senhaHash?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  caminhoImagemPerfil?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  situacaoEmpregaticia?: Prisma.StringFieldUpdateOperationsInput | string
+  dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  telefones?: Prisma.TelefoneUncheckedUpdateManyWithoutFuncionarioNestedInput
+  registrosAcesso?: Prisma.RegistroAcessoUncheckedUpdateManyWithoutFuncionarioNestedInput
+  ensaios?: Prisma.EnsaioUncheckedUpdateManyWithoutFuncionarioNestedInput
+  amostrasEnsaios?: Prisma.AmostraEnsaioUncheckedUpdateManyWithoutFuncionarioNestedInput
 }
 
 export type FuncionarioCreateManyCargoInput = {
@@ -688,6 +1148,10 @@ export type FuncionarioUpdateWithoutCargoInput = {
   dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   telefones?: Prisma.TelefoneUpdateManyWithoutFuncionarioNestedInput
+  registrosAcesso?: Prisma.RegistroAcessoUpdateManyWithoutFuncionarioNestedInput
+  ensaios?: Prisma.EnsaioUpdateManyWithoutFuncionarioNestedInput
+  amostrasEnsaios?: Prisma.AmostraEnsaioUpdateManyWithoutFuncionarioNestedInput
+  funcionariosEnsaio?: Prisma.FuncionarioEnsaioUpdateManyWithoutFuncionarioNestedInput
 }
 
 export type FuncionarioUncheckedUpdateWithoutCargoInput = {
@@ -702,6 +1166,10 @@ export type FuncionarioUncheckedUpdateWithoutCargoInput = {
   dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   telefones?: Prisma.TelefoneUncheckedUpdateManyWithoutFuncionarioNestedInput
+  registrosAcesso?: Prisma.RegistroAcessoUncheckedUpdateManyWithoutFuncionarioNestedInput
+  ensaios?: Prisma.EnsaioUncheckedUpdateManyWithoutFuncionarioNestedInput
+  amostrasEnsaios?: Prisma.AmostraEnsaioUncheckedUpdateManyWithoutFuncionarioNestedInput
+  funcionariosEnsaio?: Prisma.FuncionarioEnsaioUncheckedUpdateManyWithoutFuncionarioNestedInput
 }
 
 export type FuncionarioUncheckedUpdateManyWithoutCargoInput = {
@@ -724,10 +1192,18 @@ export type FuncionarioUncheckedUpdateManyWithoutCargoInput = {
 
 export type FuncionarioCountOutputType = {
   telefones: number
+  registrosAcesso: number
+  ensaios: number
+  amostrasEnsaios: number
+  funcionariosEnsaio: number
 }
 
 export type FuncionarioCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   telefones?: boolean | FuncionarioCountOutputTypeCountTelefonesArgs
+  registrosAcesso?: boolean | FuncionarioCountOutputTypeCountRegistrosAcessoArgs
+  ensaios?: boolean | FuncionarioCountOutputTypeCountEnsaiosArgs
+  amostrasEnsaios?: boolean | FuncionarioCountOutputTypeCountAmostrasEnsaiosArgs
+  funcionariosEnsaio?: boolean | FuncionarioCountOutputTypeCountFuncionariosEnsaioArgs
 }
 
 /**
@@ -747,6 +1223,34 @@ export type FuncionarioCountOutputTypeCountTelefonesArgs<ExtArgs extends runtime
   where?: Prisma.TelefoneWhereInput
 }
 
+/**
+ * FuncionarioCountOutputType without action
+ */
+export type FuncionarioCountOutputTypeCountRegistrosAcessoArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.RegistroAcessoWhereInput
+}
+
+/**
+ * FuncionarioCountOutputType without action
+ */
+export type FuncionarioCountOutputTypeCountEnsaiosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EnsaioWhereInput
+}
+
+/**
+ * FuncionarioCountOutputType without action
+ */
+export type FuncionarioCountOutputTypeCountAmostrasEnsaiosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AmostraEnsaioWhereInput
+}
+
+/**
+ * FuncionarioCountOutputType without action
+ */
+export type FuncionarioCountOutputTypeCountFuncionariosEnsaioArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.FuncionarioEnsaioWhereInput
+}
+
 
 export type FuncionarioSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   idFuncionario?: boolean
@@ -762,6 +1266,10 @@ export type FuncionarioSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   dataMod?: boolean
   cargo?: boolean | Prisma.CargoDefaultArgs<ExtArgs>
   telefones?: boolean | Prisma.Funcionario$telefonesArgs<ExtArgs>
+  registrosAcesso?: boolean | Prisma.Funcionario$registrosAcessoArgs<ExtArgs>
+  ensaios?: boolean | Prisma.Funcionario$ensaiosArgs<ExtArgs>
+  amostrasEnsaios?: boolean | Prisma.Funcionario$amostrasEnsaiosArgs<ExtArgs>
+  funcionariosEnsaio?: boolean | Prisma.Funcionario$funcionariosEnsaioArgs<ExtArgs>
   _count?: boolean | Prisma.FuncionarioCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["funcionario"]>
 
@@ -785,6 +1293,10 @@ export type FuncionarioOmit<ExtArgs extends runtime.Types.Extensions.InternalArg
 export type FuncionarioInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   cargo?: boolean | Prisma.CargoDefaultArgs<ExtArgs>
   telefones?: boolean | Prisma.Funcionario$telefonesArgs<ExtArgs>
+  registrosAcesso?: boolean | Prisma.Funcionario$registrosAcessoArgs<ExtArgs>
+  ensaios?: boolean | Prisma.Funcionario$ensaiosArgs<ExtArgs>
+  amostrasEnsaios?: boolean | Prisma.Funcionario$amostrasEnsaiosArgs<ExtArgs>
+  funcionariosEnsaio?: boolean | Prisma.Funcionario$funcionariosEnsaioArgs<ExtArgs>
   _count?: boolean | Prisma.FuncionarioCountOutputTypeDefaultArgs<ExtArgs>
 }
 
@@ -793,6 +1305,10 @@ export type $FuncionarioPayload<ExtArgs extends runtime.Types.Extensions.Interna
   objects: {
     cargo: Prisma.$CargoPayload<ExtArgs>
     telefones: Prisma.$TelefonePayload<ExtArgs>[]
+    registrosAcesso: Prisma.$RegistroAcessoPayload<ExtArgs>[]
+    ensaios: Prisma.$EnsaioPayload<ExtArgs>[]
+    amostrasEnsaios: Prisma.$AmostraEnsaioPayload<ExtArgs>[]
+    funcionariosEnsaio: Prisma.$FuncionarioEnsaioPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     idFuncionario: string
@@ -1148,6 +1664,10 @@ export interface Prisma__FuncionarioClient<T, Null = never, ExtArgs extends runt
   readonly [Symbol.toStringTag]: "PrismaPromise"
   cargo<T extends Prisma.CargoDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CargoDefaultArgs<ExtArgs>>): Prisma.Prisma__CargoClient<runtime.Types.Result.GetResult<Prisma.$CargoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   telefones<T extends Prisma.Funcionario$telefonesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Funcionario$telefonesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TelefonePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  registrosAcesso<T extends Prisma.Funcionario$registrosAcessoArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Funcionario$registrosAcessoArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RegistroAcessoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  ensaios<T extends Prisma.Funcionario$ensaiosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Funcionario$ensaiosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EnsaioPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  amostrasEnsaios<T extends Prisma.Funcionario$amostrasEnsaiosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Funcionario$amostrasEnsaiosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AmostraEnsaioPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  funcionariosEnsaio<T extends Prisma.Funcionario$funcionariosEnsaioArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Funcionario$funcionariosEnsaioArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FuncionarioEnsaioPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1556,6 +2076,102 @@ export type Funcionario$telefonesArgs<ExtArgs extends runtime.Types.Extensions.I
   take?: number
   skip?: number
   distinct?: Prisma.TelefoneScalarFieldEnum | Prisma.TelefoneScalarFieldEnum[]
+}
+
+/**
+ * Funcionario.registrosAcesso
+ */
+export type Funcionario$registrosAcessoArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the RegistroAcesso
+   */
+  select?: Prisma.RegistroAcessoSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the RegistroAcesso
+   */
+  omit?: Prisma.RegistroAcessoOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RegistroAcessoInclude<ExtArgs> | null
+  where?: Prisma.RegistroAcessoWhereInput
+  orderBy?: Prisma.RegistroAcessoOrderByWithRelationInput | Prisma.RegistroAcessoOrderByWithRelationInput[]
+  cursor?: Prisma.RegistroAcessoWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.RegistroAcessoScalarFieldEnum | Prisma.RegistroAcessoScalarFieldEnum[]
+}
+
+/**
+ * Funcionario.ensaios
+ */
+export type Funcionario$ensaiosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Ensaio
+   */
+  select?: Prisma.EnsaioSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Ensaio
+   */
+  omit?: Prisma.EnsaioOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EnsaioInclude<ExtArgs> | null
+  where?: Prisma.EnsaioWhereInput
+  orderBy?: Prisma.EnsaioOrderByWithRelationInput | Prisma.EnsaioOrderByWithRelationInput[]
+  cursor?: Prisma.EnsaioWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.EnsaioScalarFieldEnum | Prisma.EnsaioScalarFieldEnum[]
+}
+
+/**
+ * Funcionario.amostrasEnsaios
+ */
+export type Funcionario$amostrasEnsaiosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AmostraEnsaio
+   */
+  select?: Prisma.AmostraEnsaioSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AmostraEnsaio
+   */
+  omit?: Prisma.AmostraEnsaioOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AmostraEnsaioInclude<ExtArgs> | null
+  where?: Prisma.AmostraEnsaioWhereInput
+  orderBy?: Prisma.AmostraEnsaioOrderByWithRelationInput | Prisma.AmostraEnsaioOrderByWithRelationInput[]
+  cursor?: Prisma.AmostraEnsaioWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AmostraEnsaioScalarFieldEnum | Prisma.AmostraEnsaioScalarFieldEnum[]
+}
+
+/**
+ * Funcionario.funcionariosEnsaio
+ */
+export type Funcionario$funcionariosEnsaioArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the FuncionarioEnsaio
+   */
+  select?: Prisma.FuncionarioEnsaioSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the FuncionarioEnsaio
+   */
+  omit?: Prisma.FuncionarioEnsaioOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.FuncionarioEnsaioInclude<ExtArgs> | null
+  where?: Prisma.FuncionarioEnsaioWhereInput
+  orderBy?: Prisma.FuncionarioEnsaioOrderByWithRelationInput | Prisma.FuncionarioEnsaioOrderByWithRelationInput[]
+  cursor?: Prisma.FuncionarioEnsaioWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.FuncionarioEnsaioScalarFieldEnum | Prisma.FuncionarioEnsaioScalarFieldEnum[]
 }
 
 /**
