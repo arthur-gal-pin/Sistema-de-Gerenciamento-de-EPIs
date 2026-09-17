@@ -1,0 +1,90 @@
+generator client {
+  provider     = "prisma-client"
+  output       = "../generated/prisma"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "sqlserver"
+}
+
+// OBS: o provider "sqlserver" do Prisma não suporta o tipo nativo `enum`
+// (equivalente ao DataType.ENUM do Sequelize). Os valores continuam
+// validados pelos enums TypeScript na camada de aplicação
+// (src/api/enum/**), e a coluna é armazenada como NVARCHAR.
+
+model Cargo {
+  idCargo        String        @id @default(uuid()) @map("IdCargo") @db.UniqueIdentifier
+  nomeCargo      String        @map("NomeCargo") @db.NVarChar(50)
+  nivelPermissao String        @map("NivelPermissao") @db.NVarChar(20)
+  dataCad        DateTime      @default(now()) @map("DataCad")
+  dataMod        DateTime      @updatedAt @map("DataMod")
+  funcionarios   Funcionario[]
+
+  @@map("TB_CARGOS")
+}
+
+model Funcionario {
+  idFuncionario        String     @id @default(uuid()) @map("IdFuncionario") @db.UniqueIdentifier
+  fkIdCargo            String     @map("FK_IdCargo") @db.UniqueIdentifier
+  cargo                Cargo      @relation(fields: [fkIdCargo], references: [idCargo])
+  nomeFuncionario      String     @map("NomeFuncionario") @db.NVarChar(30)
+  sobrenomeFuncionario String     @map("SobrenomeFuncionario") @db.NVarChar(200)
+  cpf                  String     @map("Cpf") @db.Char(11)
+  senhaHash            String     @map("SenhaHash") @db.NVarChar(255)
+  email                String     @map("Email") @db.NVarChar(255)
+  caminhoImagemPerfil  String?    @map("CaminhoImagemPerfil") @db.NVarChar(255)
+  situacaoEmpregaticia String     @map("SituacaoEmpregaticia") @db.NVarChar(20)
+  telefones            Telefone[]
+  dataCad              DateTime   @default(now()) @map("DataCad")
+  dataMod              DateTime   @updatedAt @map("DataMod")
+
+  @@map("TB_FUNCIONARIOS")
+}
+
+model Telefone {
+  idTelefone      String      @id @default(uuid()) @map("IdTelefone") @db.UniqueIdentifier
+  fkIdFuncionario String      @map("FK_IdFuncionario") @db.UniqueIdentifier
+  funcionario     Funcionario @relation(fields: [fkIdFuncionario], references: [idFuncionario])
+  numeroTelefone  String      @map("NumeroTelefone") @db.NVarChar(20)
+  tipoTelefone    String      @map("TipoTelefone") @db.NVarChar(20)
+  dataCad         DateTime    @default(now()) @map("DataCad")
+  dataMod         DateTime    @updatedAt @map("DataMod")
+
+  @@map("TB_TELEFONES")
+}
+
+model Empresa {
+  idEmpresa   String    @id @default(uuid()) @map("IdEmpresa") @db.UniqueIdentifier
+  nomeEmpresa String    @map("NomeEmpresa") @db.NVarChar(50)
+  amostras    Amostra[]
+  dataCad     DateTime  @default(now()) @map("DataCad")
+  dataMod     DateTime  @updatedAt @map("DataMod")
+
+  @@map("TB_EMPRESAS")
+}
+
+model Ocp {
+  idOCP    String    @id @default(uuid()) @map("IdOCP") @db.UniqueIdentifier
+  nomeOCP  String    @map("NomeOCP") @db.NVarChar(50)
+  amostras Amostra[]
+  dataCad  DateTime  @default(now()) @map("DataCad")
+  dataMod  DateTime  @updatedAt @map("DataMod")
+
+  @@map("TB_OCP")
+}
+
+model Amostra {
+  idAmostra       String   @id @default(uuid()) @map("IdAmostra") @db.UniqueIdentifier
+  fkIdEmpresa     String   @map("FK_IdEmpresa") @db.UniqueIdentifier
+  empresa         Empresa  @relation(fields: [fkIdEmpresa], references: [idEmpresa])
+  fkIdOcp         String   @map("FK_IdOCP") @db.UniqueIdentifier
+  ocp             Ocp      @relation(fields: [fkIdOcp], references: [idOCP])
+  nomeAmostra     String   @map("NomeAmostra") @db.NVarChar(255)
+  tipoAmostra     String   @map("TipoAmostra") @db.NVarChar(255)
+  situacaoAmostra String   @map("SituacaoAmostra") @db.NVarChar(20)
+  dataCad         DateTime @default(now()) @map("DataCad")
+  dataMod         DateTime @updatedAt @map("DataMod")
+
+  @@map("TB_AMOSTRAS")
+}
