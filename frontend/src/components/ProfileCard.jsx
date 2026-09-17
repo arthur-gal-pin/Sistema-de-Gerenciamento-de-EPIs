@@ -1,4 +1,6 @@
 import { Pencil } from "lucide-react";
+import "../styles/index.css"
+import "../styles/theme.css"
 
 export default function ProfileCard({ profile }) {
   return (

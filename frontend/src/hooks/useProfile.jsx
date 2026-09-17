@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { getProfile } from "../services/ProfileService";
+import "../styles/index.css"
+import "../styles/theme.css"
 
 export default function useProfile(userId) {
   const [profile, setProfile] = useState(null);

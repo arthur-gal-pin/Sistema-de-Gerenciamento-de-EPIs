@@ -1,5 +1,7 @@
 import ProfileCard from '../components/profile/ProfileCard'
 import { currentUser, profileFields } from '../data/profileData'
+import "../styles/index.css"
+import "../styles/theme.css"
 
 function ProfilePage() {
   return (
