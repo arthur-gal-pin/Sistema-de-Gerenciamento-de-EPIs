@@ -5,17 +5,19 @@ export class AmostraRepository {
     /**
      * Cria uma nova amostra
      */
-    static async create(data: any) {
+    static async create(data: IAmostra) {
         return await prisma.amostra.create({
             data: {
                 idAmostra: data.idAmostra ?? undefined,
-                fkIdEmpresa: data.FK_idEmpresa,
-                fkIdOcp: data.FK_idOCP,
+                fkIdProtocolo: data.FK_idProtocolo,
+                codigoAmostra: data.codigoAmostra,
                 nomeAmostra: data.nomeAmostra,
-                tipoAmostra: data.tipoAmostra,
                 situacaoAmostra: data.situacaoAmostra,
-                dataCad: data.dataCad,
-                dataMod: data.dataMod,
+                classificacaoAmostra: data.classificacaoAmostra,
+                subclassificacaoAmostra: data.subclassificacaoAmostra,
+                descricao: data.descricao,
+                dataCad: data.dataCad ? new Date(data.dataCad) : undefined,
+                dataMod: data.dataMod ? new Date(data.dataMod) : undefined,
             }
         });
     }
@@ -35,18 +37,54 @@ export class AmostraRepository {
     }
 
     /**
-     * Busca amostras por uma empresa específica
+     * Busca amostras por ID de Protocolo
      */
-    static async findByEmpresa(fkIdEmpresa: string) {
+    static async findByProtocolo(fkIdProtocolo: string) {
         return await prisma.amostra.findMany({
-            where: { fkIdEmpresa }
+            where: { fkIdProtocolo }
         });
     }
 
-    static async findByNome(nome: string) {
+    /**
+     * Busca amostras por Classificação
+     */
+    static async findByClassificacao(classificacaoAmostra: string) {
         return await prisma.amostra.findMany({
             where: {
-                nomeAmostra: { contains: nome }
+                classificacaoAmostra: { contains: classificacaoAmostra }
+            }
+        });
+    }
+
+    /**
+     * Busca amostras por Subclassificação
+     */
+    static async findBySubclassificacao(subclassificacaoAmostra: string) {
+        return await prisma.amostra.findMany({
+            where: {
+                subclassificacaoAmostra: { contains: subclassificacaoAmostra }
+            }
+        });
+    }
+
+    /**
+     * Busca amostras por Nome (parcial)
+     */
+    static async findByNome(nomeAmostra: string) {
+        return await prisma.amostra.findMany({
+            where: {
+                nomeAmostra: { contains: nomeAmostra }
+            }
+        });
+    }
+
+    /**
+     * Busca amostras por Código da Amostra (parcial)
+     */
+    static async findByCodigo(codigoAmostra: string) {
+        return await prisma.amostra.findMany({
+            where: {
+                codigoAmostra: { contains: codigoAmostra }
             }
         });
     }
@@ -58,8 +96,13 @@ export class AmostraRepository {
         const result = await prisma.amostra.updateMany({
             where: { idAmostra },
             data: {
+                fkIdProtocolo: data.FK_idProtocolo,
+                codigoAmostra: data.codigoAmostra,
                 nomeAmostra: data.nomeAmostra,
                 situacaoAmostra: data.situacaoAmostra,
+                classificacaoAmostra: data.classificacaoAmostra,
+                subclassificacaoAmostra: data.subclassificacaoAmostra,
+                descricao: data.descricao,
                 dataMod: new Date(),
             }
         });

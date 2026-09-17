@@ -114,12 +114,12 @@ model Amostra {
   fkIdProtocolo           String          @map("FK_IdProtocolo") @db.UniqueIdentifier
   protocolo               Protocolo       @relation(fields: [fkIdProtocolo], references: [idProtocolo], onDelete: Cascade, onUpdate: Cascade)
   
-  codigoAmostra           String          @map("CodigoAmostra") @db.NVarChar(40)
-  nomeAmostra             String          @map("NomeAmostra")@db.NVarChar(255)
+  codigoAmostra           String          @map("CodigoAmostra") @db.NVarChar(100)
+  nomeAmostra             String          @map("NomeAmostra") @db.NVarChar(100)
   situacaoAmostra         String          @map("SituacaoAmostra") @db.NVarChar(50)
   classificacaoAmostra    String          @map("ClassificacaoAmostra") @db.NVarChar(50)
   subclassificacaoAmostra String          @map("SubclassificacaoAmostra") @db.NVarChar(50)
-  descricao               String?          @map("Descricao") @db.NVarChar(Max)
+  descricao               String?         @map("Descricao") @db.NVarChar(1000)
   
   amostrasEnsaios         AmostraEnsaio[]
   
