@@ -5,7 +5,7 @@ import { EmpresaRepository } from "../../repositories/amostras/empresa.repositor
 export const EmpresaController = {
     getAll: async (req: Request, res: Response): Promise<void> => {
         try {
-            const result = await EmpresaRepository.listarTodos();
+            const result = await EmpresaRepository.findAll();
 
             if (!result || result.length === 0) {
                 res.status(404).json({ message: 'Não foi encontrada nenhuma empresa no banco de dados.' });
@@ -27,7 +27,7 @@ export const EmpresaController = {
                 return; 
             }
 
-            const result = await EmpresaRepository.listarPorId(id);
+            const result = await EmpresaRepository.findById(id);
 
             if (!result) {
                 res.status(404).json({ message: 'Não foi encontrada nenhuma empresa com esse ID.' });
@@ -49,7 +49,7 @@ export const EmpresaController = {
                 return; 
             }
 
-            const result = await EmpresaRepository.listarPorNome(nome);
+            const result = await EmpresaRepository.findByName(nome);
 
             if (!result || result.length === 0) {
                 res.status(404).json({ message: 'Não foi encontrada nenhuma empresa com esse nome.' });
@@ -69,7 +69,7 @@ export const EmpresaController = {
             
             const domainEmpresa = Empresa.create({ nomeEmpresa });
             
-            const result = await EmpresaRepository.criarEmpresa(domainEmpresa.toJSON());
+            const result = await EmpresaRepository.create(domainEmpresa.toJSON());
             
             res.status(201).json({ message: 'Requisição bem sucedida:', data: result });
         } catch (error: any) {
@@ -87,7 +87,7 @@ export const EmpresaController = {
                 return;
             }
 
-            const empresaAtual = await EmpresaRepository.listarPorId(id);
+            const empresaAtual = await EmpresaRepository.findById(id);
             if (!empresaAtual) {
                 res.status(404).json({ message: 'Não foi encontrada nenhuma empresa com esse ID.' });
                 return; 
@@ -95,7 +95,7 @@ export const EmpresaController = {
 
             const domainEmpresa = Empresa.edit(id, { nomeEmpresa: nomeNovo });
 
-            const result = await EmpresaRepository.atualizarEmpresa(id, domainEmpresa.toJSON());
+            const result = await EmpresaRepository.update(id, domainEmpresa.toJSON());
 
             res.status(200).json({ message: 'Empresa atualizada com sucesso.', data: result });
         } catch (error: any) {
@@ -112,7 +112,7 @@ export const EmpresaController = {
                 return;
             }
 
-            const result = await EmpresaRepository.apagarEmpresa(id);
+            const result = await EmpresaRepository.delete(id);
 
             if (!result) {
                 res.status(400).json({ message: 'Não foi possível apagar. Nenhuma Empresa encontrada com esse ID.' });

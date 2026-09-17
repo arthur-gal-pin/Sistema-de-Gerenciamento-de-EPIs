@@ -174,7 +174,7 @@ export type OcpWhereInput = {
   nomeOCP?: Prisma.StringFilter<"Ocp"> | string
   dataCad?: Prisma.DateTimeFilter<"Ocp"> | Date | string
   dataMod?: Prisma.DateTimeFilter<"Ocp"> | Date | string
-  amostras?: Prisma.AmostraListRelationFilter
+  protocolos?: Prisma.ProtocoloListRelationFilter
 }
 
 export type OcpOrderByWithRelationInput = {
@@ -182,7 +182,7 @@ export type OcpOrderByWithRelationInput = {
   nomeOCP?: Prisma.SortOrder
   dataCad?: Prisma.SortOrder
   dataMod?: Prisma.SortOrder
-  amostras?: Prisma.AmostraOrderByRelationAggregateInput
+  protocolos?: Prisma.ProtocoloOrderByRelationAggregateInput
 }
 
 export type OcpWhereUniqueInput = Prisma.AtLeast<{
@@ -193,7 +193,7 @@ export type OcpWhereUniqueInput = Prisma.AtLeast<{
   nomeOCP?: Prisma.StringFilter<"Ocp"> | string
   dataCad?: Prisma.DateTimeFilter<"Ocp"> | Date | string
   dataMod?: Prisma.DateTimeFilter<"Ocp"> | Date | string
-  amostras?: Prisma.AmostraListRelationFilter
+  protocolos?: Prisma.ProtocoloListRelationFilter
 }, "idOCP">
 
 export type OcpOrderByWithAggregationInput = {
@@ -221,7 +221,7 @@ export type OcpCreateInput = {
   nomeOCP: string
   dataCad?: Date | string
   dataMod?: Date | string
-  amostras?: Prisma.AmostraCreateNestedManyWithoutOcpInput
+  protocolos?: Prisma.ProtocoloCreateNestedManyWithoutOcpInput
 }
 
 export type OcpUncheckedCreateInput = {
@@ -229,7 +229,7 @@ export type OcpUncheckedCreateInput = {
   nomeOCP: string
   dataCad?: Date | string
   dataMod?: Date | string
-  amostras?: Prisma.AmostraUncheckedCreateNestedManyWithoutOcpInput
+  protocolos?: Prisma.ProtocoloUncheckedCreateNestedManyWithoutOcpInput
 }
 
 export type OcpUpdateInput = {
@@ -237,7 +237,7 @@ export type OcpUpdateInput = {
   nomeOCP?: Prisma.StringFieldUpdateOperationsInput | string
   dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  amostras?: Prisma.AmostraUpdateManyWithoutOcpNestedInput
+  protocolos?: Prisma.ProtocoloUpdateManyWithoutOcpNestedInput
 }
 
 export type OcpUncheckedUpdateInput = {
@@ -245,7 +245,7 @@ export type OcpUncheckedUpdateInput = {
   nomeOCP?: Prisma.StringFieldUpdateOperationsInput | string
   dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  amostras?: Prisma.AmostraUncheckedUpdateManyWithoutOcpNestedInput
+  protocolos?: Prisma.ProtocoloUncheckedUpdateManyWithoutOcpNestedInput
 }
 
 export type OcpCreateManyInput = {
@@ -295,58 +295,58 @@ export type OcpScalarRelationFilter = {
   isNot?: Prisma.OcpWhereInput
 }
 
-export type OcpCreateNestedOneWithoutAmostrasInput = {
-  create?: Prisma.XOR<Prisma.OcpCreateWithoutAmostrasInput, Prisma.OcpUncheckedCreateWithoutAmostrasInput>
-  connectOrCreate?: Prisma.OcpCreateOrConnectWithoutAmostrasInput
+export type OcpCreateNestedOneWithoutProtocolosInput = {
+  create?: Prisma.XOR<Prisma.OcpCreateWithoutProtocolosInput, Prisma.OcpUncheckedCreateWithoutProtocolosInput>
+  connectOrCreate?: Prisma.OcpCreateOrConnectWithoutProtocolosInput
   connect?: Prisma.OcpWhereUniqueInput
 }
 
-export type OcpUpdateOneRequiredWithoutAmostrasNestedInput = {
-  create?: Prisma.XOR<Prisma.OcpCreateWithoutAmostrasInput, Prisma.OcpUncheckedCreateWithoutAmostrasInput>
-  connectOrCreate?: Prisma.OcpCreateOrConnectWithoutAmostrasInput
-  upsert?: Prisma.OcpUpsertWithoutAmostrasInput
+export type OcpUpdateOneRequiredWithoutProtocolosNestedInput = {
+  create?: Prisma.XOR<Prisma.OcpCreateWithoutProtocolosInput, Prisma.OcpUncheckedCreateWithoutProtocolosInput>
+  connectOrCreate?: Prisma.OcpCreateOrConnectWithoutProtocolosInput
+  upsert?: Prisma.OcpUpsertWithoutProtocolosInput
   connect?: Prisma.OcpWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.OcpUpdateToOneWithWhereWithoutAmostrasInput, Prisma.OcpUpdateWithoutAmostrasInput>, Prisma.OcpUncheckedUpdateWithoutAmostrasInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OcpUpdateToOneWithWhereWithoutProtocolosInput, Prisma.OcpUpdateWithoutProtocolosInput>, Prisma.OcpUncheckedUpdateWithoutProtocolosInput>
 }
 
-export type OcpCreateWithoutAmostrasInput = {
+export type OcpCreateWithoutProtocolosInput = {
   idOCP?: string
   nomeOCP: string
   dataCad?: Date | string
   dataMod?: Date | string
 }
 
-export type OcpUncheckedCreateWithoutAmostrasInput = {
+export type OcpUncheckedCreateWithoutProtocolosInput = {
   idOCP?: string
   nomeOCP: string
   dataCad?: Date | string
   dataMod?: Date | string
 }
 
-export type OcpCreateOrConnectWithoutAmostrasInput = {
+export type OcpCreateOrConnectWithoutProtocolosInput = {
   where: Prisma.OcpWhereUniqueInput
-  create: Prisma.XOR<Prisma.OcpCreateWithoutAmostrasInput, Prisma.OcpUncheckedCreateWithoutAmostrasInput>
+  create: Prisma.XOR<Prisma.OcpCreateWithoutProtocolosInput, Prisma.OcpUncheckedCreateWithoutProtocolosInput>
 }
 
-export type OcpUpsertWithoutAmostrasInput = {
-  update: Prisma.XOR<Prisma.OcpUpdateWithoutAmostrasInput, Prisma.OcpUncheckedUpdateWithoutAmostrasInput>
-  create: Prisma.XOR<Prisma.OcpCreateWithoutAmostrasInput, Prisma.OcpUncheckedCreateWithoutAmostrasInput>
+export type OcpUpsertWithoutProtocolosInput = {
+  update: Prisma.XOR<Prisma.OcpUpdateWithoutProtocolosInput, Prisma.OcpUncheckedUpdateWithoutProtocolosInput>
+  create: Prisma.XOR<Prisma.OcpCreateWithoutProtocolosInput, Prisma.OcpUncheckedCreateWithoutProtocolosInput>
   where?: Prisma.OcpWhereInput
 }
 
-export type OcpUpdateToOneWithWhereWithoutAmostrasInput = {
+export type OcpUpdateToOneWithWhereWithoutProtocolosInput = {
   where?: Prisma.OcpWhereInput
-  data: Prisma.XOR<Prisma.OcpUpdateWithoutAmostrasInput, Prisma.OcpUncheckedUpdateWithoutAmostrasInput>
+  data: Prisma.XOR<Prisma.OcpUpdateWithoutProtocolosInput, Prisma.OcpUncheckedUpdateWithoutProtocolosInput>
 }
 
-export type OcpUpdateWithoutAmostrasInput = {
+export type OcpUpdateWithoutProtocolosInput = {
   idOCP?: Prisma.StringFieldUpdateOperationsInput | string
   nomeOCP?: Prisma.StringFieldUpdateOperationsInput | string
   dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type OcpUncheckedUpdateWithoutAmostrasInput = {
+export type OcpUncheckedUpdateWithoutProtocolosInput = {
   idOCP?: Prisma.StringFieldUpdateOperationsInput | string
   nomeOCP?: Prisma.StringFieldUpdateOperationsInput | string
   dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -359,11 +359,11 @@ export type OcpUncheckedUpdateWithoutAmostrasInput = {
  */
 
 export type OcpCountOutputType = {
-  amostras: number
+  protocolos: number
 }
 
 export type OcpCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  amostras?: boolean | OcpCountOutputTypeCountAmostrasArgs
+  protocolos?: boolean | OcpCountOutputTypeCountProtocolosArgs
 }
 
 /**
@@ -379,8 +379,8 @@ export type OcpCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensio
 /**
  * OcpCountOutputType without action
  */
-export type OcpCountOutputTypeCountAmostrasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.AmostraWhereInput
+export type OcpCountOutputTypeCountProtocolosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ProtocoloWhereInput
 }
 
 
@@ -389,7 +389,7 @@ export type OcpSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = ru
   nomeOCP?: boolean
   dataCad?: boolean
   dataMod?: boolean
-  amostras?: boolean | Prisma.Ocp$amostrasArgs<ExtArgs>
+  protocolos?: boolean | Prisma.Ocp$protocolosArgs<ExtArgs>
   _count?: boolean | Prisma.OcpCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["ocp"]>
 
@@ -404,14 +404,14 @@ export type OcpSelectScalar = {
 
 export type OcpOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"idOCP" | "nomeOCP" | "dataCad" | "dataMod", ExtArgs["result"]["ocp"]>
 export type OcpInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  amostras?: boolean | Prisma.Ocp$amostrasArgs<ExtArgs>
+  protocolos?: boolean | Prisma.Ocp$protocolosArgs<ExtArgs>
   _count?: boolean | Prisma.OcpCountOutputTypeDefaultArgs<ExtArgs>
 }
 
 export type $OcpPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Ocp"
   objects: {
-    amostras: Prisma.$AmostraPayload<ExtArgs>[]
+    protocolos: Prisma.$ProtocoloPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     idOCP: string
@@ -758,7 +758,7 @@ readonly fields: OcpFieldRefs;
  */
 export interface Prisma__OcpClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  amostras<T extends Prisma.Ocp$amostrasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Ocp$amostrasArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AmostraPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  protocolos<T extends Prisma.Ocp$protocolosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Ocp$protocolosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProtocoloPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1139,27 +1139,27 @@ export type OcpDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.InternalA
 }
 
 /**
- * Ocp.amostras
+ * Ocp.protocolos
  */
-export type Ocp$amostrasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Ocp$protocolosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Amostra
+   * Select specific fields to fetch from the Protocolo
    */
-  select?: Prisma.AmostraSelect<ExtArgs> | null
+  select?: Prisma.ProtocoloSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Amostra
+   * Omit specific fields from the Protocolo
    */
-  omit?: Prisma.AmostraOmit<ExtArgs> | null
+  omit?: Prisma.ProtocoloOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.AmostraInclude<ExtArgs> | null
-  where?: Prisma.AmostraWhereInput
-  orderBy?: Prisma.AmostraOrderByWithRelationInput | Prisma.AmostraOrderByWithRelationInput[]
-  cursor?: Prisma.AmostraWhereUniqueInput
+  include?: Prisma.ProtocoloInclude<ExtArgs> | null
+  where?: Prisma.ProtocoloWhereInput
+  orderBy?: Prisma.ProtocoloOrderByWithRelationInput | Prisma.ProtocoloOrderByWithRelationInput[]
+  cursor?: Prisma.ProtocoloWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.AmostraScalarFieldEnum | Prisma.AmostraScalarFieldEnum[]
+  distinct?: Prisma.ProtocoloScalarFieldEnum | Prisma.ProtocoloScalarFieldEnum[]
 }
 
 /**

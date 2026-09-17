@@ -1,4 +1,4 @@
-import { PrismaClient, Prisma } from '../../generated/prisma/client';
+import { PrismaClient, Prisma } from '../../generated/prisma/client/client';
 import { PrismaMssql } from '@prisma/adapter-mssql';
 import dotenv from 'dotenv';
 

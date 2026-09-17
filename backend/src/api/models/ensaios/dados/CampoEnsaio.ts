@@ -1,11 +1,6 @@
 import { uuid } from "uuidv4";
+import { enumTipoDadoCampo } from "../../../enum/ensaios/tipoDado.enum";
 
-export enum enumTipoDadoCampo {
-    string = 'string',
-    date = 'date',
-    number = 'number',
-    char = 'char'
-}
 
 export interface ICampoEnsaio {
     idCampoEnsaio: string | null;

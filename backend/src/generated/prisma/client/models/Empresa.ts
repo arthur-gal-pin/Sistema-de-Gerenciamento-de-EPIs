@@ -174,7 +174,7 @@ export type EmpresaWhereInput = {
   nomeEmpresa?: Prisma.StringFilter<"Empresa"> | string
   dataCad?: Prisma.DateTimeFilter<"Empresa"> | Date | string
   dataMod?: Prisma.DateTimeFilter<"Empresa"> | Date | string
-  amostras?: Prisma.AmostraListRelationFilter
+  protocolos?: Prisma.ProtocoloListRelationFilter
 }
 
 export type EmpresaOrderByWithRelationInput = {
@@ -182,7 +182,7 @@ export type EmpresaOrderByWithRelationInput = {
   nomeEmpresa?: Prisma.SortOrder
   dataCad?: Prisma.SortOrder
   dataMod?: Prisma.SortOrder
-  amostras?: Prisma.AmostraOrderByRelationAggregateInput
+  protocolos?: Prisma.ProtocoloOrderByRelationAggregateInput
 }
 
 export type EmpresaWhereUniqueInput = Prisma.AtLeast<{
@@ -193,7 +193,7 @@ export type EmpresaWhereUniqueInput = Prisma.AtLeast<{
   nomeEmpresa?: Prisma.StringFilter<"Empresa"> | string
   dataCad?: Prisma.DateTimeFilter<"Empresa"> | Date | string
   dataMod?: Prisma.DateTimeFilter<"Empresa"> | Date | string
-  amostras?: Prisma.AmostraListRelationFilter
+  protocolos?: Prisma.ProtocoloListRelationFilter
 }, "idEmpresa">
 
 export type EmpresaOrderByWithAggregationInput = {
@@ -221,7 +221,7 @@ export type EmpresaCreateInput = {
   nomeEmpresa: string
   dataCad?: Date | string
   dataMod?: Date | string
-  amostras?: Prisma.AmostraCreateNestedManyWithoutEmpresaInput
+  protocolos?: Prisma.ProtocoloCreateNestedManyWithoutEmpresaInput
 }
 
 export type EmpresaUncheckedCreateInput = {
@@ -229,7 +229,7 @@ export type EmpresaUncheckedCreateInput = {
   nomeEmpresa: string
   dataCad?: Date | string
   dataMod?: Date | string
-  amostras?: Prisma.AmostraUncheckedCreateNestedManyWithoutEmpresaInput
+  protocolos?: Prisma.ProtocoloUncheckedCreateNestedManyWithoutEmpresaInput
 }
 
 export type EmpresaUpdateInput = {
@@ -237,7 +237,7 @@ export type EmpresaUpdateInput = {
   nomeEmpresa?: Prisma.StringFieldUpdateOperationsInput | string
   dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  amostras?: Prisma.AmostraUpdateManyWithoutEmpresaNestedInput
+  protocolos?: Prisma.ProtocoloUpdateManyWithoutEmpresaNestedInput
 }
 
 export type EmpresaUncheckedUpdateInput = {
@@ -245,7 +245,7 @@ export type EmpresaUncheckedUpdateInput = {
   nomeEmpresa?: Prisma.StringFieldUpdateOperationsInput | string
   dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  amostras?: Prisma.AmostraUncheckedUpdateManyWithoutEmpresaNestedInput
+  protocolos?: Prisma.ProtocoloUncheckedUpdateManyWithoutEmpresaNestedInput
 }
 
 export type EmpresaCreateManyInput = {
@@ -295,58 +295,58 @@ export type EmpresaScalarRelationFilter = {
   isNot?: Prisma.EmpresaWhereInput
 }
 
-export type EmpresaCreateNestedOneWithoutAmostrasInput = {
-  create?: Prisma.XOR<Prisma.EmpresaCreateWithoutAmostrasInput, Prisma.EmpresaUncheckedCreateWithoutAmostrasInput>
-  connectOrCreate?: Prisma.EmpresaCreateOrConnectWithoutAmostrasInput
+export type EmpresaCreateNestedOneWithoutProtocolosInput = {
+  create?: Prisma.XOR<Prisma.EmpresaCreateWithoutProtocolosInput, Prisma.EmpresaUncheckedCreateWithoutProtocolosInput>
+  connectOrCreate?: Prisma.EmpresaCreateOrConnectWithoutProtocolosInput
   connect?: Prisma.EmpresaWhereUniqueInput
 }
 
-export type EmpresaUpdateOneRequiredWithoutAmostrasNestedInput = {
-  create?: Prisma.XOR<Prisma.EmpresaCreateWithoutAmostrasInput, Prisma.EmpresaUncheckedCreateWithoutAmostrasInput>
-  connectOrCreate?: Prisma.EmpresaCreateOrConnectWithoutAmostrasInput
-  upsert?: Prisma.EmpresaUpsertWithoutAmostrasInput
+export type EmpresaUpdateOneRequiredWithoutProtocolosNestedInput = {
+  create?: Prisma.XOR<Prisma.EmpresaCreateWithoutProtocolosInput, Prisma.EmpresaUncheckedCreateWithoutProtocolosInput>
+  connectOrCreate?: Prisma.EmpresaCreateOrConnectWithoutProtocolosInput
+  upsert?: Prisma.EmpresaUpsertWithoutProtocolosInput
   connect?: Prisma.EmpresaWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.EmpresaUpdateToOneWithWhereWithoutAmostrasInput, Prisma.EmpresaUpdateWithoutAmostrasInput>, Prisma.EmpresaUncheckedUpdateWithoutAmostrasInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.EmpresaUpdateToOneWithWhereWithoutProtocolosInput, Prisma.EmpresaUpdateWithoutProtocolosInput>, Prisma.EmpresaUncheckedUpdateWithoutProtocolosInput>
 }
 
-export type EmpresaCreateWithoutAmostrasInput = {
+export type EmpresaCreateWithoutProtocolosInput = {
   idEmpresa?: string
   nomeEmpresa: string
   dataCad?: Date | string
   dataMod?: Date | string
 }
 
-export type EmpresaUncheckedCreateWithoutAmostrasInput = {
+export type EmpresaUncheckedCreateWithoutProtocolosInput = {
   idEmpresa?: string
   nomeEmpresa: string
   dataCad?: Date | string
   dataMod?: Date | string
 }
 
-export type EmpresaCreateOrConnectWithoutAmostrasInput = {
+export type EmpresaCreateOrConnectWithoutProtocolosInput = {
   where: Prisma.EmpresaWhereUniqueInput
-  create: Prisma.XOR<Prisma.EmpresaCreateWithoutAmostrasInput, Prisma.EmpresaUncheckedCreateWithoutAmostrasInput>
+  create: Prisma.XOR<Prisma.EmpresaCreateWithoutProtocolosInput, Prisma.EmpresaUncheckedCreateWithoutProtocolosInput>
 }
 
-export type EmpresaUpsertWithoutAmostrasInput = {
-  update: Prisma.XOR<Prisma.EmpresaUpdateWithoutAmostrasInput, Prisma.EmpresaUncheckedUpdateWithoutAmostrasInput>
-  create: Prisma.XOR<Prisma.EmpresaCreateWithoutAmostrasInput, Prisma.EmpresaUncheckedCreateWithoutAmostrasInput>
+export type EmpresaUpsertWithoutProtocolosInput = {
+  update: Prisma.XOR<Prisma.EmpresaUpdateWithoutProtocolosInput, Prisma.EmpresaUncheckedUpdateWithoutProtocolosInput>
+  create: Prisma.XOR<Prisma.EmpresaCreateWithoutProtocolosInput, Prisma.EmpresaUncheckedCreateWithoutProtocolosInput>
   where?: Prisma.EmpresaWhereInput
 }
 
-export type EmpresaUpdateToOneWithWhereWithoutAmostrasInput = {
+export type EmpresaUpdateToOneWithWhereWithoutProtocolosInput = {
   where?: Prisma.EmpresaWhereInput
-  data: Prisma.XOR<Prisma.EmpresaUpdateWithoutAmostrasInput, Prisma.EmpresaUncheckedUpdateWithoutAmostrasInput>
+  data: Prisma.XOR<Prisma.EmpresaUpdateWithoutProtocolosInput, Prisma.EmpresaUncheckedUpdateWithoutProtocolosInput>
 }
 
-export type EmpresaUpdateWithoutAmostrasInput = {
+export type EmpresaUpdateWithoutProtocolosInput = {
   idEmpresa?: Prisma.StringFieldUpdateOperationsInput | string
   nomeEmpresa?: Prisma.StringFieldUpdateOperationsInput | string
   dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type EmpresaUncheckedUpdateWithoutAmostrasInput = {
+export type EmpresaUncheckedUpdateWithoutProtocolosInput = {
   idEmpresa?: Prisma.StringFieldUpdateOperationsInput | string
   nomeEmpresa?: Prisma.StringFieldUpdateOperationsInput | string
   dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -359,11 +359,11 @@ export type EmpresaUncheckedUpdateWithoutAmostrasInput = {
  */
 
 export type EmpresaCountOutputType = {
-  amostras: number
+  protocolos: number
 }
 
 export type EmpresaCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  amostras?: boolean | EmpresaCountOutputTypeCountAmostrasArgs
+  protocolos?: boolean | EmpresaCountOutputTypeCountProtocolosArgs
 }
 
 /**
@@ -379,8 +379,8 @@ export type EmpresaCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Exte
 /**
  * EmpresaCountOutputType without action
  */
-export type EmpresaCountOutputTypeCountAmostrasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.AmostraWhereInput
+export type EmpresaCountOutputTypeCountProtocolosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ProtocoloWhereInput
 }
 
 
@@ -389,7 +389,7 @@ export type EmpresaSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   nomeEmpresa?: boolean
   dataCad?: boolean
   dataMod?: boolean
-  amostras?: boolean | Prisma.Empresa$amostrasArgs<ExtArgs>
+  protocolos?: boolean | Prisma.Empresa$protocolosArgs<ExtArgs>
   _count?: boolean | Prisma.EmpresaCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["empresa"]>
 
@@ -404,14 +404,14 @@ export type EmpresaSelectScalar = {
 
 export type EmpresaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"idEmpresa" | "nomeEmpresa" | "dataCad" | "dataMod", ExtArgs["result"]["empresa"]>
 export type EmpresaInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  amostras?: boolean | Prisma.Empresa$amostrasArgs<ExtArgs>
+  protocolos?: boolean | Prisma.Empresa$protocolosArgs<ExtArgs>
   _count?: boolean | Prisma.EmpresaCountOutputTypeDefaultArgs<ExtArgs>
 }
 
 export type $EmpresaPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Empresa"
   objects: {
-    amostras: Prisma.$AmostraPayload<ExtArgs>[]
+    protocolos: Prisma.$ProtocoloPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     idEmpresa: string
@@ -758,7 +758,7 @@ readonly fields: EmpresaFieldRefs;
  */
 export interface Prisma__EmpresaClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  amostras<T extends Prisma.Empresa$amostrasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Empresa$amostrasArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AmostraPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  protocolos<T extends Prisma.Empresa$protocolosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Empresa$protocolosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProtocoloPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1139,27 +1139,27 @@ export type EmpresaDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 /**
- * Empresa.amostras
+ * Empresa.protocolos
  */
-export type Empresa$amostrasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Empresa$protocolosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Amostra
+   * Select specific fields to fetch from the Protocolo
    */
-  select?: Prisma.AmostraSelect<ExtArgs> | null
+  select?: Prisma.ProtocoloSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Amostra
+   * Omit specific fields from the Protocolo
    */
-  omit?: Prisma.AmostraOmit<ExtArgs> | null
+  omit?: Prisma.ProtocoloOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.AmostraInclude<ExtArgs> | null
-  where?: Prisma.AmostraWhereInput
-  orderBy?: Prisma.AmostraOrderByWithRelationInput | Prisma.AmostraOrderByWithRelationInput[]
-  cursor?: Prisma.AmostraWhereUniqueInput
+  include?: Prisma.ProtocoloInclude<ExtArgs> | null
+  where?: Prisma.ProtocoloWhereInput
+  orderBy?: Prisma.ProtocoloOrderByWithRelationInput | Prisma.ProtocoloOrderByWithRelationInput[]
+  cursor?: Prisma.ProtocoloWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.AmostraScalarFieldEnum | Prisma.AmostraScalarFieldEnum[]
+  distinct?: Prisma.ProtocoloScalarFieldEnum | Prisma.ProtocoloScalarFieldEnum[]
 }
 
 /**

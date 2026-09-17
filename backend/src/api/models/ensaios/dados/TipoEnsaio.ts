@@ -1,18 +1,11 @@
 import { uuid } from "uuidv4";
-
-// Obs: reaproveita a mesma classificação de AMOSTRA (Peças/Filtros).
-// Se já existir um enum equivalente no domínio de Amostra, o ideal é
-// importar/reaproveitar aquele em vez de duplicar aqui.
-export enum enumCategoriaAplicavel {
-    pecas = 'pecas',
-    filtros = 'filtros'
-}
+import { enumClassificacaoAmostra } from "../../../enum/amostras/classificacaoAmostra.enum";
 
 export interface ITipoEnsaio {
     idTipoEnsaio: string | null;
     nomeEnsaio: string;
     descricaoEnsaio?: string;
-    categoriaAplicavel: enumCategoriaAplicavel;
+    categoriaAplicavel: enumClassificacaoAmostra;
     dataCad?: string;
     dataMod?: string;
 }
@@ -21,14 +14,14 @@ export class TipoEnsaio {
     private _idTipoEnsaio: string | null = null;
     private _nomeEnsaio!: string;
     private _descricaoEnsaio?: string;
-    private _categoriaAplicavel!: enumCategoriaAplicavel;
+    private _categoriaAplicavel!: enumClassificacaoAmostra;
     private _dataCad: string;
     private _dataMod: string;
 
     constructor(
         idTipoEnsaio: string | null,
         nomeEnsaio: string,
-        categoriaAplicavel: enumCategoriaAplicavel,
+        categoriaAplicavel: enumClassificacaoAmostra,
         descricaoEnsaio?: string,
         dataCad?: string,
         dataMod?: string
@@ -74,8 +67,8 @@ export class TipoEnsaio {
         this.atualizarDataModificacao();
     }
 
-    set categoriaAplicavel(value: enumCategoriaAplicavel) {
-        if (!value || !Object.values(enumCategoriaAplicavel).includes(value)) {
+    set categoriaAplicavel(value: enumClassificacaoAmostra) {
+        if (!value || !Object.values(enumClassificacaoAmostra).includes(value)) {
             throw new Error('A categoria aplicável informada é inválida.');
         }
         this._categoriaAplicavel = value;

@@ -4,7 +4,7 @@ import { TelefoneController } from "../../controllers/funcionarios/telefone.cont
 
 const telefoneRoutes = Router();
 
-telefoneRoutes.get('/funcionario/:fkId', TelefoneController.readFuncionario);
+telefoneRoutes.get('/funcionario/:fkId', TelefoneController.getFuncionario);
 telefoneRoutes.post('/', TelefoneController.create);
 telefoneRoutes.put('/:id', TelefoneController.update);
 telefoneRoutes.delete('/:id', TelefoneController.delete);

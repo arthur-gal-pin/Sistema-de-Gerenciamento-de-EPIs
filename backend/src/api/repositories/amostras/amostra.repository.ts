@@ -94,7 +94,7 @@ export class AmostraRepository {
      */
     static async update(idAmostra: string, data: Partial<IAmostra>) {
         const result = await prisma.amostra.updateMany({
-            where: { idAmostra },
+            where: { idAmostra: idAmostra },
             data: {
                 fkIdProtocolo: data.FK_idProtocolo,
                 codigoAmostra: data.codigoAmostra,

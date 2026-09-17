@@ -8,7 +8,7 @@ import bcrypt from "bcryptjs";
 import { enumSituacaoEmpregaticia } from "../../enum/funcionarios/situacaoEmpregaticia";
 
 export const FuncionarioController = {
-  readAll: async (req: Request, res: Response): Promise<void> => {
+  getAll: async (req: Request, res: Response): Promise<void> => {
     try {
       const result = await FuncionarioRepository.listarTodos();
 
@@ -25,7 +25,7 @@ export const FuncionarioController = {
       res.status(400).json({ message: error.message });
     }
   },
-  readId: async (req: Request, res: Response): Promise<void> => {
+  getId: async (req: Request, res: Response): Promise<void> => {
     try {
       const id = String(req.params.id);
 
