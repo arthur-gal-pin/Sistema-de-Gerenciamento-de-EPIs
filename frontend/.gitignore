@@ -22,4 +22,4 @@ package-lock.json
 *.ntvs*
 *.njsproj
 *.sln
-*.sw?
+*.sw
