@@ -12,6 +12,7 @@ import instrumentoRoutes from './ensaios/instrumento.routes';
 import profileActionsRoutes from './funcionarios/profileActions.routes';
 import authRoutes from './funcionarios/login.routes';
 import tipoEnsaioRoutes from './ensaios/tipoEnsaio.routes';
+import campoEnsaioRoutes from './ensaios/campoEnsaio.routes';
 
 routes.use('/profile', profileActionsRoutes)
 routes.use('/cargos', cargoRoutes);
@@ -22,7 +23,8 @@ routes.use('/ocps', ocpRoutes);
 routes.use('/empresas', empresaRoutes);
 routes.use('/protocolos', protocoloRoutes);
 routes.use('/instrumentos', instrumentoRoutes);
-routes.use('/tipo-ensaio', tipoEnsaioRoutes)
+routes.use('/tipo-ensaio', tipoEnsaioRoutes);
+routes.use('/campo-ensaio', campoEnsaioRoutes);
 routes.use('', authRoutes);
 
 export default routes;

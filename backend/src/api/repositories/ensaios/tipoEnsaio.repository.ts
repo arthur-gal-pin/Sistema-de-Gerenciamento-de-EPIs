@@ -43,14 +43,22 @@ export default class TipoEnsaioRepository {
         });
     };
 
+    static async findByName(context: string) {
+        return await prisma.tipoEnsaio.findMany({
+            where: {nomeEnsaio: {
+                contains: `${context}`
+            }}
+        });
+    };
+
     static async findByDescription(context: string) {
         return await prisma.tipoEnsaio.findMany({
             where: {descricao: {
                 contains: `${context}`
             }}
         });
-    }
-
+    };
+        
     static async findByCategory(category: enumClassificacaoAmostra) {
         return await prisma.tipoEnsaio.findMany({
             where: {categoriaAplicavel:  category}

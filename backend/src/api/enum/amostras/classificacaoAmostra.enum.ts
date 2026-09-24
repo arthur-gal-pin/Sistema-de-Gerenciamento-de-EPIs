@@ -1,6 +1,6 @@
 export enum enumClassificacaoAmostra{
     filtro = 'filtro',
-    peca = 'peça'
+    peca = 'peca'
 }
 
 export enum enumSubclassificacaoAmostra {

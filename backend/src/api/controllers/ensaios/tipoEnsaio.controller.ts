@@ -4,6 +4,7 @@ import { enumClassificacaoAmostra } from "../../enum/amostras/classificacaoAmost
 import { ITipoEnsaio, TipoEnsaio } from "../../models/ensaios/dados/TipoEnsaio";
 
 //TAREFA A SER REALIZADA: Depois de criar a entidade campos ensaios, criar uma rota para select dos campos de ensaio junto a essa entidade, e um create com campos de ensaio.
+//TAREFA A SER REALIZADA: ADICIONAR A ROTA DE getByName
 
 export const tipoEnsaioController = {
     getAll: async (req: Request, res: Response): Promise<void> => {
@@ -11,7 +12,7 @@ export const tipoEnsaioController = {
             const result = await TipoEnsaioRepository.findAll();
 
             if (!result || result.length === 0) {
-                res.status(404).json({ message: 'Não foi encontrado nenhum instrumento no banco de dados.' });
+                res.status(404).json({ message: 'Não foi encontrado nenhum tipo ensaio no banco de dados.' });
                 return;
             }
 
@@ -140,7 +141,7 @@ export const tipoEnsaioController = {
 
             const result = await TipoEnsaioRepository.update(id, domainTipoEnsaio);
 
-            res.status(200).json({ message: 'Protocolo atualizado com sucesso.', data: result });
+            res.status(200).json({ message: 'Tipo Ensaio atualizado com sucesso.', data: result });
         } catch (error: any) {
             res.status(400).json({ message: error.message });
         }
@@ -163,7 +164,7 @@ export const tipoEnsaioController = {
 
             await TipoEnsaioRepository.delete(id);
 
-            res.status(200).json({ message: 'Requisição bem-sucedida. Protocolo removido.' });
+            res.status(200).json({ message: 'Requisição bem-sucedida. Campo Ensaio removido.' });
         } catch (error: any) {
             res.status(400).json({ message: error.message });
         }

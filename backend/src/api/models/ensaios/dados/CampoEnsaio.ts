@@ -5,11 +5,10 @@ import { enumTipoDadoCampo } from "../../../enum/ensaios/tipoDado.enum";
 export interface ICampoEnsaio {
     idCampoEnsaio: string | null;
     FK_idTipoEnsaio: string;
-    FK_idInstrumento: string;
     nomeCampo: string;
-    descricaoCampo?: string;
+    descricao?: string;
     obrigatoriedade: boolean;
-    unidadeMedida?: string;
+    unidadeMedida: string;
     tipoDado: enumTipoDadoCampo;
     dataCad?: string;
     dataMod?: string;
@@ -18,11 +17,10 @@ export interface ICampoEnsaio {
 export class CampoEnsaio {
     private _idCampoEnsaio: string | null = null;
     private _FK_idTipoEnsaio!: string;
-    private _FK_idInstrumento!: string;
     private _nomeCampo!: string;
-    private _descricaoCampo?: string;
+    private _descricao?: string;
     private _obrigatoriedade!: boolean;
-    private _unidadeMedida?: string;
+    private _unidadeMedida!: string;
     private _tipoDado!: enumTipoDadoCampo;
     private _dataCad: string;
     private _dataMod: string;
@@ -30,22 +28,20 @@ export class CampoEnsaio {
     constructor(
         idCampoEnsaio: string | null,
         FK_idTipoEnsaio: string,
-        FK_idInstrumento: string,
         nomeCampo: string,
         obrigatoriedade: boolean,
         tipoDado: enumTipoDadoCampo,
+        unidadeMedida: string,
         descricaoCampo?: string,
-        unidadeMedida?: string,
         dataCad?: string,
         dataMod?: string
     ) {
         this.idCampoEnsaio = idCampoEnsaio;
         this.FK_idTipoEnsaio = FK_idTipoEnsaio;
-        this.FK_idInstrumento = FK_idInstrumento;
         this.nomeCampo = nomeCampo;
-        this.obrigatoriedade = obrigatoriedade;
+        this.obrigatoriedade = obrigatoriedade ?? true;
         this.tipoDado = tipoDado;
-        this._descricaoCampo = descricaoCampo;
+        this._descricao = descricaoCampo;
         this.unidadeMedida = unidadeMedida;
         this._dataCad = dataCad || new Date().toISOString();
         this._dataMod = dataMod || new Date().toISOString();
@@ -54,9 +50,8 @@ export class CampoEnsaio {
     // --- GETTERS ---
     get idCampoEnsaio() { return this._idCampoEnsaio };
     get FK_idTipoEnsaio() { return this._FK_idTipoEnsaio };
-    get FK_idInstrumento() { return this._FK_idInstrumento };
     get nomeCampo() { return this._nomeCampo };
-    get descricaoCampo() { return this._descricaoCampo };
+    get descricaoCampo() { return this._descricao };
     get obrigatoriedade() { return this._obrigatoriedade };
     get unidadeMedida() { return this._unidadeMedida };
     get tipoDado() { return this._tipoDado };
@@ -80,14 +75,6 @@ export class CampoEnsaio {
         this.atualizarDataModificacao();
     }
 
-    set FK_idInstrumento(value: string) {
-        if (!value || value.length !== 36) {
-            throw new Error('O FK_idInstrumento informado é inválido.');
-        }
-        this._FK_idInstrumento = value;
-        this.atualizarDataModificacao();
-    }
-
     set nomeCampo(value: string) {
         if (!value || value.length < 2 || value.length > 255) {
             throw new Error('Esse nome de campo é inválido.');
@@ -96,11 +83,11 @@ export class CampoEnsaio {
         this.atualizarDataModificacao();
     }
 
-    set descricaoCampo(value: string | undefined) {
+    set descricao(value: string | undefined) {
         if (value && value.length > 1000) {
             throw new Error('A descrição do campo excede o tamanho máximo permitido.');
         }
-        this._descricaoCampo = value;
+        this._descricao = value;
         this.atualizarDataModificacao();
     }
 
@@ -108,11 +95,11 @@ export class CampoEnsaio {
         if (typeof value !== 'boolean') {
             throw new Error('A obrigatoriedade do campo deve ser verdadeira ou falsa.');
         }
-        this._obrigatoriedade = value;
+        this._obrigatoriedade = value ? value : true;
         this.atualizarDataModificacao();
     }
 
-    set unidadeMedida(value: string | undefined) {
+    set unidadeMedida(value: string) {
         if (value && value.length > 10) {
             throw new Error('A unidade de medida excede o tamanho máximo permitido (10 caracteres).');
         }
@@ -133,7 +120,6 @@ export class CampoEnsaio {
         return new CampoEnsaio(
             dados.idCampoEnsaio ? dados.idCampoEnsaio : String(uuid()),
             dados.FK_idTipoEnsaio,
-            dados.FK_idInstrumento,
             dados.nomeCampo,
             dados.obrigatoriedade,
             dados.tipoDado,
@@ -148,7 +134,6 @@ export class CampoEnsaio {
         return new CampoEnsaio(
             id,
             dados.FK_idTipoEnsaio,
-            dados.FK_idInstrumento,
             dados.nomeCampo,
             dados.obrigatoriedade,
             dados.tipoDado,
@@ -174,9 +159,8 @@ export class CampoEnsaio {
         return {
             idCampoEnsaio: this._idCampoEnsaio,
             FK_idTipoEnsaio: this._FK_idTipoEnsaio,
-            FK_idInstrumento: this._FK_idInstrumento,
             nomeCampo: this._nomeCampo,
-            descricaoCampo: this._descricaoCampo,
+            descricaoCampo: this._descricao,
             obrigatoriedade: this._obrigatoriedade,
             unidadeMedida: this._unidadeMedida,
             tipoDado: this._tipoDado,

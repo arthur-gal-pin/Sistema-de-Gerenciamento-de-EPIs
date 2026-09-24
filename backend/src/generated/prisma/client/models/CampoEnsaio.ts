@@ -31,6 +31,7 @@ export type CampoEnsaioMinAggregateOutputType = {
   obrigatoriedade: boolean | null
   unidadeMedida: string | null
   tipoDado: string | null
+  descricao: string | null
   dataCad: Date | null
   dataMod: Date | null
 }
@@ -42,6 +43,7 @@ export type CampoEnsaioMaxAggregateOutputType = {
   obrigatoriedade: boolean | null
   unidadeMedida: string | null
   tipoDado: string | null
+  descricao: string | null
   dataCad: Date | null
   dataMod: Date | null
 }
@@ -53,6 +55,7 @@ export type CampoEnsaioCountAggregateOutputType = {
   obrigatoriedade: number
   unidadeMedida: number
   tipoDado: number
+  descricao: number
   dataCad: number
   dataMod: number
   _all: number
@@ -66,6 +69,7 @@ export type CampoEnsaioMinAggregateInputType = {
   obrigatoriedade?: true
   unidadeMedida?: true
   tipoDado?: true
+  descricao?: true
   dataCad?: true
   dataMod?: true
 }
@@ -77,6 +81,7 @@ export type CampoEnsaioMaxAggregateInputType = {
   obrigatoriedade?: true
   unidadeMedida?: true
   tipoDado?: true
+  descricao?: true
   dataCad?: true
   dataMod?: true
 }
@@ -88,6 +93,7 @@ export type CampoEnsaioCountAggregateInputType = {
   obrigatoriedade?: true
   unidadeMedida?: true
   tipoDado?: true
+  descricao?: true
   dataCad?: true
   dataMod?: true
   _all?: true
@@ -172,6 +178,7 @@ export type CampoEnsaioGroupByOutputType = {
   obrigatoriedade: boolean
   unidadeMedida: string
   tipoDado: string
+  descricao: string | null
   dataCad: Date
   dataMod: Date
   _count: CampoEnsaioCountAggregateOutputType | null
@@ -204,6 +211,7 @@ export type CampoEnsaioWhereInput = {
   obrigatoriedade?: Prisma.BoolFilter<"CampoEnsaio"> | boolean
   unidadeMedida?: Prisma.StringFilter<"CampoEnsaio"> | string
   tipoDado?: Prisma.StringFilter<"CampoEnsaio"> | string
+  descricao?: Prisma.StringNullableFilter<"CampoEnsaio"> | string | null
   dataCad?: Prisma.DateTimeFilter<"CampoEnsaio"> | Date | string
   dataMod?: Prisma.DateTimeFilter<"CampoEnsaio"> | Date | string
   tipoEnsaio?: Prisma.XOR<Prisma.TipoEnsaioScalarRelationFilter, Prisma.TipoEnsaioWhereInput>
@@ -217,6 +225,7 @@ export type CampoEnsaioOrderByWithRelationInput = {
   obrigatoriedade?: Prisma.SortOrder
   unidadeMedida?: Prisma.SortOrder
   tipoDado?: Prisma.SortOrder
+  descricao?: Prisma.SortOrderInput | Prisma.SortOrder
   dataCad?: Prisma.SortOrder
   dataMod?: Prisma.SortOrder
   tipoEnsaio?: Prisma.TipoEnsaioOrderByWithRelationInput
@@ -233,6 +242,7 @@ export type CampoEnsaioWhereUniqueInput = Prisma.AtLeast<{
   obrigatoriedade?: Prisma.BoolFilter<"CampoEnsaio"> | boolean
   unidadeMedida?: Prisma.StringFilter<"CampoEnsaio"> | string
   tipoDado?: Prisma.StringFilter<"CampoEnsaio"> | string
+  descricao?: Prisma.StringNullableFilter<"CampoEnsaio"> | string | null
   dataCad?: Prisma.DateTimeFilter<"CampoEnsaio"> | Date | string
   dataMod?: Prisma.DateTimeFilter<"CampoEnsaio"> | Date | string
   tipoEnsaio?: Prisma.XOR<Prisma.TipoEnsaioScalarRelationFilter, Prisma.TipoEnsaioWhereInput>
@@ -246,6 +256,7 @@ export type CampoEnsaioOrderByWithAggregationInput = {
   obrigatoriedade?: Prisma.SortOrder
   unidadeMedida?: Prisma.SortOrder
   tipoDado?: Prisma.SortOrder
+  descricao?: Prisma.SortOrderInput | Prisma.SortOrder
   dataCad?: Prisma.SortOrder
   dataMod?: Prisma.SortOrder
   _count?: Prisma.CampoEnsaioCountOrderByAggregateInput
@@ -263,6 +274,7 @@ export type CampoEnsaioScalarWhereWithAggregatesInput = {
   obrigatoriedade?: Prisma.BoolWithAggregatesFilter<"CampoEnsaio"> | boolean
   unidadeMedida?: Prisma.StringWithAggregatesFilter<"CampoEnsaio"> | string
   tipoDado?: Prisma.StringWithAggregatesFilter<"CampoEnsaio"> | string
+  descricao?: Prisma.StringNullableWithAggregatesFilter<"CampoEnsaio"> | string | null
   dataCad?: Prisma.DateTimeWithAggregatesFilter<"CampoEnsaio"> | Date | string
   dataMod?: Prisma.DateTimeWithAggregatesFilter<"CampoEnsaio"> | Date | string
 }
@@ -270,9 +282,10 @@ export type CampoEnsaioScalarWhereWithAggregatesInput = {
 export type CampoEnsaioCreateInput = {
   idCampoEnsaio?: string
   nomeCampo: string
-  obrigatoriedade: boolean
+  obrigatoriedade?: boolean
   unidadeMedida: string
   tipoDado: string
+  descricao?: string | null
   dataCad?: Date | string
   dataMod?: Date | string
   tipoEnsaio: Prisma.TipoEnsaioCreateNestedOneWithoutCamposEnsaioInput
@@ -283,9 +296,10 @@ export type CampoEnsaioUncheckedCreateInput = {
   idCampoEnsaio?: string
   fkIdTipoEnsaio: string
   nomeCampo: string
-  obrigatoriedade: boolean
+  obrigatoriedade?: boolean
   unidadeMedida: string
   tipoDado: string
+  descricao?: string | null
   dataCad?: Date | string
   dataMod?: Date | string
   dadosEnsaio?: Prisma.DadosEnsaioUncheckedCreateNestedManyWithoutCampoEnsaioInput
@@ -297,6 +311,7 @@ export type CampoEnsaioUpdateInput = {
   obrigatoriedade?: Prisma.BoolFieldUpdateOperationsInput | boolean
   unidadeMedida?: Prisma.StringFieldUpdateOperationsInput | string
   tipoDado?: Prisma.StringFieldUpdateOperationsInput | string
+  descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tipoEnsaio?: Prisma.TipoEnsaioUpdateOneRequiredWithoutCamposEnsaioNestedInput
@@ -310,6 +325,7 @@ export type CampoEnsaioUncheckedUpdateInput = {
   obrigatoriedade?: Prisma.BoolFieldUpdateOperationsInput | boolean
   unidadeMedida?: Prisma.StringFieldUpdateOperationsInput | string
   tipoDado?: Prisma.StringFieldUpdateOperationsInput | string
+  descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dadosEnsaio?: Prisma.DadosEnsaioUncheckedUpdateManyWithoutCampoEnsaioNestedInput
@@ -319,9 +335,10 @@ export type CampoEnsaioCreateManyInput = {
   idCampoEnsaio?: string
   fkIdTipoEnsaio: string
   nomeCampo: string
-  obrigatoriedade: boolean
+  obrigatoriedade?: boolean
   unidadeMedida: string
   tipoDado: string
+  descricao?: string | null
   dataCad?: Date | string
   dataMod?: Date | string
 }
@@ -332,6 +349,7 @@ export type CampoEnsaioUpdateManyMutationInput = {
   obrigatoriedade?: Prisma.BoolFieldUpdateOperationsInput | boolean
   unidadeMedida?: Prisma.StringFieldUpdateOperationsInput | string
   tipoDado?: Prisma.StringFieldUpdateOperationsInput | string
+  descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -343,6 +361,7 @@ export type CampoEnsaioUncheckedUpdateManyInput = {
   obrigatoriedade?: Prisma.BoolFieldUpdateOperationsInput | boolean
   unidadeMedida?: Prisma.StringFieldUpdateOperationsInput | string
   tipoDado?: Prisma.StringFieldUpdateOperationsInput | string
+  descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -369,6 +388,7 @@ export type CampoEnsaioCountOrderByAggregateInput = {
   obrigatoriedade?: Prisma.SortOrder
   unidadeMedida?: Prisma.SortOrder
   tipoDado?: Prisma.SortOrder
+  descricao?: Prisma.SortOrder
   dataCad?: Prisma.SortOrder
   dataMod?: Prisma.SortOrder
 }
@@ -380,6 +400,7 @@ export type CampoEnsaioMaxOrderByAggregateInput = {
   obrigatoriedade?: Prisma.SortOrder
   unidadeMedida?: Prisma.SortOrder
   tipoDado?: Prisma.SortOrder
+  descricao?: Prisma.SortOrder
   dataCad?: Prisma.SortOrder
   dataMod?: Prisma.SortOrder
 }
@@ -391,6 +412,7 @@ export type CampoEnsaioMinOrderByAggregateInput = {
   obrigatoriedade?: Prisma.SortOrder
   unidadeMedida?: Prisma.SortOrder
   tipoDado?: Prisma.SortOrder
+  descricao?: Prisma.SortOrder
   dataCad?: Prisma.SortOrder
   dataMod?: Prisma.SortOrder
 }
@@ -458,9 +480,10 @@ export type BoolFieldUpdateOperationsInput = {
 export type CampoEnsaioCreateWithoutDadosEnsaioInput = {
   idCampoEnsaio?: string
   nomeCampo: string
-  obrigatoriedade: boolean
+  obrigatoriedade?: boolean
   unidadeMedida: string
   tipoDado: string
+  descricao?: string | null
   dataCad?: Date | string
   dataMod?: Date | string
   tipoEnsaio: Prisma.TipoEnsaioCreateNestedOneWithoutCamposEnsaioInput
@@ -470,9 +493,10 @@ export type CampoEnsaioUncheckedCreateWithoutDadosEnsaioInput = {
   idCampoEnsaio?: string
   fkIdTipoEnsaio: string
   nomeCampo: string
-  obrigatoriedade: boolean
+  obrigatoriedade?: boolean
   unidadeMedida: string
   tipoDado: string
+  descricao?: string | null
   dataCad?: Date | string
   dataMod?: Date | string
 }
@@ -499,6 +523,7 @@ export type CampoEnsaioUpdateWithoutDadosEnsaioInput = {
   obrigatoriedade?: Prisma.BoolFieldUpdateOperationsInput | boolean
   unidadeMedida?: Prisma.StringFieldUpdateOperationsInput | string
   tipoDado?: Prisma.StringFieldUpdateOperationsInput | string
+  descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tipoEnsaio?: Prisma.TipoEnsaioUpdateOneRequiredWithoutCamposEnsaioNestedInput
@@ -511,6 +536,7 @@ export type CampoEnsaioUncheckedUpdateWithoutDadosEnsaioInput = {
   obrigatoriedade?: Prisma.BoolFieldUpdateOperationsInput | boolean
   unidadeMedida?: Prisma.StringFieldUpdateOperationsInput | string
   tipoDado?: Prisma.StringFieldUpdateOperationsInput | string
+  descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -518,9 +544,10 @@ export type CampoEnsaioUncheckedUpdateWithoutDadosEnsaioInput = {
 export type CampoEnsaioCreateWithoutTipoEnsaioInput = {
   idCampoEnsaio?: string
   nomeCampo: string
-  obrigatoriedade: boolean
+  obrigatoriedade?: boolean
   unidadeMedida: string
   tipoDado: string
+  descricao?: string | null
   dataCad?: Date | string
   dataMod?: Date | string
   dadosEnsaio?: Prisma.DadosEnsaioCreateNestedManyWithoutCampoEnsaioInput
@@ -529,9 +556,10 @@ export type CampoEnsaioCreateWithoutTipoEnsaioInput = {
 export type CampoEnsaioUncheckedCreateWithoutTipoEnsaioInput = {
   idCampoEnsaio?: string
   nomeCampo: string
-  obrigatoriedade: boolean
+  obrigatoriedade?: boolean
   unidadeMedida: string
   tipoDado: string
+  descricao?: string | null
   dataCad?: Date | string
   dataMod?: Date | string
   dadosEnsaio?: Prisma.DadosEnsaioUncheckedCreateNestedManyWithoutCampoEnsaioInput
@@ -572,6 +600,7 @@ export type CampoEnsaioScalarWhereInput = {
   obrigatoriedade?: Prisma.BoolFilter<"CampoEnsaio"> | boolean
   unidadeMedida?: Prisma.StringFilter<"CampoEnsaio"> | string
   tipoDado?: Prisma.StringFilter<"CampoEnsaio"> | string
+  descricao?: Prisma.StringNullableFilter<"CampoEnsaio"> | string | null
   dataCad?: Prisma.DateTimeFilter<"CampoEnsaio"> | Date | string
   dataMod?: Prisma.DateTimeFilter<"CampoEnsaio"> | Date | string
 }
@@ -579,9 +608,10 @@ export type CampoEnsaioScalarWhereInput = {
 export type CampoEnsaioCreateManyTipoEnsaioInput = {
   idCampoEnsaio?: string
   nomeCampo: string
-  obrigatoriedade: boolean
+  obrigatoriedade?: boolean
   unidadeMedida: string
   tipoDado: string
+  descricao?: string | null
   dataCad?: Date | string
   dataMod?: Date | string
 }
@@ -592,6 +622,7 @@ export type CampoEnsaioUpdateWithoutTipoEnsaioInput = {
   obrigatoriedade?: Prisma.BoolFieldUpdateOperationsInput | boolean
   unidadeMedida?: Prisma.StringFieldUpdateOperationsInput | string
   tipoDado?: Prisma.StringFieldUpdateOperationsInput | string
+  descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dadosEnsaio?: Prisma.DadosEnsaioUpdateManyWithoutCampoEnsaioNestedInput
@@ -603,6 +634,7 @@ export type CampoEnsaioUncheckedUpdateWithoutTipoEnsaioInput = {
   obrigatoriedade?: Prisma.BoolFieldUpdateOperationsInput | boolean
   unidadeMedida?: Prisma.StringFieldUpdateOperationsInput | string
   tipoDado?: Prisma.StringFieldUpdateOperationsInput | string
+  descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dadosEnsaio?: Prisma.DadosEnsaioUncheckedUpdateManyWithoutCampoEnsaioNestedInput
@@ -614,6 +646,7 @@ export type CampoEnsaioUncheckedUpdateManyWithoutTipoEnsaioInput = {
   obrigatoriedade?: Prisma.BoolFieldUpdateOperationsInput | boolean
   unidadeMedida?: Prisma.StringFieldUpdateOperationsInput | string
   tipoDado?: Prisma.StringFieldUpdateOperationsInput | string
+  descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -656,6 +689,7 @@ export type CampoEnsaioSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   obrigatoriedade?: boolean
   unidadeMedida?: boolean
   tipoDado?: boolean
+  descricao?: boolean
   dataCad?: boolean
   dataMod?: boolean
   tipoEnsaio?: boolean | Prisma.TipoEnsaioDefaultArgs<ExtArgs>
@@ -672,11 +706,12 @@ export type CampoEnsaioSelectScalar = {
   obrigatoriedade?: boolean
   unidadeMedida?: boolean
   tipoDado?: boolean
+  descricao?: boolean
   dataCad?: boolean
   dataMod?: boolean
 }
 
-export type CampoEnsaioOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"idCampoEnsaio" | "fkIdTipoEnsaio" | "nomeCampo" | "obrigatoriedade" | "unidadeMedida" | "tipoDado" | "dataCad" | "dataMod", ExtArgs["result"]["campoEnsaio"]>
+export type CampoEnsaioOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"idCampoEnsaio" | "fkIdTipoEnsaio" | "nomeCampo" | "obrigatoriedade" | "unidadeMedida" | "tipoDado" | "descricao" | "dataCad" | "dataMod", ExtArgs["result"]["campoEnsaio"]>
 export type CampoEnsaioInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   tipoEnsaio?: boolean | Prisma.TipoEnsaioDefaultArgs<ExtArgs>
   dadosEnsaio?: boolean | Prisma.CampoEnsaio$dadosEnsaioArgs<ExtArgs>
@@ -696,6 +731,7 @@ export type $CampoEnsaioPayload<ExtArgs extends runtime.Types.Extensions.Interna
     obrigatoriedade: boolean
     unidadeMedida: string
     tipoDado: string
+    descricao: string | null
     dataCad: Date
     dataMod: Date
   }, ExtArgs["result"]["campoEnsaio"]>
@@ -1075,6 +1111,7 @@ export interface CampoEnsaioFieldRefs {
   readonly obrigatoriedade: Prisma.FieldRef<"CampoEnsaio", 'Boolean'>
   readonly unidadeMedida: Prisma.FieldRef<"CampoEnsaio", 'String'>
   readonly tipoDado: Prisma.FieldRef<"CampoEnsaio", 'String'>
+  readonly descricao: Prisma.FieldRef<"CampoEnsaio", 'String'>
   readonly dataCad: Prisma.FieldRef<"CampoEnsaio", 'DateTime'>
   readonly dataMod: Prisma.FieldRef<"CampoEnsaio", 'DateTime'>
 }

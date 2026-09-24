@@ -1628,6 +1628,7 @@ export const CampoEnsaioScalarFieldEnum = {
   obrigatoriedade: 'obrigatoriedade',
   unidadeMedida: 'unidadeMedida',
   tipoDado: 'tipoDado',
+  descricao: 'descricao',
   dataCad: 'dataCad',
   dataMod: 'dataMod'
 } as const

@@ -323,7 +323,7 @@ export type FuncionarioCreateInput = {
   senhaHash: string
   email: string
   caminhoImagemPerfil?: string | null
-  situacaoEmpregaticia: string
+  situacaoEmpregaticia?: string
   dataCad?: Date | string
   dataMod?: Date | string
   cargo: Prisma.CargoCreateNestedOneWithoutFuncionariosInput
@@ -343,7 +343,7 @@ export type FuncionarioUncheckedCreateInput = {
   senhaHash: string
   email: string
   caminhoImagemPerfil?: string | null
-  situacaoEmpregaticia: string
+  situacaoEmpregaticia?: string
   dataCad?: Date | string
   dataMod?: Date | string
   telefones?: Prisma.TelefoneUncheckedCreateNestedManyWithoutFuncionarioInput
@@ -400,7 +400,7 @@ export type FuncionarioCreateManyInput = {
   senhaHash: string
   email: string
   caminhoImagemPerfil?: string | null
-  situacaoEmpregaticia: string
+  situacaoEmpregaticia?: string
   dataCad?: Date | string
   dataMod?: Date | string
 }
@@ -613,7 +613,7 @@ export type FuncionarioCreateWithoutCargoInput = {
   senhaHash: string
   email: string
   caminhoImagemPerfil?: string | null
-  situacaoEmpregaticia: string
+  situacaoEmpregaticia?: string
   dataCad?: Date | string
   dataMod?: Date | string
   telefones?: Prisma.TelefoneCreateNestedManyWithoutFuncionarioInput
@@ -631,7 +631,7 @@ export type FuncionarioUncheckedCreateWithoutCargoInput = {
   senhaHash: string
   email: string
   caminhoImagemPerfil?: string | null
-  situacaoEmpregaticia: string
+  situacaoEmpregaticia?: string
   dataCad?: Date | string
   dataMod?: Date | string
   telefones?: Prisma.TelefoneUncheckedCreateNestedManyWithoutFuncionarioInput
@@ -691,7 +691,7 @@ export type FuncionarioCreateWithoutTelefonesInput = {
   senhaHash: string
   email: string
   caminhoImagemPerfil?: string | null
-  situacaoEmpregaticia: string
+  situacaoEmpregaticia?: string
   dataCad?: Date | string
   dataMod?: Date | string
   cargo: Prisma.CargoCreateNestedOneWithoutFuncionariosInput
@@ -710,7 +710,7 @@ export type FuncionarioUncheckedCreateWithoutTelefonesInput = {
   senhaHash: string
   email: string
   caminhoImagemPerfil?: string | null
-  situacaoEmpregaticia: string
+  situacaoEmpregaticia?: string
   dataCad?: Date | string
   dataMod?: Date | string
   registrosAcesso?: Prisma.RegistroAcessoUncheckedCreateNestedManyWithoutFuncionarioInput
@@ -779,7 +779,7 @@ export type FuncionarioCreateWithoutRegistrosAcessoInput = {
   senhaHash: string
   email: string
   caminhoImagemPerfil?: string | null
-  situacaoEmpregaticia: string
+  situacaoEmpregaticia?: string
   dataCad?: Date | string
   dataMod?: Date | string
   cargo: Prisma.CargoCreateNestedOneWithoutFuncionariosInput
@@ -798,7 +798,7 @@ export type FuncionarioUncheckedCreateWithoutRegistrosAcessoInput = {
   senhaHash: string
   email: string
   caminhoImagemPerfil?: string | null
-  situacaoEmpregaticia: string
+  situacaoEmpregaticia?: string
   dataCad?: Date | string
   dataMod?: Date | string
   telefones?: Prisma.TelefoneUncheckedCreateNestedManyWithoutFuncionarioInput
@@ -867,7 +867,7 @@ export type FuncionarioCreateWithoutEnsaiosInput = {
   senhaHash: string
   email: string
   caminhoImagemPerfil?: string | null
-  situacaoEmpregaticia: string
+  situacaoEmpregaticia?: string
   dataCad?: Date | string
   dataMod?: Date | string
   cargo: Prisma.CargoCreateNestedOneWithoutFuncionariosInput
@@ -886,7 +886,7 @@ export type FuncionarioUncheckedCreateWithoutEnsaiosInput = {
   senhaHash: string
   email: string
   caminhoImagemPerfil?: string | null
-  situacaoEmpregaticia: string
+  situacaoEmpregaticia?: string
   dataCad?: Date | string
   dataMod?: Date | string
   telefones?: Prisma.TelefoneUncheckedCreateNestedManyWithoutFuncionarioInput
@@ -955,7 +955,7 @@ export type FuncionarioCreateWithoutAmostrasEnsaiosInput = {
   senhaHash: string
   email: string
   caminhoImagemPerfil?: string | null
-  situacaoEmpregaticia: string
+  situacaoEmpregaticia?: string
   dataCad?: Date | string
   dataMod?: Date | string
   cargo: Prisma.CargoCreateNestedOneWithoutFuncionariosInput
@@ -974,7 +974,7 @@ export type FuncionarioUncheckedCreateWithoutAmostrasEnsaiosInput = {
   senhaHash: string
   email: string
   caminhoImagemPerfil?: string | null
-  situacaoEmpregaticia: string
+  situacaoEmpregaticia?: string
   dataCad?: Date | string
   dataMod?: Date | string
   telefones?: Prisma.TelefoneUncheckedCreateNestedManyWithoutFuncionarioInput
@@ -1043,7 +1043,7 @@ export type FuncionarioCreateWithoutFuncionariosEnsaioInput = {
   senhaHash: string
   email: string
   caminhoImagemPerfil?: string | null
-  situacaoEmpregaticia: string
+  situacaoEmpregaticia?: string
   dataCad?: Date | string
   dataMod?: Date | string
   cargo: Prisma.CargoCreateNestedOneWithoutFuncionariosInput
@@ -1062,7 +1062,7 @@ export type FuncionarioUncheckedCreateWithoutFuncionariosEnsaioInput = {
   senhaHash: string
   email: string
   caminhoImagemPerfil?: string | null
-  situacaoEmpregaticia: string
+  situacaoEmpregaticia?: string
   dataCad?: Date | string
   dataMod?: Date | string
   telefones?: Prisma.TelefoneUncheckedCreateNestedManyWithoutFuncionarioInput
@@ -1131,7 +1131,7 @@ export type FuncionarioCreateManyCargoInput = {
   senhaHash: string
   email: string
   caminhoImagemPerfil?: string | null
-  situacaoEmpregaticia: string
+  situacaoEmpregaticia?: string
   dataCad?: Date | string
   dataMod?: Date | string
 }

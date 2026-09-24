@@ -29,7 +29,7 @@ model Funcionario {
   senhaHash            String              @map("SenhaHash") @db.NVarChar(255)
   email                String              @map("Email") @db.NVarChar(255)
   caminhoImagemPerfil  String?             @map("CaminhoImagemPerfil") @db.NVarChar(255)
-  situacaoEmpregaticia String              @map("SituacaoEmpregaticia") @db.NVarChar(20)
+  situacaoEmpregaticia String              @map("SituacaoEmpregaticia") @db.NVarChar(20) @default("ativo")
   
   telefones            Telefone[]
   registrosAcesso      RegistroAcesso[]
@@ -213,9 +213,10 @@ model CampoEnsaio {
   tipoEnsaio      TipoEnsaio    @relation(fields: [fkIdTipoEnsaio], references: [idTipoEnsaio], onDelete: Cascade, onUpdate: Cascade)
   
   nomeCampo       String        @map("NomeCampo") @db.NVarChar(100)
-  obrigatoriedade Boolean       @map("Obrigatoriedade") @db.Bit
+  obrigatoriedade Boolean       @map("Obrigatoriedade") @db.Bit @default(true)
   unidadeMedida   String        @map("UnidadeMedida") @db.NVarChar(20)
   tipoDado        String        @map("TipoDado") @db.NVarChar(50)
+  descricao       String?        @map("Descricao") @db.NChar(1000)
   
   dadosEnsaio     DadosEnsaio[]
   
