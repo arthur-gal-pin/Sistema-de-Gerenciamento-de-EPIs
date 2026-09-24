@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { Protocolo } from "../../models/ensaios/Protocolo";
+import { IProtocolo, Protocolo } from "../../models/ensaios/Protocolo";
 import ProtocoloRepository from "../../repositories/ensaios/protocolo.repository";
 import { enumTipoProtocolo } from "../../enum/ensaios/tipoProtocolo.enum";
 
@@ -136,8 +136,23 @@ export const ProtocoloController = {
                 return;
             }
 
+            const dadosAtualizados: IProtocolo = {
+                idProtocolo: id,
+                FK_idOCP: req.body.FK_idOCP ?? protocoloAtual.fkIdOcp ,
+                FK_idEmpresa: req.body.FK_idEmpresa ?? protocoloAtual.fkIdEmpresa,
+                nomeProtocolo: req.body.nomeProtocolo ?? protocoloAtual.nomeProtocolo,
+                numeroProtocolo: req.body.numeroProtocolo ?? protocoloAtual.numeroProtocolo,
+                numeroSEI: req.body.numeroSEI ?? protocoloAtual.numeroSEI,
+                tipoProtocolo: req.body.tipoProtocolo as enumTipoProtocolo ?? protocoloAtual.tipoProtocolo as enumTipoProtocolo,
+                diaAbertura: req.body.diaAbertura ?? protocoloAtual.diaAbertura,
+                diaEntrega: req.body.diaAbertura ?? protocoloAtual.diaEntrega,
+                descricao: req.body.descricao ?? protocoloAtual.descricao,
+                dataCad: req.body.dataCad ?? protocoloAtual.dataCad,
+                dataMod: req.body.dataMod ?? protocoloAtual.dataMod
+            }
+
             // Passa o estado atual junto com as alterações do body
-            const domainProtocolo = Protocolo.edit(protocoloAtual, req.body);
+            const domainProtocolo = Protocolo.edit(id, dadosAtualizados);
 
             const result = await ProtocoloRepository.update(id, domainProtocolo.toJSON());
 

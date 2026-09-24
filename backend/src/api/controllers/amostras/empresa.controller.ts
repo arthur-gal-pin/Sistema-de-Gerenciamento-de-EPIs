@@ -65,7 +65,10 @@ export const EmpresaController = {
     create: async (req: Request, res: Response): Promise<void> => {
         try {
             const {nomeEmpresa} = req.body;
-            if(!nomeEmpresa ||  typeof nomeEmpresa !== 'string') res.status(400).json({message: "É necessário que você coloque um nome para o registro de empresa."});
+            if(!nomeEmpresa ||  typeof nomeEmpresa !== 'string') {
+                res.status(400).json({message: "É necessário que você coloque um nome para o registro de empresa."});
+                return;
+            }
             
             const domainEmpresa = Empresa.create({ nomeEmpresa });
             

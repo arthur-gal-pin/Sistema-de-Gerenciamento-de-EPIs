@@ -27,6 +27,7 @@ export type AggregateInstrumento = {
 export type InstrumentoMinAggregateOutputType = {
   idInstrumento: string | null
   nomeInstrumento: string | null
+  funcaoInstrumento: string | null
   ultimaCalibracao: Date | null
   dataCad: Date | null
   dataMod: Date | null
@@ -35,6 +36,7 @@ export type InstrumentoMinAggregateOutputType = {
 export type InstrumentoMaxAggregateOutputType = {
   idInstrumento: string | null
   nomeInstrumento: string | null
+  funcaoInstrumento: string | null
   ultimaCalibracao: Date | null
   dataCad: Date | null
   dataMod: Date | null
@@ -43,6 +45,7 @@ export type InstrumentoMaxAggregateOutputType = {
 export type InstrumentoCountAggregateOutputType = {
   idInstrumento: number
   nomeInstrumento: number
+  funcaoInstrumento: number
   ultimaCalibracao: number
   dataCad: number
   dataMod: number
@@ -53,6 +56,7 @@ export type InstrumentoCountAggregateOutputType = {
 export type InstrumentoMinAggregateInputType = {
   idInstrumento?: true
   nomeInstrumento?: true
+  funcaoInstrumento?: true
   ultimaCalibracao?: true
   dataCad?: true
   dataMod?: true
@@ -61,6 +65,7 @@ export type InstrumentoMinAggregateInputType = {
 export type InstrumentoMaxAggregateInputType = {
   idInstrumento?: true
   nomeInstrumento?: true
+  funcaoInstrumento?: true
   ultimaCalibracao?: true
   dataCad?: true
   dataMod?: true
@@ -69,6 +74,7 @@ export type InstrumentoMaxAggregateInputType = {
 export type InstrumentoCountAggregateInputType = {
   idInstrumento?: true
   nomeInstrumento?: true
+  funcaoInstrumento?: true
   ultimaCalibracao?: true
   dataCad?: true
   dataMod?: true
@@ -150,6 +156,7 @@ export type InstrumentoGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inte
 export type InstrumentoGroupByOutputType = {
   idInstrumento: string
   nomeInstrumento: string
+  funcaoInstrumento: string | null
   ultimaCalibracao: Date
   dataCad: Date
   dataMod: Date
@@ -179,6 +186,7 @@ export type InstrumentoWhereInput = {
   NOT?: Prisma.InstrumentoWhereInput | Prisma.InstrumentoWhereInput[]
   idInstrumento?: Prisma.StringFilter<"Instrumento"> | string
   nomeInstrumento?: Prisma.StringFilter<"Instrumento"> | string
+  funcaoInstrumento?: Prisma.StringNullableFilter<"Instrumento"> | string | null
   ultimaCalibracao?: Prisma.DateTimeFilter<"Instrumento"> | Date | string
   dataCad?: Prisma.DateTimeFilter<"Instrumento"> | Date | string
   dataMod?: Prisma.DateTimeFilter<"Instrumento"> | Date | string
@@ -188,6 +196,7 @@ export type InstrumentoWhereInput = {
 export type InstrumentoOrderByWithRelationInput = {
   idInstrumento?: Prisma.SortOrder
   nomeInstrumento?: Prisma.SortOrder
+  funcaoInstrumento?: Prisma.SortOrderInput | Prisma.SortOrder
   ultimaCalibracao?: Prisma.SortOrder
   dataCad?: Prisma.SortOrder
   dataMod?: Prisma.SortOrder
@@ -200,6 +209,7 @@ export type InstrumentoWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.InstrumentoWhereInput[]
   NOT?: Prisma.InstrumentoWhereInput | Prisma.InstrumentoWhereInput[]
   nomeInstrumento?: Prisma.StringFilter<"Instrumento"> | string
+  funcaoInstrumento?: Prisma.StringNullableFilter<"Instrumento"> | string | null
   ultimaCalibracao?: Prisma.DateTimeFilter<"Instrumento"> | Date | string
   dataCad?: Prisma.DateTimeFilter<"Instrumento"> | Date | string
   dataMod?: Prisma.DateTimeFilter<"Instrumento"> | Date | string
@@ -209,6 +219,7 @@ export type InstrumentoWhereUniqueInput = Prisma.AtLeast<{
 export type InstrumentoOrderByWithAggregationInput = {
   idInstrumento?: Prisma.SortOrder
   nomeInstrumento?: Prisma.SortOrder
+  funcaoInstrumento?: Prisma.SortOrderInput | Prisma.SortOrder
   ultimaCalibracao?: Prisma.SortOrder
   dataCad?: Prisma.SortOrder
   dataMod?: Prisma.SortOrder
@@ -223,6 +234,7 @@ export type InstrumentoScalarWhereWithAggregatesInput = {
   NOT?: Prisma.InstrumentoScalarWhereWithAggregatesInput | Prisma.InstrumentoScalarWhereWithAggregatesInput[]
   idInstrumento?: Prisma.StringWithAggregatesFilter<"Instrumento"> | string
   nomeInstrumento?: Prisma.StringWithAggregatesFilter<"Instrumento"> | string
+  funcaoInstrumento?: Prisma.StringNullableWithAggregatesFilter<"Instrumento"> | string | null
   ultimaCalibracao?: Prisma.DateTimeWithAggregatesFilter<"Instrumento"> | Date | string
   dataCad?: Prisma.DateTimeWithAggregatesFilter<"Instrumento"> | Date | string
   dataMod?: Prisma.DateTimeWithAggregatesFilter<"Instrumento"> | Date | string
@@ -231,6 +243,7 @@ export type InstrumentoScalarWhereWithAggregatesInput = {
 export type InstrumentoCreateInput = {
   idInstrumento?: string
   nomeInstrumento: string
+  funcaoInstrumento?: string | null
   ultimaCalibracao: Date | string
   dataCad?: Date | string
   dataMod?: Date | string
@@ -240,6 +253,7 @@ export type InstrumentoCreateInput = {
 export type InstrumentoUncheckedCreateInput = {
   idInstrumento?: string
   nomeInstrumento: string
+  funcaoInstrumento?: string | null
   ultimaCalibracao: Date | string
   dataCad?: Date | string
   dataMod?: Date | string
@@ -249,6 +263,7 @@ export type InstrumentoUncheckedCreateInput = {
 export type InstrumentoUpdateInput = {
   idInstrumento?: Prisma.StringFieldUpdateOperationsInput | string
   nomeInstrumento?: Prisma.StringFieldUpdateOperationsInput | string
+  funcaoInstrumento?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ultimaCalibracao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -258,6 +273,7 @@ export type InstrumentoUpdateInput = {
 export type InstrumentoUncheckedUpdateInput = {
   idInstrumento?: Prisma.StringFieldUpdateOperationsInput | string
   nomeInstrumento?: Prisma.StringFieldUpdateOperationsInput | string
+  funcaoInstrumento?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ultimaCalibracao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -267,6 +283,7 @@ export type InstrumentoUncheckedUpdateInput = {
 export type InstrumentoCreateManyInput = {
   idInstrumento?: string
   nomeInstrumento: string
+  funcaoInstrumento?: string | null
   ultimaCalibracao: Date | string
   dataCad?: Date | string
   dataMod?: Date | string
@@ -275,6 +292,7 @@ export type InstrumentoCreateManyInput = {
 export type InstrumentoUpdateManyMutationInput = {
   idInstrumento?: Prisma.StringFieldUpdateOperationsInput | string
   nomeInstrumento?: Prisma.StringFieldUpdateOperationsInput | string
+  funcaoInstrumento?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ultimaCalibracao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -283,6 +301,7 @@ export type InstrumentoUpdateManyMutationInput = {
 export type InstrumentoUncheckedUpdateManyInput = {
   idInstrumento?: Prisma.StringFieldUpdateOperationsInput | string
   nomeInstrumento?: Prisma.StringFieldUpdateOperationsInput | string
+  funcaoInstrumento?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ultimaCalibracao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -296,6 +315,7 @@ export type InstrumentoScalarRelationFilter = {
 export type InstrumentoCountOrderByAggregateInput = {
   idInstrumento?: Prisma.SortOrder
   nomeInstrumento?: Prisma.SortOrder
+  funcaoInstrumento?: Prisma.SortOrder
   ultimaCalibracao?: Prisma.SortOrder
   dataCad?: Prisma.SortOrder
   dataMod?: Prisma.SortOrder
@@ -304,6 +324,7 @@ export type InstrumentoCountOrderByAggregateInput = {
 export type InstrumentoMaxOrderByAggregateInput = {
   idInstrumento?: Prisma.SortOrder
   nomeInstrumento?: Prisma.SortOrder
+  funcaoInstrumento?: Prisma.SortOrder
   ultimaCalibracao?: Prisma.SortOrder
   dataCad?: Prisma.SortOrder
   dataMod?: Prisma.SortOrder
@@ -312,6 +333,7 @@ export type InstrumentoMaxOrderByAggregateInput = {
 export type InstrumentoMinOrderByAggregateInput = {
   idInstrumento?: Prisma.SortOrder
   nomeInstrumento?: Prisma.SortOrder
+  funcaoInstrumento?: Prisma.SortOrder
   ultimaCalibracao?: Prisma.SortOrder
   dataCad?: Prisma.SortOrder
   dataMod?: Prisma.SortOrder
@@ -334,6 +356,7 @@ export type InstrumentoUpdateOneRequiredWithoutAmostrasEnsaiosNestedInput = {
 export type InstrumentoCreateWithoutAmostrasEnsaiosInput = {
   idInstrumento?: string
   nomeInstrumento: string
+  funcaoInstrumento?: string | null
   ultimaCalibracao: Date | string
   dataCad?: Date | string
   dataMod?: Date | string
@@ -342,6 +365,7 @@ export type InstrumentoCreateWithoutAmostrasEnsaiosInput = {
 export type InstrumentoUncheckedCreateWithoutAmostrasEnsaiosInput = {
   idInstrumento?: string
   nomeInstrumento: string
+  funcaoInstrumento?: string | null
   ultimaCalibracao: Date | string
   dataCad?: Date | string
   dataMod?: Date | string
@@ -366,6 +390,7 @@ export type InstrumentoUpdateToOneWithWhereWithoutAmostrasEnsaiosInput = {
 export type InstrumentoUpdateWithoutAmostrasEnsaiosInput = {
   idInstrumento?: Prisma.StringFieldUpdateOperationsInput | string
   nomeInstrumento?: Prisma.StringFieldUpdateOperationsInput | string
+  funcaoInstrumento?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ultimaCalibracao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -374,6 +399,7 @@ export type InstrumentoUpdateWithoutAmostrasEnsaiosInput = {
 export type InstrumentoUncheckedUpdateWithoutAmostrasEnsaiosInput = {
   idInstrumento?: Prisma.StringFieldUpdateOperationsInput | string
   nomeInstrumento?: Prisma.StringFieldUpdateOperationsInput | string
+  funcaoInstrumento?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ultimaCalibracao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -413,6 +439,7 @@ export type InstrumentoCountOutputTypeCountAmostrasEnsaiosArgs<ExtArgs extends r
 export type InstrumentoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   idInstrumento?: boolean
   nomeInstrumento?: boolean
+  funcaoInstrumento?: boolean
   ultimaCalibracao?: boolean
   dataCad?: boolean
   dataMod?: boolean
@@ -425,12 +452,13 @@ export type InstrumentoSelect<ExtArgs extends runtime.Types.Extensions.InternalA
 export type InstrumentoSelectScalar = {
   idInstrumento?: boolean
   nomeInstrumento?: boolean
+  funcaoInstrumento?: boolean
   ultimaCalibracao?: boolean
   dataCad?: boolean
   dataMod?: boolean
 }
 
-export type InstrumentoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"idInstrumento" | "nomeInstrumento" | "ultimaCalibracao" | "dataCad" | "dataMod", ExtArgs["result"]["instrumento"]>
+export type InstrumentoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"idInstrumento" | "nomeInstrumento" | "funcaoInstrumento" | "ultimaCalibracao" | "dataCad" | "dataMod", ExtArgs["result"]["instrumento"]>
 export type InstrumentoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   amostrasEnsaios?: boolean | Prisma.Instrumento$amostrasEnsaiosArgs<ExtArgs>
   _count?: boolean | Prisma.InstrumentoCountOutputTypeDefaultArgs<ExtArgs>
@@ -444,6 +472,7 @@ export type $InstrumentoPayload<ExtArgs extends runtime.Types.Extensions.Interna
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     idInstrumento: string
     nomeInstrumento: string
+    funcaoInstrumento: string | null
     ultimaCalibracao: Date
     dataCad: Date
     dataMod: Date
@@ -819,6 +848,7 @@ export interface Prisma__InstrumentoClient<T, Null = never, ExtArgs extends runt
 export interface InstrumentoFieldRefs {
   readonly idInstrumento: Prisma.FieldRef<"Instrumento", 'String'>
   readonly nomeInstrumento: Prisma.FieldRef<"Instrumento", 'String'>
+  readonly funcaoInstrumento: Prisma.FieldRef<"Instrumento", 'String'>
   readonly ultimaCalibracao: Prisma.FieldRef<"Instrumento", 'DateTime'>
   readonly dataCad: Prisma.FieldRef<"Instrumento", 'DateTime'>
   readonly dataMod: Prisma.FieldRef<"Instrumento", 'DateTime'>

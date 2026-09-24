@@ -9,10 +9,10 @@ class Mail {
         public mensagem?: string) { }
 
 
-    sendMail() {
+    async sendMail(): Promise<void> {
 
         let mailOptions = {
-            from: "portalband@band.com.br", //adicionar email particular
+            from: EmailConfigs.user,
             to: this.destinatario,
             subject: this.assunto,
             html: this.mensagem
@@ -29,14 +29,7 @@ class Mail {
             tls: { rejectUnauthorized: false }
         });
 
-
-        transporter.sendMail(mailOptions, function (error, info) {
-            if (error) {
-                return error;
-            } else {
-                return "E-mail enviado com sucesso!";
-            }
-        });
+        await transporter.sendMail(mailOptions);
     }
 }
 

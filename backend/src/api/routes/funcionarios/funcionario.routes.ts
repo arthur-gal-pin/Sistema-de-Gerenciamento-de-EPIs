@@ -14,6 +14,5 @@ funcionarioRoutes.get('/id/:id', auth.authenticate, FuncionarioController.getId)
 funcionarioRoutes.post('/',    auth.authenticate, auth.autorizar(administrador), uploadImagePerfil.single('image'), FuncionarioController.create);
 funcionarioRoutes.patch('/id/:id',  auth.authenticate, auth.autorizar(administrador, coordenador), uploadImagePerfil.single('image'), FuncionarioController.update);
 funcionarioRoutes.delete('/id/:id', auth.authenticate, auth.autorizar(administrador), FuncionarioController.delete);
-funcionarioRoutes.post('/rota-secretabro', uploadImagePerfil.single('image'), FuncionarioController.create);
 
 export default funcionarioRoutes;

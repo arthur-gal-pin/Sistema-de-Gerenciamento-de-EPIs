@@ -18,7 +18,10 @@ app.use(express.json()); // Permite que a controller receba JSON no req.body
 // --- ROTAS ---
 app.use('/', routes);
 
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+// O multer (imagem.multer.ts) grava fisicamente em <raiz-do-projeto>/uploads,
+// então o servidor estático precisa apontar para o mesmo diretório
+// (antes apontava para src/api/uploads, que nunca é criado).
+app.use('/uploads', express.static(path.join(process.cwd(), 'uploads')));
 
 // --- INICIALIZAÇÃO DO BANCO E SERVIDOR ---
 async function startServer() {
@@ -45,7 +48,7 @@ async function startServer() {
     }
 }
 
-// Encerramento gracioso da conexão com o banco
+// Encerramento da conexão com o banco
 process.on('SIGINT', async () => {
     await prisma.$disconnect();
     process.exit(0);

@@ -67,6 +67,7 @@ export const OcpController = {
             const nomeOCP = req.body.nomeOCP;
             if(!nomeOCP || typeof nomeOCP !== 'string'){
                 res.status(400).json({message: 'O nome inserido é inválido.'});
+                return;
             }
             
             const domainOcp = OCP.create({ nomeOCP });

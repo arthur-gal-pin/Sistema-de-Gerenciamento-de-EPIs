@@ -1,4 +1,4 @@
-import { v4 as uuidv4 } from "uuid";
+import { uuid as uuidv4 } from "uuidv4";
 import { enumSituacaoAmostra } from "../../enum/amostras/situacaoAmostra.enum";
 import { enumClassificacaoAmostra, enumSubclassificacaoAmostra } from "../../enum/amostras/classificacaoAmostra.enum";
 

@@ -65,7 +65,7 @@ export const AmostraController = {
     // Busca amostras por Código
     getCodigo: async (req: Request, res: Response): Promise<void> => {
         try {
-            const {codigo} = req.body;
+            const {codigo} = req.params;
             if (!codigo ||typeof codigo !== 'string' || codigo.length <3 || codigo.length > 40) { 
                 res.status(400).json({ message: 'Não foi possível processar a requisição - código inválido inserido.' });
                 return; 

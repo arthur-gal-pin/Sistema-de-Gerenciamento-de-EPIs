@@ -16,7 +16,7 @@ export default class ProtocoloRepository {
                 numeroProtocolo: data.numeroProtocolo,
                 numeroSEI: data.numeroSEI,
                 tipoProtocolo: data.tipoProtocolo as enumTipoProtocolo,
-                diaAbertura: data.diaAbertura,
+                diaAbertura: new Date(data.diaAbertura),
                 diaEntrega: data.diaEntrega ? new Date(data.diaEntrega) : undefined,
                 dataCad: data.dataCad, 
                 dataMod: data.dataMod
@@ -34,8 +34,8 @@ export default class ProtocoloRepository {
                 numeroProtocolo: data.numeroProtocolo,
                 numeroSEI: data.numeroSEI,
                 tipoProtocolo: data.tipoProtocolo as enumTipoProtocolo,
-                diaAbertura: data.diaAbertura,
-                diaEntrega: data.diaEntrega,
+                diaAbertura: data.diaAbertura ? new Date(data.diaAbertura) : undefined,
+                diaEntrega: data.diaEntrega ? new Date(data.diaEntrega) : undefined,
                 dataCad: data.dataCad, 
                 dataMod: new Date()
             }
@@ -48,14 +48,9 @@ export default class ProtocoloRepository {
     };
 
     static async findById(id: string) {
-
-        let protocoloAtual = await prisma.protocolo.findUnique({
+        return await prisma.protocolo.findUnique({
             where: {idProtocolo: id}
         });
-
-        protocoloAtual?.tipoProtocolo: enumTipoProtocolo = protocoloAtual?.tipoProtocolo;
-
-        return protocoloAtual;
     };
 
     static async findBySEI(SEI: string) {

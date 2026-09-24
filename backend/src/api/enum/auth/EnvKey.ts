@@ -1,6 +1,5 @@
 export enum EnvKey {
-    // Porta do servidor
-    SERVER_PORT = 'SERVER_PORT',
+    SERVER_PORT = 'PORT',
 
     // Variáveis banco de dados
     DB_HOST = 'DB_HOST',

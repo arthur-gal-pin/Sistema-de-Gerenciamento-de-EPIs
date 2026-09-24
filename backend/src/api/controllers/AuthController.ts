@@ -10,6 +10,7 @@ import { limparCpf, validarCpf } from "../utils/validarCpf";
 import { enumEquipes } from '../enum/funcionarios/equipes.enum';
 import { enumNivelPermissao } from "../enum/funcionarios/nivelPermissao.enum";
 import { enumSituacaoEmpregaticia } from "../enum/funcionarios/situacaoEmpregaticia";
+import Mail from "../services/Mail";
 
 export class AuthController {
     private jwtService: JwtService;
@@ -107,7 +108,43 @@ export class AuthController {
                 return res.status(400).json({message: "Essa equipe não existe."})
             }
 
-            
+            // Busca o funcionário pelo CPF informado, sem revelar ao cliente
+            // se o CPF existe ou não na base (evita enumeração de usuários).
+            const dadosBanco = await FuncionarioRepository.buscarPorCPF(limparCpf(cpf));
+
+            const nomeConfere = dadosBanco?.nomeFuncionario?.toLowerCase() === String(nome).toLowerCase();
+            const emailConfere = dadosBanco?.email?.toLowerCase() === String(email).toLowerCase();
+
+            if (dadosBanco && nomeConfere && emailConfere) {
+                const idAdministrador = await FuncionarioRepository.buscarAdministrador(equipe as enumEquipes);
+
+                if (idAdministrador) {
+                    const administrador = await FuncionarioRepository.listarPorId(idAdministrador);
+
+                    if (administrador?.email) {
+                        try {
+                            const mail = new Mail(
+                                administrador.email,
+                                'Solicitação de redefinição de senha',
+                                `<p>O funcionário <strong>${dadosBanco.nomeFuncionario} ${dadosBanco.sobrenomeFuncionario}</strong> ` +
+                                `(CPF: ${dadosBanco.cpf}) solicitou a redefinição de senha.</p>` +
+                                (texto ? `<p>Mensagem enviada: ${texto}</p>` : '')
+                            );
+                            await mail.sendMail();
+                        } catch (mailError) {
+                            // Falha no envio de e-mail não deve derrubar a resposta ao usuário;
+                            // apenas registra o erro para investigação.
+                            console.error('Erro ao enviar e-mail de recuperação de senha:', mailError);
+                        }
+                    }
+                }
+            }
+
+            // Resposta genérica sempre igual, independente de os dados baterem ou não,
+            // para não permitir que alguém descubra se um CPF/e-mail está cadastrado.
+            return res.status(200).json({
+                message: 'Se os dados informados estiverem corretos, o responsável pela sua equipe foi notificado para lhe ajudar na redefinição de senha.'
+            });
 
         } catch (error) {
             console.error(error);

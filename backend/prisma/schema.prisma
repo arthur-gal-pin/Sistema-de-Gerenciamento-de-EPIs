@@ -23,7 +23,7 @@ model Funcionario {
   idFuncionario        String              @id @default(uuid()) @map("IdFuncionario") @db.UniqueIdentifier
   fkIdCargo            String              @map("FK_IdCargo") @db.UniqueIdentifier
   cargo                Cargo               @relation(fields: [fkIdCargo], references: [idCargo], onDelete: NoAction, onUpdate: NoAction)
-  nomeFuncionario      String              @map("NomeFuncionario") @db.NVarChar(30)
+  nomeFuncionario      String              @map("NomeFuncionario") @db.NVarChar(50)
   sobrenomeFuncionario String              @map("SobrenomeFuncionario") @db.NVarChar(200)
   cpf                  String              @map("Cpf") @db.Char(11) @unique
   senhaHash            String              @map("SenhaHash") @db.NVarChar(255)
@@ -98,6 +98,7 @@ model Protocolo {
   numeroProtocolo String    @map("NumeroProtocolo") @db.NVarChar(50) @unique
   numeroSEI       String    @map("NumeroSEI") @db.NVarChar(50) @unique
   tipoProtocolo   String    @map("TipoProtocolo") @db.NVarChar(50)
+  descricao       String?   @map("Descricao") @db.NVarChar(1000)
   diaAbertura     DateTime  @map("DiaAbertura") @db.Date
   diaEntrega      DateTime? @map("DiaEntrega") @db.Date 
   
@@ -239,6 +240,7 @@ model FuncionarioEnsaio {
 model Instrumento {
   idInstrumento    String          @id @default(uuid()) @map("IdInstrumento") @db.UniqueIdentifier
   nomeInstrumento  String          @map("NomeInstrumento") @db.NVarChar(100)
+  funcaoInstrumento String?         @map("FuncaoInstrumento") @db.NVarChar(500)
   ultimaCalibracao DateTime        @map("UltimaCalibracao") @db.Date
   
   amostrasEnsaios  AmostraEnsaio[]

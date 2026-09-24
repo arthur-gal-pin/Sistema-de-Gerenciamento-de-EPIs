@@ -165,6 +165,7 @@ export const ProtocoloScalarFieldEnum = {
   numeroProtocolo: 'numeroProtocolo',
   numeroSEI: 'numeroSEI',
   tipoProtocolo: 'tipoProtocolo',
+  descricao: 'descricao',
   diaAbertura: 'diaAbertura',
   diaEntrega: 'diaEntrega',
   dataCad: 'dataCad',
@@ -271,6 +272,7 @@ export type FuncionarioEnsaioScalarFieldEnum = (typeof FuncionarioEnsaioScalarFi
 export const InstrumentoScalarFieldEnum = {
   idInstrumento: 'idInstrumento',
   nomeInstrumento: 'nomeInstrumento',
+  funcaoInstrumento: 'funcaoInstrumento',
   ultimaCalibracao: 'ultimaCalibracao',
   dataCad: 'dataCad',
   dataMod: 'dataMod'

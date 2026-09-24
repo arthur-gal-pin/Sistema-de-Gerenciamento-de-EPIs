@@ -29,7 +29,11 @@ const createMulter = ({ folder, allowedTypes, fileSize }: MulterConfig) => {
         },
         filename: (req: Request, file, cb) => {
             const hash = crypto.randomBytes(12).toString('hex')
-            cb(null, `${hash}-${file.originalname}`)
+            const extensao = path.extname(file.originalname).toLowerCase().replace(/[^a-z0-9.]/g, '')
+            // Não usamos mais o originalname cru: nomes com espaços, acentos,
+            // emojis ou caracteres especiais quebram URLs e podem causar
+            // problemas no sistema de arquivos. Mantemos só um hash + extensão.
+            cb(null, `${hash}${extensao}`)
         }
     })
 

@@ -29,7 +29,7 @@ export default class Telefone {
         this.idTelefone = idTelefone;
         this.idFuncionario = idFuncionario;
         this.numeroTelefone = numeroTelefone;
-        this.tipoTelefone = this.tipoTelefone;
+        this.tipoTelefone = tipoTelefone;
 
         this._dataCad = dataCad || new Date().toISOString();
         this._dataMod = dataMod || new Date().toISOString();

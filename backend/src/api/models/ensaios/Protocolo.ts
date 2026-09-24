@@ -11,7 +11,6 @@ export interface IProtocolo {
     tipoProtocolo: enumTipoProtocolo;
     diaAbertura: string;
     diaEntrega?: string;
-    testemunha?: string;
     descricao?: string;
     dataCad?: string;
     dataMod?: string;
@@ -72,7 +71,6 @@ export class Protocolo {
     get tipoProtocolo() { return this._tipoProtocolo; }
     get diaAbertura() { return this._diaAbertura; }
     get diaEntrega() { return this._diaEntrega; }
-    get testemunha() { return this._testemunha; }
     get descricao() { return this._descricao; }
     get dataCad() { return this._dataCad; }
     get dataMod() { return this._dataMod; }
@@ -142,14 +140,6 @@ export class Protocolo {
         this.atualizarDataModificacao();
     }
 
-    set testemunha(value: string | undefined) {
-        if (value && value.length > 255) {
-            throw new Error('O campo testemunha excede o tamanho máximo permitido.');
-        }
-        this._testemunha = value;
-        this.atualizarDataModificacao();
-    }
-
     set descricao(value: string | undefined) {
         if (value && value.length > 2500) {
             throw new Error('A descrição do protocolo excede o tamanho máximo permitido.');
@@ -178,27 +168,25 @@ export class Protocolo {
             dados.tipoProtocolo as enumTipoProtocolo,
             dados.diaAbertura,
             dados.diaEntrega,
-            dados.testemunha,
             dados.descricao,
             dados.dataCad,
             dados.dataMod
         );
     }
 
-    public static edit(atual: Partial<IProtocolo>, dados: Partial<IProtocolo>) {
+    public static edit(id: string, dados: IProtocolo) {
         return new Protocolo(
-            atual.idProtocolo ?? null,
-            (dados.FK_idOCP ?? atual.FK_idOCP)!,
-            (dados.FK_idEmpresa ?? atual.FK_idEmpresa)!,
-            (dados.nomeProtocolo ?? atual.nomeProtocolo)!,
-            (dados.numeroProtocolo ?? atual.numeroProtocolo)!,
-            (dados.numeroSEI ?? atual.numeroSEI)!,
-            (dados.tipoProtocolo ?? atual.tipoProtocolo)! as enumTipoProtocolo,
-            (dados.diaAbertura ?? atual.diaAbertura)!,
-            dados.diaEntrega ?? atual.diaEntrega,
-            dados.testemunha ?? atual.testemunha,
-            dados.descricao ?? atual.descricao,
-            atual.dataCad,
+            id,
+            dados.FK_idOCP,
+            dados.FK_idEmpresa,
+            dados.nomeProtocolo,
+            dados.numeroProtocolo,
+            dados.numeroSEI,
+            dados.tipoProtocolo as enumTipoProtocolo,
+            dados.diaAbertura,
+            dados.diaEntrega,
+            dados.descricao,
+            dados.dataCad,
             new Date().toISOString()
         );
     }
@@ -221,7 +209,6 @@ export class Protocolo {
             tipoProtocolo: this._tipoProtocolo,
             diaAbertura: this._diaAbertura,
             diaEntrega: this._diaEntrega,
-            testemunha: this._testemunha,
             descricao: this._descricao,
             dataCad: this._dataCad,
             dataMod: this._dataMod

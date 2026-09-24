@@ -25,6 +25,7 @@ export const ProfileActionsController = {
 
             if (!senhaInformada || !senhaNova || typeof senhaInformada !== 'string' || typeof senhaNova !== 'string') {
                 res.status(400).json({ message: 'As senhas informadas são inválidas ou estão nulas.' });
+                return;
             };
 
             const dadosBanco = await FuncionarioRepository.listarPorId(usuarioLido.idFuncionario);
@@ -160,7 +161,7 @@ export const ProfileActionsController = {
             }
 
             if (usuario.caminhoImagemPerfil) {
-                const caminhoAntigo = path.resolve(__dirname, '..', '..', '..', '..', '..', usuario.caminhoImagemPerfil);
+                const caminhoAntigo = path.resolve(process.cwd(), usuario.caminhoImagemPerfil);
 
 
                 try {
@@ -182,30 +183,41 @@ export const ProfileActionsController = {
         }
     },
     removePfp: async (req: Request, res: Response): Promise<void> => {
-        const usuarioLido = req.user;
-        if (!usuarioLido) {
-            res.status(401).json({ message: 'Usuário não autenticado.' });
-            return;
-        }
+        try {
+            const usuarioLido = req.user;
+            if (!usuarioLido) {
+                res.status(401).json({ message: 'Usuário não autenticado.' });
+                return;
+            }
 
-        const usuario = await FuncionarioRepository.listarPorId(usuarioLido.idFuncionario);
+            const usuario = await FuncionarioRepository.listarPorId(usuarioLido.idFuncionario);
 
-        if (!usuario) {
-            res.status(404).json({ message: 'Usuário não encontrado.' });
-            return;
-        }
+            if (!usuario) {
+                res.status(404).json({ message: 'Usuário não encontrado.' });
+                return;
+            }
 
-        if (usuario?.caminhoImagemPerfil) {
-            const caminhoAntigo = path.resolve(__dirname, '..', '..', '..', '..', '..', usuario.caminhoImagemPerfil);
+            if (!usuario.caminhoImagemPerfil) {
+                res.status(200).json({ message: 'Você já não possui foto de perfil.' });
+                return;
+            }
+
+            const caminhoAntigo = path.resolve(process.cwd(), usuario.caminhoImagemPerfil);
             try {
                 await fs.unlink(caminhoAntigo);
             } catch (err: any) {
                 // Se o arquivo não existir fisicamente, apenas loga e não paralisa a resposta de sucesso
                 console.log(`Aviso: Não foi possível apagar a imagem antiga (${caminhoAntigo}):`, err.message);
             }
-        } else {
-            res.status(200).json({message: 'Você já não possui foto de perfil.'});
-            return;
+
+            // Limpa a referência no banco, senão o registro continua apontando
+            // para um arquivo que não existe mais.
+            await FuncionarioRepository.excluirPfp(usuarioLido.idFuncionario);
+
+            res.status(200).json({ message: 'Foto de perfil removida com sucesso.' });
+        } catch (error: any) {
+            console.error('Erro em removePfp:', error);
+            res.status(500).json({ message: 'Erro interno no servidor ao tentar remover a foto de perfil.' });
         }
     }
 }
