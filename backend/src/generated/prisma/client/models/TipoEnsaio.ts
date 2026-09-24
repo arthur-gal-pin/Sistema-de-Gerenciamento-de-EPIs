@@ -28,6 +28,7 @@ export type TipoEnsaioMinAggregateOutputType = {
   idTipoEnsaio: string | null
   nomeEnsaio: string | null
   categoriaAplicavel: string | null
+  descricao: string | null
   dataCad: Date | null
   dataMod: Date | null
 }
@@ -36,6 +37,7 @@ export type TipoEnsaioMaxAggregateOutputType = {
   idTipoEnsaio: string | null
   nomeEnsaio: string | null
   categoriaAplicavel: string | null
+  descricao: string | null
   dataCad: Date | null
   dataMod: Date | null
 }
@@ -44,6 +46,7 @@ export type TipoEnsaioCountAggregateOutputType = {
   idTipoEnsaio: number
   nomeEnsaio: number
   categoriaAplicavel: number
+  descricao: number
   dataCad: number
   dataMod: number
   _all: number
@@ -54,6 +57,7 @@ export type TipoEnsaioMinAggregateInputType = {
   idTipoEnsaio?: true
   nomeEnsaio?: true
   categoriaAplicavel?: true
+  descricao?: true
   dataCad?: true
   dataMod?: true
 }
@@ -62,6 +66,7 @@ export type TipoEnsaioMaxAggregateInputType = {
   idTipoEnsaio?: true
   nomeEnsaio?: true
   categoriaAplicavel?: true
+  descricao?: true
   dataCad?: true
   dataMod?: true
 }
@@ -70,6 +75,7 @@ export type TipoEnsaioCountAggregateInputType = {
   idTipoEnsaio?: true
   nomeEnsaio?: true
   categoriaAplicavel?: true
+  descricao?: true
   dataCad?: true
   dataMod?: true
   _all?: true
@@ -151,6 +157,7 @@ export type TipoEnsaioGroupByOutputType = {
   idTipoEnsaio: string
   nomeEnsaio: string
   categoriaAplicavel: string
+  descricao: string | null
   dataCad: Date
   dataMod: Date
   _count: TipoEnsaioCountAggregateOutputType | null
@@ -180,6 +187,7 @@ export type TipoEnsaioWhereInput = {
   idTipoEnsaio?: Prisma.StringFilter<"TipoEnsaio"> | string
   nomeEnsaio?: Prisma.StringFilter<"TipoEnsaio"> | string
   categoriaAplicavel?: Prisma.StringFilter<"TipoEnsaio"> | string
+  descricao?: Prisma.StringNullableFilter<"TipoEnsaio"> | string | null
   dataCad?: Prisma.DateTimeFilter<"TipoEnsaio"> | Date | string
   dataMod?: Prisma.DateTimeFilter<"TipoEnsaio"> | Date | string
   ensaios?: Prisma.EnsaioListRelationFilter
@@ -190,6 +198,7 @@ export type TipoEnsaioOrderByWithRelationInput = {
   idTipoEnsaio?: Prisma.SortOrder
   nomeEnsaio?: Prisma.SortOrder
   categoriaAplicavel?: Prisma.SortOrder
+  descricao?: Prisma.SortOrderInput | Prisma.SortOrder
   dataCad?: Prisma.SortOrder
   dataMod?: Prisma.SortOrder
   ensaios?: Prisma.EnsaioOrderByRelationAggregateInput
@@ -203,6 +212,7 @@ export type TipoEnsaioWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.TipoEnsaioWhereInput | Prisma.TipoEnsaioWhereInput[]
   nomeEnsaio?: Prisma.StringFilter<"TipoEnsaio"> | string
   categoriaAplicavel?: Prisma.StringFilter<"TipoEnsaio"> | string
+  descricao?: Prisma.StringNullableFilter<"TipoEnsaio"> | string | null
   dataCad?: Prisma.DateTimeFilter<"TipoEnsaio"> | Date | string
   dataMod?: Prisma.DateTimeFilter<"TipoEnsaio"> | Date | string
   ensaios?: Prisma.EnsaioListRelationFilter
@@ -213,6 +223,7 @@ export type TipoEnsaioOrderByWithAggregationInput = {
   idTipoEnsaio?: Prisma.SortOrder
   nomeEnsaio?: Prisma.SortOrder
   categoriaAplicavel?: Prisma.SortOrder
+  descricao?: Prisma.SortOrderInput | Prisma.SortOrder
   dataCad?: Prisma.SortOrder
   dataMod?: Prisma.SortOrder
   _count?: Prisma.TipoEnsaioCountOrderByAggregateInput
@@ -227,6 +238,7 @@ export type TipoEnsaioScalarWhereWithAggregatesInput = {
   idTipoEnsaio?: Prisma.StringWithAggregatesFilter<"TipoEnsaio"> | string
   nomeEnsaio?: Prisma.StringWithAggregatesFilter<"TipoEnsaio"> | string
   categoriaAplicavel?: Prisma.StringWithAggregatesFilter<"TipoEnsaio"> | string
+  descricao?: Prisma.StringNullableWithAggregatesFilter<"TipoEnsaio"> | string | null
   dataCad?: Prisma.DateTimeWithAggregatesFilter<"TipoEnsaio"> | Date | string
   dataMod?: Prisma.DateTimeWithAggregatesFilter<"TipoEnsaio"> | Date | string
 }
@@ -235,6 +247,7 @@ export type TipoEnsaioCreateInput = {
   idTipoEnsaio?: string
   nomeEnsaio: string
   categoriaAplicavel: string
+  descricao?: string | null
   dataCad?: Date | string
   dataMod?: Date | string
   ensaios?: Prisma.EnsaioCreateNestedManyWithoutTipoEnsaioInput
@@ -245,6 +258,7 @@ export type TipoEnsaioUncheckedCreateInput = {
   idTipoEnsaio?: string
   nomeEnsaio: string
   categoriaAplicavel: string
+  descricao?: string | null
   dataCad?: Date | string
   dataMod?: Date | string
   ensaios?: Prisma.EnsaioUncheckedCreateNestedManyWithoutTipoEnsaioInput
@@ -255,6 +269,7 @@ export type TipoEnsaioUpdateInput = {
   idTipoEnsaio?: Prisma.StringFieldUpdateOperationsInput | string
   nomeEnsaio?: Prisma.StringFieldUpdateOperationsInput | string
   categoriaAplicavel?: Prisma.StringFieldUpdateOperationsInput | string
+  descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ensaios?: Prisma.EnsaioUpdateManyWithoutTipoEnsaioNestedInput
@@ -265,6 +280,7 @@ export type TipoEnsaioUncheckedUpdateInput = {
   idTipoEnsaio?: Prisma.StringFieldUpdateOperationsInput | string
   nomeEnsaio?: Prisma.StringFieldUpdateOperationsInput | string
   categoriaAplicavel?: Prisma.StringFieldUpdateOperationsInput | string
+  descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ensaios?: Prisma.EnsaioUncheckedUpdateManyWithoutTipoEnsaioNestedInput
@@ -275,6 +291,7 @@ export type TipoEnsaioCreateManyInput = {
   idTipoEnsaio?: string
   nomeEnsaio: string
   categoriaAplicavel: string
+  descricao?: string | null
   dataCad?: Date | string
   dataMod?: Date | string
 }
@@ -283,6 +300,7 @@ export type TipoEnsaioUpdateManyMutationInput = {
   idTipoEnsaio?: Prisma.StringFieldUpdateOperationsInput | string
   nomeEnsaio?: Prisma.StringFieldUpdateOperationsInput | string
   categoriaAplicavel?: Prisma.StringFieldUpdateOperationsInput | string
+  descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -291,6 +309,7 @@ export type TipoEnsaioUncheckedUpdateManyInput = {
   idTipoEnsaio?: Prisma.StringFieldUpdateOperationsInput | string
   nomeEnsaio?: Prisma.StringFieldUpdateOperationsInput | string
   categoriaAplicavel?: Prisma.StringFieldUpdateOperationsInput | string
+  descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -304,6 +323,7 @@ export type TipoEnsaioCountOrderByAggregateInput = {
   idTipoEnsaio?: Prisma.SortOrder
   nomeEnsaio?: Prisma.SortOrder
   categoriaAplicavel?: Prisma.SortOrder
+  descricao?: Prisma.SortOrder
   dataCad?: Prisma.SortOrder
   dataMod?: Prisma.SortOrder
 }
@@ -312,6 +332,7 @@ export type TipoEnsaioMaxOrderByAggregateInput = {
   idTipoEnsaio?: Prisma.SortOrder
   nomeEnsaio?: Prisma.SortOrder
   categoriaAplicavel?: Prisma.SortOrder
+  descricao?: Prisma.SortOrder
   dataCad?: Prisma.SortOrder
   dataMod?: Prisma.SortOrder
 }
@@ -320,6 +341,7 @@ export type TipoEnsaioMinOrderByAggregateInput = {
   idTipoEnsaio?: Prisma.SortOrder
   nomeEnsaio?: Prisma.SortOrder
   categoriaAplicavel?: Prisma.SortOrder
+  descricao?: Prisma.SortOrder
   dataCad?: Prisma.SortOrder
   dataMod?: Prisma.SortOrder
 }
@@ -356,6 +378,7 @@ export type TipoEnsaioCreateWithoutEnsaiosInput = {
   idTipoEnsaio?: string
   nomeEnsaio: string
   categoriaAplicavel: string
+  descricao?: string | null
   dataCad?: Date | string
   dataMod?: Date | string
   camposEnsaio?: Prisma.CampoEnsaioCreateNestedManyWithoutTipoEnsaioInput
@@ -365,6 +388,7 @@ export type TipoEnsaioUncheckedCreateWithoutEnsaiosInput = {
   idTipoEnsaio?: string
   nomeEnsaio: string
   categoriaAplicavel: string
+  descricao?: string | null
   dataCad?: Date | string
   dataMod?: Date | string
   camposEnsaio?: Prisma.CampoEnsaioUncheckedCreateNestedManyWithoutTipoEnsaioInput
@@ -390,6 +414,7 @@ export type TipoEnsaioUpdateWithoutEnsaiosInput = {
   idTipoEnsaio?: Prisma.StringFieldUpdateOperationsInput | string
   nomeEnsaio?: Prisma.StringFieldUpdateOperationsInput | string
   categoriaAplicavel?: Prisma.StringFieldUpdateOperationsInput | string
+  descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   camposEnsaio?: Prisma.CampoEnsaioUpdateManyWithoutTipoEnsaioNestedInput
@@ -399,6 +424,7 @@ export type TipoEnsaioUncheckedUpdateWithoutEnsaiosInput = {
   idTipoEnsaio?: Prisma.StringFieldUpdateOperationsInput | string
   nomeEnsaio?: Prisma.StringFieldUpdateOperationsInput | string
   categoriaAplicavel?: Prisma.StringFieldUpdateOperationsInput | string
+  descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   camposEnsaio?: Prisma.CampoEnsaioUncheckedUpdateManyWithoutTipoEnsaioNestedInput
@@ -408,6 +434,7 @@ export type TipoEnsaioCreateWithoutCamposEnsaioInput = {
   idTipoEnsaio?: string
   nomeEnsaio: string
   categoriaAplicavel: string
+  descricao?: string | null
   dataCad?: Date | string
   dataMod?: Date | string
   ensaios?: Prisma.EnsaioCreateNestedManyWithoutTipoEnsaioInput
@@ -417,6 +444,7 @@ export type TipoEnsaioUncheckedCreateWithoutCamposEnsaioInput = {
   idTipoEnsaio?: string
   nomeEnsaio: string
   categoriaAplicavel: string
+  descricao?: string | null
   dataCad?: Date | string
   dataMod?: Date | string
   ensaios?: Prisma.EnsaioUncheckedCreateNestedManyWithoutTipoEnsaioInput
@@ -442,6 +470,7 @@ export type TipoEnsaioUpdateWithoutCamposEnsaioInput = {
   idTipoEnsaio?: Prisma.StringFieldUpdateOperationsInput | string
   nomeEnsaio?: Prisma.StringFieldUpdateOperationsInput | string
   categoriaAplicavel?: Prisma.StringFieldUpdateOperationsInput | string
+  descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ensaios?: Prisma.EnsaioUpdateManyWithoutTipoEnsaioNestedInput
@@ -451,6 +480,7 @@ export type TipoEnsaioUncheckedUpdateWithoutCamposEnsaioInput = {
   idTipoEnsaio?: Prisma.StringFieldUpdateOperationsInput | string
   nomeEnsaio?: Prisma.StringFieldUpdateOperationsInput | string
   categoriaAplicavel?: Prisma.StringFieldUpdateOperationsInput | string
+  descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataCad?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataMod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ensaios?: Prisma.EnsaioUncheckedUpdateManyWithoutTipoEnsaioNestedInput
@@ -500,6 +530,7 @@ export type TipoEnsaioSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   idTipoEnsaio?: boolean
   nomeEnsaio?: boolean
   categoriaAplicavel?: boolean
+  descricao?: boolean
   dataCad?: boolean
   dataMod?: boolean
   ensaios?: boolean | Prisma.TipoEnsaio$ensaiosArgs<ExtArgs>
@@ -513,11 +544,12 @@ export type TipoEnsaioSelectScalar = {
   idTipoEnsaio?: boolean
   nomeEnsaio?: boolean
   categoriaAplicavel?: boolean
+  descricao?: boolean
   dataCad?: boolean
   dataMod?: boolean
 }
 
-export type TipoEnsaioOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"idTipoEnsaio" | "nomeEnsaio" | "categoriaAplicavel" | "dataCad" | "dataMod", ExtArgs["result"]["tipoEnsaio"]>
+export type TipoEnsaioOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"idTipoEnsaio" | "nomeEnsaio" | "categoriaAplicavel" | "descricao" | "dataCad" | "dataMod", ExtArgs["result"]["tipoEnsaio"]>
 export type TipoEnsaioInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   ensaios?: boolean | Prisma.TipoEnsaio$ensaiosArgs<ExtArgs>
   camposEnsaio?: boolean | Prisma.TipoEnsaio$camposEnsaioArgs<ExtArgs>
@@ -534,6 +566,7 @@ export type $TipoEnsaioPayload<ExtArgs extends runtime.Types.Extensions.Internal
     idTipoEnsaio: string
     nomeEnsaio: string
     categoriaAplicavel: string
+    descricao: string | null
     dataCad: Date
     dataMod: Date
   }, ExtArgs["result"]["tipoEnsaio"]>
@@ -910,6 +943,7 @@ export interface TipoEnsaioFieldRefs {
   readonly idTipoEnsaio: Prisma.FieldRef<"TipoEnsaio", 'String'>
   readonly nomeEnsaio: Prisma.FieldRef<"TipoEnsaio", 'String'>
   readonly categoriaAplicavel: Prisma.FieldRef<"TipoEnsaio", 'String'>
+  readonly descricao: Prisma.FieldRef<"TipoEnsaio", 'String'>
   readonly dataCad: Prisma.FieldRef<"TipoEnsaio", 'DateTime'>
   readonly dataMod: Prisma.FieldRef<"TipoEnsaio", 'DateTime'>
 }

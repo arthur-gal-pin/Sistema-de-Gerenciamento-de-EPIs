@@ -1613,6 +1613,7 @@ export const TipoEnsaioScalarFieldEnum = {
   idTipoEnsaio: 'idTipoEnsaio',
   nomeEnsaio: 'nomeEnsaio',
   categoriaAplicavel: 'categoriaAplicavel',
+  descricao: 'descricao',
   dataCad: 'dataCad',
   dataMod: 'dataMod'
 } as const

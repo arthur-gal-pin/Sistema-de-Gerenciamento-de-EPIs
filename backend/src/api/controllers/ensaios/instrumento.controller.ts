@@ -86,7 +86,7 @@ export const InstrumentoController = {
 
     create: async (req: Request, res: Response): Promise<void> => {
         try {
-            const domainInstrumento = Instrumento.create(req.body, );
+            const domainInstrumento = Instrumento.create(req.body);
 
             const result = await InstrumentoRepository.create(domainInstrumento);
 

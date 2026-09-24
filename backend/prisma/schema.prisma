@@ -196,6 +196,7 @@ model TipoEnsaio {
   idTipoEnsaio       String        @id @default(uuid()) @map("IdTipoEnsaio") @db.UniqueIdentifier
   nomeEnsaio         String        @map("NomeEnsaio") @db.NVarChar(100)
   categoriaAplicavel String        @map("CategoriaAplicavel") @db.NVarChar(50)
+  descricao          String?       @map("Descricao") @db.NVarChar(1000)
   
   ensaios            Ensaio[]
   camposEnsaio       CampoEnsaio[]
