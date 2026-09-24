@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { uuid as uuidv4 } from "uuidv4";
+=======
+import { v4 as uuidv4 } from "uuid";
+>>>>>>> 1e714b84ab3f61af17c4defb65ae2afb93999285
 import { enumPapelEnsaio } from "../../enum/amostras/situacaoAmostra.enum";
 
 

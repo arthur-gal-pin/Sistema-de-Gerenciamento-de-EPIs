@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { TelefoneController } from "../../controllers/funcionarios/telefone.controller";
+<<<<<<< HEAD
 import { AuthMiddleware } from "../../middlewares/AuthMiddleware";
 import { enumNivelPermissao } from "../../enum/funcionarios/nivelPermissao.enum";
 
@@ -12,5 +13,15 @@ telefoneRoutes.get('/funcionario/:fkId', auth.authenticate, TelefoneController.g
 telefoneRoutes.post('/', auth.authenticate, auth.autorizar(administrador, coordenador), TelefoneController.create);
 telefoneRoutes.put('/:id', auth.authenticate, auth.autorizar(administrador, coordenador), TelefoneController.update);
 telefoneRoutes.delete('/:id', auth.authenticate, auth.autorizar(administrador, coordenador), TelefoneController.delete);
+=======
+
+
+const telefoneRoutes = Router();
+
+telefoneRoutes.get('/funcionario/:fkId', TelefoneController.getFuncionario);
+telefoneRoutes.post('/', TelefoneController.create);
+telefoneRoutes.put('/:id', TelefoneController.update);
+telefoneRoutes.delete('/:id', TelefoneController.delete);
+>>>>>>> 1e714b84ab3f61af17c4defb65ae2afb93999285
 
 export default telefoneRoutes;

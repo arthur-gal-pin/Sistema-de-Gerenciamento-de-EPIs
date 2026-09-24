@@ -2,10 +2,17 @@ import { Request, Response } from "express";
 import { FuncionarioRepository } from "../../repositories/funcionarios/funcionario.repository";
 import Funcionario, { IFuncionario } from "../../models/funcionarios/Funcionario";
 import fs from 'node:fs/promises';
+<<<<<<< HEAD
 import path from "path";
 import bcrypt from "bcryptjs";
 import { enumSituacaoEmpregaticia } from "../../enum/funcionarios/situacaoEmpregaticia";
 import validarSenha from "../../utils/validarSenha";
+=======
+import { existsSync } from 'node:fs';
+import path, { join } from "path";
+import bcrypt from "bcryptjs";
+import { enumSituacaoEmpregaticia } from "../../enum/funcionarios/situacaoEmpregaticia";
+>>>>>>> 1e714b84ab3f61af17c4defb65ae2afb93999285
 
 export const FuncionarioController = {
   getAll: async (req: Request, res: Response): Promise<void> => {
@@ -63,8 +70,11 @@ export const FuncionarioController = {
 
       const caminhoImagem: string = reqFile ? `uploads/images/imagens_perfil/${reqFile.filename}` : "";
 
+<<<<<<< HEAD
       validarSenha(senha); // lança erro se a senha não atender aos critérios mínimos
 
+=======
+>>>>>>> 1e714b84ab3f61af17c4defb65ae2afb93999285
       const password_hash = await bcrypt.hash(senha, 12);
 
       const domainFunc = Funcionario.create({
@@ -92,6 +102,7 @@ export const FuncionarioController = {
   update: async (req: Request, res: Response): Promise<void> => {
     try {
       const id = String(req.params.id);
+<<<<<<< HEAD
 
       // Lista branca: apenas estes campos podem ser alterados por este endpoint.
       // Nunca aceitar idFuncionario/cpf/senhaHash cru vindos do req.body diretamente,
@@ -104,6 +115,9 @@ export const FuncionarioController = {
         situacaoEmpregaticia,
         novaSenha,
       } = req.body;
+=======
+      const dadosNovos = req.body;
+>>>>>>> 1e714b84ab3f61af17c4defb65ae2afb93999285
 
       // 1. Busca os dados atuais do banco
       const funcionarioAtual = await FuncionarioRepository.listarPorId(id);
@@ -115,8 +129,13 @@ export const FuncionarioController = {
 
       // 2. Trata a Senha: gera o hash apenas se uma NOVA senha foi enviada
       let senhaHash = funcionarioAtual.senhaHash;
+<<<<<<< HEAD
       if (novaSenha && String(novaSenha).trim() !== "") {
         senhaHash = await bcrypt.hash(novaSenha, 12);
+=======
+      if (dadosNovos.senhaHash && dadosNovos.senhaHash.trim() !== "") {
+        senhaHash = await bcrypt.hash(dadosNovos.senhaHash, 12);
+>>>>>>> 1e714b84ab3f61af17c4defb65ae2afb93999285
       }
 
       // 3. Trata a Imagem de Perfil
@@ -125,15 +144,24 @@ export const FuncionarioController = {
 
       if (reqFile) {
         // Nova imagem enviada: define o novo caminho
+<<<<<<< HEAD
         caminhoImagemPerfil = `uploads/images/imagens_perfil/${reqFile.filename}`;
 
         // Remove a imagem antiga do disco, se existir
         if (funcionarioAtual.caminhoImagemPerfil) {
           const oldPath = path.resolve(process.cwd(), funcionarioAtual.caminhoImagemPerfil);
+=======
+        caminhoImagemPerfil = `images/imagens_perfil/${reqFile.filename}`;
+
+        // Remove a imagem antiga do disco, se existir
+        if (funcionarioAtual.caminhoImagemPerfil) {
+          const oldPath = path.resolve(funcionarioAtual.caminhoImagemPerfil);
+>>>>>>> 1e714b84ab3f61af17c4defb65ae2afb93999285
           await fs.unlink(oldPath).catch(() => { });
         }
       }
 
+<<<<<<< HEAD
       // 4. Mescla apenas os campos permitidos; qualquer outro campo enviado no
       // body é ignorado (ex.: idFuncionario, cpf, situacaoEmpregaticia sem checagem, etc.)
       const dadosAtualizados: IFuncionario = {
@@ -147,6 +175,14 @@ export const FuncionarioController = {
         situacaoEmpregaticia: situacaoEmpregaticia ?? funcionarioAtual.situacaoEmpregaticia,
         caminhoImagemPerfil: caminhoImagemPerfil ?? undefined,
         dataCad: (funcionarioAtual as any).dataCad,
+=======
+      // 4. Mescla os dados: Mantém o que já existe e sobrescreve apenas o que foi enviado
+      const dadosAtualizados: IFuncionario = {
+        ...funcionarioAtual, // Mantém os valores antigos por padrão
+        ...dadosNovos, // Sobrescreve com os campos enviados no req.body
+        senhaHash, // Garante a senha tratada (nova ou mantida)
+        caminhoImagemPerfil, // Garante a imagem tratada (nova ou mantida)
+>>>>>>> 1e714b84ab3f61af17c4defb65ae2afb93999285
       };
 
       // 5. Instancia/Edita a entidade da regra de negócio
