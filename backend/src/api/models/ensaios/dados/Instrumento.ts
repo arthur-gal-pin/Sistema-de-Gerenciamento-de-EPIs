@@ -1,10 +1,10 @@
-import { uuid } from "uuidv4";
+import { v4 as uuidv4 } from "uuid";
 
 export interface IInstrumento {
     idInstrumento: string | null;
     nomeInstrumento: string;
     funcaoInstrumento?: string;
-    ultimaCalibracao: string;
+    ultimaCalibracao: Date | string;
     dataCad?: string;
     dataMod?: string;
 }
@@ -13,37 +13,39 @@ export class Instrumento {
     private _idInstrumento: string | null = null;
     private _nomeInstrumento!: string;
     private _funcaoInstrumento?: string;
-    private _ultimaCalibracao!: string;
+    private _ultimaCalibracao!: Date;
     private _dataCad: string;
     private _dataMod: string;
 
     constructor(
         idInstrumento: string | null,
         nomeInstrumento: string,
-        ultimaCalibracao: string,
+        ultimaCalibracao: Date | string,
         funcaoInstrumento?: string,
         dataCad?: string,
         dataMod?: string
     ) {
+        this._dataCad = dataCad || new Date().toISOString();
+        this._dataMod = dataMod || new Date().toISOString();
+
+        // Atribuições via setters para rodar as validações
         this.idInstrumento = idInstrumento;
         this.nomeInstrumento = nomeInstrumento;
         this.ultimaCalibracao = ultimaCalibracao;
         this._funcaoInstrumento = funcaoInstrumento;
-        this._dataCad = dataCad || new Date().toISOString();
-        this._dataMod = dataMod || new Date().toISOString();
     }
 
     // --- GETTERS ---
-    get idInstrumento() { return this._idInstrumento };
-    get nomeInstrumento() { return this._nomeInstrumento };
-    get funcaoInstrumento() { return this._funcaoInstrumento };
-    get ultimaCalibracao() { return this._ultimaCalibracao };
-    get dataCad() { return this._dataCad };
-    get dataMod() { return this._dataMod };
+    get idInstrumento(): string | null { return this._idInstrumento; }
+    get nomeInstrumento(): string { return this._nomeInstrumento; }
+    get funcaoInstrumento(): string | undefined { return this._funcaoInstrumento; }
+    get ultimaCalibracao(): Date { return this._ultimaCalibracao; }
+    get dataCad(): string { return this._dataCad; }
+    get dataMod(): string { return this._dataMod; }
 
     // --- SETTERS ---
     set idInstrumento(value: string | null) {
-        if (!value || value !== null && value?.length !== 36) {
+        if (value !== null && value.length !== 36) {
             throw new Error('O idInstrumento está errado.');
         }
         this._idInstrumento = value;
@@ -66,18 +68,19 @@ export class Instrumento {
         this.atualizarDataModificacao();
     }
 
-    set ultimaCalibracao(value: string) {
-        if (!value || isNaN(new Date(value).getTime())) {
+    set ultimaCalibracao(value: Date | string) {
+        const dataParsed = value instanceof Date ? value : new Date(value);
+        if (isNaN(dataParsed.getTime())) {
             throw new Error('A data da última calibração é inválida.');
         }
-        this._ultimaCalibracao = value;
+        this._ultimaCalibracao = dataParsed;
         this.atualizarDataModificacao();
     }
 
     // --- MÉTODOS DE FÁBRICA ---
-    public static create(dados: any) {
+    public static create(dados: Omit<IInstrumento, "idInstrumento"> & { idInstrumento?: string | null }): Instrumento {
         return new Instrumento(
-            dados.idInstrumento ? dados.idInstrumento : String(uuid()),
+            dados.idInstrumento ?? uuidv4(),
             dados.nomeInstrumento,
             dados.ultimaCalibracao,
             dados.funcaoInstrumento,
@@ -86,14 +89,14 @@ export class Instrumento {
         );
     }
 
-    public static edit(id: string, dados: any) {
+    public static edit(id: string, dados: Partial<IInstrumento>): Instrumento {
         return new Instrumento(
             id,
-            dados.nomeInstrumento,
-            dados.ultimaCalibracao,
+            dados.nomeInstrumento ?? "",
+            dados.ultimaCalibracao ?? new Date(),
             dados.funcaoInstrumento,
             dados.dataCad,
-            String(new Date().toISOString())
+            new Date().toISOString()
         );
     }
 
@@ -108,7 +111,7 @@ export class Instrumento {
      * Converte a classe para um objeto plano, removendo os underlines
      * das propriedades privadas ao serializar.
      */
-    public toJSON() {
+    public toJSON(): IInstrumento {
         return {
             idInstrumento: this._idInstrumento,
             nomeInstrumento: this._nomeInstrumento,

@@ -8,6 +8,7 @@ import amostraRoutes from './amostras/amostra.routes';
 import ocpRoutes from './amostras/ocp.routes';
 import empresaRoutes from './amostras/empresa.routes';
 import protocoloRoutes from './ensaios/protocolo.routes';
+import instrumentoRoutes from './ensaios/instrumento.routes';
 import profileActionsRoutes from './funcionarios/profileActions.routes';
 import authRoutes from './funcionarios/login.routes';
 
@@ -19,6 +20,7 @@ routes.use('/amostras', amostraRoutes);
 routes.use('/ocps', ocpRoutes);
 routes.use('/empresas', empresaRoutes);
 routes.use('/protocolos', protocoloRoutes);
+routes.use('/instrumentos', instrumentoRoutes);
 routes.use('', authRoutes);
 
 export default routes;

@@ -57,8 +57,8 @@ export default class InstrumentoRepository {
     }
 
     static async delete(id: string){
-        const result = await prisma.protocolo.delete({
-            where: {idProtocolo: id}
+        const result = await prisma.instrumento.delete({
+            where: {idInstrumento: id}
         });
         return result;
     }

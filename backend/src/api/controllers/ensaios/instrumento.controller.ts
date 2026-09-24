@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import InstrumentoRepository from "../../repositories/ensaios/instrumento.repository";
 import { IInstrumento, Instrumento } from "../../models/ensaios/dados/Instrumento";
 
-export const IntrumentoController = {
+export const InstrumentoController = {
     getAll: async (req: Request, res: Response): Promise<void> => {
         try {
             const result = await InstrumentoRepository.findAll();
@@ -64,7 +64,7 @@ export const IntrumentoController = {
 
     getCalibration: async (req: Request, res: Response): Promise<void> => {
         try {
-            const calibration: Date = req.body;
+            const calibration: Date = new Date(req.body.calibration);
 
             if (!calibration) {
                 res.status(400).json({ message: 'Não foi possível processar a requisição - Data inválida.' });
@@ -86,7 +86,7 @@ export const IntrumentoController = {
 
     create: async (req: Request, res: Response): Promise<void> => {
         try {
-            const domainInstrumento = Instrumento.create(req.body);
+            const domainInstrumento = Instrumento.create(req.body, );
 
             const result = await InstrumentoRepository.create(domainInstrumento);
 
