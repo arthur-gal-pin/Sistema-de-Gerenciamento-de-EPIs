@@ -5,6 +5,7 @@ import SkeletonLoading from '../components/common/SkeletonLoading'
 import { ModalCriarAmostra } from '../components/modals/amostras/ModalCriarAmostra'
 import { useModal } from '../hooks/useModal'
 import { useAmostras } from '../hooks/amostras/useAmostra'
+import SearchBar from '../components/pesquisa/SearchBar'
 
 export default function Amostras() {
   const [mobileNavOpen, setMobileNavOpen] = useState(false)

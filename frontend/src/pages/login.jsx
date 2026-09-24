@@ -1,10 +1,17 @@
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import PersonModal from "../components/modals/PersonModal";
 import "./login.css"
 export default function Login() {
+  const navigate = useNavigate();
+
   const [cpf, setCpf] = useState("");
   const [senha, setSenha] = useState("");
+
+  // Estado da função modal de cadastro — mantido intacto e funcional,
+  // apenas não é mais acionado pelo botão "Criar uma conta" abaixo.
+  // Pode ser reativado a qualquer momento (ex: setIsRegisterOpen(true)).
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
 
   const [mostrarPopup, setMostrarPopup] = useState(false);
@@ -169,7 +176,7 @@ export default function Login() {
           <button
             type="button"
             className="btn-cadastro"
-            onClick={() => setIsRegisterOpen(true)}>
+            onClick={() => navigate("/cadastro")}>
             Criar uma conta
           </button>
 
@@ -182,7 +189,7 @@ export default function Login() {
                 border: "none",
                 padding: 0,
                 margin: 0,
-                color: "#198754",
+                color: "#338719",
                 fontWeight: "700",
                 fontSize: "16px",
                 cursor: "pointer",
@@ -253,7 +260,7 @@ export default function Login() {
                 style={{
                   margin: 0,
                   padding: 0,
-                  color: "#198754",
+                  color: "#2f8719",
                   fontSize: "32px",
                   fontWeight: "700",
                   lineHeight: "1.2",
@@ -273,7 +280,7 @@ export default function Login() {
                   margin: 0,
                   border: "none",
                   background: "transparent",
-                  color: "#198754",
+                  color: "#2f8719",
                   fontSize: "36px",
                   fontWeight: "700",
                   lineHeight: "1",
@@ -322,7 +329,7 @@ export default function Login() {
                     style={{
                       display: "block",
                       marginBottom: "7px",
-                      color: "#198754",
+                      color: "#2d8719",
                       fontSize: "16px",
                       fontWeight: "700",
                     }}
@@ -366,7 +373,7 @@ export default function Login() {
                     style={{
                       display: "block",
                       marginBottom: "7px",
-                      color: "#198754",
+                      color: "#2d8719",
                       fontSize: "16px",
                       fontWeight: "700",
                     }}
@@ -459,7 +466,7 @@ export default function Login() {
                     style={{
                       display: "block",
                       marginBottom: "7px",
-                      color: "#198754",
+                      color: "#338719",
                       fontSize: "16px",
                       fontWeight: "700",
                     }}
@@ -508,7 +515,7 @@ export default function Login() {
                     margin: 0,
                     border: "none",
                     borderRadius: "8px",
-                    backgroundColor: "#198754",
+                    backgroundColor: "#2d8719",
                     color: "#ffffff",
                     fontSize: "17px",
                     fontWeight: "700",
@@ -523,7 +530,7 @@ export default function Login() {
                 >
                   {enviando
                     ? "Enviando..."
-                    : "Enviar ao coordenador"}
+                    : "Enviar "}
                 </button>
 
               </form>

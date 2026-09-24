@@ -207,9 +207,9 @@ body {
 
     background: #fff;
 
-    color: #1565C0;
+    color: #2E7D32;
 
-    border: 1px solid #1565C0;
+    border: 1px solid #3b7d2e;
 
     border-radius: 8px;
 
@@ -222,7 +222,7 @@ body {
 }
 
 .btn-cadastro:hover {
-    background: #1565C0;
+    background: #3b7d2e;
 
     color: #fff;
 }
@@ -237,7 +237,7 @@ body {
 
     margin-top: 5px;
 
-    color: #2E7D32;
+    color: #467d2e;
 
     text-decoration: none;
 
@@ -278,4 +278,249 @@ body {
     .login-box p {
         font-size: 14px;
     }
+}
+
+
+/* =========================================
+   LINK "ESQUECI MINHA SENHA"
+========================================= */
+
+.esqueci-senha-wrapper {
+    width: 100%;
+
+    text-align: center;
+
+    margin-top: 5px;
+}
+
+.link-esqueci-senha {
+    background: transparent;
+
+    border: none;
+
+    padding: 0;
+    margin: 0;
+
+    color: #288719;
+
+    font-weight: 700;
+    font-size: 16px;
+
+    cursor: pointer;
+}
+
+
+/* =========================================
+   POPUP "ESQUECI MINHA SENHA"
+========================================= */
+
+.popup-overlay {
+    position: fixed;
+    inset: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    background-color: rgba(0, 0, 0, 0.92);
+
+    z-index: 99999;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+
+    box-sizing: border-box;
+
+    overflow: hidden;
+}
+
+.popup-box {
+    width: 100%;
+    max-width: 760px;
+    max-height: calc(100vh - 40px);
+
+    background-color: #ffffff;
+
+    border-radius: 16px;
+
+    box-sizing: border-box;
+
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.50);
+
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.popup-header {
+    width: 100%;
+
+    padding: 28px 35px 10px 35px;
+
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+.popup-title {
+    margin: 0;
+    padding: 0;
+
+    color: #288719;
+
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.popup-close {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+
+    padding: 0;
+    margin: 0;
+
+    border: none;
+    background: transparent;
+
+    color: #198720;
+
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup-desc-wrapper {
+    padding: 0 35px 25px 35px;
+
+    box-sizing: border-box;
+}
+
+.popup-desc {
+    margin: 0;
+
+    color: #555555;
+
+    font-size: 16px;
+    line-height: 1.4;
+}
+
+.popup-form-wrapper {
+    padding: 0 35px 35px 35px;
+
+    box-sizing: border-box;
+}
+
+.popup-field {
+    width: 100%;
+
+    margin-bottom: 18px;
+}
+
+.popup-field-last {
+    margin-bottom: 20px;
+}
+
+.popup-label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #1d8719;
+
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.popup-input {
+    display: block;
+
+    width: 100%;
+    height: 52px;
+
+    padding: 0 15px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #cccccc;
+    border-radius: 8px;
+
+    background-color: #ffffff;
+
+    color: #333333;
+
+    font-size: 16px;
+
+    outline: none;
+}
+
+.popup-textarea {
+    display: block;
+
+    width: 100%;
+    height: 52px;
+    min-height: 52px;
+    max-height: 52px;
+
+    padding: 0 15px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #cccccc;
+    border-radius: 8px;
+
+    background-color: #ffffff;
+
+    color: #333333;
+
+    font-size: 16px;
+    font-family: inherit;
+    line-height: 52px;
+
+    outline: none;
+
+    resize: none;
+    overflow: hidden;
+}
+
+.popup-submit-btn {
+    width: 100%;
+    height: 52px;
+
+    padding: 0;
+    margin: 0;
+
+    border: none;
+    border-radius: 8px;
+
+    background-color: #2b8719;
+
+    color: #ffffff;
+
+    font-size: 17px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup-submit-btn:disabled {
+    cursor: not-allowed;
+
+    opacity: 0.7;
 }

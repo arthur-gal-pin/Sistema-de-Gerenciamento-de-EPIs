@@ -1,5 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom"
-import Login from "./pages/Login"
+import Login from "../src/pages/login"
+import Cadastro from "../src/pages/cadastro"
 import Home from "./pages/Home"
 import Amostras from "./pages/Amostras"
 import ProfilePage from "./pages/Profile"
@@ -11,6 +12,7 @@ export default function App() {
     <Routes>
       <Route path="/" element={<Navigate to="/login" replace />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/cadastro" element={<Cadastro />} />
       <Route path="/perfil" element={<ProfilePage />} />
       <Route path="/home" element={<Home />} />
       <Route path="/amostras" element={<Amostras />} />
