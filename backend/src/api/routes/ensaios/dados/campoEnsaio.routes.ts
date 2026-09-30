@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { campoEnsaioController } from "../../controllers/ensaios/campoEnsaio.controller";
+import { campoEnsaioController } from "../../../controllers/ensaios/dados/campoEnsaio.controller";
 import { AuthMiddleware } from "../../../middlewares/AuthMiddleware";
 import { enumNivelPermissao } from "../../../enum/funcionarios/nivelPermissao.enum";
 

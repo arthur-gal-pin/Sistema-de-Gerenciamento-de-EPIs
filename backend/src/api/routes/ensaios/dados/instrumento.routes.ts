@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { InstrumentoController } from "../../controllers/ensaios/instrumento.controller";
+import { InstrumentoController } from "../../../controllers/ensaios/dados/instrumento.controller";
 import { AuthMiddleware } from "../../../middlewares/AuthMiddleware";
 import { enumNivelPermissao } from "../../../enum/funcionarios/nivelPermissao.enum";
 

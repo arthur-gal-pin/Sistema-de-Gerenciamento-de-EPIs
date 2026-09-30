@@ -13,6 +13,10 @@ import profileActionsRoutes from './funcionarios/profileActions.routes';
 import authRoutes from './funcionarios/login.routes';
 import tipoEnsaioRoutes from './ensaios/dados/tipoEnsaio.routes';
 import campoEnsaioRoutes from './ensaios/dados/campoEnsaio.routes';
+import funcionarioEnsaioRoutes from './ensaios/relacionamentos/funcionarioEnsaio.routes';
+import amostraEnsaioRoutes from './ensaios/relacionamentos/amostraEnsaio.routes';
+import dadosEnsaioRoutes from './ensaios/dados/dadosEnsaio.routes';
+import ensaioRoutes from './ensaios/ensaio.routes';
 
 routes.use('/profile', profileActionsRoutes)
 routes.use('/cargos', cargoRoutes);
@@ -25,6 +29,10 @@ routes.use('/protocolos', protocoloRoutes);
 routes.use('/instrumentos', instrumentoRoutes);
 routes.use('/tipo-ensaio', tipoEnsaioRoutes);
 routes.use('/campo-ensaio', campoEnsaioRoutes);
+routes.use('/ensaios', ensaioRoutes);
+routes.use('/dados-ensaio', dadosEnsaioRoutes);
+routes.use('/ensaios/amostras', amostraEnsaioRoutes);
+routes.use('/ensaios/funcionarios', funcionarioEnsaioRoutes);
 routes.use('', authRoutes);
 
 export default routes;
