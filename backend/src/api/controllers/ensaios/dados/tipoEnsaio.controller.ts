@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import TipoEnsaioRepository from "../../repositories/ensaios/tipoEnsaio.repository";
-import { enumClassificacaoAmostra } from "../../enum/amostras/classificacaoAmostra.enum";
-import { ITipoEnsaio, TipoEnsaio } from "../../models/ensaios/dados/TipoEnsaio";
+import { enumClassificacaoAmostra } from "../../../enum/amostras/classificacaoAmostra.enum";
+import { ITipoEnsaio, TipoEnsaio } from "../../../models/ensaios/dados/TipoEnsaio";
 
 //TAREFA A SER REALIZADA: Depois de criar a entidade campos ensaios, criar uma rota para select dos campos de ensaio junto a essa entidade, e um create com campos de ensaio.
 //TAREFA A SER REALIZADA: ADICIONAR A ROTA DE getByName

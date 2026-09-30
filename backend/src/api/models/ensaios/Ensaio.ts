@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 import { uuid as uuidv4 } from "uuidv4";
-=======
-import { v4 as uuidv4 } from "uuid";
->>>>>>> 1e714b84ab3f61af17c4defb65ae2afb93999285
 import { enumPapelEnsaio } from "../../enum/amostras/situacaoAmostra.enum";
 
 
@@ -11,6 +7,7 @@ export interface IEnsaio {
   idEnsaio: string | null;
   FK_idProtocolo: string;
   FK_idTipoEnsaio: string;
+  nomeEnsaio: string;
   papel: enumPapelEnsaio;
   descricao?: string;
   dataCad?: string;
@@ -21,6 +18,7 @@ export class Ensaio implements IEnsaio {
   private _idEnsaio: string | null = null;
   private _FK_idProtocolo!: string;
   private _FK_idTipoEnsaio!: string;
+  private _nomeEnsaio!: string;
   private _papel!: enumPapelEnsaio;
   private _descricao?: string;
   private _dataCad: string;
@@ -30,6 +28,7 @@ export class Ensaio implements IEnsaio {
     idEnsaio: string | null,
     FK_idProtocolo: string,
     FK_idTipoEnsaio: string,
+    nomeEnsaio: string,
     papel: enumPapelEnsaio,
     descricao?: string,
     dataCad?: string,
@@ -39,14 +38,13 @@ export class Ensaio implements IEnsaio {
     this._dataCad = dataCad || agora;
     this._dataMod = dataMod || agora;
 
-    // Atribuições diretas para respeitar os parâmetros dataCad/dataMod recebidos
+    this.nomeEnsaio = nomeEnsaio;
     this.idEnsaio = idEnsaio;
     this.FK_idProtocolo = FK_idProtocolo;
     this.FK_idTipoEnsaio = FK_idTipoEnsaio;
     this.papel = papel;
     this.descricao = descricao;
 
-    // Garante que a dataMod inicial reflita o valor fornecido via construtor
     this._dataMod = dataMod || agora;
   }
 
@@ -58,6 +56,7 @@ export class Ensaio implements IEnsaio {
   get descricao(): string | undefined { return this._descricao; }
   get dataCad(): string { return this._dataCad; }
   get dataMod(): string { return this._dataMod; }
+  get nomeEnsaio(): string {return this._nomeEnsaio}
 
   // --- SETTERS ---
   set idEnsaio(value: string | null) {
@@ -100,13 +99,22 @@ export class Ensaio implements IEnsaio {
     this.atualizarDataModificacao();
   }
 
+  set nomeEnsaio(value: string) {
+    if(!value || value.length < 3 || value.length > 100){
+      throw new Error('O nome do ensaio é inválido.');
+    }
+    this._nomeEnsaio = value;
+    this.atualizarDataModificacao();
+  }
+
   // --- MÉTODOS DE FÁBRICA ---
-  public static create(dados: Partial<IEnsaio>): Ensaio {
+  public static create(dados: IEnsaio): Ensaio {
     return new Ensaio(
       dados.idEnsaio ?? uuidv4(),
-      dados.FK_idProtocolo!,
-      dados.FK_idTipoEnsaio!,
-      dados.papel!,
+      dados.FK_idProtocolo,
+      dados.FK_idTipoEnsaio,
+      dados.nomeEnsaio,
+      dados.papel,
       dados.descricao,
       dados.dataCad,
       dados.dataMod
@@ -118,6 +126,7 @@ export class Ensaio implements IEnsaio {
       id,
       dados.FK_idProtocolo!,
       dados.FK_idTipoEnsaio!,
+      dados.nomeEnsaio!,
       dados.papel!,
       dados.descricao,
       dados.dataCad,
@@ -137,6 +146,7 @@ export class Ensaio implements IEnsaio {
       idEnsaio: this._idEnsaio,
       FK_idProtocolo: this._FK_idProtocolo,
       FK_idTipoEnsaio: this._FK_idTipoEnsaio,
+      nomeEnsaio: this._nomeEnsaio,
       papel: this._papel,
       descricao: this._descricao,
       dataCad: this._dataCad,

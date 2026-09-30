@@ -1,4 +1,4 @@
-import {Router} from 'express';
+import { Router } from 'express';
 const routes = Router();
 
 import cargoRoutes from './funcionarios/cargo.routes';
@@ -8,11 +8,11 @@ import amostraRoutes from './amostras/amostra.routes';
 import ocpRoutes from './amostras/ocp.routes';
 import empresaRoutes from './amostras/empresa.routes';
 import protocoloRoutes from './ensaios/protocolo.routes';
-import instrumentoRoutes from './ensaios/instrumento.routes';
+import instrumentoRoutes from './ensaios/dados/instrumento.routes';
 import profileActionsRoutes from './funcionarios/profileActions.routes';
 import authRoutes from './funcionarios/login.routes';
-import tipoEnsaioRoutes from './ensaios/tipoEnsaio.routes';
-import campoEnsaioRoutes from './ensaios/campoEnsaio.routes';
+import tipoEnsaioRoutes from './ensaios/dados/tipoEnsaio.routes';
+import campoEnsaioRoutes from './ensaios/dados/campoEnsaio.routes';
 
 routes.use('/profile', profileActionsRoutes)
 routes.use('/cargos', cargoRoutes);

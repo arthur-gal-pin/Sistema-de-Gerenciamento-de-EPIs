@@ -1,6 +1,5 @@
-import { prisma } from '../../configs/Database';
-import { ICampoEnsaio } from '../../models/ensaios/dados/CampoEnsaio'
-import { enumTipoDadoCampo } from '../../enum/ensaios/tipoDado.enum';
+import { prisma } from '../../../configs/Database';
+import { ICampoEnsaio } from '../../../models/ensaios/dados/CampoEnsaio'
 
 export default class CampoEnsaioRepository {
     /**

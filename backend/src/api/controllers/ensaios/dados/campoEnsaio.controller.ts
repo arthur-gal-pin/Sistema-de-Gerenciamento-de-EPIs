@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import CampoEnsaioRepository from "../../repositories/ensaios/campoEnsaio.repository";
+import CampoEnsaioRepository from "../../repositories/ensaios/dados/campoEnsaio.repository";
 import { ICampoEnsaio, CampoEnsaio } from "../../models/ensaios/dados/CampoEnsaio";
 
 
@@ -65,14 +65,14 @@ export const campoEnsaioController = {
         try {
             const { unidadeMedida } = req.params;
 
-            if(!unidadeMedida || typeof unidadeMedida !== 'string' || unidadeMedida.length > 10){
-                res.status(400).json({message: 'Não foi possível processar a requisição - Unidade inválida.'});
+            if (!unidadeMedida || typeof unidadeMedida !== 'string' || unidadeMedida.length > 10) {
+                res.status(400).json({ message: 'Não foi possível processar a requisição - Unidade inválida.' });
                 return;
             }
 
             // 2. Busca no repositório com o tipo validado
             const result = await CampoEnsaioRepository.findByUnidadeMedida(unidadeMedida);
-            
+
 
             // 3. Verifica se encontrou resultados (trata null, undefined ou array vazio)
             if (!result || (Array.isArray(result) && result.length === 0)) {
@@ -94,14 +94,14 @@ export const campoEnsaioController = {
         try {
             const { nome } = req.params;
 
-            if(!nome || typeof nome !== 'string'){
-                res.status(400).json({message: 'Não foi possível processar a requisição - nome inválido.'});
+            if (!nome || typeof nome !== 'string') {
+                res.status(400).json({ message: 'Não foi possível processar a requisição - nome inválido.' });
                 return;
             }
 
             // 2. Busca no repositório com o tipo validado
             const result = await CampoEnsaioRepository.findByName(nome);
-            
+
 
             // 3. Verifica se encontrou resultados (trata null, undefined ou array vazio)
             if (!result || (Array.isArray(result) && result.length === 0)) {

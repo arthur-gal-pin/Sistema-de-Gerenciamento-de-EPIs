@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import InstrumentoRepository from "../../repositories/ensaios/instrumento.repository";
+import InstrumentoRepository from "../../repositories/ensaios/dados/instrumento.repository";
 import { IInstrumento, Instrumento } from "../../models/ensaios/dados/Instrumento";
 
 export const InstrumentoController = {
@@ -91,7 +91,7 @@ export const InstrumentoController = {
             const result = await InstrumentoRepository.create(domainInstrumento);
 
             res.status(201).json({ message: 'Requisição bem-sucedida:', data: result });
-        } catch (error: any) { 
+        } catch (error: any) {
             res.status(400).json({ message: error.message });
         }
     },
@@ -118,7 +118,7 @@ export const InstrumentoController = {
                 nomeInstrumento: req.body.nomeInstrumento ?? instrumentoAtual.nomeInstrumento,
                 funcaoInstrumento: req.body.funcaoInstrumento ?? instrumentoAtual.funcaoInstrumento,
                 ultimaCalibracao: req.body.ultimaCalibracao ?? instrumentoAtual.ultimaCalibracao,
-                dataCad: req.body.dataCad ?? instrumentoAtual.dataCad, 
+                dataCad: req.body.dataCad ?? instrumentoAtual.dataCad,
                 dataMod: req.body.dataMod ?? instrumentoAtual.dataMod
             }
 

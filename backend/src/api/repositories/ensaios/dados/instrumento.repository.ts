@@ -1,5 +1,5 @@
-import { prisma } from '../../configs/Database';
-import { IInstrumento } from '../../models/ensaios/dados/Instrumento';
+import { prisma } from '../../../configs/Database';
+import { IInstrumento } from '../../../models/ensaios/dados/Instrumento';
 
 export default class InstrumentoRepository {
     /**
@@ -12,53 +12,55 @@ export default class InstrumentoRepository {
                 nomeInstrumento: data.nomeInstrumento,
                 funcaoInstrumento: data.funcaoInstrumento,
                 ultimaCalibracao: data.ultimaCalibracao,
-                dataCad: data.dataCad, 
+                dataCad: data.dataCad,
                 dataMod: data.dataMod
             }
         });
     };
 
-    static async update(id: string, data: Partial<IInstrumento>){
-        const result =  await prisma.instrumento.updateMany({
-            where: {idInstrumento: id},
+    static async update(id: string, data: Partial<IInstrumento>) {
+        const result = await prisma.instrumento.updateMany({
+            where: { idInstrumento: id },
             data: {
                 nomeInstrumento: data.nomeInstrumento,
                 funcaoInstrumento: data.funcaoInstrumento,
                 ultimaCalibracao: data.ultimaCalibracao,
-                dataCad: data.dataCad, 
+                dataCad: data.dataCad,
                 dataMod: new Date()
             }
         });
         return result.count > 0;
     }
 
-    static async findAll(){
+    static async findAll() {
         return await prisma.instrumento.findMany();
     };
 
     static async findById(id: string) {
         return await prisma.instrumento.findUnique({
-            where: {idInstrumento: id}
+            where: { idInstrumento: id }
         });
     };
 
     static async findByFunction(context: string) {
         return await prisma.instrumento.findMany({
-            where: {funcaoInstrumento: {
-                contains: `${context}`
-            }}
+            where: {
+                funcaoInstrumento: {
+                    contains: `${context}`
+                }
+            }
         });
     }
 
     static async findByCalibration(date: Date) {
         return await prisma.instrumento.findMany({
-            where: {ultimaCalibracao:  date}
+            where: { ultimaCalibracao: date }
         });
     }
 
-    static async delete(id: string){
+    static async delete(id: string) {
         const result = await prisma.instrumento.delete({
-            where: {idInstrumento: id}
+            where: { idInstrumento: id }
         });
         return result;
     }

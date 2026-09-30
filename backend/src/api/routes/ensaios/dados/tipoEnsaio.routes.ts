@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { tipoEnsaioController } from "../../controllers/ensaios/tipoEnsaio.controller";
-import { AuthMiddleware } from "../../middlewares/AuthMiddleware";
-import { enumNivelPermissao } from "../../enum/funcionarios/nivelPermissao.enum";
+import { tipoEnsaioController } from "../../../controllers/ensaios/dados/tipoEnsaio.controller";
+import { AuthMiddleware } from "../../../middlewares/AuthMiddleware";
+import { enumNivelPermissao } from "../../../enum/funcionarios/nivelPermissao.enum";
 
 const tipoEnsaioRoutes = Router();
 const auth = new AuthMiddleware();
