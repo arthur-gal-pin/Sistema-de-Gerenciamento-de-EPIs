@@ -1,0 +1,96 @@
+/*
+  Design System: "Serene Nature"
+  Tokens extracted from DESIGN.md and mapped to CSS custom properties.
+  These variables both drive our custom utility classes and override
+  Bootstrap's own variables so components like buttons, cards and
+  navbars automatically pick up the brand palette.
+*/
+
+:root {
+  /* Surfaces */
+  --surface: #f3fced;
+  --surface-dim: #d4ddcf;
+  --surface-bright: #f3fced;
+  --surface-container-lowest: #ffffff;
+  --surface-container-low: #edf6e8;
+  --surface-container: #e7f1e2;
+  --surface-container-high: #e2ebdd;
+  --surface-container-highest: #dce5d7;
+
+  /* Text */
+  --on-surface: #161e15;
+  --on-surface-variant: #414753;
+  --inverse-surface: #2a3329;
+  --inverse-on-surface: #eaf4e5;
+  --outline: #717785;
+  --outline-variant: #c1c6d5;
+
+  /* Brand */
+  --primary: #5f5c4c;
+  --on-primary: #ffffff;
+  --primary-container: #787564;
+  --on-primary-container: #fffbff;
+  --inverse-primary: #ccc7b3;
+
+  --secondary: #576336;
+  --on-secondary: #ffffff;
+  --secondary-container: #dbe9b0;
+  --on-secondary-container: #5d693c;
+
+  --tertiary: #3d6535;
+  --on-tertiary: #ffffff;
+  --tertiary-container: #557f4b;
+  --on-tertiary-container: #f8fff0;
+
+  --error: #ba1a1a;
+  --on-error: #ffffff;
+  --error-container: #ffdad6;
+  --on-error-container: #93000a;
+
+  --background: #f3fced;
+  --on-background: #161e15;
+  --surface-variant: #dce5d7;
+
+  /* Typography */
+  --font-headline: 'Ubuntu', sans-serif;
+  --font-body: 'Quicksand', sans-serif;
+
+  /* Spacing (8px rhythm) */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-gutter: 16px;
+  --space-margin: 24px;
+
+  /* Radii */
+  --radius-sm: 0.25rem;
+  --radius-default: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-full: 9999px;
+
+  /* Bootstrap overrides so native components (btn, card, navbar...) match the brand */
+  --bs-body-bg: var(--background);
+  --bs-body-color: var(--on-surface);
+  --bs-body-font-family: var(--font-body);
+  --bs-primary: var(--tertiary);
+  --bs-primary-rgb: 61, 101, 53;
+  --bs-secondary: var(--secondary);
+  --bs-secondary-rgb: 87, 99, 54;
+  --bs-border-radius: var(--radius-default);
+  --bs-border-radius-lg: var(--radius-lg);
+  --bs-border-radius-xl: var(--radius-xl);
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--background);
+  color: var(--on-surface);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-headline);
+}

@@ -1,126 +1,526 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, Helvetica, sans-serif;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-html,
-body,
-#root{
-    width:100%;
-    height:100%;
+#root {
+    width: 100%;
+    min-height: 100%;
 }
 
-body{
-    background:#f5f5f5;
+body {
+    margin: 0;
 }
 
-/* Imagens laterais */
-.esquerda,
-.direita{
-    min-height:100vh;
-    background-size:cover;
-    background-position:center;
-    background-repeat:no-repeat;
+
+
+.login-page {
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 30px;
+
+    /* Imagem de fundo */
+    background-image:
+        linear-gradient(
+            rgba(0, 0, 0, 0.35),
+            rgba(0, 0, 0, 0.35)
+        ),
+        url("/login/esquerda.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    background-attachment: fixed;
 }
 
-.esquerda{
-    background-image:url("/esquerda.jpg");
+
+/* =========================================
+   CARD
+========================================= */
+
+.login-box {
+    width: 100%;
+    max-width: 520px;
+
+    background: #ffffff;
+
+    padding: 45px;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.25);
+
+    position: relative;
 }
 
-.direita{
-    background-image:url("/direita.jpg");
+
+/* =========================================
+   LOGO
+========================================= */
+
+.logo {
+    width: 240px;
+    max-width: 100%;
+
+    display: block;
+
+    margin: 0 auto 20px;
 }
 
-/* Fundo do centro */
-.fundo{
-    min-height:40vh;
-    background:#f3f3f3;
+
+/* =========================================
+   TÍTULO
+========================================= */
+
+.login-box h1 {
+    text-align: center;
+
+    color: #2E7D32;
+
+    font-size: 32px;
+    font-weight: 700;
+
+    margin-bottom: 10px;
 }
 
-/* Card */
-.login-box{
-    width:520px;
-    background:#fff;
-    padding:45px;
-    border-radius:15px;
-    box-shadow:0 10px 30px rgba(0,0,0,.15);
+
+/* =========================================
+   TEXTO
+========================================= */
+
+.login-box p {
+    text-align: center;
+
+    color: #666;
+
+    font-size: 15px;
+    line-height: 1.5;
+
+    margin-bottom: 30px;
 }
 
-/* Logo */
-.logo{
-    width:240px;
-    display:block;
-    margin:0 auto 20px;
+
+/* =========================================
+   LABEL
+========================================= */
+
+.login-box label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-weight: bold;
+
+    color: #2E7D32;
 }
 
-/* Título */
-h1{
-    text-align:center;
-    color:#2E7D32;
-    margin-bottom:10px;
+
+/* =========================================
+   INPUT
+========================================= */
+
+.login-box input {
+    width: 100%;
+    height: 48px;
+
+    border: 1px solid #ccc;
+    border-radius: 8px;
+
+    padding: 0 15px;
+
+    font-size: 16px;
+
+    margin-bottom: 5px;
+
+    transition: 0.2s;
 }
 
-/* Texto */
-p{
-    text-align:center;
-    color:#666;
-    margin-bottom:30px;
+.login-box input:focus {
+    outline: none;
+
+    border-color: #2E7D32;
+
+    box-shadow:
+        0 0 0 3px rgba(46, 125, 50, 0.12);
 }
 
-/* Labels */
-label{
-    display:block;
-    margin-bottom:8px;
-    font-weight:bold;
-    color:#2E7D32;
+
+/* =========================================
+   BOTÃO ENTRAR
+========================================= */
+
+.login-box form > button {
+    width: 100%;
+    height: 48px;
+
+    background: #2E7D32;
+
+    color: #fff;
+
+    border: none;
+    border-radius: 8px;
+
+    font-size: 18px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+    margin-top: 10px;
 }
 
-/* Inputs */
-input{
-    width:100%;
-    height:48px;
-    border:1px solid #ccc;
-    border-radius:8px;
-    padding:0 15px;
-    margin-bottom:20px;
-    font-size:16px;
+.login-box form > button:hover {
+    background: #1B5E20;
 }
 
-input:focus{
-    outline:none;
-    border-color:#2E7D32;
-    box-shadow:0 0 5px rgba(46,125,50,.3);
+
+/* =========================================
+   AÇÕES
+========================================= */
+
+.acoes-login {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+    margin-top: 20px;
 }
 
-/* Botão */
-button{
-    width:100%;
-    height:48px;
-    background:#2E7D32;
-    color:#fff;
-    border:none;
-    border-radius:8px;
-    font-size:18px;
-    font-weight:bold;
-    cursor:pointer;
-    transition:.3s;
+
+/* Botão criar conta */
+
+.btn-cadastro {
+    width: 100%;
+    height: 48px;
+
+    background: #fff;
+
+    color: #2E7D32;
+
+    border: 1px solid #3b7d2e;
+
+    border-radius: 8px;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
 }
 
-button:hover{
-    background:#1B5E20;
+.btn-cadastro:hover {
+    background: #3b7d2e;
+
+    color: #fff;
 }
 
-/* Link */
-a{
-    display:block;
-    text-align:center;
-    margin-top:20px;
-    color:#2E7D32;
-    text-decoration:none;
+
+/* Link esqueci senha */
+
+.acoes-login a {
+    display: block;
+
+    text-align: center;
+
+    margin-top: 5px;
+
+    color: #467d2e;
+
+    text-decoration: none;
+
+    font-size: 14px;
 }
 
-a:hover{
-    text-decoration:underline;
+.acoes-login a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================================
+   RESPONSIVIDADE
+========================================= */
+
+@media (max-width: 576px) {
+
+    .login-page {
+        padding: 20px;
+
+        align-items: center;
+    }
+
+    .login-box {
+        padding: 30px 22px;
+
+        border-radius: 12px;
+    }
+
+    .logo {
+        width: 190px;
+    }
+
+    .login-box h1 {
+        font-size: 27px;
+    }
+
+    .login-box p {
+        font-size: 14px;
+    }
+}
+
+
+/* =========================================
+   LINK "ESQUECI MINHA SENHA"
+========================================= */
+
+.esqueci-senha-wrapper {
+    width: 100%;
+
+    text-align: center;
+
+    margin-top: 5px;
+}
+
+.link-esqueci-senha {
+    background: transparent;
+
+    border: none;
+
+    padding: 0;
+    margin: 0;
+
+    color: #288719;
+
+    font-weight: 700;
+    font-size: 16px;
+
+    cursor: pointer;
+}
+
+
+/* =========================================
+   POPUP "ESQUECI MINHA SENHA"
+========================================= */
+
+.popup-overlay {
+    position: fixed;
+    inset: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    background-color: rgba(0, 0, 0, 0.92);
+
+    z-index: 99999;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+
+    box-sizing: border-box;
+
+    overflow: hidden;
+}
+
+.popup-box {
+    width: 100%;
+    max-width: 760px;
+    max-height: calc(100vh - 40px);
+
+    background-color: #ffffff;
+
+    border-radius: 16px;
+
+    box-sizing: border-box;
+
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.50);
+
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.popup-header {
+    width: 100%;
+
+    padding: 28px 35px 10px 35px;
+
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+.popup-title {
+    margin: 0;
+    padding: 0;
+
+    color: #288719;
+
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.popup-close {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+
+    padding: 0;
+    margin: 0;
+
+    border: none;
+    background: transparent;
+
+    color: #198720;
+
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup-desc-wrapper {
+    padding: 0 35px 25px 35px;
+
+    box-sizing: border-box;
+}
+
+.popup-desc {
+    margin: 0;
+
+    color: #555555;
+
+    font-size: 16px;
+    line-height: 1.4;
+}
+
+.popup-form-wrapper {
+    padding: 0 35px 35px 35px;
+
+    box-sizing: border-box;
+}
+
+.popup-field {
+    width: 100%;
+
+    margin-bottom: 18px;
+}
+
+.popup-field-last {
+    margin-bottom: 20px;
+}
+
+.popup-label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #1d8719;
+
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.popup-input {
+    display: block;
+
+    width: 100%;
+    height: 52px;
+
+    padding: 0 15px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #cccccc;
+    border-radius: 8px;
+
+    background-color: #ffffff;
+
+    color: #333333;
+
+    font-size: 16px;
+
+    outline: none;
+}
+
+.popup-textarea {
+    display: block;
+
+    width: 100%;
+    height: 52px;
+    min-height: 52px;
+    max-height: 52px;
+
+    padding: 0 15px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #cccccc;
+    border-radius: 8px;
+
+    background-color: #ffffff;
+
+    color: #333333;
+
+    font-size: 16px;
+    font-family: inherit;
+    line-height: 52px;
+
+    outline: none;
+
+    resize: none;
+    overflow: hidden;
+}
+
+.popup-submit-btn {
+    width: 100%;
+    height: 52px;
+
+    padding: 0;
+    margin: 0;
+
+    border: none;
+    border-radius: 8px;
+
+    background-color: #2b8719;
+
+    color: #ffffff;
+
+    font-size: 17px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup-submit-btn:disabled {
+    cursor: not-allowed;
+
+    opacity: 0.7;
 }
