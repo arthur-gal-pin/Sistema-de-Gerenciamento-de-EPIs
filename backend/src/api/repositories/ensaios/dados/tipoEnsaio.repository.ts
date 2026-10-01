@@ -1,6 +1,6 @@
-import { prisma } from '../../configs/Database';
-import {ITipoEnsaio} from '../../models/ensaios/dados/TipoEnsaio';
-import { enumClassificacaoAmostra } from '../../enum/amostras/classificacaoAmostra.enum';
+import { prisma } from '../../../configs/Database';
+import {ITipoEnsaio} from '../../../models/ensaios/dados/TipoEnsaio';
+import { enumClassificacaoAmostra } from '../../../enum/amostras/classificacaoAmostra.enum';
 
 export default class TipoEnsaioRepository {
     /**

@@ -95,7 +95,7 @@ export class CampoEnsaio {
         if (typeof value !== 'boolean') {
             throw new Error('A obrigatoriedade do campo deve ser verdadeira ou falsa.');
         }
-        this._obrigatoriedade = value ? value : true;
+        this._obrigatoriedade = value == null ? value : true;
         this.atualizarDataModificacao();
     }
 
@@ -123,8 +123,8 @@ export class CampoEnsaio {
             dados.nomeCampo,
             dados.obrigatoriedade,
             dados.tipoDado,
-            dados.descricaoCampo,
             dados.unidadeMedida,
+            dados.descricaoCampo,
             dados.dataCad,
             dados.dataMod
         );
@@ -137,8 +137,8 @@ export class CampoEnsaio {
             dados.nomeCampo,
             dados.obrigatoriedade,
             dados.tipoDado,
-            dados.descricaoCampo,
             dados.unidadeMedida,
+            dados.descricaoCampo,
             dados.dataCad,
             String(new Date().toISOString())
         );

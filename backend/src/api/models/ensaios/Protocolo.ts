@@ -26,7 +26,6 @@ export class Protocolo {
     private _tipoProtocolo!: enumTipoProtocolo;
     private _diaAbertura!: string;
     private _diaEntrega?: string;
-    private _testemunha?: string;
     private _descricao?: string;
     private _dataCad: string;
     private _dataMod: string;
@@ -41,7 +40,6 @@ export class Protocolo {
         tipoProtocolo: enumTipoProtocolo,
         diaAbertura: string,
         diaEntrega?: string,
-        testemunha?: string,
         descricao?: string,
         dataCad?: string,
         dataMod?: string
@@ -55,7 +53,6 @@ export class Protocolo {
         this.tipoProtocolo = tipoProtocolo;
         this.diaAbertura = diaAbertura;
         this.diaEntrega = diaEntrega;
-        this._testemunha = testemunha;
         this._descricao = descricao;
         this._dataCad = dataCad || new Date().toISOString();
         this._dataMod = dataMod || new Date().toISOString();

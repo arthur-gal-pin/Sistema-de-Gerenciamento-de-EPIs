@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import TipoEnsaioRepository from "../../repositories/ensaios/tipoEnsaio.repository";
+import TipoEnsaioRepository from "../../../repositories/ensaios/dados/tipoEnsaio.repository";
 import { enumClassificacaoAmostra } from "../../../enum/amostras/classificacaoAmostra.enum";
 import { ITipoEnsaio, TipoEnsaio } from "../../../models/ensaios/dados/TipoEnsaio";
 

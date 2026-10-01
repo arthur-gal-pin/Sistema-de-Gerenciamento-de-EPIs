@@ -6,6 +6,7 @@ import { uploadImagePerfil } from "../../middlewares/uploadImage";
 const profileActionsRoutes = Router();
 const auth = new AuthMiddleware();
 
+profileActionsRoutes.get('/meu-perfil', auth.authenticate, ProfileActionsController.getMe);
 profileActionsRoutes.patch('/meu-perfil/change-info',  auth.authenticate, ProfileActionsController.updateInfo);
 profileActionsRoutes.patch('/meu-perfil/change-password',  auth.authenticate, ProfileActionsController.updatePassword);
 profileActionsRoutes.post('/meu-perfil/change-pfp',  auth.authenticate, uploadImagePerfil.single('image'), ProfileActionsController.updatePfp);

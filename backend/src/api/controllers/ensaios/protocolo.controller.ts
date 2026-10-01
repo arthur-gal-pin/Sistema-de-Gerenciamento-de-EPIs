@@ -145,7 +145,7 @@ export const ProtocoloController = {
                 numeroSEI: req.body.numeroSEI ?? protocoloAtual.numeroSEI,
                 tipoProtocolo: req.body.tipoProtocolo as enumTipoProtocolo ?? protocoloAtual.tipoProtocolo as enumTipoProtocolo,
                 diaAbertura: req.body.diaAbertura ?? protocoloAtual.diaAbertura,
-                diaEntrega: req.body.diaAbertura ?? protocoloAtual.diaEntrega,
+                diaEntrega: req.body.diaEntrega ?? protocoloAtual.diaEntrega,
                 descricao: req.body.descricao ?? protocoloAtual.descricao,
                 dataCad: req.body.dataCad ?? protocoloAtual.dataCad,
                 dataMod: req.body.dataMod ?? protocoloAtual.dataMod

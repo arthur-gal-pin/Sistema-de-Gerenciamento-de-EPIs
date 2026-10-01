@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import CampoEnsaioRepository from "../../repositories/ensaios/dados/campoEnsaio.repository";
-import { ICampoEnsaio, CampoEnsaio } from "../../models/ensaios/dados/CampoEnsaio";
+import CampoEnsaioRepository from "../../../repositories/ensaios/dados/campoEnsaio.repository";
+import { ICampoEnsaio, CampoEnsaio } from "../../../models/ensaios/dados/CampoEnsaio";
 
 
 export const campoEnsaioController = {

@@ -85,8 +85,8 @@ export default class EnsaioRepository {
     }
 
     static async delete(id: string) {
-        const result = await prisma.campoEnsaio.delete({
-            where: { idCampoEnsaio: id }
+        const result = await prisma.ensaio.delete({
+            where: { idEnsaio: id }
         });
         return result;
     }

@@ -219,5 +219,16 @@ export const ProfileActionsController = {
             console.error('Erro em removePfp:', error);
             res.status(500).json({ message: 'Erro interno no servidor ao tentar remover a foto de perfil.' });
         }
-    }
+    },
+    getMe: async (req: Request, res: Response): Promise<void> => {
+        try {
+            const funcionario = await FuncionarioRepository.buscarCompletoPorId(req.user!.idFuncionario);
+            if (!funcionario) { res.status(404).json({ message: 'Usuário não encontrado.' }); return; }
+
+            const { senhaHash, ...seguro } = funcionario; 
+            res.status(200).json({ data: seguro });
+        } catch (error: any) {
+            res.status(500).json({ message: error.message });
+        }
+    },
 }

@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import InstrumentoRepository from "../../repositories/ensaios/dados/instrumento.repository";
-import { IInstrumento, Instrumento } from "../../models/ensaios/dados/Instrumento";
+import InstrumentoRepository from "../../../repositories/ensaios/dados/instrumento.repository";
+import { IInstrumento, Instrumento } from "../../../models/ensaios/dados/Instrumento";
 
 export const InstrumentoController = {
     getAll: async (req: Request, res: Response): Promise<void> => {
