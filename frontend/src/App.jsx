@@ -1,4 +1,5 @@
 import LoginPage from './pages/LoginPage'
+import NoLoginPage from './pages/NoLoginPage';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import './App.css'
 
@@ -7,6 +8,7 @@ function App() {
 <BrowserRouter>
       <Routes>
         <Route path="/login" element={<LoginPage/>}/>
+        <Route path="/no-login" element={<NoLoginPage/>}/>
         <Route path="*" element={<Navigate to="/login"/>}/>
       </Routes>
   </BrowserRouter>

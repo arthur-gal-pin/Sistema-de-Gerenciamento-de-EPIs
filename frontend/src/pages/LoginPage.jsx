@@ -16,7 +16,7 @@ export default function LoginPage() {
 
     const handleForget = (e) =>{
         e.preventDefault();
-        navigate("/sem-login");
+        navigate("/no-login");
     }
 
     const toggleMostrarSenha = () => {
