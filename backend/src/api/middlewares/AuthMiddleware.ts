@@ -23,14 +23,12 @@ export class AuthMiddleware {
     }
 
     authenticate = (req: Request, res: Response, next: NextFunction): void => {
-        const authHeader = req.headers.authorization;
+        const token = req.cookies?.token
 
-        if (!authHeader || !authHeader.startsWith('Bearer ')) {
+        if (!token) {
             res.status(401).json({ message: 'Token não fornecido' });
             return;
         }
-
-        const token = authHeader.split(' ')[1];
 
         try {
             const decoded = this.jwtService.verificarTokenAcesso(token);

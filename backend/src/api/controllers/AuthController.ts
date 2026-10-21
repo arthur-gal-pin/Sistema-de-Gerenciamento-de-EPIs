@@ -77,13 +77,16 @@ export class AuthController {
             };
             const accessToken = this.jwtService.gerarTokenAcesso(payload);
 
-            return res.status(200).json({
-                message: 'Login realizado com sucesso',
-                data: {
-                    token_acesso: accessToken,
-                    expira_em: process.env.JWT_EXPIRES_IN || '1m'
-                }
+
+            res.cookie('token', accessToken, {
+                httpOnly: true,
+                secure: process.env.NODE_ENV === 'production',
+                sameSite: 'lax',
+                maxAge: 3600000
             });
+
+            return res.status(200).json({ message: "Login bem-sucedido!" });
+
 
         } catch (error: unknown) {
             console.error(error);
@@ -94,18 +97,35 @@ export class AuthController {
         }
     }
 
+    logout = async (req: Request, res: Response): Promise<Response> => {
+        try {
+            // Limpa o cookie 'token' configurando as mesmas opções de segurança usadas na criação
+            res.clearCookie('token', {
+                httpOnly: true,
+                secure: process.env.NODE_ENV === 'production',
+                sameSite: 'strict',
+                // Opcional: dependendo de como configurou o path/domain, pode precisar repetir aqui
+            });
+
+            return res.status(200).json({ message: "Logout realizado com sucesso!" });
+        } catch (error: unknown) {
+            console.error(error);
+            return res.status(500).json({ message: 'Erro ao realizar logout' });
+        }
+    }
+
     esqueciASenha = async (req: Request, res: Response) => {
         try {
             const { cpf, nome, email, equipe, texto } = req.body;
 
-            if (!cpf || !nome || !email || !equipe) return res.status(400).json({message: 'Todas as informações de contato são necessárias para a criação de sua conta.'});
+            if (!cpf || !nome || !email || !equipe) return res.status(400).json({ message: 'Todas as informações de contato são necessárias para a criação de sua conta.' });
 
             if (!validarCpf(limparCpf(String(cpf)))) {
                 return res.status(400).json({ message: `Esse CPF não existe.` });
             }
 
-            if (!Object.values(enumEquipes).includes(equipe)){
-                return res.status(400).json({message: "Essa equipe não existe."})
+            if (!Object.values(enumEquipes).includes(equipe)) {
+                return res.status(400).json({ message: "Essa equipe não existe." })
             }
 
             // Busca o funcionário pelo CPF informado, sem revelar ao cliente
@@ -147,21 +167,6 @@ export class AuthController {
             });
 
         } catch (error) {
-            console.error(error);
-            if (error instanceof Error) {
-                res.status(500).json({ message: 'Ocorreu um erro no servidor', errorMessage: error.message });
-            } else {
-                res.status(500).json({ message: 'Ocorreu um erro no servidor', errorMessage: 'Erro desconhecido' });
-            }
-        }
-    }
-
-    rotaProtegida = async (req: Request, res: Response) => {
-        try {
-            res.status(200).json({
-                message: 'Você acessou um recurso protegido',
-            });
-        } catch (error: unknown) {
             console.error(error);
             if (error instanceof Error) {
                 res.status(500).json({ message: 'Ocorreu um erro no servidor', errorMessage: error.message });
