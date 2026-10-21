@@ -14,7 +14,8 @@ export default function NoLoginPage() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        //Service para enviar e-mail;
+        // Service para enviar e-mail aqui
+        console.log(formData);
     }
 
     const handleChange = (e) => {
@@ -40,27 +41,63 @@ export default function NoLoginPage() {
     return (
         <div>
             <h3>Mandar mensagem para o coordenador de sua equipe</h3>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <label>Seu nome completo</label>
-                <input type='text' placeholder="Ex: João Silva" value={formData.nome} onChange={handleChange} required></input>
+                <input 
+                    type='text' 
+                    name='nome' 
+                    placeholder="Ex: João Silva" 
+                    value={formData.nome} 
+                    onChange={handleChange} 
+                    required 
+                />
 
                 <label>Seu CPF</label>
-                <input type='text' placeholder="Ex: XXX.XXX.XXX-XX" value={formData.cpf} onChange={handleChange} required></input>
+                <input 
+                    type='text' 
+                    name='cpf' 
+                    placeholder="Ex: XXX.XXX.XXX-XX" 
+                    value={formData.cpf} 
+                    onChange={handleChange} 
+                    required 
+                />
 
                 <label>Seu E-mail</label>
-                <input type='email' placeholder="Ex: joaosilva@gmail.com" value={formData.email} onChange={handleChange} required></input>
+                <input 
+                    type='email' 
+                    name='email' 
+                    placeholder="Ex: joaosilva@gmail.com" 
+                    value={formData.email} 
+                    onChange={handleChange} 
+                    required 
+                />
 
                 <label>Escolha a sua equipe</label>
-                <select name="" id="">
-                    {dadosEquipe.map((equipe) => {
-                        <option value={equipe.id}>{equipe.equipe}</option>
-                    })}
+                <select 
+                    name='equipe' 
+                    value={formData.equipe} 
+                    onChange={handleChange} 
+                    required
+                >
+                    <option value="" disabled>Selecione uma equipe</option>
+                    {dadosEquipe.map((item) => (
+                        <option key={item.id} value={item.equipe}>
+                            {item.equipe}
+                        </option>
+                    ))}
                 </select>
 
                 <label>Deixe uma mensagem para seu coordenador</label>
-                <input type='text' placeholder="Digite aqui..." value={formData.texto} onChange={handleChange} required></input>
+                <input 
+                    type='text' 
+                    name='texto' 
+                    placeholder="Digite aqui..." 
+                    value={formData.texto} 
+                    onChange={handleChange} 
+                    required 
+                />
 
-                <button type="submit" onClick={handleSubmit}>Enviar dados</button>
+                <button type="submit">Enviar dados</button>
             </form>
         </div>
     )
