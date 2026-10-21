@@ -1,9 +1,9 @@
 import createMulter from '../configs/imagem.multer'
 
-const uploadImage = createMulter({
-    folder: 'images',
+const uploadImagePerfil = createMulter({
+    folder: 'imagens_perfil',
     allowedTypes: ['image/jpeg', 'image/png', 'image/jpg'],
     fileSize: 5 * 1024 * 1024 // 5MB
 });
 
-export default uploadImage;
+export {uploadImagePerfil};

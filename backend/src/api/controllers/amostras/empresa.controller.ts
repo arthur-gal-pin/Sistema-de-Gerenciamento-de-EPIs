@@ -5,7 +5,7 @@ import { EmpresaRepository } from "../../repositories/amostras/empresa.repositor
 export const EmpresaController = {
     getAll: async (req: Request, res: Response): Promise<void> => {
         try {
-            const result = await EmpresaRepository.listarTodos();
+            const result = await EmpresaRepository.findAll();
 
             if (!result || result.length === 0) {
                 res.status(404).json({ message: 'Não foi encontrada nenhuma empresa no banco de dados.' });
@@ -20,14 +20,14 @@ export const EmpresaController = {
 
     getId: async (req: Request, res: Response): Promise<void> => {
         try {
-            const id = String(req.params.id);
+            const { id } = req.params;
 
-            if (!id || id.length !== 36) { 
+            if (!id ||typeof id !== 'string' || id.length !== 36) { 
                 res.status(400).json({ message: 'Não foi possível processar a requisição - ID inválido inserido.' });
                 return; 
             }
 
-            const result = await EmpresaRepository.listarPorId(id);
+            const result = await EmpresaRepository.findById(id);
 
             if (!result) {
                 res.status(404).json({ message: 'Não foi encontrada nenhuma empresa com esse ID.' });
@@ -36,20 +36,20 @@ export const EmpresaController = {
 
             res.status(200).json({ message: 'Requisição bem-sucedida:', data: result });
         } catch (error: any) {
-            res.status(400).json({ message: error.message });
+            res.status(500).json({ message: error.message });
         }
     },
 
     getNome: async (req: Request, res: Response): Promise<void> => {
         try {
-            const nome = String(req.params.nome);
+            const {nome} = req.params;
             
-            if (!nome || nome.length < 3) {
+            if (!nome || nome.length < 3 || typeof nome !== 'string') {
                 res.status(400).json({ message: 'Não foi possível processar a requisição - O nome deve ter ao menos 3 caracteres.' });
                 return; 
             }
 
-            const result = await EmpresaRepository.listarPorNome(nome);
+            const result = await EmpresaRepository.findByName(nome);
 
             if (!result || result.length === 0) {
                 res.status(404).json({ message: 'Não foi encontrada nenhuma empresa com esse nome.' });
@@ -64,12 +64,15 @@ export const EmpresaController = {
 
     create: async (req: Request, res: Response): Promise<void> => {
         try {
-            const nomeEmpresa = String(req.body.nomeEmpresa);
-            if(nomeEmpresa == undefined ) res.status(400).json({message: "É necessário que você coloque um nome para o registro de empresa."});
+            const {nomeEmpresa} = req.body;
+            if(!nomeEmpresa ||  typeof nomeEmpresa !== 'string') {
+                res.status(400).json({message: "É necessário que você coloque um nome para o registro de empresa."});
+                return;
+            }
             
             const domainEmpresa = Empresa.create({ nomeEmpresa });
             
-            const result = await EmpresaRepository.criarEmpresa(domainEmpresa.toJSON());
+            const result = await EmpresaRepository.create(domainEmpresa.toJSON());
             
             res.status(201).json({ message: 'Requisição bem sucedida:', data: result });
         } catch (error: any) {
@@ -79,10 +82,15 @@ export const EmpresaController = {
 
     update: async (req: Request, res: Response): Promise<void> => {
         try {
-            const id = String(req.params.id);
-            const nomeNovo = String(req.body.nome);
+            const id = req.params.id;
+            const nomeNovo = req.body.nomeEmpresa;
 
-            const empresaAtual = await EmpresaRepository.listarPorId(id);
+            if(!id || !nomeNovo || typeof id !== 'string' || typeof nomeNovo !== 'string'){
+                res.status(400).json({message: 'Dados inválidos foram inseridos.'});
+                return;
+            }
+
+            const empresaAtual = await EmpresaRepository.findById(id);
             if (!empresaAtual) {
                 res.status(404).json({ message: 'Não foi encontrada nenhuma empresa com esse ID.' });
                 return; 
@@ -90,7 +98,7 @@ export const EmpresaController = {
 
             const domainEmpresa = Empresa.edit(id, { nomeEmpresa: nomeNovo });
 
-            const result = await EmpresaRepository.atualizarEmpresa(id, domainEmpresa.toJSON());
+            const result = await EmpresaRepository.update(id, domainEmpresa.toJSON());
 
             res.status(200).json({ message: 'Empresa atualizada com sucesso.', data: result });
         } catch (error: any) {
@@ -100,14 +108,14 @@ export const EmpresaController = {
 
     delete: async (req: Request, res: Response): Promise<void> => {
         try {
-            const id = String(req.params.id);
+            const id = req.params.id;
 
-            if (!id || id.length !== 36) { 
+            if (!id || id.length !== 36 || typeof id!=='string') { 
                 res.status(400).json({ message: 'O id inserido é inválido.' });
                 return;
             }
 
-            const result = await EmpresaRepository.apagarEmpresa(id);
+            const result = await EmpresaRepository.delete(id);
 
             if (!result) {
                 res.status(400).json({ message: 'Não foi possível apagar. Nenhuma Empresa encontrada com esse ID.' });

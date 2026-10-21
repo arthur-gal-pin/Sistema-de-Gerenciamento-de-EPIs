@@ -2,7 +2,7 @@ import { uuid } from "uuidv4";
 import { enumNivelPermissao } from "../../enum/funcionarios/nivelPermissao.enum";
 
 export interface ICargo {
-    idCargo: string | null; 
+    idCargo: string | null;
     nomeCargo: string;
     nivelPermissao: enumNivelPermissao;
     dataCad?: string;
@@ -10,16 +10,17 @@ export interface ICargo {
 }
 
 export default class Cargo {
-    private _idCargo: string | null; //UUID
-    private _nomeCargo: string;
-    private _nivelPermissao: enumNivelPermissao;
-    private _dataCad?: string ;
+    private _idCargo: string | null = null; //UUID
+    private _nomeCargo!: string;
+    private _nivelPermissao!: enumNivelPermissao;
+    private _dataCad?: string;
     private _dataMod?: string;
 
     constructor(idCargo: string | null, nomeCargo: string, nivelPermissao: enumNivelPermissao, dataCad?: string, dataMod?: string) {
-        this._idCargo = idCargo || null;
-        this._nomeCargo = nomeCargo;
-        this._nivelPermissao = nivelPermissao;
+        this.idCargo = idCargo;
+        this.nomeCargo = nomeCargo;
+        this.nivelPermissao = nivelPermissao;
+
         this._dataCad = dataCad || new Date().toISOString();
         this._dataMod = dataMod || new Date().toISOString();
     }
@@ -32,6 +33,11 @@ export default class Cargo {
     get dataMod() { return this._dataMod };
 
     // --- SETTERS ---
+    set idCargo(id: string | null) {
+        this._idCargo = id;
+        this.atualizarDataModificacao();
+    }
+
     set nomeCargo(nome: string) {
         this.validarNomeCargo(nome);
         this._nomeCargo = nome;
@@ -72,6 +78,11 @@ export default class Cargo {
         )
     }
 
+    //--- MÉTODOS AUXILIARES ---
+
+    private atualizarDataModificacao(): void {
+        this._dataMod = new Date().toISOString();
+    }
 
     public toJSON() {
         return {

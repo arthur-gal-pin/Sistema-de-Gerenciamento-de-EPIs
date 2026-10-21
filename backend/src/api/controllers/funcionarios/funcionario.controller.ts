@@ -1,13 +1,14 @@
 import { Request, Response } from "express";
 import { FuncionarioRepository } from "../../repositories/funcionarios/funcionario.repository";
-import Funcionario from "../../models/funcionarios/Funcionario";
-import fs from "fs/promises";
+import Funcionario, { IFuncionario } from "../../models/funcionarios/Funcionario";
+import fs from 'node:fs/promises';
 import path from "path";
 import bcrypt from "bcryptjs";
 import { enumSituacaoEmpregaticia } from "../../enum/funcionarios/situacaoEmpregaticia";
+import validarSenha from "../../utils/validarSenha";
 
 export const FuncionarioController = {
-  readAll: async (req: Request, res: Response): Promise<void> => {
+  getAll: async (req: Request, res: Response): Promise<void> => {
     try {
       const result = await FuncionarioRepository.listarTodos();
 
@@ -24,10 +25,14 @@ export const FuncionarioController = {
       res.status(400).json({ message: error.message });
     }
   },
-  readId: async (req: Request, res: Response): Promise<void> => {
+  getId: async (req: Request, res: Response): Promise<void> => {
     try {
       const id = String(req.params.id);
 
+      if (!id) {
+        res.status(400).json({ message: 'Não foi enviado nenhum id para a requisição.' });
+        return;
+      }
       const result = await FuncionarioRepository.listarPorId(id);
 
       if (result === null) {
@@ -39,7 +44,7 @@ export const FuncionarioController = {
 
       res.status(200).json({ data: result });
     } catch (error: any) {
-      res.status(400).json({ message: error.message });
+      res.status(500).json({ message: error.message });
     }
   },
   create: async (req: Request, res: Response): Promise<void> => {
@@ -56,7 +61,9 @@ export const FuncionarioController = {
 
       const reqFile = req.file as any;
 
-      const caminhoImagem: string = reqFile ? `images/imagens_perfil/${reqFile.filename}` : "";
+      const caminhoImagem: string = reqFile ? `uploads/images/imagens_perfil/${reqFile.filename}` : "";
+
+      validarSenha(senha); // lança erro se a senha não atender aos critérios mínimos
 
       const password_hash = await bcrypt.hash(senha, 12);
 
@@ -78,14 +85,25 @@ export const FuncionarioController = {
       );
       res.status(201).json(resultado);
     } catch (error: any) {
-      res.status(400).json({ message: error.message });
+      res.status(500).json({ message: error.message });
     }
   },
 
   update: async (req: Request, res: Response): Promise<void> => {
     try {
       const id = String(req.params.id);
-      const dadosNovos = req.body;
+
+      // Lista branca: apenas estes campos podem ser alterados por este endpoint.
+      // Nunca aceitar idFuncionario/cpf/senhaHash cru vindos do req.body diretamente,
+      // pra evitar que o cliente sobrescreva campos sensíveis (mass assignment).
+      const {
+        idCargo,
+        nomeFuncionario,
+        sobrenomeFuncionario,
+        email,
+        situacaoEmpregaticia,
+        novaSenha,
+      } = req.body;
 
       // 1. Busca os dados atuais do banco
       const funcionarioAtual = await FuncionarioRepository.listarPorId(id);
@@ -97,8 +115,8 @@ export const FuncionarioController = {
 
       // 2. Trata a Senha: gera o hash apenas se uma NOVA senha foi enviada
       let senhaHash = funcionarioAtual.senhaHash;
-      if (dadosNovos.senhaHash && dadosNovos.senhaHash.trim() !== "") {
-        senhaHash = await bcrypt.hash(dadosNovos.senhaHash, 12);
+      if (novaSenha && String(novaSenha).trim() !== "") {
+        senhaHash = await bcrypt.hash(novaSenha, 12);
       }
 
       // 3. Trata a Imagem de Perfil
@@ -107,21 +125,28 @@ export const FuncionarioController = {
 
       if (reqFile) {
         // Nova imagem enviada: define o novo caminho
-        caminhoImagemPerfil = `images/imagens_perfil/${reqFile.filename}`;
+        caminhoImagemPerfil = `uploads/images/imagens_perfil/${reqFile.filename}`;
 
         // Remove a imagem antiga do disco, se existir
         if (funcionarioAtual.caminhoImagemPerfil) {
-          const oldPath = path.resolve(funcionarioAtual.caminhoImagemPerfil);
-          await fs.unlink(oldPath).catch(() => {});
+          const oldPath = path.resolve(process.cwd(), funcionarioAtual.caminhoImagemPerfil);
+          await fs.unlink(oldPath).catch(() => { });
         }
       }
 
-      // 4. Mescla os dados: Mantém o que já existe e sobrescreve apenas o que foi enviado
-      const dadosAtualizados = {
-        ...funcionarioAtual, // Mantém os valores antigos por padrão
-        ...dadosNovos, // Sobrescreve com os campos enviados no req.body
-        senhaHash, // Garante a senha tratada (nova ou mantida)
-        caminhoImagemPerfil, // Garante a imagem tratada (nova ou mantida)
+      // 4. Mescla apenas os campos permitidos; qualquer outro campo enviado no
+      // body é ignorado (ex.: idFuncionario, cpf, situacaoEmpregaticia sem checagem, etc.)
+      const dadosAtualizados: IFuncionario = {
+        idFuncionario: funcionarioAtual.idFuncionario,
+        FK_idCargo: idCargo ?? funcionarioAtual.fkIdCargo,
+        nomeFuncionario: nomeFuncionario ?? funcionarioAtual.nomeFuncionario,
+        sobrenomeFuncionario: sobrenomeFuncionario ?? funcionarioAtual.sobrenomeFuncionario,
+        cpf: funcionarioAtual.cpf,
+        email: email ?? funcionarioAtual.email,
+        senhaHash,
+        situacaoEmpregaticia: situacaoEmpregaticia ?? funcionarioAtual.situacaoEmpregaticia,
+        caminhoImagemPerfil: caminhoImagemPerfil ?? undefined,
+        dataCad: (funcionarioAtual as any).dataCad,
       };
 
       // 5. Instancia/Edita a entidade da regra de negócio
@@ -135,7 +160,7 @@ export const FuncionarioController = {
 
       res.status(200).json({ message: "Funcionário atualizado", data: result });
     } catch (error: any) {
-      res.status(400).json({ message: error.message });
+      res.status(500).json({ message: error.message });
     }
   },
 
@@ -152,10 +177,8 @@ export const FuncionarioController = {
       await FuncionarioRepository.apagarFuncionario(id);
 
       if (funcionario.caminhoImagemPerfil) {
-        const absolutePath = path.resolve(funcionario.caminhoImagemPerfil);
-        await fs
-          .unlink(absolutePath)
-          .catch(() => console.log("Aviso: Arquivo não existia."));
+        const absolutePath = path.resolve(process.cwd(), funcionario.caminhoImagemPerfil);
+        await fs.unlink(absolutePath).catch(() => { });
       }
 
       res.status(200).json({ message: "Removido com sucesso" });

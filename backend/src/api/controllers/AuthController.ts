@@ -1,11 +1,16 @@
-import { Request, Response } from "express";
 import bcrypt from 'bcryptjs';
-import { JwtService } from "../utils/JwtService";
-import { FuncionarioRepository } from "../repositories/funcionarios/funcionario.repository";
-import { limparCpf, validarCpf } from "../utils/validarCpf";
+import { Request, Response } from "express";
+
 import Funcionario from "../models/funcionarios/Funcionario";
+import { FuncionarioRepository } from "../repositories/funcionarios/funcionario.repository";
+
+import { JwtService } from "../utils/JwtService";
+import { limparCpf, validarCpf } from "../utils/validarCpf";
+
+import { enumEquipes } from '../enum/funcionarios/equipes.enum';
 import { enumNivelPermissao } from "../enum/funcionarios/nivelPermissao.enum";
 import { enumSituacaoEmpregaticia } from "../enum/funcionarios/situacaoEmpregaticia";
+import Mail from "../services/Mail";
 
 export class AuthController {
     private jwtService: JwtService;
@@ -17,16 +22,15 @@ export class AuthController {
     // Autentica o usuário e retorna o token
     login = async (req: Request, res: Response): Promise<Response | void> => {
         try {
-            const { cpf, password } = req.body;
+            const { cpf, senha } = req.body;
 
-            if (!cpf || !password) {
+            if (!cpf || !senha) {
                 return res.status(400).json({ message: 'CPF e senha são obrigatórios' });
             }
-            console.log(cpf, password, typeof(String(cpf)));
 
             // 1. Busca os dados brutos no banco usando o repositório (com await)
-            if(!validarCpf(limparCpf(String(cpf)))){
-                return res.status(400).json({message: `Esse CPF não existe.`});
+            if (!validarCpf(limparCpf(String(cpf)))) {
+                return res.status(400).json({ message: `Esse CPF não existe.` });
             }
             const dadosBanco = await FuncionarioRepository.buscarPorCPF(limparCpf(cpf));
 
@@ -34,7 +38,6 @@ export class AuthController {
                 return res.status(400).json({ message: 'Usuário não encontrado' });
             }
 
-            console.log(dadosBanco)
             // 2. Instancia a classe de domínio para carregar as regras (e validações se houver)
             // Obs: o Prisma é estrito quanto a tipos/nomes de campos (diferente do Sequelize,
             // que deixava passar isso silenciosamente). Por isso mapeamos explicitamente:
@@ -54,9 +57,14 @@ export class AuthController {
             });
 
             // 3. Compara a senha usando a propriedade correta: senhaHash
-            const passwordMatch = await bcrypt.compare(String(password), user.senhaHash);
+            const passwordMatch = await bcrypt.compare(String(senha), user.senhaHash);
             if (!passwordMatch) {
                 return res.status(400).json({ message: 'Credenciais inválidas' });
+            }
+
+            //Caso o usuário esteja afastado ou inativo ele não poderá acessar o sistema, mesmo com as credenciais corretas
+            if (dadosBanco.situacaoEmpregaticia === enumSituacaoEmpregaticia.inativo || dadosBanco.situacaoEmpregaticia === enumSituacaoEmpregaticia.afastado) {
+                return res.status(403).json({ message: 'Você não tem mais acesso ao sistema.' })
             }
 
             const cargo = (dadosBanco as any).cargo;
@@ -83,6 +91,68 @@ export class AuthController {
                 return res.status(500).json({ message: 'Ocorreu um erro no servidor', errorMessage: error.message });
             }
             return res.status(500).json({ message: 'Ocorreu um erro no servidor', errorMessage: 'Erro desconhecido' });
+        }
+    }
+
+    esqueciASenha = async (req: Request, res: Response) => {
+        try {
+            const { cpf, nome, email, equipe, texto } = req.body;
+
+            if (!cpf || !nome || !email || !equipe) return res.status(400).json({message: 'Todas as informações de contato são necessárias para a criação de sua conta.'});
+
+            if (!validarCpf(limparCpf(String(cpf)))) {
+                return res.status(400).json({ message: `Esse CPF não existe.` });
+            }
+
+            if (!Object.values(enumEquipes).includes(equipe)){
+                return res.status(400).json({message: "Essa equipe não existe."})
+            }
+
+            // Busca o funcionário pelo CPF informado, sem revelar ao cliente
+            // se o CPF existe ou não na base (evita enumeração de usuários).
+            const dadosBanco = await FuncionarioRepository.buscarPorCPF(limparCpf(cpf));
+
+            const nomeConfere = dadosBanco?.nomeFuncionario?.toLowerCase() === String(nome).toLowerCase();
+            const emailConfere = dadosBanco?.email?.toLowerCase() === String(email).toLowerCase();
+
+            if (dadosBanco && nomeConfere && emailConfere) {
+                const idAdministrador = await FuncionarioRepository.buscarAdministrador(equipe as enumEquipes);
+
+                if (idAdministrador) {
+                    const administrador = await FuncionarioRepository.listarPorId(idAdministrador);
+
+                    if (administrador?.email) {
+                        try {
+                            const mail = new Mail(
+                                administrador.email,
+                                'Solicitação de redefinição de senha',
+                                `<p>O funcionário <strong>${dadosBanco.nomeFuncionario} ${dadosBanco.sobrenomeFuncionario}</strong> ` +
+                                `(CPF: ${dadosBanco.cpf}) solicitou a redefinição de senha.</p>` +
+                                (texto ? `<p>Mensagem enviada: ${texto}</p>` : '')
+                            );
+                            await mail.sendMail();
+                        } catch (mailError) {
+                            // Falha no envio de e-mail não deve derrubar a resposta ao usuário;
+                            // apenas registra o erro para investigação.
+                            console.error('Erro ao enviar e-mail de recuperação de senha:', mailError);
+                        }
+                    }
+                }
+            }
+
+            // Resposta genérica sempre igual, independente de os dados baterem ou não,
+            // para não permitir que alguém descubra se um CPF/e-mail está cadastrado.
+            return res.status(200).json({
+                message: 'Se os dados informados estiverem corretos, o responsável pela sua equipe foi notificado para lhe ajudar na redefinição de senha.'
+            });
+
+        } catch (error) {
+            console.error(error);
+            if (error instanceof Error) {
+                res.status(500).json({ message: 'Ocorreu um erro no servidor', errorMessage: error.message });
+            } else {
+                res.status(500).json({ message: 'Ocorreu um erro no servidor', errorMessage: 'Erro desconhecido' });
+            }
         }
     }
 

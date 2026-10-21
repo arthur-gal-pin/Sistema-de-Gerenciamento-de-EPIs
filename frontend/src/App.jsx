@@ -1,22 +1,18 @@
-import { Navigate, Route, Routes } from "react-router-dom"
-import Login from "../src/pages/login"
-import Cadastro from "../src/pages/cadastro"
-import Home from "./pages/Home"
-import Amostras from "./pages/Amostras"
-import ProfilePage from "./pages/Profile"
+import LoginPage from './pages/LoginPage'
+import NoLoginPage from './pages/NoLoginPage';
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import './App.css'
 
-
-export default function App() {
-
+function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Navigate to="/login" replace />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/cadastro" element={<Cadastro />} />
-      <Route path="/perfil" element={<ProfilePage />} />
-      <Route path="/home" element={<Home />} />
-      <Route path="/amostras" element={<Amostras />} />
-      <Route path="*" element={<Navigate to="/login" replace />} />
-    </Routes>
+<BrowserRouter>
+      <Routes>
+        <Route path="/login" element={<LoginPage/>}/>
+        <Route path="/no-login" element={<NoLoginPage/>}/>
+        <Route path="*" element={<Navigate to="/login"/>}/>
+      </Routes>
+  </BrowserRouter>
   )
 }
+
+export default App

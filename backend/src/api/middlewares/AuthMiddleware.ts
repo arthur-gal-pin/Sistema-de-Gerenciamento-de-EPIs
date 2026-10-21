@@ -34,7 +34,6 @@ export class AuthMiddleware {
 
         try {
             const decoded = this.jwtService.verificarTokenAcesso(token);
-            console.log("TOKEN DECODED: ", decoded);
 
             req.user = {
                 idFuncionario: String(decoded.idFuncionario),

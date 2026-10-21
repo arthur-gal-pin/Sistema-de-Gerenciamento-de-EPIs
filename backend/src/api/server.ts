@@ -1,20 +1,27 @@
 import dotenv from 'dotenv';
+import path from 'path';
 dotenv.config();
 
 import express from 'express';
 import { prisma } from './configs/Database';
-import authRoutes from './routes/funcionarios/login.routes';
 import routes from './routes/routes';
+import cors from 'cors'
 
 const app = express();
 const PORT = process.env.PORT || 3300;
+
+app.use(cors({ origin: process.env.CLIENT_URL  || ''})); //Tirar o operador || quando entrar em produção
 
 // --- MIDDLEWARES ---
 app.use(express.json()); // Permite que a controller receba JSON no req.body
 
 // --- ROTAS ---
-app.use('/auth', authRoutes);
 app.use('/', routes);
+
+// O multer (imagem.multer.ts) grava fisicamente em <raiz-do-projeto>/uploads,
+// então o servidor estático precisa apontar para o mesmo diretório
+// (antes apontava para src/api/uploads, que nunca é criado).
+app.use('/uploads', express.static(path.join(process.cwd(), 'uploads')));
 
 // --- INICIALIZAÇÃO DO BANCO E SERVIDOR ---
 async function startServer() {
@@ -41,7 +48,7 @@ async function startServer() {
     }
 }
 
-// Encerramento gracioso da conexão com o banco
+// Encerramento da conexão com o banco
 process.on('SIGINT', async () => {
     await prisma.$disconnect();
     process.exit(0);

@@ -1,5 +1,7 @@
 import { prisma } from '../../configs/Database';
 import { IFuncionario } from '../../models/funcionarios/Funcionario';
+import { enumEquipes, CargosCoordenadores } from '../../enum/funcionarios/equipes.enum';
+import { validarCpf, limparCpf } from '../../utils/validarCpf';
 
 export class FuncionarioRepository {
 
@@ -15,6 +17,9 @@ export class FuncionarioRepository {
     }
 
     static async buscarPorCPF(cpf: string) {
+        if (!validarCpf(limparCpf(cpf))) {
+            throw new Error('O CPF inserido para busca é inválido.');
+        }
         return await prisma.funcionario.findFirst({
             where: { cpf },
             include: { cargo: true }
@@ -83,10 +88,57 @@ export class FuncionarioRepository {
         return [result.count];
     }
 
+    static async atualizarSenha(id: string, senha: string) {
+        const result = await prisma.funcionario.updateMany({
+            where: { idFuncionario: id },
+            data: {
+                senhaHash: senha,
+                dataMod: new Date()
+            }
+        });
+        return [result.count];
+    }
+
+    static async atualizarPfp(id: string, caminhoImagem: string) { //Atualizar foto de perfil (Profile Picture)
+        const result = await prisma.funcionario.update({
+            where: { idFuncionario: id },
+            data: {
+                caminhoImagemPerfil: caminhoImagem,
+                dataMod: new Date()
+            }
+        });
+        return result;
+    }
+
+    static async excluirPfp(id: string){
+        const result = await prisma.funcionario.update({
+            where: {idFuncionario: id},
+            data: {
+                caminhoImagemPerfil: ''
+            }
+        })
+    }
+
     static async apagarFuncionario(id: string) {
         const result = await prisma.funcionario.deleteMany({
             where: { idFuncionario: id }
         });
         return result.count;
+    }
+
+    static async buscarAdministrador(equipe: enumEquipes) {
+        const nomeCargo: string = CargosCoordenadores[equipe];
+        const cargo = (await prisma.cargo.findFirst({
+            where: { nomeCargo: nomeCargo },
+            select: { idCargo: true }
+        }));
+        if (!cargo?.idCargo) return null;
+
+        const administrador = (await prisma.funcionario.findFirst({
+            where: { fkIdCargo: cargo.idCargo },
+            select: { idFuncionario: true }
+
+        }));
+        return administrador?.idFuncionario;
     }
 }

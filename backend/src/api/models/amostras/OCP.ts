@@ -8,14 +8,14 @@ export interface IOcp{
 }
 
 export class OCP {
-    private _idOCP: string | null;
-    private _nomeOCP: string;
+    private _idOCP: string | null = null;
+    private _nomeOCP!: string;
     private _dataCad: string;
     private _dataMod: string;
 
     constructor(idOCP: string | null, nomeOCP: string, dataCad?: string, dataMod?: string) {
-        this._idOCP = idOCP;
-        this._nomeOCP = nomeOCP;
+        this.idOCP = idOCP;
+        this.nomeOCP = nomeOCP;
         this._dataCad = dataCad || new Date().toISOString();
         this._dataMod = dataMod || new Date().toISOString();
     }
@@ -28,11 +28,19 @@ export class OCP {
 
     // --- SETTERS ---
     set idOCP(value: string | null) {
+        if(!value || value !== null && value?.length !== 36){
+            throw new Error ('O idOCP está errado.');
+        }
         this._idOCP = value;
+        this.atualizarDataModificacao();
     }
 
     set nomeOCP(value: string) {
+        if(!value || value.length < 3 || value.length > 50){
+            throw new Error ('Esse nome de OCP é inválido.')
+        }
         this._nomeOCP = value;
+        this.atualizarDataModificacao();
     }
 
     // --- MÉTODOS DE FÁBRICA ---
@@ -56,6 +64,11 @@ export class OCP {
 
     // --- MÉTODOS AUXILIARES ---
 
+    private atualizarDataModificacao(): void {
+        if (this._dataCad) { // Só atualiza se a instância já concluiu o construtor
+            this._dataMod = new Date().toISOString();
+        }
+    }
     /**
      * Converte a classe para um objeto plano, removendo os underlines 
      * das propriedades privadas ao serializar.

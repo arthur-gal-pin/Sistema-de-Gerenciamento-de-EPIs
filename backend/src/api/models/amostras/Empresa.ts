@@ -7,16 +7,18 @@ export interface IEmpresa {
     dataMod?: string;
 }
 
-
 export class Empresa {
-    private _idEmpresa: string | null;
-    private _nomeEmpresa: string;
+    private _idEmpresa: string | null = null;
+    private _nomeEmpresa!: string;
     private _dataCad: string;
     private _dataMod: string;
 
     constructor(idEmpresa: string | null, nomeEmpresa: string, dataCad?: string, dataMod?: string) {
-        this._idEmpresa = idEmpresa;
-        this._nomeEmpresa = nomeEmpresa;
+        // Atribuições utilizando SETTERS para disparar as validações
+        this.idEmpresa = idEmpresa;
+        this.nomeEmpresa = nomeEmpresa;
+
+        // Inicialização das datas
         this._dataCad = dataCad || new Date().toISOString();
         this._dataMod = dataMod || new Date().toISOString();
     }
