@@ -41,44 +41,44 @@ export default function NoLoginPage() {
 
     return (
         <div>
-            <SetaVoltar/>
+            <SetaVoltar />
             <h3>Mandar mensagem para o coordenador de sua equipe</h3>
             <form onSubmit={handleSubmit}>
                 <label>Seu nome completo</label>
-                <input 
-                    type='text' 
-                    name='nome' 
-                    placeholder="Ex: João Silva" 
-                    value={formData.nome} 
-                    onChange={handleChange} 
-                    required 
+                <input
+                    type='text'
+                    name='nome'
+                    placeholder="Ex: João Silva"
+                    value={formData.nome}
+                    onChange={handleChange}
+                    required
                 />
 
                 <label>Seu CPF</label>
-                <input 
-                    type='text' 
-                    name='cpf' 
-                    placeholder="Ex: XXX.XXX.XXX-XX" 
-                    value={formData.cpf} 
-                    onChange={handleChange} 
-                    required 
+                <input
+                    type='text'
+                    name='cpf'
+                    placeholder="Ex: XXX.XXX.XXX-XX"
+                    value={formData.cpf}
+                    onChange={handleChange}
+                    required
                 />
 
                 <label>Seu E-mail</label>
-                <input 
-                    type='email' 
-                    name='email' 
-                    placeholder="Ex: joaosilva@gmail.com" 
-                    value={formData.email} 
-                    onChange={handleChange} 
-                    required 
+                <input
+                    type='email'
+                    name='email'
+                    placeholder="Ex: joaosilva@gmail.com"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
                 />
 
                 <label>Escolha a sua equipe</label>
-                <select 
-                    name='equipe' 
-                    value={formData.equipe} 
-                    onChange={handleChange} 
+                <select
+                    name='equipe'
+                    value={formData.equipe}
+                    onChange={handleChange}
                     required
                 >
                     <option value="" disabled>Selecione uma equipe</option>
@@ -90,14 +90,13 @@ export default function NoLoginPage() {
                 </select>
 
                 <label>Deixe uma mensagem para seu coordenador</label>
-                <input 
-                    type='text' 
-                    name='texto' 
-                    placeholder="Digite aqui..." 
-                    value={formData.texto} 
-                    onChange={handleChange} 
-                    required 
-                />
+                <textarea
+                    name='texto'
+                    placeholder="Digite aqui..."
+                    rows="5" cols="33"
+                    value={formData.texto}
+                    onChange={handleChange}
+                    required ></textarea>
 
                 <button type="submit">Enviar dados</button>
             </form>
