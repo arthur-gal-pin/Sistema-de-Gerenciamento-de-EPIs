@@ -12,7 +12,7 @@ const app = express();
 
 const PORT = process.env.PORT || 3300;
 
-app.use(cors({ origin: process.env.CLIENT_URL  || ''})); //Tirar o operador || quando entrar em produção
+app.use(cors({ origin: process.env.CLIENT_URL  || '', credentials: true})); //Tirar o operador || quando entrar em produção
 
 // --- MIDDLEWARES ---
 app.use(express.json()); // Permite que a controller receba JSON no req.body

@@ -89,7 +89,6 @@ export class AuthController {
 
 
         } catch (error: unknown) {
-            console.error(error);
             if (error instanceof Error) {
                 return res.status(500).json({ message: 'Ocorreu um erro no servidor', errorMessage: error.message });
             }
