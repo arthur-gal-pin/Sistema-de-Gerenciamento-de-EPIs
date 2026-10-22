@@ -1,5 +1,6 @@
 import { useState } from "react"
 
+
 const instrumentosMock = [
     {
         idInstrumento: 1,
@@ -16,7 +17,7 @@ const instrumentosMock = [
     
 ]
 
-export default function IntrumentosPage() {
+export default function InstrumentosPage() {
     const [instrumentos, setInstrumentos] = useState(instrumentosMock);
     const [instrumentosEdit, setInstrumentosEdit] = useState(null)
     const [formData, setFormData] = useState({
@@ -24,8 +25,6 @@ export default function IntrumentosPage() {
         funcaoInstrumento: '',
         ultimaCalibracao: '',
     })
-
-
 
     return(
         <div>
