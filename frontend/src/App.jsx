@@ -8,6 +8,7 @@ function App() {
   return (
 <BrowserRouter>
       <Routes>
+        
         <Route path="/login" element={<LoginPage/>}/>
         <Route path="/no-login" element={<NoLoginPage/>}/>
         <Route path="*" element={<Navigate to="/login"/>}/>

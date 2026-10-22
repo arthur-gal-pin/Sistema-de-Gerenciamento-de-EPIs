@@ -225,7 +225,7 @@ export const ProfileActionsController = {
             const funcionario = await FuncionarioRepository.buscarCompletoPorId(req.user!.idFuncionario);
             if (!funcionario) { res.status(404).json({ message: 'Usuário não encontrado.' }); return; }
 
-            const { senhaHash, ...seguro } = funcionario; 
+            const { senhaHash, ...seguro } = funcionario;
             res.status(200).json({ data: seguro });
         } catch (error: any) {
             res.status(500).json({ message: error.message });

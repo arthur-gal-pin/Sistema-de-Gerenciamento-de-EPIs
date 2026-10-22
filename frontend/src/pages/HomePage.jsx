@@ -1,5 +1,9 @@
+import HeaderStandard from "../components/HeaderStandard";
+
 export default function HomePage(){
     return (
-        <h1>OIEEEEEEEEE</h1>
+        <div>
+            <HeaderStandard/>
+        </div>
     )
 }
