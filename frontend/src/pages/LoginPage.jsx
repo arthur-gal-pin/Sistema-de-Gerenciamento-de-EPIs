@@ -1,17 +1,31 @@
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { Eye, EyeOff } from 'lucide-react';
+import loginService from "../services/auth/loginService";
 
 export default function LoginPage() {
     const [cpf, setCpf] = useState('');
     const [senha, setSenha] = useState('');
     const [mostrarSenha, setMostrarSenha] = useState(false);
-    const [error, setError] = useState(null);
+    const [mensagemError, setMensagemError] = useState(null);
     const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        navigate("/home-page");
+        try {
+            const response = await loginService(cpf, senha);
+            if (response.status !== 200) {
+                // Se der erro (ex: 400 ou 401), pegamos a mensagem do back-end e abrimos o modal
+                setMensagemError(response.message || 'Erro ao realizar login.');
+                alert(mensagemError)
+                return;
+            }
+            navigate('/home-page');
+        } catch (error) {
+            setMensagemError(mensagemError);
+            console.log(error);
+            alert(mensagemError ? `Ocorreu um erro ao tentar logar. Erro: ${mensagemError}` : 'Ops! Ocorreu um erro, verifique seu cpf e senha, e tente logar novamente');
+        }
     }
 
     const handleForget = (e) => {
@@ -35,7 +49,7 @@ export default function LoginPage() {
 
     return (
         <div>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <label>CPF</label>
                 <input
                     id="cpf"
@@ -55,17 +69,11 @@ export default function LoginPage() {
 
                 <button type='button' onClick={(e) => toggleMostrarSenha()}>{mostrarSenha ? <EyeOff size={20} /> : <Eye size={20} />}</button>
 
-                <button type='submit' onClick={handleSubmit}>
+                <button type='submit'>
                     ENTRAR
                 </button>
                 <button type='submit' onClick={handleForget}>Esqueceu sua senha ou não tem login?</button>
             </form>
-
-            <div>
-                {error && (
-                    <strong>Erro: {error}</strong>
-                )}
-            </div>
         </div>
     )
 }

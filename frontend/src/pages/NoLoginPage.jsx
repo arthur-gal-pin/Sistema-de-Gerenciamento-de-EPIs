@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import SetaVoltar from "../components/SetaVoltar";
 
 export default function NoLoginPage() {
     const [formData, setFormData] = useState({
@@ -40,6 +41,7 @@ export default function NoLoginPage() {
 
     return (
         <div>
+            <SetaVoltar/>
             <h3>Mandar mensagem para o coordenador de sua equipe</h3>
             <form onSubmit={handleSubmit}>
                 <label>Seu nome completo</label>
