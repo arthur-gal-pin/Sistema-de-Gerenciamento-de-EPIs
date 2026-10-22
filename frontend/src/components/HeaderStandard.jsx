@@ -1,32 +1,10 @@
 import { LogOut } from "lucide-react";
 import avatarPadrao from "../assets/avatar_generico.png";
 import SetaVoltar from "./SetaVoltar";
-import { meService } from "../services/auth/loginService";
-import { useEffect, useState } from "react";
+import { useAuth } from "../hooks/useAuth";
 
 export default function HeaderStandard() {
-    const [usuario, setUsuario] = useState();
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        async function carregarUsuário() {
-            try {
-                const dados = await meService();
-                if (!dados || dados === undefined) {
-                    return;
-                }
-                setUsuario(dados.data.data);
-
-            } catch (error) {
-                setMensagemError(error);
-                alert(`Ops, ocorreu um erro! Erro: ${mensagemError}`);
-            } finally {
-                setLoading(false);
-            }
-        }
-        carregarUsuário();
-    }, [])
-
+    const { user: usuario, loading } = useAuth();
     return (
         <div>
             <SetaVoltar />

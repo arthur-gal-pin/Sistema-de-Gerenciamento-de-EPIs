@@ -103,7 +103,6 @@ export class AuthController {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === 'production',
                 sameSite: 'strict',
-                // Opcional: dependendo de como configurou o path/domain, pode precisar repetir aqui
             });
 
             return res.status(200).json({ message: "Logout realizado com sucesso!" });

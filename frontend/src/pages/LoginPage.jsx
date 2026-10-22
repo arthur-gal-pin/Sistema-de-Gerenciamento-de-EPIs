@@ -20,7 +20,7 @@ export default function LoginPage() {
                 alert(mensagemError)
                 return;
             }
-            navigate('/home-page');
+            navigate('/');
         } catch (error) {
             setMensagemError(mensagemError);
             console.log(error);
