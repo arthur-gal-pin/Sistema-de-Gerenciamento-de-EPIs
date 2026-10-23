@@ -9,8 +9,8 @@ const auth = new AuthMiddleware();
 const { administrador, coordenador } = enumNivelPermissao;
 
 // Qualquer funcionário autenticado pode listar
-cargoRoutes.get('/all',    auth.authenticate, CargoController.readAll);
-cargoRoutes.get('/id/:id', auth.authenticate, CargoController.readId);
+cargoRoutes.get('/all',    auth.authenticate, CargoController.getAll);
+cargoRoutes.get('/id/:id', auth.authenticate, CargoController.getId);
 
 // Só admin ou coordenador pode criar/editar/deletar cargos
 cargoRoutes.post('/',       auth.authenticate, auth.autorizar(administrador), CargoController.create);

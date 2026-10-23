@@ -10,7 +10,7 @@ export const AmostraController = {
             const result = await AmostraRepository.findAll();
 
             if (!result || result.length === 0) {
-                res.status(404).json({ message: 'Não foi encontrada nenhuma amostra nesse banco de dados.' });
+                res.status(404).json({ message: 'Não foi encontrada nenhuma amostra no banco de dados.' });
                 return;
             }
 
@@ -23,11 +23,15 @@ export const AmostraController = {
     // Busca uma amostra específica por ID
     getId: async (req: Request, res: Response): Promise<void> => {
         try {
-            const id = String(req.params.id);
+            const id = req.params.id;
+            if (!id ||typeof id !== 'string' || id.length !== 36) { 
+                res.status(400).json({ message: 'Não foi possível processar a requisição - ID inválido inserido.' });
+                return; 
+            }
             const result = await AmostraRepository.findById(id);
 
-            if (result === null) {
-                res.status(404).json({ message: 'Não foi encontrada nenhuão foi ema amostra com esse id.' });
+            if (!result) {
+                res.status(404).json({ message: 'Não foi encontrada nenhuma amostra com esse ID.' });
                 return;
             }
 
@@ -36,43 +40,133 @@ export const AmostraController = {
             res.status(400).json({ message: error.message });
         }
     },
-    getNome: async (req: Request, res: Response): Promise<void> =>{
+
+    // Busca amostras por Nome
+    getNome: async (req: Request, res: Response): Promise<void> => {
         try {
-            const nome = String(req.params.nome);
+            const nome = req.params.nome;
+            if (!nome ||typeof nome !== 'string' || nome.length < 3) { 
+                res.status(400).json({ message: 'Não foi possível processar a requisição - nome inválido inserido.' });
+                return; 
+            }
             const result = await AmostraRepository.findByNome(nome);
 
-            if(result === null){
-                res.status(404).json({message: 'Não foi possível encontrar uma empresa com esse nome.'});
+            if (!result || result.length === 0) {
+                res.status(404).json({ message: 'Não foi encontrada nenhuma amostra com esse nome.' });
                 return;
             }
 
-            res.status(200).json({message:'Requisição bem-sucedida:', data: result});
-            
+            res.status(200).json({ message: 'Requisição bem-sucedida', data: result });
         } catch (error: any) {
-            res.status(400).json({message: error.message})
+            res.status(400).json({ message: error.message });
+        }
+    },
+
+    // Busca amostras por Código
+    getCodigo: async (req: Request, res: Response): Promise<void> => {
+        try {
+            const {codigo} = req.params;
+            if (!codigo ||typeof codigo !== 'string' || codigo.length <3 || codigo.length > 40) { 
+                res.status(400).json({ message: 'Não foi possível processar a requisição - código inválido inserido.' });
+                return; 
+            }
+            const result = await AmostraRepository.findByCodigo(codigo);
+
+            if (!result || result.length === 0) {
+                res.status(404).json({ message: 'Não foi encontrada nenhuma amostra com esse código.' });
+                return;
+            }
+
+            res.status(200).json({ message: 'Requisição bem-sucedida', data: result });
+        } catch (error: any) {
+            res.status(400).json({ message: error.message });
+        }
+    },
+
+    // Busca amostras por ID de Protocolo
+    getProtocolo: async (req: Request, res: Response): Promise<void> => {
+        try {
+            const idProtocolo = req.params.idProtocolo;
+            if (!idProtocolo ||typeof idProtocolo !== 'string' || idProtocolo.length !== 36) { 
+                res.status(400).json({ message: 'Não foi possível processar a requisição - ID inválido inserido.' });
+                return; 
+            }
+            const result = await AmostraRepository.findByProtocolo(idProtocolo);
+
+            if (!result || result.length === 0) {
+                res.status(404).json({ message: 'Não foram encontradas amostras para este protocolo.' });
+                return;
+            }
+
+            res.status(200).json({ message: 'Requisição bem-sucedida', data: result });
+        } catch (error: any) {
+            res.status(400).json({ message: error.message });
+        }
+    },
+
+    // Busca amostras por Classificação
+    getClassificacao: async (req: Request, res: Response): Promise<void> => {
+        try {
+            const classificacao = String(req.params.classificacao);
+            const result = await AmostraRepository.findByClassificacao(classificacao);
+
+            if (!result || result.length === 0) {
+                res.status(404).json({ message: 'Não foram encontradas amostras com esta classificação.' });
+                return;
+            }
+
+            res.status(200).json({ message: 'Requisição bem-sucedida', data: result });
+        } catch (error: any) {
+            res.status(400).json({ message: error.message });
+        }
+    },
+
+    // Busca amostras por Subclassificação
+    getSubclassificacao: async (req: Request, res: Response): Promise<void> => {
+        try {
+            const subclassificacao = String(req.params.subclassificacao);
+            const result = await AmostraRepository.findBySubclassificacao(subclassificacao);
+
+            if (!result || result.length === 0) {
+                res.status(404).json({ message: 'Não foram encontradas amostras com esta subclassificação.' });
+                return;
+            }
+
+            res.status(200).json({ message: 'Requisição bem-sucedida', data: result });
+        } catch (error: any) {
+            res.status(400).json({ message: error.message });
         }
     },
 
     // Cria uma nova amostra instanciando o modelo de domínio primeiro
-
     create: async (req: Request, res: Response): Promise<void> => {
         try {
-            const { FK_idOCP, FK_idEmpresa, nomeAmostra, tipoAmostra, situacaoAmostra } = req.body;
+            const { 
+                FK_idProtocolo, 
+                codigoAmostra, 
+                nomeAmostra, 
+                situacaoAmostra, 
+                classificacaoAmostra, 
+                subclassificacaoAmostra, 
+                descricao 
+            } = req.body;
 
-            // Instancia o domínio usando a factory (onde rodam as validações de negócio)
+            // Instancia o domínio usando a factory (com validações de negócio)
             const domainAmostra = Amostra.create({
                 idAmostra: null,
-                FK_idOCP,
-                FK_idEmpresa,
+                FK_idProtocolo,
+                codigoAmostra,
                 nomeAmostra,
-                tipoAmostra,
-                situacaoAmostra
+                situacaoAmostra,
+                classificacaoAmostra,
+                subclassificacaoAmostra,
+                descricao
             });
 
-            // Passa os dados puros validados para a camada de infraestrutura
+            // Passa os dados validados para o repositório
             const resultado = await AmostraRepository.create(domainAmostra.toJSON());
             
-            res.status(201).json(resultado);
+            res.status(201).json({ message: "Amostra criada com sucesso", data: resultado });
         } catch (error: any) {
             res.status(400).json({ message: error.message });
         }
@@ -84,17 +178,17 @@ export const AmostraController = {
             const id = String(req.params.id);
             const dadosNovos = req.body;
 
-            // Verifica se a amostra de fato existe antes de prosseguir
+            // Verifica se a amostra existe
             const amostraAtual = await AmostraRepository.findById(id);
             if (!amostraAtual) {
                 res.status(404).json({ message: "Amostra não encontrada" });
                 return;
             }
 
-            // Cria a instância de edição passando os novos dados recebidos do body
+            // Cria a instância de edição com validações
             const amostraEditada = Amostra.edit(id, dadosNovos);
 
-            // Envia o JSON atualizado para o repositório persistir no banco
+            // Persiste no banco
             const result = await AmostraRepository.update(id, amostraEditada.toJSON());
 
             res.status(200).json({ message: "Amostra atualizada com sucesso", data: result });

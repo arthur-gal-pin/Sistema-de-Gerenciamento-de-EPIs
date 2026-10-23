@@ -1,17 +1,20 @@
-import { Navigate, Route, Routes } from "react-router-dom"
-import Login from "../pages/login"
-import Home from "./pages/Home"
-import Amostras from "./pages/Amostras"
+import LoginPage from './pages/LoginPage'
+import NoLoginPage from './pages/NoLoginPage';
+import HomePage from './pages/HomePage';
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import './App.css'
 
-export default function App() {
-
+function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Navigate to="/login" replace />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/home" element={<Home />} />
-      <Route path="/amostras" element={<Amostras />} />
-      <Route path="*" element={<Navigate to="/login" replace />} />
-    </Routes>
+<BrowserRouter>
+      <Routes>
+        <Route path="/login" element={<LoginPage/>}/>
+        <Route path="/no-login" element={<NoLoginPage/>}/>
+        <Route path="*" element={<Navigate to="/login"/>}/>
+        <Route path= "/home-page" element={<HomePage/>}/>
+      </Routes>
+  </BrowserRouter>
   )
 }
+
+export default App

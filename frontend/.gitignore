@@ -11,7 +11,7 @@ node_modules
 dist
 dist-ssr
 *.local
-
+package-lock.json
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
@@ -21,4 +21,8 @@ dist-ssr
 *.ntvs*
 *.njsproj
 *.sln
+<<<<<<< HEAD
+*.sw
+=======
 *.sw?
+>>>>>>> Tela_Login

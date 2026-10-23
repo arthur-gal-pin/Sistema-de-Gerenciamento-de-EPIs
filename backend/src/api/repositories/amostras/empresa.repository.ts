@@ -3,11 +3,11 @@ import { IEmpresa } from '../../models/amostras/Empresa';
 
 export class EmpresaRepository {
 
-    static async listarTodos() {
+    static async findAll() {
         return await prisma.empresa.findMany();
     }
 
-    static async listarPorNome(nome: string) {
+    static async findByName(nome: string) {
         return await prisma.empresa.findMany({
             where: {
                 nomeEmpresa: { contains: nome }
@@ -15,11 +15,11 @@ export class EmpresaRepository {
         });
     }
 
-    static async listarPorId(id: string) {
+    static async findById(id: string) {
         return await prisma.empresa.findUnique({ where: { idEmpresa: id } });
     }
 
-    static async criarEmpresa(dados: any) {
+    static async create(dados: any) {
         return await prisma.empresa.create({
             data: {
                 idEmpresa: dados.idEmpresa ?? undefined,
@@ -30,7 +30,7 @@ export class EmpresaRepository {
         });
     }
 
-    static async atualizarEmpresa(id: string, dados: Partial<IEmpresa>) {
+    static async update(id: string, dados: Partial<IEmpresa>) {
         const result = await prisma.empresa.updateMany({
             where: {
                 idEmpresa: id
@@ -43,7 +43,7 @@ export class EmpresaRepository {
         return [result.count];
     }
 
-    static async apagarEmpresa(id: string) {
+    static async delete(id: string) {
         const result = await prisma.empresa.deleteMany({
             where: {
                 idEmpresa: id

@@ -9,8 +9,8 @@ const auth = new AuthMiddleware();
 
 const { administrador, coordenador } = enumNivelPermissao;
 
-funcionarioRoutes.get('/all',    auth.authenticate, auth.autorizar(administrador, coordenador), FuncionarioController.readAll);
-funcionarioRoutes.get('/id/:id', auth.authenticate, FuncionarioController.readId);
+funcionarioRoutes.get('/all',    auth.authenticate, auth.autorizar(administrador, coordenador), FuncionarioController.getAll);
+funcionarioRoutes.get('/id/:id', auth.authenticate, FuncionarioController.getId);
 funcionarioRoutes.post('/',    auth.authenticate, auth.autorizar(administrador), uploadImagePerfil.single('image'), FuncionarioController.create);
 funcionarioRoutes.patch('/id/:id',  auth.authenticate, auth.autorizar(administrador, coordenador), uploadImagePerfil.single('image'), FuncionarioController.update);
 funcionarioRoutes.delete('/id/:id', auth.authenticate, auth.autorizar(administrador), FuncionarioController.delete);

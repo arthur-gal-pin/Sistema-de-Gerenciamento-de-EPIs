@@ -2,11 +2,11 @@ import { prisma } from '../../configs/Database';
 
 export class OcpRepository {
 
-    static async listarTodos() {
+    static async findAll() {
         return await prisma.ocp.findMany();
     }
 
-    static async listarPorNome(nome: string) {
+    static async findByName(nome: string) {
         return await prisma.ocp.findMany({
             where: {
                 nomeOCP: { contains: nome }
@@ -14,11 +14,11 @@ export class OcpRepository {
         });
     }
 
-    static async listarPorId(id: string) {
+    static async findById(id: string) {
         return await prisma.ocp.findUnique({ where: { idOCP: id } });
     }
 
-    static async criarOcp(dados: any) {
+    static async create(dados: any) {
         return await prisma.ocp.create({
             data: {
                 idOCP: dados.idOCP ?? undefined,
@@ -29,7 +29,7 @@ export class OcpRepository {
         });
     }
 
-    static async atualizarOcp(id: string, dados: any) {
+    static async update(id: string, dados: any) {
         const result = await prisma.ocp.updateMany({
             where: { idOCP: id },
             data: {
@@ -40,7 +40,7 @@ export class OcpRepository {
         return [result.count];
     }
 
-    static async apagarOcp(id: string) {
+    static async delete(id: string) {
         const result = await prisma.ocp.deleteMany({
             where: { idOCP: id }
         });

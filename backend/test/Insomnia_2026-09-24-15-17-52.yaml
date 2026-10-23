@@ -1,0 +1,1906 @@
+type: collection.insomnia.rest/5.0
+schema_version: "5.1"
+name: "Requisições "
+meta:
+  id: wrk_8d541ab185e640d19bd7778abbb7064e
+  created: 1785876231198
+  modified: 1786620861947
+  description: ""
+collection:
+  - name: Funcionários
+    meta:
+      id: fld_383ab488efca452488c446a661d7a31c
+      created: 1785876243609
+      modified: 1789062086180
+      sortKey: -1785876243609
+      description: ""
+    children:
+      - name: Cargos
+        meta:
+          id: fld_0646c8915a454611bdd9f5569a5b2aa9
+          created: 1785876252357
+          modified: 1785889416788
+          sortKey: -1785876252357
+          description: ""
+        children:
+          - url: "{{ _.link }}cargos/id/A1B2C3D4-E5F6-7890-G1H2-I3J4K5L6M7N8"
+            name: Delete
+            meta:
+              id: req_15444755a21442b1af5c0f30838470cc
+              created: 1785887700650
+              modified: 1785889390272
+              isPrivate: false
+              description: ""
+              sortKey: -1785887700650
+            method: DELETE
+            authentication:
+              type: bearer
+              token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZEZ1bmNpb25hcmlvIjoiMTIzNDU2NzgtMTIzNC0xMjM0LTEyMzQtMTIzNDU2Nzg5MDEyIiwiZW1haWwiOiJqb2FvLnNpbHZhQGVtcHJlc2EuY29tIiwibm9tZSI6Ikpvw6NvIiwibml2ZWxQZXJtaXNzYW8iOiJhZG1pbmlzdHJhZG9yIiwiaWF0IjoxNzg1ODg4NzgzLCJleHAiOjE3ODU4ODk5ODN9.jUXuGpmSumkO7eew991uBeupqvbvqPcyWGOS5REy4Ss
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.link }}cargos/all"
+            name: Select All
+            meta:
+              id: req_d30610e1b3e646cfac0b2d1e30fe1d7c
+              created: 1785887731463
+              modified: 1785891641555
+              isPrivate: false
+              description: ""
+              sortKey: -1785887731463
+            method: GET
+            authentication:
+              type: bearer
+              token: "{{ _.token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.link }}cargos/"
+            name: "Create "
+            meta:
+              id: req_0e09af785e7848e7817cd6ced73d65fd
+              created: 1785889475890
+              modified: 1789058945034
+              isPrivate: false
+              description: ""
+              sortKey: -1785887715119.5
+            method: POST
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"nomeCargo": "Coordenador de Pesquisa",
+                	"nivelPermissao": "administrador"
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+            authentication:
+              type: bearer
+              token: "{{ _.token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.link }}cargos/id/A1B2C3D4-E5F6-7890-G1H2-I3J4K5L697N0"
+            name: Select ID
+            meta:
+              id: req_a546e7d846384394a3ed9c333adb8995
+              created: 1785889502910
+              modified: 1785889502910
+              isPrivate: false
+              description: ""
+              sortKey: -1785887721202.25
+            method: GET
+            authentication:
+              type: bearer
+              token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZEZ1bmNpb25hcmlvIjoiMTIzNDU2NzgtMTIzNC0xMjM0LTEyMzQtMTIzNDU2Nzg5MDEyIiwiZW1haWwiOiJqb2FvLnNpbHZhQGVtcHJlc2EuY29tIiwibm9tZSI6Ikpvw6NvIiwibml2ZWxQZXJtaXNzYW8iOiJhZG1pbmlzdHJhZG9yIiwiaWF0IjoxNzg1ODg4MjM3LCJleHAiOjE3ODU4ODk0Mzd9.AwUXKfyBaiImQsQPe1pCWXCyugVPzjErt6XGZXGTFzA
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.link }}telefones/id/A1B2C3D4-E5F6-7890-G1H2-I3J4K5L6M7N0"
+            name: Update
+            meta:
+              id: req_6696b0becd88468882e22384364fcc4a
+              created: 1785889510219
+              modified: 1785973952131
+              isPrivate: false
+              description: ""
+              sortKey: -1785887702981.5
+            method: PATCH
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"nivelPermissao": "administrador"
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+            authentication:
+              type: bearer
+              token: "{{ _.token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+      - name: Contas
+        meta:
+          id: fld_15cd40df75a04c40aef3eef5a98b2323
+          created: 1785876261801
+          modified: 1789062090455
+          sortKey: -1785876261801
+          description: ""
+        children:
+          - url: "{{ _.link }}funcionarios/id/e2834438-9389-4eff-9432-9393f70c08d8"
+            name: Update
+            meta:
+              id: req_292e0961b5434a3d9e3acc2a7943c70b
+              created: 1785887705313
+              modified: 1789668895405
+              isPrivate: false
+              description: ""
+              sortKey: -1785889443179
+            method: PATCH
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"situacaoEmpregaticia": "inativo"
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+            authentication:
+              type: bearer
+              token: "{{ _.token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.link }}funcionarios/"
+            name: "Create "
+            meta:
+              id: req_7a7fd197bb064760a73d400d5132df3a
+              created: 1785887724926
+              modified: 1789066129882
+              isPrivate: false
+              description: ""
+              sortKey: -1785889443204
+            method: POST
+            body:
+              mimeType: multipart/form-data
+              params:
+                - name: idCargo
+                  value: dbcc5be4-3a78-43e5-b13b-7b857a87a83e
+                - name: nomeFuncionario
+                  value: Raissa
+                  description: ""
+                  disabled: false
+                - name: sobrenomeFuncionario
+                  value: Boba
+                  description: ""
+                  disabled: false
+                - name: cpf
+                  value: "43893402047"
+                  description: ""
+                  disabled: false
+                - name: email
+                  value: raissa.boba@gmail.com
+                  description: ""
+                  disabled: false
+                - name: senha
+                  value: RaissaBoba
+                  description: ""
+                  disabled: false
+                - name: image
+                  value: ""
+                  description: ""
+                  disabled: false
+                  fileName: C:\Users\49019215841\Downloads\anime cd.jpg
+                  type: file
+            headers:
+              - name: Content-Type
+                value: multipart/form-data
+            authentication:
+              type: bearer
+              token: "{{ _.token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.link }}funcionarios/id/A1B2C3D4-E5F6-7890-G1H2-I3J4K5L697N0"
+            name: Select ID
+            meta:
+              id: req_4ffa42bf81664e25890582ab0e8a2a96
+              created: 1785887727285
+              modified: 1785970451760
+              isPrivate: false
+              description: ""
+              sortKey: -1785889443254
+            method: GET
+            authentication:
+              type: bearer
+              token: "{{ _.token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.link }}funcionarios/all"
+            name: Select All
+            meta:
+              id: req_a39f4e82112c4fb7a96bf3a0aacd0f60
+              created: 1785889464203
+              modified: 1785970612690
+              isPrivate: false
+              description: ""
+              sortKey: -1785889443304
+            method: GET
+            authentication:
+              type: bearer
+              token: "{{ _.token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.link }}funcionarios/id/12345678-1234-1234-1234-123456789012"
+            name: Delete
+            meta:
+              id: req_42bd9d71d51a40b0bdc141bc71a5b432
+              created: 1785889517146
+              modified: 1785970826160
+              isPrivate: false
+              description: ""
+              sortKey: -1785889443154
+            method: DELETE
+            authentication:
+              type: bearer
+              token: "{{ _.token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.link }}funcionarios/rota-secretabro"
+            name: Segredo
+            meta:
+              id: req_309c0c13a1a1413f910b10be7a54c9a7
+              created: 1789659219903
+              modified: 1789659971925
+              isPrivate: false
+              description: ""
+              sortKey: -1785889443191.5
+            method: POST
+            body:
+              mimeType: multipart/form-data
+              params:
+                - name: idCargo
+                  value: 337431D4-6F54-435F-A753-237A222FB0E1
+                - name: nomeFuncionario
+                  value: Raissa
+                  description: ""
+                  disabled: false
+                - name: sobrenomeFuncionario
+                  value: Boba
+                  description: ""
+                  disabled: false
+                - name: cpf
+                  value: "43893402047"
+                  description: ""
+                  disabled: false
+                - name: email
+                  value: raissa.boba@gmail.com
+                  description: ""
+                  disabled: false
+                - name: senha
+                  value: "1234"
+                  description: ""
+                  disabled: false
+                - name: image
+                  value: ""
+                  description: ""
+                  disabled: false
+                  fileName: C:\Users\49019215841\Downloads\anime cd.jpg
+                  type: file
+            headers:
+              - name: Content-Type
+                value: multipart/form-data
+            authentication:
+              type: bearer
+              token: "{{ _.token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+      - name: Telefones
+        meta:
+          id: fld_1840175870b94b8cbd6941c072800b4a
+          created: 1785972509342
+          modified: 1785972509342
+          sortKey: -1785876257079
+          description: ""
+        children:
+          - url: "{{ _.link }}funcionarios/id/756d668c-f08e-4eac-955f-ecbb065b1c81"
+            name: Update
+            meta:
+              id: req_4194e1c8b30e4e2894f7aff18ce62e14
+              created: 1785972509342
+              modified: 1789061970425
+              isPrivate: false
+              description: ""
+              sortKey: -1785889443179
+            method: PATCH
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"idCargo": "A1B2C3D4-E5F6-7890-G1H2-I3J4K5L697N0"
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+            authentication:
+              type: bearer
+              token: "{{ _.token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.link }}telefones/funcionario/0c2c439a-7d7c-4735-9e2e-306f9"
+            name: Select All
+            meta:
+              id: req_80aadd507f114e39a657faa0a11ffd7d
+              created: 1785972509342
+              modified: 1789059490540
+              isPrivate: false
+              description: ""
+              sortKey: -1785889443304
+            method: GET
+            authentication:
+              type: bearer
+              token: "{{ _.token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.link }}telefones/"
+            name: "Create "
+            meta:
+              id: req_91244cc486de457c922a167fe2a7aa38
+              created: 1785972509342
+              modified: 1789058729969
+              isPrivate: false
+              description: ""
+              sortKey: -1785889443204
+            method: POST
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"fkIdFuncionario": "1e5e42f5-31b2-48d8-b0ab-fa07ff14b892",
+                	"numeroTelefone": "8135634062",
+                	"tipoTelefone": "trabalho"
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+            authentication:
+              type: bearer
+              token: "{{ _.token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.link }}funcionarios/id/12345678-1234-1234-1234-123456789012"
+            name: Delete
+            meta:
+              id: req_bb72f6d13ae94be396b04144b5a5e8a3
+              created: 1785972509342
+              modified: 1785972509342
+              isPrivate: false
+              description: ""
+              sortKey: -1785889443154
+            method: DELETE
+            authentication:
+              type: bearer
+              token: "{{ _.token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+  - name: Amostras
+    meta:
+      id: fld_527b8e1aacae431084545b6515fab9d6
+      created: 1785876326497
+      modified: 1785876326497
+      sortKey: -1785876326497
+      description: ""
+    children:
+      - name: OCPs
+        meta:
+          id: fld_d184488665344984a994d9cc69a30026
+          created: 1785973980591
+          modified: 1788646953133
+          sortKey: -1785876355181
+          description: ""
+        children:
+          - url: "{{ _.link }}ocps/all"
+            name: Select All
+            meta:
+              id: req_005a9c12eeca42db90a586bd5809b444
+              created: 1785973980591
+              modified: 1785974264937
+              isPrivate: false
+              description: ""
+              sortKey: -1785887731463
+            method: GET
+            authentication:
+              type: bearer
+              token: "{{ _.token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.link }}ocps/id/d711ae8e-d7a5-45e4-b5e9-e6c53d4f3b79"
+            name: Update
+            meta:
+              id: req_47348fa45ef94c89a0fc5250ec5f6cb4
+              created: 1785973980591
+              modified: 1785975177745
+              isPrivate: false
+              description: ""
+              sortKey: -1785887702981.5
+            method: PATCH
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"nomeOcp": "oh my god"
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+            authentication:
+              type: bearer
+              token: "{{ _.token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.link }}ocps/"
+            name: "Create "
+            meta:
+              id: req_b28bd4938c75423ab4dadb104750917f
+              created: 1785973980591
+              modified: 1789660429473
+              isPrivate: false
+              description: ""
+              sortKey: -1785887715119.5
+            method: POST
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"nomeOCP": "tardigrado"
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+            authentication:
+              type: bearer
+              token: "{{ _.token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.link }}ocps/id/d711ae8e-d7a5-45e4-b5e9-e6c53d4f3b79"
+            name: Delete
+            meta:
+              id: req_d7e654c02c3a4abbb6ab11f3910caa6d
+              created: 1785973980591
+              modified: 1785975193793
+              isPrivate: false
+              description: ""
+              sortKey: -1785887700650
+            method: DELETE
+            authentication:
+              type: bearer
+              token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZEZ1bmNpb25hcmlvIjoiMTIzNDU2NzgtMTIzNC0xMjM0LTEyMzQtMTIzNDU2Nzg5MDEyIiwiZW1haWwiOiJqb2FvLnNpbHZhQGVtcHJlc2EuY29tIiwibm9tZSI6Ikpvw6NvIiwibml2ZWxQZXJtaXNzYW8iOiJhZG1pbmlzdHJhZG9yIiwiaWF0IjoxNzg1ODg4NzgzLCJleHAiOjE3ODU4ODk5ODN9.jUXuGpmSumkO7eew991uBeupqvbvqPcyWGOS5REy4Ss
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.link }}ocps/id/d711ae8e-d7a5-45e4-b5e9-e6c53d4f3b79"
+            name: Select ID
+            meta:
+              id: req_f3fa19c18db948f596192b96517713c6
+              created: 1785973980591
+              modified: 1789056323604
+              isPrivate: false
+              description: ""
+              sortKey: -1785887721202.25
+            method: GET
+            authentication:
+              type: bearer
+              token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZEZ1bmNpb25hcmlvIjoiMTIzNDU2NzgtMTIzNC0xMjM0LTEyMzQtMTIzNDU2Nzg5MDEyIiwiZW1haWwiOiJqb2FvLnNpbHZhQGVtcHJlc2EuY29tIiwibm9tZSI6Ikpvw6NvIiwibml2ZWxQZXJtaXNzYW8iOiJhZG1pbmlzdHJhZG9yIiwiaWF0IjoxNzg1ODg4MjM3LCJleHAiOjE3ODU4ODk0Mzd9.AwUXKfyBaiImQsQPe1pCWXCyugVPzjErt6XGZXGTFzA
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.link }}ocps/nome/tard"
+            name: Select Nome
+            meta:
+              id: req_d734594b0c944befa5c42a3ae955187b
+              created: 1785974789940
+              modified: 1785975103022
+              isPrivate: false
+              description: ""
+              sortKey: -1785887718160.875
+            method: GET
+            authentication:
+              type: bearer
+              token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZEZ1bmNpb25hcmlvIjoiMTIzNDU2NzgtMTIzNC0xMjM0LTEyMzQtMTIzNDU2Nzg5MDEyIiwiZW1haWwiOiJqb2FvLnNpbHZhQGVtcHJlc2EuY29tIiwibm9tZSI6Ikpvw6NvIiwibml2ZWxQZXJtaXNzYW8iOiJhZG1pbmlzdHJhZG9yIiwiaWF0IjoxNzg1ODg4MjM3LCJleHAiOjE3ODU4ODk0Mzd9.AwUXKfyBaiImQsQPe1pCWXCyugVPzjErt6XGZXGTFzA
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+      - name: Empresas
+        meta:
+          id: fld_6a22aa624d34472992026afc50725fa9
+          created: 1785974001117
+          modified: 1785974001117
+          sortKey: -1785876352005.5
+          description: ""
+        children:
+          - url: "{{ _.link }}empresas/id/119e59d1-d400-46e5-bbbf-508abcdfb391"
+            name: Delete
+            meta:
+              id: req_085e7dce5fe64553ac9d3ab482dd38ee
+              created: 1785974001117
+              modified: 1785975969749
+              isPrivate: false
+              description: ""
+              sortKey: -1785887700650
+            method: DELETE
+            authentication:
+              type: bearer
+              token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZEZ1bmNpb25hcmlvIjoiMTIzNDU2NzgtMTIzNC0xMjM0LTEyMzQtMTIzNDU2Nzg5MDEyIiwiZW1haWwiOiJqb2FvLnNpbHZhQGVtcHJlc2EuY29tIiwibm9tZSI6Ikpvw6NvIiwibml2ZWxQZXJtaXNzYW8iOiJhZG1pbmlzdHJhZG9yIiwiaWF0IjoxNzg1ODg4NzgzLCJleHAiOjE3ODU4ODk5ODN9.jUXuGpmSumkO7eew991uBeupqvbvqPcyWGOS5REy4Ss
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.link }}empresas/id/119e59d1-d400-46e5-bbbf-508abcdfb391"
+            name: Update
+            meta:
+              id: req_3adb315911264072ad2430fb15553b19
+              created: 1785974001117
+              modified: 1785975879969
+              isPrivate: false
+              description: ""
+              sortKey: -1785887702981.5
+            method: PATCH
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"nomeEmpre": "eita"
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+            authentication:
+              type: bearer
+              token: "{{ _.token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.link }}empresas/all"
+            name: Select All
+            meta:
+              id: req_4bc29cf5c37f4691b727b48421fa439c
+              created: 1785974001117
+              modified: 1785975258297
+              isPrivate: false
+              description: ""
+              sortKey: -1785887731463
+            method: GET
+            authentication:
+              type: bearer
+              token: "{{ _.token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.link }}empresas/"
+            name: "Create "
+            meta:
+              id: req_6643e7d13cb040eab780e32960c42f20
+              created: 1785974001117
+              modified: 1785975545618
+              isPrivate: false
+              description: ""
+              sortKey: -1785887715119.5
+            method: POST
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"nomeEmpresa": "Ipê"
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+            authentication:
+              type: bearer
+              token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZEZ1bmNpb25hcmlvIjoiMTIzNDU2NzgtMTIzNC0xMjM0LTEyMzQtMTIzNDU2Nzg5MDEyIiwiZW1haWwiOiJqb2FvLnNpbHZhQGVtcHJlc2EuY29tIiwibm9tZSI6Ikpvw6NvIiwibml2ZWxQZXJtaXNzYW8iOiJhZG1pbmlzdHJhZG9yIiwiaWF0IjoxNzg1ODg4MjM3LCJleHAiOjE3ODU4ODk0Mzd9.AwUXKfyBaiImQsQPe1pCWXCyugVPzjErt6XGZXGTFzA
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.link }}empresas/id/A1B2C3D4-E5F6-7890-G1H2-I3J4K5L697N0"
+            name: Select ID
+            meta:
+              id: req_c5b1c411cc034cab9f6d6c028a2ef24d
+              created: 1785974001117
+              modified: 1785975268312
+              isPrivate: false
+              description: ""
+              sortKey: -1785887721202.25
+            method: GET
+            authentication:
+              type: bearer
+              token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZEZ1bmNpb25hcmlvIjoiMTIzNDU2NzgtMTIzNC0xMjM0LTEyMzQtMTIzNDU2Nzg5MDEyIiwiZW1haWwiOiJqb2FvLnNpbHZhQGVtcHJlc2EuY29tIiwibm9tZSI6Ikpvw6NvIiwibml2ZWxQZXJtaXNzYW8iOiJhZG1pbmlzdHJhZG9yIiwiaWF0IjoxNzg1ODg4MjM3LCJleHAiOjE3ODU4ODk0Mzd9.AwUXKfyBaiImQsQPe1pCWXCyugVPzjErt6XGZXGTFzA
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+      - name: Amostras
+        meta:
+          id: fld_ac883c2f60dc4abeabd8f1ad90c6840c
+          created: 1785974019306
+          modified: 1785974019306
+          sortKey: -1785876353593.25
+          description: ""
+        children:
+          - url: "{{ _.link }}amostras/id/338ff2e6-7aa6-4d95-b763-88a6a78eb86f"
+            name: Select ID
+            meta:
+              id: req_1ecd89fb766649cd86e9b538d62a526b
+              created: 1785974019306
+              modified: 1785978382193
+              isPrivate: false
+              description: ""
+              sortKey: -1785887728897.8125
+            method: GET
+            authentication:
+              type: bearer
+              token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZEZ1bmNpb25hcmlvIjoiMTIzNDU2NzgtMTIzNC0xMjM0LTEyMzQtMTIzNDU2Nzg5MDEyIiwiZW1haWwiOiJqb2FvLnNpbHZhQGVtcHJlc2EuY29tIiwibm9tZSI6Ikpvw6NvIiwibml2ZWxQZXJtaXNzYW8iOiJhZG1pbmlzdHJhZG9yIiwiaWF0IjoxNzg1ODg4MjM3LCJleHAiOjE3ODU4ODk0Mzd9.AwUXKfyBaiImQsQPe1pCWXCyugVPzjErt6XGZXGTFzA
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.link }}amostras/id/746474e0-63ab-41bd-ab95-7e079d7ea7ae"
+            name: Delete
+            meta:
+              id: req_263e769a3f24466eb37fbd0ddfc6a988
+              created: 1785974019306
+              modified: 1785977992129
+              isPrivate: false
+              description: ""
+              sortKey: -1785887700650
+            method: DELETE
+            authentication:
+              type: bearer
+              token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZEZ1bmNpb25hcmlvIjoiMTIzNDU2NzgtMTIzNC0xMjM0LTEyMzQtMTIzNDU2Nzg5MDEyIiwiZW1haWwiOiJqb2FvLnNpbHZhQGVtcHJlc2EuY29tIiwibm9tZSI6Ikpvw6NvIiwibml2ZWxQZXJtaXNzYW8iOiJhZG1pbmlzdHJhZG9yIiwiaWF0IjoxNzg1ODg4NzgzLCJleHAiOjE3ODU4ODk5ODN9.jUXuGpmSumkO7eew991uBeupqvbvqPcyWGOS5REy4Ss
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.link }}amostras/all"
+            name: Select All
+            meta:
+              id: req_32e09ce528b24cc5837094b709498596
+              created: 1785974019306
+              modified: 1785976495020
+              isPrivate: false
+              description: ""
+              sortKey: -1785887731463
+            method: GET
+            authentication:
+              type: bearer
+              token: "{{ _.token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.link }}amostras/"
+            name: "Create "
+            meta:
+              id: req_700ad89c28e64ee7ab6a60af50e8792a
+              created: 1785974019306
+              modified: 1785977291218
+              isPrivate: false
+              description: ""
+              sortKey: -1785887715119.5
+            method: POST
+            body:
+              mimeType: application/json
+              text: >-
+                {
+
+                "FK_idOCP": "6e8741f6-7543-4299-81b6-e495dd6706de",
+                "FK_idEmpresa": "bce40bd0-e0d8-42a4-aedb-3717e1b8de87",
+                "nomeAmostra": "máscara fogo uou", "tipoAmostra": "máscara",
+                "situacaoAmostra": "te" 
+
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+            authentication:
+              type: bearer
+              token: ""
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.link }}amostras/id/746474e0-63ab-41bd-ab95-7e079d7ea7ae"
+            name: Update
+            meta:
+              id: req_75c01e8328bb4aafa62b983721c42337
+              created: 1785974019306
+              modified: 1785978441673
+              isPrivate: false
+              description: ""
+              sortKey: -1785887702981.5
+            method: PATCH
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                 "situacaoAmostra": "testemunha" 
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+            authentication:
+              type: bearer
+              token: "{{ _.token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.link }}amostras/nome/máscara"
+            name: Select Nome
+            meta:
+              id: req_30327fb0d02d4fdda752cac2aa1ae214
+              created: 1785978176807
+              modified: 1785978395997
+              isPrivate: false
+              description: ""
+              sortKey: -1785887726332.625
+            method: GET
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+  - name: ProfileAction
+    meta:
+      id: fld_104899c4ec0f45ee85ca15e973383655
+      created: 1789058063886
+      modified: 1789660012602
+      sortKey: -1789058063886
+      description: ""
+    children:
+      - url: "{{ _.link }}login"
+        name: Login
+        meta:
+          id: req_6540753651f9432899580e7e76400381
+          created: 1785876266717
+          modified: 1790266630849
+          isPrivate: false
+          description: ""
+          sortKey: -1789058332854
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"cpf": "43893402047",
+            	"senha": "1234"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.link }}profile/meu-perfil/change-pfp"
+        name: Change Pfp
+        meta:
+          id: req_f58277abf153447f89819baa15558fc4
+          created: 1789058332954
+          modified: 1789063174295
+          isPrivate: false
+          description: ""
+          sortKey: -1789058332954
+        method: POST
+        body:
+          mimeType: multipart/form-data
+          params:
+            - name: image
+              value: ""
+              description: ""
+              disabled: false
+              fileName: C:\Users\49019215841\Downloads\el arte de los 3 iconos no son mios los
+                encontré en tiktok ;).jpg
+              type: file
+        headers:
+          - name: Content-Type
+            value: multipart/form-data
+        authentication:
+          type: bearer
+          token: "{{ _.token }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.link }}profile/meu-perfil/change-info"
+        name: Change Info
+        meta:
+          id: req_8b9c39ac639b4058a86793ede02c8f7c
+          created: 1789058343386
+          modified: 1789062991248
+          isPrivate: false
+          description: ""
+          sortKey: -1789058343386
+        method: PATCH
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"novoEmail": "azulzinho@gmail.com"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        authentication:
+          type: bearer
+          token: "{{ _.token }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.link }}profile/meu-perfil/change-password"
+        name: Change Password
+        meta:
+          id: req_6be6e795aa3a42ef9350e7a8c8bbe419
+          created: 1789058345651
+          modified: 1789062835331
+          isPrivate: false
+          description: ""
+          sortKey: -1789058345651
+        method: PATCH
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"senhaInformada": "WagnerTome",
+            	"senhaNova": "Joaoaa@4"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        authentication:
+          type: bearer
+          token: "{{ _.token }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Ensaios
+    meta:
+      id: fld_9dd7e7be2a454ba68b6fa40b11aa6ab6
+      created: 1789660030073
+      modified: 1789660044243
+      sortKey: -1789660030073
+      description: ""
+    children:
+      - name: Protocolos
+        meta:
+          id: fld_e9567b7e71d0422f94f57e2e87c78b4a
+          created: 1789660108095
+          modified: 1789660108095
+          sortKey: -1789660108095
+          description: ""
+        children:
+          - url: "{{ _.link }}protocolos"
+            name: Create
+            meta:
+              id: req_06344d8b8d314cac8602c0ca0a97d2a4
+              created: 1789660046462
+              modified: 1789661433680
+              isPrivate: false
+              description: ""
+              sortKey: -1789660110679
+            method: POST
+            body:
+              mimeType: application/json
+              text: |2-
+                  {
+                     "FK_idOCP": "a730ca00-bdb9-4d3f-b354-b8a7867adbea",
+                     "FK_idEmpresa": "81beb5b5-3b75-42e5-9153-8269180d9e73",
+                     "nomeProtocolo": "Segundo Protocolo",
+                     "numeroProtocolo": "123456",
+                     "numeroSEI": "123456",
+                     "tipoProtocolo": "manutencao",
+                     "diaAbertura": "2026-09-17T10:10:10.100Z",
+                     "diaEntrega": "",
+                     "testemunha": "",
+                     "descricao": ""
+                	}
+            headers:
+              - name: Content-Type
+                value: application/json
+            authentication:
+              type: bearer
+              token: "{{ _.token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.link }}protocolos/numeroProtocolo/:code"
+            name: Select Number
+            meta:
+              id: req_8fed05cca6e940279305494edd03230e
+              created: 1789660114511
+              modified: 1789661150111
+              isPrivate: false
+              description: ""
+              sortKey: -1789660114511
+            method: GET
+            authentication:
+              type: bearer
+              token: "{{ _.token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+            pathParameters:
+              - name: code
+                value: "12345"
+          - url: "{{ _.link }}protocolos/SEI/:sei"
+            name: Select SEI
+            meta:
+              id: req_a7fadc9e1e064b9a86dedc1a61f07f31
+              created: 1789660807089
+              modified: 1789660962242
+              isPrivate: false
+              description: ""
+              sortKey: -1789660114611
+            method: GET
+            authentication:
+              type: bearer
+              token: "{{ _.token }}"
+              prefix: ""
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+            pathParameters:
+              - name: sei
+                value: "12345"
+          - url: "{{ _.link }}protocolos/id/:id"
+            name: Select ID
+            meta:
+              id: req_e2f92053019841d8b3b60c385f406e87
+              created: 1789660819854
+              modified: 1789661106267
+              isPrivate: false
+              description: ""
+              sortKey: -1789660819854
+            method: GET
+            authentication:
+              type: bearer
+              token: "{{ _.token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+            pathParameters:
+              - name: id
+                value: 462e1d2a-368b-4fdc-8ee1-2dd7da63b86d
+          - url: "{{ _.link }}protocolos/all"
+            name: Select All
+            meta:
+              id: req_76a1ec6744e64ba18f3262302f920a2b
+              created: 1789660824009
+              modified: 1789661083410
+              isPrivate: false
+              description: ""
+              sortKey: -1789660824009
+            method: GET
+            authentication:
+              type: bearer
+              token: "{{ _.token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.link }}protocolos/tipoProtocolo/:type"
+            name: Select Type
+            meta:
+              id: req_2f3ae11c2c1f449b8c6b54cc6de18673
+              created: 1789661032118
+              modified: 1789661215193
+              isPrivate: false
+              description: ""
+              sortKey: -1789660112595
+            method: GET
+            authentication:
+              type: bearer
+              token: "{{ _.token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+            pathParameters:
+              - name: type
+                value: manutencao
+          - url: "{{ _.link }}protocolos/:id"
+            name: Update
+            meta:
+              id: req_d4c1234d2c3345b3bcd265f1dc4dd3b1
+              created: 1789661228012
+              modified: 1789661631751
+              isPrivate: false
+              description: ""
+              sortKey: -1789660110629
+            method: PATCH
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"diaEntrega": "2026-09-19T10:10:10.100Z"
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+            authentication:
+              type: bearer
+              token: "{{ _.token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+            pathParameters:
+              - name: id
+                value: 34ee2b85-9ac5-4f93-9e78-9346552986ab
+          - url: "{{ _.link }}protocolos/34EE2B85-9AC5-4F93-9E78-9346552986AB"
+            name: Delete
+            meta:
+              id: req_d248053d4d1543ddaa34b8c5ab22224b
+              created: 1789661246421
+              modified: 1790256607063
+              isPrivate: false
+              description: ""
+              sortKey: -1789660110579
+            method: DELETE
+            authentication:
+              type: bearer
+              token: "{{ _.token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+      - name: Instrumentos
+        meta:
+          id: fld_c59e9a5724994c31bd42235b5955e31d
+          created: 1790256460591
+          modified: 1790256460591
+          sortKey: -1789660069084
+          description: ""
+        children:
+          - url: "{{ _.link }}instrumentos/:id"
+            name: Delete
+            meta:
+              id: req_45c90801756a4498aebb84cef4c7cc3a
+              created: 1790256460591
+              modified: 1790258182834
+              isPrivate: false
+              description: ""
+              sortKey: -1789660110579
+            method: DELETE
+            parameters:
+              - name: id
+                value: ""
+                description: ""
+                disabled: false
+            authentication:
+              type: bearer
+              token: "{{ _.token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+            pathParameters:
+              - name: id
+                value: 03e94947-daee-4004-b9ae-481a6c6d539c
+          - url: "{{ _.link }}instrumentos/function/"
+            name: Select Function
+            meta:
+              id: req_4c4878da3ee840d1bf827c00e3b9eeb1
+              created: 1790256460591
+              modified: 1790257942742
+              isPrivate: false
+              description: ""
+              sortKey: -1789660114611
+            method: GET
+            body:
+              mimeType: application/json
+              text: >-
+                {
+                	"funcaoInstrumento": "Ser o primeiro melhor instrumento da historia e do unive"
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+            authentication:
+              type: bearer
+              token: "{{ _.token }}"
+              prefix: ""
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.link }}instrumentos/all"
+            name: Select All
+            meta:
+              id: req_c6a7a00fce5148e2a8ce9e94b1910cd8
+              created: 1790256460591
+              modified: 1790256501793
+              isPrivate: false
+              description: ""
+              sortKey: -1789660824009
+            method: GET
+            authentication:
+              type: bearer
+              token: "{{ _.token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.link }}instrumentos/calibration"
+            name: Select Calibration
+            meta:
+              id: req_da9b59dfdee54f9f92ce7b6775a2f5d4
+              created: 1790256460591
+              modified: 1790258080069
+              isPrivate: false
+              description: ""
+              sortKey: -1789660114511
+            method: GET
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"calibration": "2026-09-17T00:00:00.000Z"
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+            authentication:
+              type: bearer
+              token: "{{ _.token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.link }}instrumentos/id/:id"
+            name: Select ID
+            meta:
+              id: req_e0732739e2cc42b2af71c14e0b5d991b
+              created: 1790256460591
+              modified: 1790257790504
+              isPrivate: false
+              description: ""
+              sortKey: -1789660819854
+            method: GET
+            authentication:
+              type: bearer
+              token: "{{ _.token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+            pathParameters:
+              - name: id
+                value: 03e94947-daee-4004-b9ae-481a6c6d539c
+          - url: "{{ _.link }}instrumentos/:id"
+            name: Update
+            meta:
+              id: req_f48b5230d07e4213a1ad595472f14c4a
+              created: 1790256460591
+              modified: 1790258354887
+              isPrivate: false
+              description: ""
+              sortKey: -1789660110629
+            method: PATCH
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"funcaoInstrumento": "Blah"
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+            authentication:
+              type: bearer
+              token: "{{ _.token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+            pathParameters:
+              - name: id
+                value: 3a562348-2b91-4698-a902-5a45a15baec4
+          - url: "{{ _.link }}instrumentos"
+            name: Create
+            meta:
+              id: req_f4ba00d692184403b8ace5953e7fe10f
+              created: 1790256460591
+              modified: 1790257660909
+              isPrivate: false
+              description: ""
+              sortKey: -1789660110679
+            method: POST
+            body:
+              mimeType: application/json
+              text: >2+
+                  {
+                     "nomeInstrumento": "Primeiro Instrumento",
+                     "funcaoInstrumento": "Ser o primeiro melhor instrumento da historia e do universo observável",
+                     "ultimaCalibracao": "2026-09-17T10:10:10.100Z"
+                	}
+
+            headers:
+              - name: Content-Type
+                value: application/json
+            authentication:
+              type: bearer
+              token: "{{ _.token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+      - name: Tipo Ensaio
+        meta:
+          id: fld_7218b0c4fe62420288686d4d08b94d2e
+          created: 1790265325802
+          modified: 1790265325802
+          sortKey: -1789660049578.5
+          description: ""
+        children:
+          - url: "{{ _.link }}tipo-ensaio/:id"
+            name: Update
+            meta:
+              id: req_0eb0a0fb303247bb834b477acb680d34
+              created: 1790265325802
+              modified: 1790267600796
+              isPrivate: false
+              description: ""
+              sortKey: -1789660110629
+            method: PUT
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"descricaoEnsaio": "Blah"
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+            authentication:
+              type: bearer
+              token: "{{ _.token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+            pathParameters:
+              - name: id
+                value: 6815edde-b5c8-4c68-a5ba-e91bbfdb649b
+          - url: "{{ _.link }}tipo-ensaio/category/:categoria"
+            name: Select Calibration
+            meta:
+              id: req_44820d76f4254fb79a0484cc2dddf026
+              created: 1790265325802
+              modified: 1790267416671
+              isPrivate: false
+              description: ""
+              sortKey: -1789660114511
+            method: GET
+            authentication:
+              type: bearer
+              token: "{{ _.token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+            pathParameters:
+              - name: categoria
+                value: filtro
+          - url: "{{ _.link }}tipo-ensaio"
+            name: Create
+            meta:
+              id: req_6f6ddfcbe2e54a47895046ad6704295c
+              created: 1790265325802
+              modified: 1790273642782
+              isPrivate: false
+              description: ""
+              sortKey: -1789660110679
+            method: POST
+            body:
+              mimeType: application/json
+              text: |2+
+                  {
+                     "nomeEnsaio": "Ensaio Luísa",
+                     "descricaoEnsaio": "Muita coisa",
+                     "categoriaAplicavel": "peça"
+                	}
+
+            headers:
+              - name: Content-Type
+                value: application/json
+            authentication:
+              type: bearer
+              token: "{{ _.token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.link }}tipo-ensaio/description/"
+            name: Select Description
+            meta:
+              id: req_8e65badc34be448c8136e79f5fa971a6
+              created: 1790265325802
+              modified: 1790267469573
+              isPrivate: false
+              description: ""
+              sortKey: -1789660114611
+            method: GET
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"descricao": ""
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+            authentication:
+              type: bearer
+              token: "{{ _.token }}"
+              prefix: ""
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.link }}tipo-ensaio/all"
+            name: Select All
+            meta:
+              id: req_bcd2436ca6bf4e758f13427946f2936e
+              created: 1790265325802
+              modified: 1790266599561
+              isPrivate: false
+              description: ""
+              sortKey: -1789660824009
+            method: GET
+            authentication:
+              type: bearer
+              token: "{{ _.token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.link }}campo-ensaio/:id"
+            name: Delete
+            meta:
+              id: req_c22a2126109844e8af8f891f6520e937
+              created: 1790265325802
+              modified: 1790273341086
+              isPrivate: false
+              description: ""
+              sortKey: -1789660110579
+            method: DELETE
+            parameters:
+              - name: id
+                value: ""
+                description: ""
+                disabled: false
+            authentication:
+              type: bearer
+              token: "{{ _.token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+            pathParameters:
+              - name: id
+                value: 03e94947-daee-4004-b9ae-481a6c6d539c
+          - url: "{{ _.link }}tipo-ensaio/id/:id"
+            name: Select ID
+            meta:
+              id: req_c8174a1f6f5f4e309f6e060df426324a
+              created: 1790265325802
+              modified: 1790267515015
+              isPrivate: false
+              description: ""
+              sortKey: -1789660819854
+            method: GET
+            authentication:
+              type: bearer
+              token: "{{ _.token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+            pathParameters:
+              - name: id
+                value: 6815edde-b5c8-4c68-a5ba-e91bbfdb649b
+      - name: Campo Ensaio
+        meta:
+          id: fld_54885bbc2c804f47b173abc8585271a9
+          created: 1790272616419
+          modified: 1790272616419
+          sortKey: -1789660039825.75
+          description: ""
+        children:
+          - url: "{{ _.link }}campo-ensaio/description/"
+            name: Select Description
+            meta:
+              id: req_53627e5f234a4e15a117c45293731940
+              created: 1790272616419
+              modified: 1790273297376
+              isPrivate: false
+              description: ""
+              sortKey: -1789660114611
+            method: GET
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"descricao": ""
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+            authentication:
+              type: bearer
+              token: "{{ _.token }}"
+              prefix: ""
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.link }}campo-ensaio/category/:categoria"
+            name: Select Calibration
+            meta:
+              id: req_75a5ca0a466246c2881ad56fbdc9e9cb
+              created: 1790272616419
+              modified: 1790273304362
+              isPrivate: false
+              description: ""
+              sortKey: -1789660114511
+            method: GET
+            authentication:
+              type: bearer
+              token: "{{ _.token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+            pathParameters:
+              - name: categoria
+                value: filtro
+          - url: "{{ _.link }}campo-ensaio/all"
+            name: Select All
+            meta:
+              id: req_7666b6ddad714829b352aec13b87033d
+              created: 1790272616419
+              modified: 1790273292861
+              isPrivate: false
+              description: ""
+              sortKey: -1789660824009
+            method: GET
+            authentication:
+              type: bearer
+              token: "{{ _.token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.link }}campo-ensaio/id/:id"
+            name: Select ID
+            meta:
+              id: req_8833ac5fea2d44bb84f63f0c38bc2ce7
+              created: 1790272616419
+              modified: 1790273284076
+              isPrivate: false
+              description: ""
+              sortKey: -1789660819854
+            method: GET
+            authentication:
+              type: bearer
+              token: "{{ _.token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+            pathParameters:
+              - name: id
+                value: 6815edde-b5c8-4c68-a5ba-e91bbfdb649b
+          - url: "{{ _.link }}campo-ensaio/:id"
+            name: Update
+            meta:
+              id: req_aa94d0be93a449b09363cd543fef5122
+              created: 1790272616419
+              modified: 1790273324617
+              isPrivate: false
+              description: ""
+              sortKey: -1789660110629
+            method: PUT
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"descricaoEnsaio": "Blah"
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+            authentication:
+              type: bearer
+              token: "{{ _.token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+            pathParameters:
+              - name: id
+                value: 6815edde-b5c8-4c68-a5ba-e91bbfdb649b
+          - url: "{{ _.link }}campo-ensaio/:id"
+            name: Delete
+            meta:
+              id: req_b819df6069764b808709937e2891fccd
+              created: 1790272616419
+              modified: 1790273333268
+              isPrivate: false
+              description: ""
+              sortKey: -1789660110579
+            method: DELETE
+            parameters:
+              - name: id
+                value: ""
+                description: ""
+                disabled: false
+            authentication:
+              type: bearer
+              token: "{{ _.token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+            pathParameters:
+              - name: id
+                value: 03e94947-daee-4004-b9ae-481a6c6d539c
+          - url: "{{ _.link }}campo-ensaio"
+            name: Create
+            meta:
+              id: req_fc6770671bbf4ab0b94a8747ae2b5c6e
+              created: 1790272616419
+              modified: 1790273315789
+              isPrivate: false
+              description: ""
+              sortKey: -1789660110679
+            method: POST
+            body:
+              mimeType: application/json
+              text: |2+
+                  {
+                     "nomeEnsaio": "Ensaio Poggers",
+                     "descricaoEnsaio": "",
+                     "categoriaAplicavel": "sd"
+                	}
+
+            headers:
+              - name: Content-Type
+                value: application/json
+            authentication:
+              type: bearer
+              token: "{{ _.token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_197c6f6a082652251ecfbd1d36f6d42aa889bf09
+    created: 1786620862333
+    modified: 1786620862333
+environments:
+  name: Base Environment
+  meta:
+    id: env_197c6f6a082652251ecfbd1d36f6d42aa889bf09
+    created: 1785876231205
+    modified: 1790273626003
+    isPrivate: false
+  data:
+    link: http://localhost:3500/
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZEZ1bmNpb25hcmlvIjoiY2U5NDllNTAtYTVlZS00NjlkLThlMmYtZGM5YzdlNmY2YWI0IiwiZW1haWwiOiJyYWlzc2EuYm9iYUBnbWFpbC5jb20iLCJub21lIjoiUmFpc3NhIiwibml2ZWxQZXJtaXNzYW8iOiJhZG1pbmlzdHJhZG9yIiwiaWF0IjoxNzkwMjczNTgwLCJleHAiOjE3OTAyNzcxODB9.mXg_QhCv6ARURCHsKweEYXuw_cn3PIdBWjVW7Ez1hk8

@@ -10,6 +10,7 @@ import { limparCpf, validarCpf } from "../utils/validarCpf";
 import { enumEquipes } from '../enum/funcionarios/equipes.enum';
 import { enumNivelPermissao } from "../enum/funcionarios/nivelPermissao.enum";
 import { enumSituacaoEmpregaticia } from "../enum/funcionarios/situacaoEmpregaticia";
+import Mail from "../services/Mail";
 
 export class AuthController {
     private jwtService: JwtService;
@@ -76,16 +77,18 @@ export class AuthController {
             };
             const accessToken = this.jwtService.gerarTokenAcesso(payload);
 
-            return res.status(200).json({
-                message: 'Login realizado com sucesso',
-                data: {
-                    token_acesso: accessToken,
-                    expira_em: process.env.JWT_EXPIRES_IN || '1m'
-                }
+
+            res.cookie('token', accessToken, {
+                httpOnly: true,
+                secure: process.env.NODE_ENV === 'production',
+                sameSite: 'lax',
+                maxAge: 3600000
             });
 
+            return res.status(200).json({ message: "Login bem-sucedido!" });
+
+
         } catch (error: unknown) {
-            console.error(error);
             if (error instanceof Error) {
                 return res.status(500).json({ message: 'Ocorreu um erro no servidor', errorMessage: error.message });
             }
@@ -93,38 +96,76 @@ export class AuthController {
         }
     }
 
+    logout = async (req: Request, res: Response): Promise<Response> => {
+        try {
+            // Limpa o cookie 'token' configurando as mesmas opções de segurança usadas na criação
+            res.clearCookie('token', {
+                httpOnly: true,
+                secure: process.env.NODE_ENV === 'production',
+                sameSite: 'strict',
+                // Opcional: dependendo de como configurou o path/domain, pode precisar repetir aqui
+            });
+
+            return res.status(200).json({ message: "Logout realizado com sucesso!" });
+        } catch (error: unknown) {
+            console.error(error);
+            return res.status(500).json({ message: 'Erro ao realizar logout' });
+        }
+    }
+
     esqueciASenha = async (req: Request, res: Response) => {
         try {
             const { cpf, nome, email, equipe, texto } = req.body;
 
-            if (!cpf || !nome || !email || !equipe) return res.status(400).json({message: 'Todas as informações de contato são necessárias para a criação de sua conta.'});
+            if (!cpf || !nome || !email || !equipe) return res.status(400).json({ message: 'Todas as informações de contato são necessárias para a criação de sua conta.' });
 
             if (!validarCpf(limparCpf(String(cpf)))) {
                 return res.status(400).json({ message: `Esse CPF não existe.` });
             }
 
-            if (!Object.values(enumEquipes).includes(equipe)){
-                return res.status(400).json({message: "Essa equipe não existe."})
+            if (!Object.values(enumEquipes).includes(equipe)) {
+                return res.status(400).json({ message: "Essa equipe não existe." })
             }
 
-            
+            // Busca o funcionário pelo CPF informado, sem revelar ao cliente
+            // se o CPF existe ou não na base (evita enumeração de usuários).
+            const dadosBanco = await FuncionarioRepository.buscarPorCPF(limparCpf(cpf));
+
+            const nomeConfere = dadosBanco?.nomeFuncionario?.toLowerCase() === String(nome).toLowerCase();
+            const emailConfere = dadosBanco?.email?.toLowerCase() === String(email).toLowerCase();
+
+            if (dadosBanco && nomeConfere && emailConfere) {
+                const idAdministrador = await FuncionarioRepository.buscarAdministrador(equipe as enumEquipes);
+
+                if (idAdministrador) {
+                    const administrador = await FuncionarioRepository.listarPorId(idAdministrador);
+
+                    if (administrador?.email) {
+                        try {
+                            const mail = new Mail(
+                                administrador.email,
+                                'Solicitação de redefinição de senha',
+                                `<p>O funcionário <strong>${dadosBanco.nomeFuncionario} ${dadosBanco.sobrenomeFuncionario}</strong> ` +
+                                `(CPF: ${dadosBanco.cpf}) solicitou a redefinição de senha.</p>` +
+                                (texto ? `<p>Mensagem enviada: ${texto}</p>` : '')
+                            );
+                            await mail.sendMail();
+                        } catch (mailError) {
+                            // Falha no envio de e-mail não deve derrubar a resposta ao usuário;
+                            // apenas registra o erro para investigação.
+                            console.error('Erro ao enviar e-mail de recuperação de senha:', mailError);
+                        }
+                    }
+                }
+            }
+
+            // Resposta genérica sempre igual, independente de os dados baterem ou não,
+            // para não permitir que alguém descubra se um CPF/e-mail está cadastrado.
+            return res.status(200).json({
+                message: 'Se os dados informados estiverem corretos, o responsável pela sua equipe foi notificado para lhe ajudar na redefinição de senha.'
+            });
 
         } catch (error) {
-            console.error(error);
-            if (error instanceof Error) {
-                res.status(500).json({ message: 'Ocorreu um erro no servidor', errorMessage: error.message });
-            } else {
-                res.status(500).json({ message: 'Ocorreu um erro no servidor', errorMessage: 'Erro desconhecido' });
-            }
-        }
-    }
-
-    rotaProtegida = async (req: Request, res: Response) => {
-        try {
-            res.status(200).json({
-                message: 'Você acessou um recurso protegido',
-            });
-        } catch (error: unknown) {
             console.error(error);
             if (error instanceof Error) {
                 res.status(500).json({ message: 'Ocorreu um erro no servidor', errorMessage: error.message });

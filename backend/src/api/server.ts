@@ -6,19 +6,23 @@ import express from 'express';
 import { prisma } from './configs/Database';
 import routes from './routes/routes';
 import cors from 'cors'
+import cookieParser from 'cookie-parser';
 
 const app = express();
+
 const PORT = process.env.PORT || 3300;
 
-app.use(cors({ origin: process.env.CLIENT_URL  || ''})); //Tirar o operador || quando entrar em produção
+app.use(cors({ origin: process.env.CLIENT_URL  || '', credentials: true})); //Tirar o operador || quando entrar em produção
 
 // --- MIDDLEWARES ---
 app.use(express.json()); // Permite que a controller receba JSON no req.body
+app.use(cookieParser());
 
 // --- ROTAS ---
 app.use('/', routes);
 
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+app.use('/uploads', express.static(path.join(process.cwd(), 'uploads')));
 
 // --- INICIALIZAÇÃO DO BANCO E SERVIDOR ---
 async function startServer() {
@@ -45,7 +49,7 @@ async function startServer() {
     }
 }
 
-// Encerramento gracioso da conexão com o banco
+// Encerramento da conexão com o banco
 process.on('SIGINT', async () => {
     await prisma.$disconnect();
     process.exit(0);

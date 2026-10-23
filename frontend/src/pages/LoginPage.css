@@ -1,0 +1,324 @@
+
+.login-page {
+  /* 1 "u" = 1px da imagem de referência (1536x1024), escalado à janela */
+  --u: clamp(0.6px, min(100vh / 1024, 100vw / 1536), 1.5px);
+
+  --fc-green: #2a7a2e;
+  --fc-green-dark: #266a29;
+  --fc-green-darker: #1e561f;
+  --fc-text: #333333;
+  --fc-text-soft: #555555;
+  --fc-border: #c9c9c9;
+  --fc-card-bg: #fafafa;
+
+  --fs-title: max(20px, calc(var(--u) * 29));
+  --fs-body: max(14px, calc(var(--u) * 20));
+  --fs-label: max(14px, calc(var(--u) * 19));
+  --fs-btn: max(16px, calc(var(--u) * 22));
+  --h-field: max(46px, calc(var(--u) * 64));
+  --h-btn: max(48px, calc(var(--u) * 62));
+  --icon: max(18px, calc(var(--u) * 24));
+  --icon-block: max(48px, calc(var(--u) * 61));
+
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  overflow: hidden;
+  background-color: #2f6f35;
+  font-family: "Inter", "Segoe UI", Roboto, Arial, Helvetica, sans-serif;
+}
+
+/* imagens laterais em tons de cinza */
+.login-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    url("/login/esquerda.jpg") left center / 50% 100% no-repeat,
+    url("/login/direita.jpg") right center / 50% 100% no-repeat;
+  filter: grayscale(1) contrast(1.05);
+  z-index: 0;
+}
+
+/* overlay verde */
+.login-page::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #3f9a48;
+  mix-blend-mode: multiply;
+  opacity: 0.95;
+  z-index: 1;
+}
+
+/* ---------- Card (altura total da tela) ---------- */
+
+.login-card {
+  position: relative;
+  z-index: 2;
+  width: clamp(420px, 43.2vw, 720px);
+  height: 100%;
+  padding: calc(var(--u) * 32) clamp(36px, 5.73vw, 80px);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  background: var(--fc-card-bg);
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.18);
+  box-sizing: border-box;
+}
+
+/* ---------- Cabeçalho ---------- */
+
+.login-header {
+  flex-shrink: 0;
+  margin-top: auto; /* centraliza sem cortar o topo */
+  margin-bottom: calc(var(--u) * 40);
+  text-align: center;
+}
+
+.login-logo {
+  display: block;
+  flex-shrink: 0;
+  width: max(200px, calc(var(--u) * 340));
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto calc(var(--u) * 36);
+  object-fit: contain;
+}
+
+.login-header h1 {
+  margin: 0 0 calc(var(--u) * 12);
+  color: var(--fc-text);
+  font-size: var(--fs-title);
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.login-header p {
+  margin: 0;
+  color: var(--fc-text-soft);
+  font-size: var(--fs-body);
+  line-height: 1.4;
+}
+
+/* ---------- Formulário ---------- */
+
+.login-form {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--u) * 22);
+}
+
+.login-field {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--u) * 12);
+}
+
+.login-field label {
+  color: var(--fc-green);
+  font-size: var(--fs-label);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.login-field label span {
+  color: var(--fc-green);
+}
+
+/* wrapper: [ícone | input | olho] */
+.login-input {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  height: var(--h-field);
+  border: 1px solid var(--fc-border);
+  border-radius: 8px;
+  background: #ffffff;
+  overflow: hidden;
+  box-sizing: border-box;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.login-input:focus-within {
+  border-color: var(--fc-green);
+  box-shadow: 0 0 0 3px rgba(42, 122, 46, 0.15);
+}
+
+/* bloco do ícone à esquerda */
+.login-icon {
+  flex: 0 0 var(--icon-block);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--fc-card-bg);
+  border-right: 1px solid var(--fc-border);
+  color: var(--fc-green);
+}
+
+.login-icon svg {
+  width: var(--icon);
+  height: var(--icon);
+  fill: currentColor;
+  stroke: currentColor;
+}
+
+.login-input input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  padding: 0 calc(var(--u) * 18);
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--fc-text);
+  font-family: inherit;
+  font-size: var(--fs-body);
+}
+
+.login-input input::placeholder {
+  color: #6b6b6b;
+  opacity: 1;
+}
+
+/* botão do olho */
+.login-eye {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 calc(var(--u) * 20);
+  border: none;
+  background: transparent;
+  color: var(--fc-text);
+  cursor: pointer;
+}
+
+.login-eye svg {
+  width: var(--icon);
+  height: var(--icon);
+}
+
+.login-eye:focus-visible {
+  outline: 2px solid var(--fc-green);
+  outline-offset: -4px;
+  border-radius: 6px;
+}
+
+/* ---------- Botão ENTRAR ---------- */
+
+.login-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  height: var(--h-btn);
+  border: none;
+  border-radius: 6px;
+  background: var(--fc-green-dark);
+  color: #ffffff;
+  font-family: inherit;
+  font-size: var(--fs-btn);
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.login-button svg {
+  width: var(--icon);
+  height: var(--icon);
+}
+
+.login-button:hover {
+  background: var(--fc-green-darker);
+}
+
+.login-button:focus-visible {
+  outline: 3px solid rgba(42, 122, 46, 0.35);
+  outline-offset: 2px;
+}
+
+.login-button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+/* ---------- Esqueci minha senha ---------- */
+
+.login-forgot {
+  display: block;
+  margin: calc(var(--u) * -6) auto 0;
+  padding: 6px;
+  border: none;
+  background: transparent;
+  color: var(--fc-green);
+  font-family: inherit;
+  font-size: var(--fs-label);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.login-forgot:hover {
+  color: var(--fc-green-darker);
+}
+
+/* ---------- Erro ---------- */
+
+.login-error {
+  margin: 0;
+  padding: 12px 14px;
+  border-radius: 6px;
+  background: #fff0f0;
+  color: #b42318;
+  font-size: max(14px, calc(var(--u) * 16));
+  text-align: center;
+}
+
+/* ---------- Rodapé do card ---------- */
+
+.login-footer {
+  flex-shrink: 0;
+  margin: calc(var(--u) * 30) calc(var(--u) * -22) auto;
+  padding-top: calc(var(--u) * 24);
+  border-top: 1px solid #e0e0e0;
+  text-align: center;
+}
+
+.login-footer p {
+  margin: 0;
+  color: var(--fc-text);
+  font-size: var(--fs-label);
+}
+
+.login-footer a {
+  color: var(--fc-green);
+  text-decoration: underline;
+}
+
+.login-footer a:hover {
+  color: var(--fc-green-darker);
+}
+
+/* ---------- Celular ---------- */
+
+@media (max-width: 760px) {
+  .login-page {
+    --u: 0.8px;
+  }
+
+  .login-card {
+    width: 100%;
+    padding: 28px 24px;
+  }
+
+  .login-footer {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
