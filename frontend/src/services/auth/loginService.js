@@ -11,6 +11,11 @@ export async function meService() {
 }
 
 export async function logoutService() {
-    const response = await api.post("/profile/logout");
+    const response = await api.post("/logout");
+    return response.data;
+}
+
+export async function esqueciSenhaService(dados) {
+    const response = await api.post("/esqueci-senha", dados);
     return response.data;
 }

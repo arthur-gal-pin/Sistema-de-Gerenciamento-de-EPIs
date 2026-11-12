@@ -21,8 +21,4 @@ package-lock.json
 *.ntvs*
 *.njsproj
 *.sln
-<<<<<<< HEAD
 *.sw
-=======
-*.sw?
->>>>>>> Tela_Login

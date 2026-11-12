@@ -102,7 +102,7 @@ export class AuthController {
             res.clearCookie('token', {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === 'production',
-                sameSite: 'strict',
+                sameSite: 'lax',
             });
 
             return res.status(200).json({ message: "Logout realizado com sucesso!" });
@@ -116,52 +116,61 @@ export class AuthController {
         try {
             const { cpf, nome, email, equipe, texto } = req.body;
 
-            if (!cpf || !nome || !email || !equipe) return res.status(400).json({ message: 'Todas as informações de contato são necessárias para a criação de sua conta.' });
+            if (!cpf || !nome || !email || !equipe) {
+                return res.status(400).json({ message: 'Todas as informações de contato são necessárias.' });
+            }
 
-            if (!validarCpf(limparCpf(String(cpf)))) {
+            const cpfLimpo = limparCpf(String(cpf));
+
+            if (!validarCpf(cpfLimpo)) {
                 return res.status(400).json({ message: `Esse CPF não existe.` });
             }
 
             if (!Object.values(enumEquipes).includes(equipe)) {
-                return res.status(400).json({ message: "Essa equipe não existe." })
+                return res.status(400).json({ message: "Essa equipe não existe." });
             }
 
-            // Busca o funcionário pelo CPF informado, sem revelar ao cliente
-            // se o CPF existe ou não na base (evita enumeração de usuários).
-            const dadosBanco = await FuncionarioRepository.buscarPorCPF(limparCpf(cpf));
+            // Verifica se o funcionário existe no banco
+            const dadosBanco = await FuncionarioRepository.buscarPorCPF(cpfLimpo);
+            let nomeFuncionarioFinal = nome;
+            let cpfFinal = cpfLimpo;
 
-            const nomeConfere = dadosBanco?.nomeFuncionario?.toLowerCase() === String(nome).toLowerCase();
-            const emailConfere = dadosBanco?.email?.toLowerCase() === String(email).toLowerCase();
+            if (dadosBanco) {
+                nomeFuncionarioFinal = dadosBanco.nomeFuncionario;
+                cpfFinal = dadosBanco.cpf;
+            }
 
-            if (dadosBanco && nomeConfere && emailConfere) {
-                const idAdministrador = await FuncionarioRepository.buscarAdministrador(equipe as enumEquipes);
+            // Envia as informações para o administrador, independentemente de o CPF existir ou não no banco
+            const idAdministrador = await FuncionarioRepository.buscarAdministrador(equipe as enumEquipes);
 
-                if (idAdministrador) {
-                    const administrador = await FuncionarioRepository.listarPorId(idAdministrador);
+            if (idAdministrador) {
+                const administrador = await FuncionarioRepository.listarPorId(idAdministrador);
 
-                    if (administrador?.email) {
-                        try {
-                            const mail = new Mail(
-                                administrador.email,
-                                'Solicitação de redefinição de senha',
-                                `<p>O funcionário <strong>${dadosBanco.nomeFuncionario} ${dadosBanco.sobrenomeFuncionario}</strong> ` +
-                                `(CPF: ${dadosBanco.cpf}) solicitou a redefinição de senha.</p>` +
-                                (texto ? `<p>Mensagem enviada: ${texto}</p>` : '')
-                            );
-                            await mail.sendMail();
-                        } catch (mailError) {
-                            // Falha no envio de e-mail não deve derrubar a resposta ao usuário;
-                            // apenas registra o erro para investigação.
-                            console.error('Erro ao enviar e-mail de recuperação de senha:', mailError);
-                        }
+                if (administrador?.email) {
+                    try {
+                        const assunto = dadosBanco
+                            ? 'Solicitação de redefinição de senha'
+                            : 'Solicitação de suporte / Novo contato (CPF não cadastrado)';
+
+                        const mensagemHtml = `
+                        <p><strong>Nome informado:</strong> ${nomeFuncionarioFinal}</p>
+                        <p><strong>CPF informado:</strong> ${cpfFinal}</p>
+                        <p><strong>E-mail informado:</strong> ${email}</p>
+                        <p><strong>Status no sistema:</strong> ${dadosBanco ? 'Cadastrado' : 'Não cadastrado na base'}</p>
+                        ${texto ? `<p><strong>Mensagem enviada:</strong> ${texto}</p>` : ''}
+                    `;
+
+                        const mail = new Mail(administrador.email, assunto, mensagemHtml);
+                        await mail.sendMail();
+                    } catch (mailError) {
+                        console.error('Erro ao enviar e-mail:', mailError);
                     }
                 }
             }
 
-            // Resposta genérica sempre igual, independente de os dados baterem ou não,
-            // para não permitir que alguém descubra se um CPF/e-mail está cadastrado.
+            // Resposta genérica para manter a segurança contra enumeração de usuários
             return res.status(200).json({
-                message: 'Se os dados informados estiverem corretos, o responsável pela sua equipe foi notificado para lhe ajudar na redefinição de senha.'
+                message: 'Se os dados informados estiverem corretos, o responsável pela sua equipe foi notificado.'
             });
 
         } catch (error) {

@@ -1,31 +1,30 @@
 import { useContext } from "react";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
-import { AuthContext } from "../contexts/authContext";
+import { AuthContext } from "../../contexts/AuthContext";
 
 export default function ProtectedRoute({ allowedRoles }) {
   const { isAuthenticated, user, loading } = useContext(AuthContext);
   const location = useLocation();
 
-  // 1. Exibe o loader enquanto valida o cookie/sessão no AuthContext
+  // 1. Exibe loader enquanto valida a sessão
   if (loading) {
     return (
-      <div className="d-flex justify-content-center align-items-center vh-100">
-        <div className="spinner-border text-primary" role="status">
-          <span className="visually-hidden">Carregando...</span>
-        </div>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', flexDirection: 'column', gap: '12px' }}>
+        <div className="spinner" />
+        <p>Carregando sessão...</p>
       </div>
     );
   }
 
-  // 2. Se não estiver autenticado, redireciona para o login guardando o destino
+  // 2. Se não autenticado, redireciona para login
   if (!isAuthenticated) {
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
 
-  const userRole = user?.role || user?.cargo?.nomeCargo;
+  const nivelPermissao = user?.cargo?.nivelPermissao;
 
-  if (allowedRoles && !allowedRoles.includes(userRole)) {
-    return <Navigate to="/" replace />; // Redireciona para a Home
+  if (allowedRoles && !allowedRoles.includes(nivelPermissao)) {
+    return <Navigate to="/" replace />;
   }
 
   // 3. Renderiza as rotas filhas

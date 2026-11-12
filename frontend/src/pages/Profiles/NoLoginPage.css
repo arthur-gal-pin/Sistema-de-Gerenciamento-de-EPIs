@@ -1,0 +1,172 @@
+/* Container principal centralizado na tela */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f5f6f3; /* Cor dominante da paleta (60%) */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Cartão do formulário */
+.login-card {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(89, 125, 54, 0.08);
+    width: 100%;
+    position: relative;
+    box-sizing: border-box;
+}
+
+/* Estilo para transformar o SetaVoltar num botão circular */
+.login-card .seta-voltar, /* Ajuste o seletor conforme a classe real do seu componente SetaVoltar */
+.login-card button:has(svg), 
+.login-card a:has(svg),
+.login-card [class*="voltar"] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #f5f6f3; /* Fundo alinhado com a paleta dominante */
+    border: 1px solid #d4dec9;
+    color: #597d36; /* Cor do ícone (verde secundário) */
+    transition: all 0.2s ease-in-out;
+    text-decoration: none;
+    margin-bottom: 16px;
+}
+
+.login-card [class*="voltar"]:hover {
+    background-color: #597d36;
+    color: #ffffff;
+    border-color: #597d36;
+}
+
+/* Cabeçalho do formulário */
+.login-header {
+    margin-bottom: 24px;
+    text-align: left;
+}
+
+.login-header h2 {
+    font-size: 24px;
+    color: #597d36; /* Verde secundário (30%) */
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+.login-header p {
+    font-size: 14px;
+    color: #657755;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Grupos de formulário */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #3b5224;
+}
+
+/* Campos de entrada (Input, Select e Textarea) */
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 14px;
+    font-size: 14px;
+    border: 1px solid #d4dec9;
+    border-radius: 8px;
+    background-color: #fafbf9;
+    color: #2c3820;
+    transition: all 0.2s ease-in-out;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #597d36; /* Verde secundário */
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(178, 204, 51, 0.2); /* Sutil reflexo com o destaque (10%) */
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 90px;
+}
+
+/* Botão de Ação Principal */
+.btn-primary {
+    margin-top: 8px;
+    background-color: #597d36; /* Verde secundário (30%) */
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn-primary:hover:not(:disabled) {
+    background-color: #48652b;
+}
+
+.btn-primary:active:not(:disabled) {
+    transform: scale(0.99);
+}
+
+.btn-primary:disabled {
+    background-color: #b8c4ae;
+    cursor: not-allowed;
+}
+
+/* Botão secundário de link para voltar */
+.btn-link {
+    background: transparent;
+    border: none;
+    color: #657755;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px;
+    cursor: pointer;
+    text-align: center;
+    transition: color 0.2s;
+}
+
+.btn-link:hover {
+    color: #597d36;
+    text-decoration: underline;
+}
+
+/* Responsividade para telas menores (smartphones) */
+@media (max-width: 480px) {
+    .login-card {
+        padding: 24px 16px;
+        border-radius: 8px;
+    }
+
+    .login-header h2 {
+        font-size: 20px;
+    }
+}

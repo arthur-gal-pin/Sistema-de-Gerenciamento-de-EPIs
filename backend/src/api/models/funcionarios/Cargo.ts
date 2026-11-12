@@ -49,8 +49,8 @@ export default class Cargo {
 
     // --- VALIDATION METHODS ---
     private validarNomeCargo(value: string) {
-        if (value.trim().length < 4 || value.trim().length > 25) {
-            throw new Error('O nome do Cargo está inválido. Seu tamanho deve ser maior de 4 caracteres e menor que 25.')
+        if (value.trim().length < 4 || value.trim().length > 41) {
+            throw new Error('O nome do Cargo está inválido. Seu tamanho deve ser maior de 4 caracteres e menor que 40.')
         };
     }
 

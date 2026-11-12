@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
-import { getProfile } from "../services/ProfileService";
-import "../styles/index.css"
-import "../styles/theme.css"
+import api from "../services/api";
 
 export default function useProfile(userId) {
   const [profile, setProfile] = useState(null);
@@ -12,8 +10,9 @@ export default function useProfile(userId) {
     async function fetchProfile() {
       try {
         setLoading(true);
-        const data = await getProfile(userId);
-        setProfile(data);
+        const endpoint = userId ? `/funcionarios/${userId}` : `/profile/meu-perfil`;
+        const res = await api.get(endpoint);
+        setProfile(res.data?.data || res.data);
       } catch (err) {
         setError(err);
       } finally {

@@ -10,7 +10,7 @@ export const CargoController = {
                 res.status(404).json({ message: 'Não foi encontrado nenhum funcionário nesse banco de dados.' });
                 return;
             }
-            res.status(200).json(cargos);
+            res.status(200).json({ message: 'Cargos encontrados:', data: cargos });
         } catch (error: any) {
             res.status(500).json({ message: "Erro ao listar cargos", error: error.message });
         }
@@ -24,7 +24,7 @@ export const CargoController = {
                 res.status(404).json({message: 'Não foi encontrado nenhum funcionário com esse id no banco de dados.'});
                 return;
             }
-            res.status(200).json(result);
+            res.status(200).json({data: result});
 
         } catch (error: any) {
             res.status(500).json({ message: "Erro ao listar cargos", error: error.message });

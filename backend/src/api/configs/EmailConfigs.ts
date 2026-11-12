@@ -1,8 +1,8 @@
 class EmailConfigs {
-    public host = '';
-    public port = 587; //AJustar para uma porta env posteriormente
-    public user = "";
-    public password = ""
+    public host = process.env.EMAIL_HOST || "";
+    public port = Number(process.env.EMAIL_PORT) || 587; 
+    public user = process.env.EMAIL_USER || "";
+    public password = process.env.EMAIL_PASSWORD || "";
 }
 
-export default new EmailConfigs;
+export default new EmailConfigs();
